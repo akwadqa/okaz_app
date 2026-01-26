@@ -1,0 +1,97 @@
+name: okaz
+description: "Okaz application about buy and sell products online and could to overbid on advertisement."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.4
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  auto_route: ^11.1.0
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^3.0.3
+  riverpod_annotation: ^3.0.3
+  intl: ^0.20.2
+  flutter_svg: ^2.0.10+1
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+  dio: ^5.7.0
+  cached_network_image: ^3.4.1
+  dots_indicator: ^4.0.1
+  carousel_slider: ^5.0.0
+  easy_localization: ^3.0.7
+  pull_to_refresh: ^2.0.0
+  shared_preferences: ^2.3.4
+  queen_validators: ^1.0.1
+  bcrypt: ^1.1.3
+  bot_toast: ^4.1.3
+  lottie: ^3.3.1
+  webview_flutter: ^4.10.0
+  another_stepper: ^1.2.2
+  mockito: ^5.4.5
+  flutter_dotenv: ^6.0.0
+  go_router: ^17.0.1
+  pretty_dio_logger: ^1.4.0
+  colorize: ^3.0.0
+  flutter_secure_storage: ^10.0.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.5
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.4.2
+  riverpod_generator: ^3.0.3
+  build_runner: ^2.4.13
+  custom_lint: ^0.8.1
+  riverpod_lint: ^3.0.3
+  auto_route_generator: ^10.4.0
+  flutter_gen_runner: ^5.8.0
+  freezed: ^3.2.3
+  json_serializable: ^6.8.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/translations/
+    # - assets/splash/
+    # - assets/lottie/
+    - .env
+
+
+flutter_gen:
+  integrations:
+    flutter_svg: true
+flutter_intl:
+  enabled: true
