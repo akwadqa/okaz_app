@@ -90,8 +90,11 @@ class AppTextStyle {
     fontSize: 10,
   );
 
-
   //? Bold :
+  static TextStyle rubikBold18 = GoogleFonts.rubik(
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+  );
   static TextStyle rubikBold20 = GoogleFonts.rubik(
     fontWeight: FontWeight.w700,
     fontSize: 20,
@@ -105,7 +108,7 @@ class AppTextStyle {
 
   //************************ Nunito ///////////////// */
 
-  //? Semi bold : 
+  //? Semi bold :
   static TextStyle nunitoSemibold16 = GoogleFonts.nunitoSans(
     fontWeight: FontWeight.w600,
     fontSize: 16,
@@ -124,15 +127,31 @@ class AppTextStyle {
 
   //********************** INTER ////////////// */
 
-  static TextStyle bodyXsmallRegular = GoogleFonts.inter(
+  //? Regular :
+
+  static TextStyle interRegular12 = GoogleFonts.inter(
     fontWeight: FontWeight.w400,
     fontSize: 12,
   );
+  static TextStyle interRegular14 = GoogleFonts.inter(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+  );
+  static TextStyle interRegular16 = GoogleFonts.inter(
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+  );
+
+  //? Semi-bold :
 
   static TextStyle bodysmallSemibold = GoogleFonts.inter(
     fontWeight: FontWeight.w600,
     fontSize: 14,
   );
+
+  //? Bold :
+  static TextStyle interBold18 =
+      GoogleFonts.poppins(fontWeight: FontWeight.w700, fontSize: 18);
 
   //***************** Cairo ******* */
 

@@ -19,7 +19,8 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.4
+  # sdk: ^3.10.4
+  sdk: ^3.9.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -27,6 +28,7 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
 dependencies:
   auto_route: ^11.1.0
   flutter:
@@ -61,28 +63,51 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   path_provider: ^2.1.5
-  device_preview: ^1.3.1
-  pinput: ^6.0.1
   intl_phone_field: ^3.2.0
   google_fonts: ^6.3.3
+  quickalert: ^1.1.0
+  sizer: ^3.1.3
+  device_preview: ^1.3.1
+  pinput: ^6.0.1
+  animated_bottom_navigation_bar: ^1.4.0
   skeletonizer: ^2.1.2
-  image_picker: ^1.2.1
+  custom_clippers: ^2.0.4
+  firebase_core: ^4.3.0
+  firebase_messaging: ^16.1.0
+  fcm_config: ^3.6.5
+  firebase_analytics: ^12.1.1
+  flutter_local_notifications: ^19.1.0
+  fl_chart: ^1.1.1
+  mobile_scanner: ^7.1.4
+  image_picker: 1.2.0
+  flutter_contacts: ^1.1.9+2
+  equatable: ^2.0.8
+  uuid: ^4.5.2
+  dotted_border: ^3.1.0
+  google_maps_flutter: ^2.14.0
+  # google_places_flutter: ^2.1.1
+  # flutter_google_places_sdk: ^0.4.2+1
+  geolocator: ^14.0.2
+  convex_bottom_bar: ^3.2.0
+  curved_labeled_navigation_bar: ^2.0.6
+
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  analyzer: ^7.0.0
   flutter_lints: ^6.0.0
-  flutter_native_splash: ^2.4.2
-  riverpod_generator: ^3.0.3
+  riverpod_generator: ^3.0.0-dev.17
   build_runner: ^2.4.13
-  custom_lint: ^0.8.1
-  riverpod_lint: ^3.0.3
-  auto_route_generator: ^10.4.0
+  custom_lint: ^0.8.0
+  riverpod_lint: ^3.0.0-dev.17
+  # auto_route_generator: ^10.2.4
   flutter_gen_runner: ^5.8.0
-  freezed: ^3.2.3
+  freezed: ^3.2.0
   json_serializable: ^6.8.0
-
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true

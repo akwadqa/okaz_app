@@ -1,91 +1,52 @@
-// import 'dart:ui' as ui;
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:flutter/material.dart';
+import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-// import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:go_router/go_router.dart';
-// import 'package:easy_localization/easy_localization.dart';
-// import 'package:okaz/gen/assets.gen.dart';
-// import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-// import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+class BottomNavigationBarView extends StatelessWidget {
+  const BottomNavigationBarView({super.key});
 
-// import '../controller/home_controller.dart';
+  @override
+  Widget build(BuildContext context) {
+    return CurvedNavigationBar(
+        index: 0,
+        backgroundColor: Colors.transparent,
+        height: 70,
+        items: [
+          CurvedNavigationBarItem(
+            child: Assets.icons.bnbHomeIc.svg(
+              colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+            ),
+            label: 'الرئيسية',
+            labelStyle: AppTextStyle.rubikMedium12.copyWith(
+              color: AppColors.grey600,
+            ),
+          ),
 
-// class BottomNavigationBarView extends ConsumerWidget {
-
-//   const BottomNavigationBarView({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     final selectedIndex = ref.watch(bottomNavIndexProvider);
-
-//     final iconList = [
-//       Assets.icons.homeIc.svg(),
-//       Assets.icons.scanIc.svg(),
-//       Assets.icons.messagesIc.svg(),
-//       Assets.icons.settingsIc.svg(),
-//     ];
-
-//     final labelList = [
-//       context.tr('home'),
-//       context.tr('scan'),
-//       context.tr('notifications'),
-//       context.tr('settings'),
-//     ];
-
-//     return SizedBox(
-//       height: 107,
-//       child: AnimatedBottomNavigationBar.builder(
-//         itemCount: iconList.length,
-//         tabBuilder: (int i, bool isActive) {
-//           final color = isActive ? AppColors.primary : AppColors.black;
-    
-//           return Column(
-//             // mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               SizedBox(height: 10),
-//               AnimatedContainer(
-//                 padding: EdgeInsets.zero,
-//                 margin: EdgeInsets.zero,
-//                 duration: Duration(milliseconds: 300),
-//                 // width: double.infinity,
-//                 decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.circular(20),
-//                   color: selectedIndex == i ? AppColors.primary : Colors.transparent,
-//                 ),
-//                 width: 27,
-//                 height: 4,
-//               ),
-//               12.verticalSpace,
-//               ColorFiltered(
-//                 colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-//                 child: iconList[i],
-//               ),
-//               // SizedBox(height: 4),
-//               Spacer(),
-//               Text(
-//                 labelList[i],
-//                 style: TextStyle(fontSize: 12, color: color),
-//               ),
-//               // 10.verticalSpace,
-//             ],
-//           );
-//         },
-//         gapLocation: GapLocation.center,
-//         splashSpeedInMilliseconds: 1,
-//         notchSmoothness: NotchSmoothness.smoothEdge,
-//         activeIndex: selectedIndex,
-//             onTap: (i) =>
-//             ref.read(bottomNavIndexProvider.notifier).state = i,
-//         backgroundColor: Colors.white,
-//         shadow: Shadow(
-//           blurRadius: 24,
-//           offset: Offset(0, -5),
-//           color: Colors.black.withOpacity(.12),
-//         ),
-//       ),
-//     );
-//   }
-// }
+          CurvedNavigationBarItem(
+            child: Assets.icons.bnbAddIc.svg(),
+            label: 'إضافة',
+            labelStyle: AppTextStyle.rubikMedium12.copyWith(
+              color: AppColors.grey600,
+            ),
+          ),
+          CurvedNavigationBarItem(
+            child: Assets.icons.settingsIc.svg(),
+            label: 'إعدادات',
+            labelStyle: AppTextStyle.rubikMedium12.copyWith(
+              color: AppColors.grey600,
+            ),
+          ),
+          CurvedNavigationBarItem(
+            child: Assets.icons.bnbAccountIc.svg(),
+            label: 'حسابي',
+            labelStyle: AppTextStyle.rubikMedium12.copyWith(
+              color: AppColors.grey600,
+            ),
+          ),
+        ],
+      );
+  }
+}

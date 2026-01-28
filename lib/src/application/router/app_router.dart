@@ -83,7 +83,7 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: OnBoarding(),
+              child: HomeScreen(),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -160,7 +160,7 @@ class AppRouter {
             parentNavigatorKey: rootKey,
             pageBuilder: (BuildContext context, GoRouterState state) {
               return CustomTransitionPage(
-                child: MainScreen(),
+                child: HomeScreen(),
                 key: state.pageKey,
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) {

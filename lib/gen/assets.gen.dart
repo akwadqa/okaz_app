@@ -28,6 +28,24 @@ class $AssetsIconsGen {
   /// File path: assets/icons/app_icon.jpg
   AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.jpg');
 
+  /// File path: assets/icons/bnb_account_ic.svg
+  SvgGenImage get bnbAccountIc =>
+      const SvgGenImage('assets/icons/bnb_account_ic.svg');
+
+  /// File path: assets/icons/bnb_add_ic.svg
+  SvgGenImage get bnbAddIc => const SvgGenImage('assets/icons/bnb_add_ic.svg');
+
+  /// File path: assets/icons/bnb_home_ic.svg
+  SvgGenImage get bnbHomeIc =>
+      const SvgGenImage('assets/icons/bnb_home_ic.svg');
+
+  /// File path: assets/icons/bnb_settings_ic.svg
+  SvgGenImage get bnbSettingsIc =>
+      const SvgGenImage('assets/icons/bnb_settings_ic.svg');
+
+  /// File path: assets/icons/car_ic.svg
+  SvgGenImage get carIc => const SvgGenImage('assets/icons/car_ic.svg');
+
   /// File path: assets/icons/chat_ic.svg
   SvgGenImage get chatIc => const SvgGenImage('assets/icons/chat_ic.svg');
 
@@ -61,6 +79,10 @@ class $AssetsIconsGen {
   SvgGenImage get editProfileIc =>
       const SvgGenImage('assets/icons/edit_profile_ic.svg');
 
+  /// File path: assets/icons/electronic_ic.svg
+  SvgGenImage get electronicIc =>
+      const SvgGenImage('assets/icons/electronic_ic.svg');
+
   /// File path: assets/icons/event_date_ic.svg
   SvgGenImage get eventDateIc =>
       const SvgGenImage('assets/icons/event_date_ic.svg');
@@ -72,6 +94,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/failed_guest_ic.svg
   SvgGenImage get failedGuestIc =>
       const SvgGenImage('assets/icons/failed_guest_ic.svg');
+
+  /// File path: assets/icons/family_stuffs_ic.svg
+  SvgGenImage get familyStuffsIc =>
+      const SvgGenImage('assets/icons/family_stuffs_ic.svg');
 
   /// File path: assets/icons/full_name_ic.svg
   SvgGenImage get fullNameIc =>
@@ -128,6 +154,10 @@ class $AssetsIconsGen {
   AssetGenImage get qatarFlag =>
       const AssetGenImage('assets/icons/qatar_flag.png');
 
+  /// File path: assets/icons/realestate_ic.svg
+  SvgGenImage get realestateIc =>
+      const SvgGenImage('assets/icons/realestate_ic.svg');
+
   /// File path: assets/icons/save_event_ic.svg
   SvgGenImage get saveEventIc =>
       const SvgGenImage('assets/icons/save_event_ic.svg');
@@ -155,6 +185,11 @@ class $AssetsIconsGen {
     addContactIc,
     addEventIc,
     appIcon,
+    bnbAccountIc,
+    bnbAddIc,
+    bnbHomeIc,
+    bnbSettingsIc,
+    carIc,
     chatIc,
     confirmGuestIc,
     contactsIc,
@@ -164,9 +199,11 @@ class $AssetsIconsGen {
     deleteIc,
     deleteWithCornerIc,
     editProfileIc,
+    electronicIc,
     eventDateIc,
     eventTimeIc,
     failedGuestIc,
+    familyStuffsIc,
     fullNameIc,
     googleIc,
     homeIc,
@@ -182,6 +219,7 @@ class $AssetsIconsGen {
     privacyIc,
     qatarCountry,
     qatarFlag,
+    realestateIc,
     saveEventIc,
     scanIc,
     settingsIc,
@@ -234,6 +272,10 @@ class $AssetsImagesGen {
   AssetGenImage get inviteTypeImage =>
       const AssetGenImage('assets/images/invite_type_image.jpg');
 
+  /// File path: assets/images/phone_image.png
+  AssetGenImage get phoneImage =>
+      const AssetGenImage('assets/images/phone_image.png');
+
   /// File path: assets/images/qatar_country.png
   AssetGenImage get qatarCountry =>
       const AssetGenImage('assets/images/qatar_country.png');
@@ -258,6 +300,10 @@ class $AssetsImagesGen {
   AssetGenImage get templateReplyImage =>
       const AssetGenImage('assets/images/template_reply_image.png');
 
+  /// File path: assets/images/watch_image.jpg
+  AssetGenImage get watchImage =>
+      const AssetGenImage('assets/images/watch_image.jpg');
+
   /// List of all assets
   List<dynamic> get values => [
     rectangle,
@@ -270,12 +316,14 @@ class $AssetsImagesGen {
     imErrorScreen,
     invitationCreateIm,
     inviteTypeImage,
+    phoneImage,
     qatarCountry,
     qatarFlag,
     qrTemplateImage,
     template1Image,
     template2Image,
     templateReplyImage,
+    watchImage,
   ];
 }
 
