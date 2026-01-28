@@ -9,6 +9,7 @@ import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
+import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 class VerificationScreenConfirmationButtons extends ConsumerWidget {
@@ -43,11 +44,11 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
           });
           final isVisible =
               ref.watch(signInControllerProvider).value!.isVerify ?? true;
-          if (!isVisible) {
-            return SizedBox(
-              height: 50,
-            );
-          }
+          // if (!isVisible) {
+          //   return SizedBox(
+          //     height: 50,
+          //   );
+          // }
 
           final signInProvider = ref.watch(verifyOtpControllerProvider);
 
@@ -57,7 +58,7 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
           }
           return CustomButtonWidget(
             text: 'confirm'.tr(),
-            onTap: () {
+            onTap:isVisible? () {
               FocusScope.of(context).unfocus();
 
               // formKey.currentState!.save();
@@ -69,49 +70,49 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
               ref
                   .read(verifyOtpControllerProvider.notifier)
                   .verifyOtp(phone, otp.text);
-            },
+            }:(){},
             isFiled: true,
-            height: 50,
+            height: 55,
             width: double.infinity,
-            backgroundColor: AppColors.primary,
-            radius: 10,
+            backgroundColor:isVisible? AppColors.primary:AppColors.gray,
+            radius: 24,
           );
         }),
-        Consumer(builder: (context, ref, _) {
-          //? This for make resend code anvisible when send otp success :
-          ref.listen(
-              verifyOtpControllerProvider.select(
-                  (val) => val.value?.signinResponseModel), (prev, next) {
-            if (next is AsyncData) {
-              ref.read(signInControllerProvider.notifier)
-                ..makeResendButtonVisible(false)
-                ..makeConfirmButtonVisible(true);
-            }
-          });
+        // Consumer(builder: (context, ref, _) {
+        //   //? This for make resend code anvisible when send otp success :
+        //   ref.listen(
+        //       verifyOtpControllerProvider.select(
+        //           (val) => val.value?.signinResponseModel), (prev, next) {
+        //     if (next is AsyncData) {
+        //       ref.read(signInControllerProvider.notifier)
+        //         ..makeResendButtonVisible(false)
+        //         ..makeConfirmButtonVisible(true);
+        //     }
+        //   });
 
-          //? This for visibility of resend button :
-          final isVisible =
-              ref.watch(signInControllerProvider).value!.isResend ?? false;
-          if (!isVisible) return SizedBox();
+        //   //? This for visibility of resend button :
+        //   final isVisible =
+        //       ref.watch(signInControllerProvider).value!.isResend ?? false;
+        //   if (!isVisible) return SizedBox();
 
-          final notifier = ref.watch(verifyOtpControllerProvider
-              .select((val) => val.value?.signinResponseModel));
-          if (notifier is AsyncLoading) {
-            return AppLoader();
-          }
-          return CustomButtonWidget(
-            text: 'resend_code'.tr(),
-            onTap: () {
-              ref.read(verifyOtpControllerProvider.notifier).resendCoe(phone);
-            },
-            isFiled: false,
-            height: 50,
-            width: double.infinity,
-            backgroundColor: AppColors.background,
-            radius: 10,
-          );
-        }),
+        //   final notifier = ref.watch(verifyOtpControllerProvider
+        //       .select((val) => val.value?.signinResponseModel));
+        //   if (notifier is AsyncLoading) {
+        //     return AppLoader();
+        //   }
+        //   return CustomButtonWidget(
+        //     text: 'resend_code'.tr(),
+        //     onTap: () {
+        //       ref.read(verifyOtpControllerProvider.notifier).resendCoe(phone);
+        //     },
+        //     isFiled: false,
+        //     height: 50,
+        //     width: double.infinity,
+        //     backgroundColor: AppColors.background,
+        //     radius: 10,
+        //   );
+        // }),
       ],
-    );
+    ).symmetricPadding(horizontal: 20);
   }
 }

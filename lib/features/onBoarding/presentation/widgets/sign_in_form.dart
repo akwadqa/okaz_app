@@ -56,14 +56,20 @@ class _SignInFormState extends ConsumerState<SignInForm> {
               setState(() {});
             },
           ),
-        
+          // PhoneNumberField(
+          //   onSaved: (value) => _phoneNumber = value,
+          // ),
           Consumer(builder: (context, ref, child) {
             final signInProvider = ref.watch(signInControllerProvider);
 
             if (signInProvider is AsyncLoading) {
               return AppLoader();
+              // const FadeCircleLoadingIndicator();
             }
-       
+            // signInProvider.isLoading
+            //     ?
+
+            // :
             final isEmpty =
                 ref.watch(signInControllerProvider).value!.isPhoneFilled ??
                     false;
@@ -71,10 +77,10 @@ class _SignInFormState extends ConsumerState<SignInForm> {
               text: 'login'.tr(),
               onTap: () => !isEmpty ? null : _submit(ref),
               isFiled: true,
-              height: 55,
+              height: 50,
               width: double.infinity,
               backgroundColor: !isEmpty ? AppColors.gray : AppColors.primary,
-              radius: 24,
+              radius: 10,
             );
             // return Container();
           }),

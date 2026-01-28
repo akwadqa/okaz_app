@@ -15,8 +15,10 @@ class HomeScreenSearchFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       cursorColor: AppColors.black,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(4),
         prefixIcon: Icon(Icons.search, color: AppColors.grayHint),
         hintText: 'ابحث عن أي شيء...',
         hintStyle: AppTextStyle.interRegular16.copyWith(

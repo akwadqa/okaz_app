@@ -9,9 +9,9 @@ class AppLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Lottie.asset(
-      width: 55,
-      height: 55,
-      Assets.lottie.shoppingLoader,
+      width: 50,
+      height: 50,
+      Assets.lottie.loader,
       // Assets.lottie.processingCircle,
       repeat: true,
       

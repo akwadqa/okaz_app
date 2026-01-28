@@ -10,6 +10,8 @@ import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import 'package:pinput/pinput.dart';
 import '../../domain/model/signUp_params.dart';
 import 'create_account_field.dart';
 
@@ -64,20 +66,41 @@ class _SignUpFormState extends State<SignUpForm> {
           //     );
           //   },
           // ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 10,
+          LoginPageNumberField(
+            phoneController,
+            onChange: (phone) {
+              phoneController.setText(phone?.number??"");
+               setState(() {
+                    
+                  });
+            },
+          ),
+          Row(spacing: 10,
             children: [
-              Text(
-                'phone_number'.tr(),
-                style: Theme.of(context).textTheme.labelLarge,
+              Consumer(
+                builder: (context,ref,wiidget) {
+                  final provider=ref.read(signUpControllerProvider.notifier);
+                  return Checkbox.adaptive(
+                    activeColor: Colors.white,
+                    checkColor: AppColors.primary,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    value:provider.acceptPrivacyPolicy , onChanged: (v){
+                  provider.toggleAcceptedPrivacyPolicy();
+                  setState(() {
+                    
+                  });
+                  });
+                }
               ),
-              LoginPageNumberField(
-                phoneController,
-                onChange: (phone) {
-                  // phoneController.setText(phone?.number??"");
-                },
-              ),
+               Text(
+          'agree_terms'.tr(),
+          textAlign: TextAlign.start,
+          style: AppTextStyle.rubikMedium14,
+          // style: textTheme.displaySmall!.copyWith(
+          //   color: AppColors.black,
+          //   fontWeight: FontWeight.w800,
+          // ),
+        ),
             ],
           ),
          
@@ -97,23 +120,29 @@ class _SignUpFormState extends State<SignUpForm> {
               }
             });
 
-            final signInProvider = ref.watch(signUpControllerProvider);
-            if (signInProvider is AsyncLoading) {
+            final signUpState= ref.watch(signUpControllerProvider);
+            final signUpProvider = ref.read(signUpControllerProvider.notifier);
+            if (signUpState is AsyncLoading) {
               return AppLoader();
               // const FadeCircleLoadingIndicator();
             }
-            // signInProvider.isLoading
+            final active=
+            signUpProvider.acceptPrivacyPolicy
+            // &&
+            // phoneController.text.isNotEmpty
+            ;
+            // signUpProvider.isLoading
             //     ?
 
             // :
             return CustomButtonWidget(
-              text: 'sign_up'.tr(),
-              onTap: () => _submit(ref),
+              text: 'create_account'.tr(),
+              onTap: () =>active? _submit(ref):null,
               isFiled: true,
-              height: 50,
+              height: 55,
               width: double.infinity,
-              backgroundColor: AppColors.primary,
-              radius: 10,
+              backgroundColor:active? AppColors.primary:AppColors.gray,
+              radius: 24,
             );
             // return Container();
           }),

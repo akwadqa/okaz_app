@@ -62,7 +62,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: AppColors.background,
-      appBar: AppBar(centerTitle: true, title: Text('سوق عكاظ')),
+      appBar: AppBar(centerTitle: true, title: Text('سوق عكاظ'),backgroundColor: AppColors.background,),
       body: _HomeScreenContent(),
       bottomNavigationBar: BottomNavigationBarView(),
     );

@@ -10,6 +10,18 @@ class SignUpController extends _$SignUpController {
   @override
   Future<SignupResponseModel?>? build() => null;
   DateTime? selectedDate;
+  bool acceptPrivacyPolicy = false;
+  String phoneNumber = '';
+
+  void toggleAcceptedPrivacyPolicy() {
+    acceptPrivacyPolicy = !acceptPrivacyPolicy;
+    state = state; // 🔥 notify listeners
+  }
+
+  void setPhone(String value) {
+    phoneNumber = value;
+    state = state; // 🔥 notify listeners
+  }
 
   void setBirthDate(DateTime date) {
     selectedDate = date;
