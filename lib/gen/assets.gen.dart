@@ -234,6 +234,18 @@ class $AssetsImagesGen {
   AssetGenImage get inviteTypeImage =>
       const AssetGenImage('assets/images/invite_type_image.jpg');
 
+  /// File path: assets/images/on_boarding_im1.png
+  AssetGenImage get onBoardingIm1 =>
+      const AssetGenImage('assets/images/on_boarding_im1.png');
+
+  /// File path: assets/images/on_boarding_im2.png
+  AssetGenImage get onBoardingIm2 =>
+      const AssetGenImage('assets/images/on_boarding_im2.png');
+
+  /// File path: assets/images/on_boarding_im3.png
+  AssetGenImage get onBoardingIm3 =>
+      const AssetGenImage('assets/images/on_boarding_im3.png');
+
   /// File path: assets/images/qatar_country.png
   AssetGenImage get qatarCountry =>
       const AssetGenImage('assets/images/qatar_country.png');
@@ -270,6 +282,9 @@ class $AssetsImagesGen {
     imErrorScreen,
     invitationCreateIm,
     inviteTypeImage,
+    onBoardingIm1,
+    onBoardingIm2,
+    onBoardingIm3,
     qatarCountry,
     qatarFlag,
     qrTemplateImage,

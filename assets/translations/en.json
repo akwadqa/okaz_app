@@ -1,1 +1,35 @@
-{}
+{
+    "on_boarding_title1": "Discover the best offers",
+    "on_boarding_dsc1": "Browse thousands of listings across different categories, from electronics to real estate, easily and securely",
+    "on_boarding_title2": "Bid and earn",
+    "on_boarding_dsc2": "Participate in live auctions and get the best deals at competitive prices for everyone",
+    "on_boarding_title3": "Sell your items easily",
+    "on_boarding_dsc3": "Turn your unused items into cash through our trusted platform",
+    "next": "Next",
+    "start_now": "Start now",
+    "skip": "Skip",
+    "phone_number": "Phone Number",
+
+    "login": "Login",
+    "welcome_back": "Welcome back",
+    "login_subtitle": "Log in to bid on the best items in Okaz market",
+  
+    "mobile_number": "Mobile number",
+    "continue_login": "Login",
+    "continue_as_guest": "Continue as guest",
+  
+    "enter_otp_title": "Enter the code sent to your phone",
+    "otp_sent_message": "A verification code has been sent via SMS to your phone number",
+    "resend_otp": "Resend verification code",
+  
+    "privacy_agreement": "By pressing login, you agree to the Privacy Policy",
+  
+    "create_account": "Create account",
+    "create_account_subtitle": "Create an account to browse all available products and auctions",
+  
+    "full_name": "Full name",
+    "agree_terms": "I agree to the terms and conditions",
+  
+    "already_have_account": "Already have an account?",
+    "sign_in": "Sign in"
+}

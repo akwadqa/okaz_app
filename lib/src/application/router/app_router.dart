@@ -6,7 +6,7 @@ import 'package:okaz/features/auth/signUp/presentation/screens/signup_screen.dar
 import 'package:okaz/features/auth/verification/presentation/screens/verification_account_screen.dart';
 import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/screens/main_screen.dart';
-import 'package:okaz/features/onBoarding/on_boarding.dart';
+import 'package:okaz/features/onBoarding/presentation/screens/on_boarding_screen.dart';
 
 import 'app_routes.dart';
 import 'custom_navigation_observer.dart';
@@ -20,10 +20,11 @@ class AppRouter {
   AppRouter(Ref ref) : goRouter = _createRouter(ref);
 
   static GoRouter _createRouter(Ref ref) {
-    String initialRoute = AppRoutes.onBoarding;
+    String initialRoute = AppRoutes.signUpScreen;
     return GoRouter(
       navigatorKey: rootKey,
       initialLocation: initialRoute,
+      
       observers: [CustomNavigationObserver()],
       errorBuilder: (context, state) => const FallbackScreen(),
       //   redirect: (context, state) async {
@@ -83,7 +84,7 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: OnBoarding(),
+              child: OnBoardingScreen(),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

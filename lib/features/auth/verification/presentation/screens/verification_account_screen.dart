@@ -4,7 +4,10 @@ import 'package:okaz/features/auth/verification/presentation/widgets/verificatio
 import 'package:okaz/features/auth/verification/presentation/widgets/verification_screen_pin.dart';
 import 'package:okaz/features/auth/verification/presentation/widgets/verification_screen_timer.dart';
 import 'package:okaz/features/auth/widgets/auth_build_content.dart';
+import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:pinput/pinput.dart';
+
+import '../widgets/verification_screen_footer.dart';
 
 class VerificationAccountScreen extends StatelessWidget {
   final String phone;
@@ -13,6 +16,7 @@ class VerificationAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
         body: AuthScreen(
       withBackButton: true,
       child: _VerificationScreenContent(
@@ -62,12 +66,16 @@ class _VerificationScreenContentState
             //   setState(() {});
             // },
           ),
-          VerificationScreenTimer(),
+          VerificationScreenTimer(
+            phone: widget.phone,
+
+          ),
           VerificationScreenConfirmationButtons(
             phone: widget.phone,
             otp: controller,
             formKey: key,
-          )
+          ),
+          VerificationScreenFooter(),
         ],
       ),
     );

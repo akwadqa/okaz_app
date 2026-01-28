@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_controller.dart';
 import 'package:okaz/features/auth/verification/presentation/controller/verify_otp_controller.dart';
+import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class VerificationScreenTimer extends ConsumerStatefulWidget {
-  const VerificationScreenTimer({super.key});
+ final String phone;
+  const VerificationScreenTimer({super.key, required this.phone});
 
   @override
   ConsumerState<VerificationScreenTimer> createState() =>
@@ -71,21 +73,62 @@ class _VerificationScreenTimerState
         _remainingSeconds = ref.read(
           verifyOtpControllerProvider.select((val) {
             return val
-                .asData!.value!.signinResponseModel!.value!.allowLoginAfter;
+                .asData!.value.signinResponseModel!.value!.allowLoginAfter;
           }),
         );
       }
     });
 
-    return Text.rich(
-      style: AppTextStyle.rubikRegular14.copyWith(color: AppColors.primary),
-      TextSpan(
-        children: [
-          TextSpan(text: context.tr('verificationExpired')),
-          TextSpan(text: '$timerText '),
-          TextSpan(text: context.tr('seconds')),
-        ],
-      ),
+    return 
+    
+    
+   Consumer(builder: (context, ref, _) {
+          //? This for make resend code anvisible when send otp success :
+          ref.listen(
+              verifyOtpControllerProvider.select(
+                  (val) => val.value?.signinResponseModel), (prev, next) {
+            if (next is AsyncData) {
+              ref.read(signInControllerProvider.notifier)
+                ..makeResendButtonVisible(false)
+                ..makeConfirmButtonVisible(true);
+            }
+          });
+
+          //? This for visibility of resend button :
+          final isVisible =
+              ref.watch(signInControllerProvider).value!.isResend ?? false;
+          // if (!isVisible) return SizedBox();
+
+          final notifier = ref.watch(verifyOtpControllerProvider
+              .select((val) => val.value?.signinResponseModel));
+          if (notifier is AsyncLoading) {
+            return AppLoader();
+          }
+        return 
+        isVisible?
+        GestureDetector(
+          onTap: () {
+            ref.read(verifyOtpControllerProvider.notifier).resendCoe(widget.phone);
+          },
+          child: Text(
+            "resend_otp".tr(),
+            
+          style: AppTextStyle.rubikRegular14.copyWith(color: AppColors.primary,decoration: TextDecoration.underline,decorationColor: AppColors.primary),
+            
+          ),
+        )
+        :
+        Text.rich(
+          style: AppTextStyle.rubikRegular14.copyWith(color: AppColors.primary),
+          TextSpan(
+            children: [
+              TextSpan(text: context.tr('verificationExpired')),
+              TextSpan(text: '$timerText '),
+              TextSpan(text: context.tr('seconds')),
+            ],
+          ),
+        );
+      }
     );
   }
 }

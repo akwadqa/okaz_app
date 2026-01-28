@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class VerificationScreenHeading extends StatelessWidget {
   final String phone;
@@ -9,10 +11,12 @@ class VerificationScreenHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 24,
+      spacing: 80,
       children: [
+        60.verticalSpace,
+
         Text(
-          'enterVerificationCode'.tr(),
+          'enter_otp_title'.tr(),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 color: AppColors.primary,
@@ -20,12 +24,9 @@ class VerificationScreenHeading extends StatelessWidget {
               ),
         ),
         Text(
-          '${'we_sent_a_code_to'.tr()} ${phone.replaceRange(3, null, '********')}',
+          '${'otp_sent_message'.tr()} ${phone.replaceRange(3, null, '********')}',
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              // color: AppColors.primary,
-              // fontWeight: FontWeight.w900,
-              ),
+          style: AppTextStyle.outfitRegular16,
         ),
       ],
     );

@@ -21,7 +21,7 @@ class SignUpFooter extends StatelessWidget {
         spacing: 10,
         children: [
           Text(
-            'alreadyHaveAnAccount'.tr(),
+            'already_have_account'.tr(),
             style: textTheme.bodyLarge!.copyWith(
               color: AppColors.gray02,
               fontWeight: FontWeight.w800,
