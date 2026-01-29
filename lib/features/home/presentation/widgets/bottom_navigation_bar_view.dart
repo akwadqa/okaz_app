@@ -1,7 +1,9 @@
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -14,6 +16,11 @@ class BottomNavigationBarView extends StatelessWidget {
         index: 0,
         backgroundColor: Colors.transparent,
         height: 70,
+        onTap: (value) {
+          if(value==1){
+            context.push(AppRoutes.addNewProduct);
+          }
+        },
         items: [
           CurvedNavigationBarItem(
             child: Assets.icons.bnbHomeIc.svg(
@@ -30,7 +37,9 @@ class BottomNavigationBarView extends StatelessWidget {
             label: 'إضافة',
             labelStyle: AppTextStyle.rubikMedium12.copyWith(
               color: AppColors.grey600,
+
             ),
+
           ),
           CurvedNavigationBarItem(
             child: Assets.icons.settingsIc.svg(),

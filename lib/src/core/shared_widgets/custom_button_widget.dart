@@ -8,7 +8,7 @@ class CustomButtonWidget extends StatelessWidget {
   final String text;
   final Color? backgroundColor;
   final Color? color;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool isFiled;
   final double height;
   final TextStyle? style;
@@ -47,15 +47,15 @@ class CustomButtonWidget extends StatelessWidget {
               side: BorderSide(
                   color: color ?? backgroundColor ?? Colors.transparent),
               borderRadius: BorderRadius.circular(radius ?? 25))),
-      onPressed: () {
-        onTap();
-      },
+      onPressed: onTap!=null?() {
+        onTap!();
+      }:null,
       child: Text(context.tr(text),
       textAlign: TextAlign.center,
               style: style ??
                   Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: fontSize ?? 16,
-                      color: isFiled ? Colors.white :color?? Colors.black,
+                      color:color?? (isFiled ? Colors.white :color?? Colors.black),
                       fontWeight: FontWeight.w500))
           .centered(),
     ).onlyPadding(top: topPading ?? 0);

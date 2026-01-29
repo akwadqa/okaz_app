@@ -33,6 +33,6 @@ class HomeScreenSearchFiled extends StatelessWidget {
         disabledBorder: _border(),
         focusedErrorBorder: _border(),
       ),
-    ).symmetricPadding(horizontal: 22);
+    ).symmetricPadding(horizontal: 16);
   }
 }
