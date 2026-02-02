@@ -286,10 +286,6 @@ class $AssetsImagesGen {
   AssetGenImage get inviteTypeImage =>
       const AssetGenImage('assets/images/invite_type_image.jpg');
 
-  /// File path: assets/images/ipone_image.jpg
-  AssetGenImage get iponeImage =>
-      const AssetGenImage('assets/images/ipone_image.jpg');
-
   /// File path: assets/images/phone_image.png
   AssetGenImage get phoneImage =>
       const AssetGenImage('assets/images/phone_image.png');
@@ -334,7 +330,6 @@ class $AssetsImagesGen {
     imErrorScreen,
     invitationCreateIm,
     inviteTypeImage,
-    iponeImage,
     phoneImage,
     qatarCountry,
     qatarFlag,

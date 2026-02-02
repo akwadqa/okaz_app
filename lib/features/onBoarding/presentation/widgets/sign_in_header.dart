@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -14,7 +13,6 @@ class SignInHeader extends StatelessWidget {
     return Column(
       spacing: 20,
       children: [
-        30.verticalSpace,
         Text(
           'login'.tr(),
           textAlign: TextAlign.center,
@@ -23,19 +21,9 @@ class SignInHeader extends StatelessWidget {
             fontWeight: FontWeight.w900,
           ),
         ),
-        10.verticalSpace,
         Text(
-          'welcome_back'.tr(),
-          textAlign: TextAlign.start,
-          style: AppTextStyle.rubikBold20,
-          // style: textTheme.displaySmall!.copyWith(
-          //   color: AppColors.black,
-          //   fontWeight: FontWeight.w800,
-          // ),
-        ),
-        Text(
-          'login_subtitle'.tr(),
-          textAlign: TextAlign.start,
+          'login_desc'.tr(),
+          textAlign: TextAlign.center,
           style: AppTextStyle.rubikMedium14,
           // style: textTheme.displaySmall!.copyWith(
           //   color: AppColors.black,

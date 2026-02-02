@@ -16,8 +16,10 @@ class HomeScreenSearchFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       cursorColor: AppColors.black,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(4),
         prefixIcon: Icon(Icons.search, color: AppColors.grayHint),
         hintText: title,
         hintStyle: AppTextStyle.rubikRegular16.copyWith(

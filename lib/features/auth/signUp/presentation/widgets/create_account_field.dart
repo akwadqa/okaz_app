@@ -70,12 +70,11 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           clipBehavior: Clip.antiAlias,
 
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
+            // color: Colors.white,
+            borderRadius: BorderRadius.circular(24),
+            
           ),
           child: TextFormField(
-            obscureText: widget.isPassword ? _obscurePassword : false,
-            obscuringCharacter: '*', // key: ValueKey(value),
             // initialValue: value,
             onTap: widget.onTap,
             keyboardType: widget.inputType,
@@ -92,21 +91,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             // ),
             decoration: InputDecoration(
               filled: true,
-              suffixIcon: widget.isPassword
-                  ? IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                    )
-                  : null,
+             
               hintText: widget.hint,
               hintStyle: AppTextStyle.rubikRegular16
                   .copyWith(color: AppColors.grayHint),
@@ -125,23 +110,23 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
                   : null,
 
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(24),
                 borderSide: BorderSide(color: AppColors.primary),
               ),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(24),
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.grayBorder),
+                borderRadius: BorderRadius.circular(24),
+                borderSide: BorderSide(color: AppColors.primaryBorder),
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(24),
                 borderSide: BorderSide(color: AppColors.darkRed),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: AppColors.grayBorder),
+                borderRadius: BorderRadius.circular(24),
+                borderSide: BorderSide(color: AppColors.primaryBorder),
               ),
               // prefixIconConstraints: BoxConstraints(maxWidth: 18),
             ),

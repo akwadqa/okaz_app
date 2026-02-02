@@ -4,9 +4,16 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   static const Color primary = Color(0xFFB8502E);
-  static const Color secondPrimary = Color(0xFFA981BB);
-  static const Color primaryOpacity = Color(0xFFA0A3E3);
-  static const Color background = Color(0xffFAFAF9);
+  static const Color secondPrimary = Color(0xFFF6EAE5);
+  static const Color primaryOpacity = Color(0xFFFFECDC);
+  static const Color background = Color(0xFFF5F5F5);
+  static const Color primaryBorder = Color(0xFFE4D7D3);
+  
+  static const Color thirdPrimary = Color(0xFFA981BB);
+  static const Color purbleOpacity = Color(0xFFA0A3E3);
+  // static const Color background = Color(0xffFAFAF9);
+
+  
   static const Color fieldBackground = Color(0xFFEFF0F6);
   static const Color dividerColor = Color(0xFFe9e9e9);
   static const Color white = Color(0xFFFFFFFF);
