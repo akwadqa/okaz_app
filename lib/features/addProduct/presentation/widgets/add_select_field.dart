@@ -41,9 +41,7 @@ class AddSelectField extends StatelessWidget {
     if ((val?.isEmpty ?? true) || val == null) {
       return null;
     } else {
-      if (!val.contains('@')) {
-        return context.tr('emailValidatorMessage');
-      }
+    
     }
     return null;
   }

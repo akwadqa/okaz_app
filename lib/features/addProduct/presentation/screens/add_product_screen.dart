@@ -1,6 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:okaz/features/addProduct/domain/model/category_model.dart';
+import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -21,10 +25,10 @@ class AddProductScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-      backgroundColor: AppColors.background,
-elevation: 0,
-        title: Text('إضافة إعلان'),
-         centerTitle: true,
+        backgroundColor: AppColors.background,
+        elevation: 0,
+title: Text(context.tr('add_ad_title')),
+        centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.pop(context),
@@ -40,6 +44,7 @@ elevation: 0,
     );
   }
 }
+
 class _ProgressBar extends StatelessWidget {
   final int step;
   const _ProgressBar({required this.step});
@@ -52,7 +57,17 @@ class _ProgressBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 8,
         children: [
-          Text("Step $step from 4",style: AppTextStyle.rubikSemiBold14.copyWith(color: AppColors.primary),),
+          Text(
+ context.tr(
+    'step_from_total',
+    namedArgs: {
+      'current': step.toString(),
+      'total': '4',
+    },
+  ),            style: AppTextStyle.rubikSemiBold14.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
           LinearProgressIndicator(
             backgroundColor: AppColors.grey,
             color: AppColors.primary,
@@ -65,6 +80,7 @@ class _ProgressBar extends StatelessWidget {
     );
   }
 }
+
 class _StepContent extends StatelessWidget {
   final int step;
   const _StepContent({required this.step});
@@ -85,69 +101,86 @@ class _StepContent extends StatelessWidget {
     }
   }
 }
+
 class _BottomButtons extends ConsumerWidget {
   final int step;
   const _BottomButtons({required this.step});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
- final state = ref.watch(addProductControllerProvider).value!;
-final controller =
-    ref.read(addProductControllerProvider.notifier);
+    final state = ref.watch(addProductControllerProvider).value!;
+    final controller = ref.read(addProductControllerProvider.notifier);
 
-final canProceed = state.step == 3
-    ? controller.canGoNextForSpecs(mockProductSpecs)
-    : controller.canGoNext();
+    final canProceed = state.step == 3
+        ? controller.canGoNextForSpecs(mockProductSpecs)
+        : controller.canGoNext();
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
         children: [
           if (step > 1)
-            Expanded(
-              child: 
-                CustomButtonWidget(
-              text:"السابق",
-              onTap: () {
-                controller .previousStep();
-                
-              },
-              isFiled: false,
-              height: 55,
-              width: double.infinity,
-              color: AppColors.primary,
-              backgroundColor:AppColors.secondPrimary,
-              radius: 24,
-            ),
-              
+            Flexible(
+              flex: 2,
+              child: CustomButtonWidget(
+                text: "previous",
+                onTap: () {
+                  controller.previousStep();
+                },
+                isFiled: false,
+                height: 55,
+                width: double.infinity,
+                color: AppColors.primary,
+                backgroundColor: AppColors.secondPrimary,
+                radius: 24,
+              ),
+
               // OutlinedButton(
               //   onPressed: controller .previousStep,
               //   child: const Text('السابق'),
               // ),
             ),
           if (step > 1) const SizedBox(width: 12),
-          Expanded(
-            child: 
-            CustomButtonWidget(
-              text: step == 4 ? 'نشر الإعلان' : 'التالي',
-              onTap:
-                canProceed
-              ? () {
-                    {
-                      if (step == 4) {
-                        // submitProduct();
-                      } else {
-                        controller.nextStep();
+          Flexible(
+            flex: 3,
+            child: CustomButtonWidget(
+              text: step != 4 ? 'next' : "",
+              onTap: canProceed
+                  ? () {
+                      {
+                        if (step == 4) {
+                          // submitProduct();
+                          context.push(AppRoutes.newAdSuccsessScreen);
+                        } else {
+                          controller.nextStep();
+                        }
                       }
                     }
-                    
-                
-              }:null,
+                  : null,
               isFiled: true,
               height: 55,
               width: double.infinity,
-              backgroundColor:canProceed? AppColors.primary:AppColors.gray,
+              backgroundColor: canProceed ? AppColors.primary : AppColors.gray,
               radius: 24,
+              child: step == 4
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 12,
+                      children: [
+                        Text(
+                          context.tr("add_ad"),
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.displaySmall!
+                              .copyWith(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                        ),
+                        Assets.icons.rocketIc.svg(),
+                      ],
+                    )
+                  : null,
             ),
             // ElevatedButton(
             //   onPressed:canProceed

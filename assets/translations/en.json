@@ -9,27 +9,50 @@
     "start_now": "Start now",
     "skip": "Skip",
     "phone_number": "Phone Number",
-
     "login": "Login",
     "welcome_back": "Welcome back",
     "login_subtitle": "Log in to bid on the best items in Okaz market",
-  
     "mobile_number": "Mobile number",
     "continue_login": "Login",
     "continue_as_guest": "Continue as guest",
-  
     "enter_otp_title": "Enter the code sent to your phone",
     "otp_sent_message": "A verification code has been sent via SMS to your phone number",
     "resend_otp": "Resend verification code",
-  
     "privacy_agreement": "By pressing login, you agree to the Privacy Policy",
-  
     "create_account": "Create account",
     "create_account_subtitle": "Create an account to browse all available products and auctions",
-  
     "full_name": "Full name",
     "agree_terms": "I agree to the terms and conditions",
-  
     "already_have_account": "Already have an account?",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "product_images": "Product images",
+    "max_5_images": "Maximum 5 images",
+
+    "price": "Price",
+    "featured_ad": "Featured ad",
+    "featured_ad_desc": "Show your ad at the top of the page",
+    "select_value": "Select {value}",
+    "select_main_category": "Select main category",
+    "select_category_desc": "Please choose the most suitable category for your ad to reach interested buyers",
+    "add_ad_title": "Add advertisement",
+    "step_from_total": "Step {current} of {total}",
+    "previous": "Previous",
+    "confirm": "Confirm",
+    "name": "Name",
+    "description": "Description",
+    "name_en": "Name",
+    "description_en": "Description",
+    "name_ar": "Name (Arabic)",
+    "description_ar": "Description (Arabic)",
+    "details_ar": "Details in Arabic",
+    "details_en": "Details in English",
+    "enter_price": "Enter price",
+    "currency_qr": "QAR",
+    "add_images_for_bide": "Add images for bidding",
+    "select_image": "Select image",
+  "view_ad": "View ad",
+  "go_to_home": "Go to home",
+    "ad_added_success_title": "Your ad has been added successfully!",
+    "ad_added_success_desc": "Your ad is now under review and will be published soon. You can track the status of your ad from your profile.",  
+    "add_ad": "Publish ad"
 }

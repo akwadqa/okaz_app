@@ -16,6 +16,7 @@ class CustomButtonWidget extends StatelessWidget {
   final double? radius;
   final double? topPading;
   final double? fontSize;
+  final Widget? child;
   const CustomButtonWidget({
     super.key,
     required this.text,
@@ -29,13 +30,14 @@ class CustomButtonWidget extends StatelessWidget {
     this.style,
     this.fontSize,
     this.topPading,
+    this.child,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        elevation: 2,
+        elevation: 1,
           padding: EdgeInsets.zero,
           backgroundColor: backgroundColor ?? Colors.transparent,
           foregroundColor: AppColors.black900,
@@ -50,7 +52,9 @@ class CustomButtonWidget extends StatelessWidget {
       onPressed: onTap!=null?() {
         onTap!();
       }:null,
-      child: Text(context.tr(text),
+      child:
+      
+      child?? Text(context.tr(text),
       textAlign: TextAlign.center,
               style: style ??
                   Theme.of(context).textTheme.displaySmall!.copyWith(

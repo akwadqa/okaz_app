@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
@@ -26,13 +27,19 @@ class StepProductInfoView extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: 16),
               child: AddSelectField(
                 label: spec.title,
-                hint: 'اختر ${spec.title}',
+                hint: context.tr(
+                  'select_value',
+                  namedArgs: {'value': spec.title},
+                ),
                 isRequired: spec.required,
                 value: value,
                 onTap: () {
                   showAddSelectSheet<String>(
                     context: context,
-                    title: 'اختر ${spec.title}',
+                    title: context.tr(
+                      'select_value',
+                      namedArgs: {'value': spec.title},
+                    ),
                     items: spec.options!,
                     selected: value,
                     labelBuilder: (v) => v,
@@ -60,7 +67,7 @@ class StepProductInfoView extends ConsumerWidget {
 
                 value: (value as bool?) ?? false,
                 title: Text(spec.title),
-                subtitle: Text(spec.key),
+                subtitle: Text(spec.subTitle!),
 
                 onChanged: (v) => controller.updateSpec(spec.key, v),
               ),

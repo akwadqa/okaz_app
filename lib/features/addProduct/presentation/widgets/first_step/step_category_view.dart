@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
@@ -33,13 +34,13 @@ class StepCategoryView extends ConsumerWidget {
 
               /// Title
               Text(
-                'اختر القسم الرئيسي',
+                "select_main_category".tr(),
                 style: AppTextStyle.rubikBold18,
                 // textAlign: TextAlign.center,
               ),
               6.verticalSpace,
               Text(
-                'يرجى تحديد التصنيف الأنسب لإعلانك لضمان وصوله للمشترين المهتمين',
+                "select_category_desc".tr(),
                 style: AppTextStyle.interRegular14,
                 // textAlign: TextAlign.center,
               ),
@@ -129,7 +130,7 @@ class _CategorySection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 12,
       children: [
-            Divider(height: 1,color: AppColors.grayBorder,).onlyPadding(bottom: 10),
+        Divider(height: 1, color: AppColors.grayBorder).onlyPadding(bottom: 10),
 
         Row(
           children: [
@@ -148,8 +149,8 @@ class _CategorySection extends StatelessWidget {
             ),
           ],
         ),
-        // 12.verticalSpace,
 
+        // 12.verticalSpace,
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -164,11 +165,11 @@ class _CategorySection extends StatelessWidget {
               onTap: () => onSelect(item),
               child: Row(
                 children: [
-                AppScaledRadio<String>(
-  value: item,
-  groupValue: selected,
-  onChanged: onSelect,
-),
+                  AppScaledRadio<String>(
+                    value: item,
+                    groupValue: selected,
+                    onChanged: onSelect,
+                  ),
 
                   Expanded(child: Text(item)),
                 ],

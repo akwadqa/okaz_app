@@ -59,6 +59,7 @@ class AddTextField extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             hintText: hint,
+            hintStyle: AppTextStyle.cairoRegular12,
             suffixText: suffixText,
             enabledBorder: _border(AppColors.grayBorder),
             focusedBorder: _border(AppColors.primary),

@@ -91,25 +91,25 @@ class StepDetailsView extends ConsumerWidget {
         ),
 
         /// الحالة *
-        AddSelectField(
-          label: 'الحالة',
-          // required: true,
-          hint: 'اختر الحالة',
-          value: state.adType,
-          onTap: () {
-            showAddSelectSheet<String>(
-              context: context,
-              title: 'اختر الحالة',
-              items: const [
-                'جديد',
-                'مستعمل',
-              ],
-              selected: state.adType,
-              labelBuilder: (v) => v,
-              onConfirm: controller.setAdType,
-            );
-          }, isRequired: true,
-        ),
+        // AddSelectField(
+        //   label: 'الحالة',
+        //   // required: true,
+        //   hint: 'اختر الحالة',
+        //   value: state.adType,
+        //   onTap: () {
+        //     showAddSelectSheet<String>(
+        //       context: context,
+        //       title: 'اختر الحالة',
+        //       items: const [
+        //         'جديد',
+        //         'مستعمل',
+        //       ],
+        //       selected: state.adType,
+        //       labelBuilder: (v) => v,
+        //       onConfirm: controller.setAdType,
+        //     );
+        //   }, isRequired: true,
+        // ),
 
         const SizedBox(height: 12),
 

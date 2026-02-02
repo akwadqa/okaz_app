@@ -12,24 +12,50 @@
     "login": "تسجيل الدخول",
     "welcome_back": "مرحبًا بك مجددًا",
     "login_subtitle": "سجل دخولك للمزايدة على أفضل القطع في سوق عكاظ",
-  
     "mobile_number": "رقم الهاتف المحمول",
     "continue_login": "تسجيل الدخول",
     "continue_as_guest": "استمرار كضيف",
-  
     "enter_otp_title": "أدخل الرمز المرسل إلى هاتفك",
     "otp_sent_message": "تم إرسال رمز التحقق برسالة نصية إلى رقم جوالك",
     "resend_otp": "إعادة إرسال رمز التحقق",
-  
     "privacy_agreement": "بالضغط على تسجيل الدخول فإنك توافق على سياسة الخصوصية",
-  
     "create_account": "إنشاء حساب",
     "create_account_subtitle": "أنشئ حسابًا لتتمكن من تصفح جميع المنتجات والمزادات المتوفرة",
-  
     "full_name": "الاسم الكامل",
     "agree_terms": "أوافق على الشروط والأحكام",
-  
     "already_have_account": "لديك حساب بالفعل؟",
-    "sign_in": "سجل دخولك"
-  
+    "sign_in": "سجل دخولك",
+    "product_images": "صور المنتج",
+    "max_5_images": "حد أقصى 5 صور",
+
+    "price": "السعر",
+    "featured_ad": "الإعلان مميز",
+    "featured_ad_desc": "اعرض إعلانك في أعلى الصفحة",
+    "select_main_category": "اختر القسم الرئيسي",
+    "select_category_desc": "يرجى تحديد التصنيف الأنسب لإعلانك لضمان وصوله للمشترين المهتمين",
+    "add_ad_title": "إضافة إعلان",
+    "select_value": "اختر {value}",
+    "step_from_total": "الخطوة {current} من {total}",
+    "previous": "السابق",
+    "confirm": "تأكيد",
+    "name": "الاسم",
+    "description": "الوصف",
+
+  "details_ar": "التفاصيل بالعربية",
+  "details_en": "التفاصيل بالإنجليزية",
+
+  "name_ar": "الاسم بالعربية",
+  "description_ar": "الوصف بالعربية",
+
+  "name_en": "الاسم بالإنجليزية",
+  "description_en": "الوصف بالإنجليزية",
+    "enter_price": "ادخل السعر",
+    "currency_qr": "ر.ق",
+    "add_images_for_bide": "أضف صورًا للمزايدة",
+    "select_image": "اختيار صورة",
+    "view_ad": "عرض الإعلان",
+    "go_to_home": "الذهاب للرئيسية",  
+    "ad_added_success_title": "تمت إضافة إعلانك بنجاح!",
+    "ad_added_success_desc": "إعلانك الآن قيد المراجعة وسيتم نشره قريبًا. يمكنك متابعة حالة إعلانك من ملفك الشخصي.",  
+    "add_ad": "نشر الإعلان"
 }

@@ -9,6 +9,7 @@ import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/screens/main_screen.dart';
 import 'package:okaz/features/onBoarding/presentation/screens/on_boarding_screen.dart';
 
+import '../../../features/addProduct/presentation/screens/successfull_new_ad_screen.dart';
 import 'app_routes.dart';
 import 'custom_navigation_observer.dart';
 import 'fallback_screen.dart';
@@ -141,6 +142,21 @@ class AppRouter {
             );
           },
         ),
+          GoRoute(
+            path: AppRoutes.newAdSuccsessScreen,
+            name: AppRoutes.newAdSuccsessScreen,
+            parentNavigatorKey: rootKey,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                child: SuccessfullNewAdScreen(),
+                key: state.pageKey,
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
         GoRoute(
           path: AppRoutes.homeScreen,
           name: AppRoutes.homeScreen,
@@ -186,6 +202,7 @@ class AppRouter {
               );
             },
           ),
+      
     ],
     );
   }

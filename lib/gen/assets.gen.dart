@@ -158,6 +158,9 @@ class $AssetsIconsGen {
   SvgGenImage get realestateIc =>
       const SvgGenImage('assets/icons/realestate_ic.svg');
 
+  /// File path: assets/icons/rocket_ic.svg
+  SvgGenImage get rocketIc => const SvgGenImage('assets/icons/rocket_ic.svg');
+
   /// File path: assets/icons/save_event_ic.svg
   SvgGenImage get saveEventIc =>
       const SvgGenImage('assets/icons/save_event_ic.svg');
@@ -220,6 +223,7 @@ class $AssetsIconsGen {
     qatarCountry,
     qatarFlag,
     realestateIc,
+    rocketIc,
     saveEventIc,
     scanIc,
     settingsIc,
@@ -256,9 +260,13 @@ class $AssetsImagesGen {
   AssetGenImage get emptyMessages =>
       const AssetGenImage('assets/images/empty_messages.png');
 
-  /// File path: assets/images/event_success_image.png
-  AssetGenImage get eventSuccessImage =>
-      const AssetGenImage('assets/images/event_success_image.png');
+  /// File path: assets/images/empty_notification_im.png
+  AssetGenImage get emptyNotificationIm =>
+      const AssetGenImage('assets/images/empty_notification_im.png');
+
+  /// File path: assets/images/empty_search_im.png
+  AssetGenImage get emptySearchIm =>
+      const AssetGenImage('assets/images/empty_search_im.png');
 
   /// File path: assets/images/im_error_screen.png
   AssetGenImage get imErrorScreen =>
@@ -300,6 +308,10 @@ class $AssetsImagesGen {
   AssetGenImage get qrTemplateImage =>
       const AssetGenImage('assets/images/qr_template_image.png');
 
+  /// File path: assets/images/success_image_added.png
+  AssetGenImage get successImageAdded =>
+      const AssetGenImage('assets/images/success_image_added.png');
+
   /// File path: assets/images/template1_image.png
   AssetGenImage get template1Image =>
       const AssetGenImage('assets/images/template1_image.png');
@@ -324,7 +336,8 @@ class $AssetsImagesGen {
     bookImage,
     emptyData,
     emptyMessages,
-    eventSuccessImage,
+    emptyNotificationIm,
+    emptySearchIm,
     imErrorScreen,
     invitationCreateIm,
     inviteTypeImage,
@@ -335,6 +348,7 @@ class $AssetsImagesGen {
     qatarCountry,
     qatarFlag,
     qrTemplateImage,
+    successImageAdded,
     template1Image,
     template2Image,
     templateReplyImage,
@@ -345,6 +359,9 @@ class $AssetsImagesGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
+  /// File path: assets/lottie/Souq okaz.json
+  String get souqOkaz => 'assets/lottie/Souq okaz.json';
+
   /// File path: assets/lottie/loader.json
   String get loader => 'assets/lottie/loader.json';
 
@@ -352,7 +369,7 @@ class $AssetsLottieGen {
   String get shoppingLoader => 'assets/lottie/shoppingLoader.json';
 
   /// List of all assets
-  List<String> get values => [loader, shoppingLoader];
+  List<String> get values => [souqOkaz, loader, shoppingLoader];
 }
 
 class $AssetsTranslationsGen {

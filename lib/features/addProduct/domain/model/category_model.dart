@@ -6,6 +6,7 @@ enum ProductSpecType {
 class ProductSpec {
   final String key;
   final String title;
+  final String? subTitle;
   final bool required;
   final ProductSpecType type;
   final List<String>? options;
@@ -16,6 +17,7 @@ class ProductSpec {
     this.required = false,
     required this.type,
     this.options,
+    this.subTitle,
   });
 }
 
@@ -44,6 +46,7 @@ const mockProductSpecs = [
   ProductSpec(
     key: 'under_warranty',
     title: 'تحت الضمان',
+    subTitle: 'عرض الأجهزة المضمونة فقط',
     type: ProductSpecType.toggle,
   ),
 ];

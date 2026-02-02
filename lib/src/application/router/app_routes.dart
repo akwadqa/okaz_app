@@ -7,6 +7,7 @@ abstract class AppRoutes {
   static const String verificationScreen = '/verification';
   static const String splashScreen = '/splash';
   static const String homeScreen = '/home';
+  static const String newAdSuccsessScreen = '/new_add_success';
 
 
   static const String addNewProduct = '/add_product';
