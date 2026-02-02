@@ -90,6 +90,7 @@ dependencies:
   geolocator: ^14.0.2
   convex_bottom_bar: ^3.2.0
   curved_labeled_navigation_bar: ^2.0.6
+  dropdown_button2: ^2.3.9
 
 
 

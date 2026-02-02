@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:okaz/features/auth/signIn/presentation/screens/sign_in_screen.dart';
 import 'package:okaz/features/auth/signUp/presentation/screens/signup_screen.dart';
 import 'package:okaz/features/auth/verification/presentation/screens/verification_account_screen.dart';
+import 'package:okaz/features/filter/presentation/screens/products_screen.dart';
+import 'package:okaz/features/filter/presentation/screens/search_sub_categories_screen.dart';
 import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/screens/main_screen.dart';
 import 'package:okaz/features/onBoarding/on_boarding.dart';
@@ -83,7 +85,7 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: HomeScreen(),
+              child: MainScreen(),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -161,6 +163,36 @@ class AppRouter {
             pageBuilder: (BuildContext context, GoRouterState state) {
               return CustomTransitionPage(
                 child: HomeScreen(),
+                key: state.pageKey,
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
+        GoRoute(
+            path: AppRoutes.searchSubCategoryScreen,
+            name: AppRoutes.searchSubCategoryScreen,
+            parentNavigatorKey: rootKey,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                child: SearchSubCategoriesScreen(),
+                key: state.pageKey,
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
+        GoRoute(
+            path: AppRoutes.productsScreen,
+            name: AppRoutes.productsScreen,
+            parentNavigatorKey: rootKey,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                child: ProductsScreen(),
                 key: state.pageKey,
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) {

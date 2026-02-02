@@ -4,7 +4,8 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class HomeScreenSearchFiled extends StatelessWidget {
-  const HomeScreenSearchFiled({super.key});
+  const HomeScreenSearchFiled({super.key, required this.title});
+  final String title;
   OutlineInputBorder _border() {
     return OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xffE8E8E8)),
@@ -18,8 +19,8 @@ class HomeScreenSearchFiled extends StatelessWidget {
       cursorColor: AppColors.black,
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search, color: AppColors.grayHint),
-        hintText: 'ابحث عن أي شيء...',
-        hintStyle: AppTextStyle.interRegular16.copyWith(
+        hintText: title,
+        hintStyle: AppTextStyle.rubikRegular16.copyWith(
           color: AppColors.grayHint,
         ),
         filled: true,

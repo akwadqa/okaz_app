@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -27,6 +26,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   // }
   static final List<Widget> _pages = [
     HomeScreen(),
+    SizedBox(),
+    SizedBox(),
+    SizedBox(),
     // ScanPage(),
     // NotificationsScreen(),
     // MessagesScreen(),
@@ -38,19 +40,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final selectedIndex = ref.watch(bottomNavIndexProvider);
 
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBarView(),
       extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          // context.pushNamed(AppRoutes.createEventScreen);
-          context.push(AppRoutes.invitationsSecreen, extra: true);
-        },
-        child: SizedBox(
-          width: 70,
-          height: 70,
-          child: Center(child: Assets.icons.addEventIc.svg()),
-        ),
-      ),
       resizeToAvoidBottomInset: false,
       body: _pages[selectedIndex],
       // bottomNavigationBar: BottomNavigationBarView(),

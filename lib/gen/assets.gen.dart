@@ -49,6 +49,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/chat_ic.svg
   SvgGenImage get chatIc => const SvgGenImage('assets/icons/chat_ic.svg');
 
+  /// File path: assets/icons/comments_dark_ic.svg
+  SvgGenImage get commentsDarkIc =>
+      const SvgGenImage('assets/icons/comments_dark_ic.svg');
+
   /// File path: assets/icons/confirm_guest_ic.svg
   SvgGenImage get confirmGuestIc =>
       const SvgGenImage('assets/icons/confirm_guest_ic.svg');
@@ -99,6 +103,9 @@ class $AssetsIconsGen {
   SvgGenImage get familyStuffsIc =>
       const SvgGenImage('assets/icons/family_stuffs_ic.svg');
 
+  /// File path: assets/icons/filter_ic.svg
+  SvgGenImage get filterIc => const SvgGenImage('assets/icons/filter_ic.svg');
+
   /// File path: assets/icons/full_name_ic.svg
   SvgGenImage get fullNameIc =>
       const SvgGenImage('assets/icons/full_name_ic.svg');
@@ -115,6 +122,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/lang_ic.svg
   SvgGenImage get langIc => const SvgGenImage('assets/icons/lang_ic.svg');
+
+  /// File path: assets/icons/likes_dark_ic.svg
+  SvgGenImage get likesDarkIc =>
+      const SvgGenImage('assets/icons/likes_dark_ic.svg');
 
   /// File path: assets/icons/location_ic.svg
   SvgGenImage get locationIc =>
@@ -191,6 +202,7 @@ class $AssetsIconsGen {
     bnbSettingsIc,
     carIc,
     chatIc,
+    commentsDarkIc,
     confirmGuestIc,
     contactsIc,
     dateIc,
@@ -204,11 +216,13 @@ class $AssetsIconsGen {
     eventTimeIc,
     failedGuestIc,
     familyStuffsIc,
+    filterIc,
     fullNameIc,
     googleIc,
     homeIc,
     iconCorner,
     langIc,
+    likesDarkIc,
     locationIc,
     logoutIc,
     logoutWithCornerIc,
@@ -272,6 +286,10 @@ class $AssetsImagesGen {
   AssetGenImage get inviteTypeImage =>
       const AssetGenImage('assets/images/invite_type_image.jpg');
 
+  /// File path: assets/images/ipone_image.jpg
+  AssetGenImage get iponeImage =>
+      const AssetGenImage('assets/images/ipone_image.jpg');
+
   /// File path: assets/images/phone_image.png
   AssetGenImage get phoneImage =>
       const AssetGenImage('assets/images/phone_image.png');
@@ -316,6 +334,7 @@ class $AssetsImagesGen {
     imErrorScreen,
     invitationCreateIm,
     inviteTypeImage,
+    iponeImage,
     phoneImage,
     qatarCountry,
     qatarFlag,
