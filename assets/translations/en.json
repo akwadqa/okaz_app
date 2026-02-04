@@ -1,12 +1,12 @@
 {
-    "Okaz Market" : "Okaz Market",
-    "serch_for_any_thing" : "Search for anything...",
-    "search_by_section" : "Search by section",
-    "search_in_section" : "Search in section ",
-    "required" : "Required",
-    "for_sale" : "For sale",
-    "filters" : "Filters",
-    "distinctive" : "Distinctive",
+    "Okaz Market": "Okaz Market",
+    "serch_for_any_thing": "Search for anything...",
+    "search_by_section": "Search by section",
+    "search_in_section": "Search in section ",
+    "required": "Required",
+    "for_sale": "For sale",
+    "filters": "Filters",
+    "distinctive": "Distinctive",
     "on_boarding_title1": "Discover the best offers",
     "on_boarding_dsc1": "Browse thousands of listings across different categories, from electronics to real estate, easily and securely",
     "on_boarding_title2": "Bid and earn",
@@ -17,27 +17,78 @@
     "start_now": "Start now",
     "skip": "Skip",
     "phone_number": "Phone Number",
-
     "login": "Login",
     "welcome_back": "Welcome back",
     "login_subtitle": "Log in to bid on the best items in Okaz market",
-  
     "mobile_number": "Mobile number",
     "continue_login": "Login",
     "continue_as_guest": "Continue as guest",
-  
     "enter_otp_title": "Enter the code sent to your phone",
     "otp_sent_message": "A verification code has been sent via SMS to your phone number",
     "resend_otp": "Resend verification code",
-  
     "privacy_agreement": "By pressing login, you agree to the Privacy Policy",
-  
     "create_account": "Create account",
     "create_account_subtitle": "Create an account to browse all available products and auctions",
-  
     "full_name": "Full name",
     "agree_terms": "I agree to the terms and conditions",
-  
     "already_have_account": "Already have an account?",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "reset": "Reset",
+    "search_by_specific_word": "Search by specific word",
+    "search_by_model_color_or_condition...": "Search by model, color, or condition...",
+    "subcategories": "Subcategories",
+    "applying_filters": "Applying filters",
+    "cancel": "Cancel",
+    "product_details": {
+        "ad_info": {
+            "category": "Category:",
+            "ad_type": "Ad type:",
+            "type": "Type:",
+            "sub_category": "Subcategory:",
+            "city": "City:",
+            "condition": "Condition:"
+        },
+        "ad_info_values": {
+            "phones": "Phones",
+            "for_sale": "For sale",
+            "iphone16_series": "iPhone 16 series",
+            "iphone": "iPhone",
+            "doha": "Doha",
+            "new": "New"
+        },
+        "tech_specs_tab": "Technical Specs",
+        "ad_info_tab": "Ad Info",
+        "views": "Views",
+        "likes": "Likes",
+        "report_ad": "Report Ad",
+        "description_label": "Description",
+        "description_text": "Phones for sale in installments (new)",
+        "product_title": "iPhone 16",
+        "price": "{value} QAR",
+        "hours_ago": "{hours} hours",
+        "comments_title": "Comments",
+        "view_all": "View all",
+        "message_placeholder": "Write a message...",
+        "contact_label": "Phone number",
+        "phone_number": "+974 5555 2222",
+        "whatsapp": "WhatsApp",
+        "call": "Call",
+        "specs": {
+            "sim_type": "SIM type",
+            "storage_capacity": "Storage capacity",
+            "camera_resolution": "Camera resolution",
+            "os": "Operating system",
+            "ram": "RAM",
+            "network_type": "Network type",
+            "battery_capacity": "Battery capacity"
+        },
+        "spec_values": {
+            "sim_3": "3 SIMs",
+            "storage_lt_512": "Less than 512 MB",
+            "other": "Other",
+            "ios": "iOS",
+            "g5": "5G",
+            "battery_other": "Other"
+        }
+    }
 }

@@ -7,10 +7,16 @@ abstract class AppColors {
   static const Color secondPrimary = Color(0xFFF6EAE5);
   static const Color primaryOpacity = Color(0xFFFFECDC);
   static const Color background = Color(0xFFF5F5F5);
+  
+  static const Color chipBorder = Color(0xFFC0BAB9);
+
   static const Color primaryBorder = Color(0xFFE4D7D3);
   
   static const Color thirdPrimary = Color(0xFFA981BB);
   static const Color purbleOpacity = Color(0xFFA0A3E3);
+  
+  static const Color grey97 = Color(0xFF979797);
+
   // static const Color background = Color(0xffFAFAF9);
 
   
@@ -25,6 +31,7 @@ abstract class AppColors {
   static const Color dark = Color(0xFF201C11);
   static const Color borderGrey = Color(0xFFe8e8e8);
   static const Color borderGrey2 = Color(0xFFe2e2e2);
+  static const Color switchBackground = Color(0xFFF3F4F6);
 
   // Invitation Colors – Wedding
   static const Color weddingBg = Color(0xFFFFDCDC);

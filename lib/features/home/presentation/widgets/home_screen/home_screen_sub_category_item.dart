@@ -10,11 +10,12 @@ class HomeScreenSubCategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () => context.pushNamed(AppRoutes.searchSubCategoryScreen),
       child: Container(
-        width: 94,
-        height: 94,
+        width: width / 4.5,
+        height: width / 4.5,
         decoration: BoxDecoration(
           color: AppColors.lightRedBackground,
           borderRadius: BorderRadius.circular(20),
@@ -23,7 +24,7 @@ class HomeScreenSubCategoryItem extends StatelessWidget {
           spacing: 4,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Assets.images.phoneImage.image(height: 60),
+            Assets.images.phoneImage.image(height: width / 7),
             Text(
               'هاتف',
               style: AppTextStyle.rubikMedium14.copyWith(

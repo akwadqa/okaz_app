@@ -22,6 +22,8 @@ class HomeScreenCategorySection extends StatelessWidget {
         Wrap(
           spacing: 25,
           runSpacing: 15,
+          alignment: WrapAlignment.start,
+          crossAxisAlignment: WrapCrossAlignment.start,
           children: [
             HomeScreenSubCategoryItem(),
             HomeScreenSubCategoryItem(),

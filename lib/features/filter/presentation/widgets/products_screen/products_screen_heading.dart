@@ -1,17 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-class ProductsScreenHeading extends StatelessWidget {
+class ProductsScreenHeading extends ConsumerWidget {
   const ProductsScreenHeading({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedTitle = ref.watch(selectedSubCategoryProvider);
+    final title = selectedTitle.isEmpty ? 'ايفون' : selectedTitle;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -43,7 +48,7 @@ class ProductsScreenHeading extends StatelessWidget {
             ),
             Icon(Icons.arrow_forward_ios_rounded, color: AppColors.grayHint),
             Text(
-              'ايفون',
+              title,
               style: AppTextStyle.rubikBold18.copyWith(
                 color: AppColors.primary,
               ),

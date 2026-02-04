@@ -1,21 +1,47 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-class ProductScreenFilterItem extends StatelessWidget {
+class ProductScreenFilterItem extends ConsumerWidget {
   const ProductScreenFilterItem({super.key, required this.index});
   final int index;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final items = ref.watch(subCategoriesProvider);
+    final category = ref.watch(selectedSubCategoryProvider);
+
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
-        value: '1',
-        items: [
-          DropdownMenuItem(child: Text('data1'), value: '1'),
-          DropdownMenuItem(child: Text('data2'), value: '2'),
-        ],
+        value: index == 1 ? category : '1',
+        items: index == 1
+            ? items
+                  .map(
+                    (item) => DropdownMenuItem(
+                      value: item,
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: item == category
+                            ? AppColors.lightRedBackground
+                            : AppColors.white,
+                        child: Text(item),
+                      ),
+                      onTap: () =>
+                          ref.read(selectedSubCategoryProvider.notifier).state =
+                              item,
+                    ),
+                  )
+                  .toList()
+            : [
+                DropdownMenuItem(value: '1', child: Text('data1')),
+                DropdownMenuItem(value: '2', child: Text('data2')),
+              ],
 
         onChanged: (val) {},
         isExpanded: true,
@@ -35,7 +61,7 @@ class ProductScreenFilterItem extends StatelessWidget {
             spacing: 5,
             children: [
               Text(
-                'السعر',
+                index == 1 ? category : 'السعر',
                 style: AppTextStyle.rubikRegular14.copyWith(
                   color: index == 1 ? AppColors.primary : AppColors.grayHint,
                 ),

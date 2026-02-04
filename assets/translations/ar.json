@@ -1,12 +1,12 @@
 {
-    "Okaz Market" : "سوق عكاظ",
-    "serch_for_any_thing" : "ابحث عن أي شيء...",
-    "search_by_section" :"ابحث في الأقسام",
-    "search_in_section" : "بحث في قسم",
-    "required" : "مطلوب",
-    "for_sale" : "للبيع",
-    "filters" : "الفلاتر",
-    "distinctive" : "مميز",
+    "Okaz Market": "سوق عكاظ",
+    "serch_for_any_thing": "ابحث عن أي شيء...",
+    "search_by_section": "ابحث في الأقسام",
+    "search_in_section": "بحث في قسم",
+    "required": "مطلوب",
+    "for_sale": "للبيع",
+    "filters": "الفلاتر",
+    "distinctive": "مميز",
     "on_boarding_title1": "اكتشف أفضل العروض",
     "on_boarding_dsc1": "تصفح آلاف الإعلانات في مختلف الفئات من الإلكترونيات إلى العقارات بكل سهولة وأمان",
     "on_boarding_title2": "زايد واربح",
@@ -20,24 +20,75 @@
     "login": "تسجيل الدخول",
     "welcome_back": "مرحبًا بك مجددًا",
     "login_subtitle": "سجل دخولك للمزايدة على أفضل القطع في سوق عكاظ",
-  
     "mobile_number": "رقم الهاتف المحمول",
     "continue_login": "تسجيل الدخول",
     "continue_as_guest": "استمرار كضيف",
-  
     "enter_otp_title": "أدخل الرمز المرسل إلى هاتفك",
     "otp_sent_message": "تم إرسال رمز التحقق برسالة نصية إلى رقم جوالك",
     "resend_otp": "إعادة إرسال رمز التحقق",
-  
     "privacy_agreement": "بالضغط على تسجيل الدخول فإنك توافق على سياسة الخصوصية",
-  
     "create_account": "إنشاء حساب",
     "create_account_subtitle": "أنشئ حسابًا لتتمكن من تصفح جميع المنتجات والمزادات المتوفرة",
-  
     "full_name": "الاسم الكامل",
     "agree_terms": "أوافق على الشروط والأحكام",
-  
     "already_have_account": "لديك حساب بالفعل؟",
-    "sign_in": "سجل دخولك"
-  
+    "sign_in": "سجل دخولك",
+    "reset": "أعادة تعيين",
+    "search_by_specific_word": "بحث بكلمة معينة",
+    "search_by_model_color_or_condition": "ابحث عن موديل، لون، أو حالة ..",
+    "subcategories": "الفئات الفرعية",
+    "applying_filters": "تطبيق الفلاتر",
+    "cancel": "إلغاء",
+    "product_details": {
+        "ad_info": {
+            "category": "القسم:",
+            "ad_type": "نوع الاعلان:",
+            "type": "النوع:",
+            "sub_category": "الفئة الفرعية:",
+            "city": "المدينة:",
+            "condition": "الحالة:"
+        },
+        "ad_info_values": {
+            "phones": "هواتف",
+            "for_sale": "للبيع",
+            "iphone16_series": "سلسلة ايفون 16",
+            "iphone": "ايفون",
+            "doha": "الدوحة",
+            "new": "جديد"
+        },
+        "tech_specs_tab": "المواصفات الفنية",
+        "ad_info_tab": "معلومات الإعلان",
+        "views": "مشاهدة",
+        "likes": "إعجاب",
+        "report_ad": "تبليغ عن الإعلان",
+        "description_label": "الوصف",
+        "description_text": "للبيع أجهزة هواتف بالأقساط(جديدة)",
+        "product_title": "أيفون 16",
+        "price": "{value} ر.ق",
+        "hours_ago": "{hours} ساعات",
+        "comments_title": "التعليقات",
+        "view_all": "عرض الكل",
+        "message_placeholder": "اكتب رسالة...",
+        "contact_label": "رقم الهاتف",
+        "phone_number": "+974 5555 2222",
+        "whatsapp": "واتس اب",
+        "call": "اتصال",
+        "specs": {
+            "sim_type": "نوع الشريحة",
+            "storage_capacity": "سعة التخزين",
+            "camera_resolution": "دقة الكاميرا",
+            "os": "نظام التشغيل",
+            "ram": "رامات الموبايل",
+            "network_type": "نوع الشبكة",
+            "battery_capacity": "سعة البطارية"
+        },
+        "spec_values": {
+            "sim_3": "3 شرائح",
+            "storage_lt_512": "أقل من 512 ميجا",
+            "other": "أخرى",
+            "ios": "IOS",
+            "g5": "5G",
+            "battery_other": "اخرى"
+        }
+    }
 }

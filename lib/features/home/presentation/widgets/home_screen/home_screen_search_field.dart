@@ -4,8 +4,13 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class HomeScreenSearchFiled extends StatelessWidget {
-  const HomeScreenSearchFiled({super.key, required this.title});
+  const HomeScreenSearchFiled({
+    super.key,
+    required this.title,
+    this.withPadding = true,
+  });
   final String title;
+  final bool withPadding;
   OutlineInputBorder _border() {
     return OutlineInputBorder(
       borderSide: BorderSide(color: Color(0xffE8E8E8)),
@@ -16,7 +21,6 @@ class HomeScreenSearchFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      
       cursorColor: AppColors.black,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(4),
@@ -34,6 +38,6 @@ class HomeScreenSearchFiled extends StatelessWidget {
         disabledBorder: _border(),
         focusedErrorBorder: _border(),
       ),
-    ).symmetricPadding(horizontal: 22);
+    ).symmetricPadding(horizontal:withPadding? 22 : 0);
   }
 }
