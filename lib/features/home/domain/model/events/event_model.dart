@@ -13,7 +13,7 @@ abstract class EventModel with _$EventModel {
     required String time,
     @JsonKey(name: 'map_link') required String mapLink,
     @JsonKey(name: 'image_url') required String imageUrl,
-    @JsonKey(name: 'invite_template') String? inviteTemplate,
+    @JsonKey(name: 'okaze_template') String? okazeTemplate,
     @JsonKey(name: 'confirmed_template') String? confirmedTemplate,
     @JsonKey(name: 'declined_template') String? declinedTemplate,
     @JsonKey(name: 'workflow_state') required String workflowState,

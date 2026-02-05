@@ -139,6 +139,9 @@ class $AssetsIconsGen {
   SvgGenImage get passwordIc =>
       const SvgGenImage('assets/icons/password_ic.svg');
 
+  /// File path: assets/icons/persone.svg
+  SvgGenImage get persone => const SvgGenImage('assets/icons/persone.svg');
+
   /// File path: assets/icons/phone_number_ic.svg
   SvgGenImage get phoneNumberIc =>
       const SvgGenImage('assets/icons/phone_number_ic.svg');
@@ -218,6 +221,7 @@ class $AssetsIconsGen {
     messagesIc,
     notificationIc,
     passwordIc,
+    persone,
     phoneNumberIc,
     privacyIc,
     qatarCountry,

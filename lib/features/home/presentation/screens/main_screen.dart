@@ -7,6 +7,7 @@ import 'package:okaz/features/home/presentation/widgets/bottom_navigation_bar_vi
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 
+import '../../../settings/presentation/screens/settings_screen.dart';
 import '../controller/home_controller.dart';
 
 //
@@ -27,10 +28,11 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   // }
   static final List<Widget> _pages = [
     HomeScreen(),
+    Container(),
     // ScanPage(),
     // NotificationsScreen(),
     // MessagesScreen(),
-    // SettingsScreen(),
+    SettingsScreen(),
   ];
 
   @override
@@ -43,7 +45,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       floatingActionButton: GestureDetector(
         onTap: () {
           // context.pushNamed(AppRoutes.createEventScreen);
-          context.push(AppRoutes.invitationsSecreen, extra: true);
+          context.push(AppRoutes.okazationsSecreen, extra: true);
         },
         child: SizedBox(
           width: 70,

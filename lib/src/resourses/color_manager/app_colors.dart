@@ -24,7 +24,7 @@ abstract class AppColors {
   static const Color shadow = Color(0x3F3B41C5);
   static const Color dark = Color(0xFF201C11);
 
-  // Invitation Colors – Wedding
+  // okazation Colors – Wedding
   static const Color weddingBg = Color(0xFFFFDCDC);
   static const Color weddingTop = Color(0xFFC63A3A);
   static const Color weddingIcon = Color(0x33F8A5A5);

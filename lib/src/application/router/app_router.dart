@@ -10,6 +10,8 @@ import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/screens/main_screen.dart';
 import 'package:okaz/features/onBoarding/presentation/screens/on_boarding_screen.dart';
 import 'package:okaz/features/onBoarding/presentation/screens/splash_screen.dart';
+import 'package:okaz/features/profile/presentation/screens/profile_screen.dart';
+import 'package:okaz/features/settings/presentation/screens/settings_screen.dart';
 
 import '../../../features/addProduct/presentation/screens/successfull_new_ad_screen.dart';
 import 'app_routes.dart';
@@ -212,6 +214,36 @@ class AppRouter {
             pageBuilder: (BuildContext context, GoRouterState state) {
               return CustomTransitionPage(
                 child: SelectLocationPage(id: state.extra as String?,),
+                key: state.pageKey,
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
+        GoRoute(
+            path: AppRoutes.settingsScreen,
+            name: AppRoutes.settingsScreen,
+            parentNavigatorKey: rootKey,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                child: SettingsScreen(),
+                key: state.pageKey,
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
+        GoRoute(
+            path: AppRoutes.profileScreen,
+            name: AppRoutes.profileScreen,
+            parentNavigatorKey: rootKey,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                child: ProfileScreen(),
                 key: state.pageKey,
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) {

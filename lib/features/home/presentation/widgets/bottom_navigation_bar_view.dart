@@ -20,6 +20,13 @@ class BottomNavigationBarView extends StatelessWidget {
           if(value==1){
             context.goNamed(AppRoutes.addNewProduct);
           }
+          else if(value==2){
+            context.goNamed(AppRoutes.settingsScreen);
+
+          }else{
+            context.goNamed(AppRoutes.profileScreen);
+
+          }
         },
         items: [
           CurvedNavigationBarItem(

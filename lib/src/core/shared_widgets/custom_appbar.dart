@@ -20,7 +20,7 @@ class CustomAppbar extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     TextTheme textTheme = theme.textTheme;
     return AppBar(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.background,
       centerTitle: true,
       elevation: 0,
       bottomOpacity: 0,
