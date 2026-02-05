@@ -16,7 +16,7 @@ class LocationWidget extends StatelessWidget {
         width: double.infinity,
         height: 194,
         child: GoogleMap(
-          onTap: (_) => context.push(AppRoutes.scanQr, extra: id),
+          onTap: (_) => context.push(AppRoutes.selectLocationScreen, extra: id),
           scrollGesturesEnabled: false,
           markers: {
             Marker(

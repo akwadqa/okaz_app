@@ -308,6 +308,14 @@ class $AssetsImagesGen {
   AssetGenImage get qrTemplateImage =>
       const AssetGenImage('assets/images/qr_template_image.png');
 
+  /// File path: assets/images/splash_back_im.png
+  AssetGenImage get splashBackIm =>
+      const AssetGenImage('assets/images/splash_back_im.png');
+
+  /// File path: assets/images/splash_image.png
+  AssetGenImage get splashImage =>
+      const AssetGenImage('assets/images/splash_image.png');
+
   /// File path: assets/images/success_image_added.png
   AssetGenImage get successImageAdded =>
       const AssetGenImage('assets/images/success_image_added.png');
@@ -348,6 +356,8 @@ class $AssetsImagesGen {
     qatarCountry,
     qatarFlag,
     qrTemplateImage,
+    splashBackIm,
+    splashImage,
     successImageAdded,
     template1Image,
     template2Image,
@@ -359,17 +369,17 @@ class $AssetsImagesGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
-  /// File path: assets/lottie/Souq okaz.json
-  String get souqOkaz => 'assets/lottie/Souq okaz.json';
-
   /// File path: assets/lottie/loader.json
   String get loader => 'assets/lottie/loader.json';
 
   /// File path: assets/lottie/shoppingLoader.json
   String get shoppingLoader => 'assets/lottie/shoppingLoader.json';
 
+  /// File path: assets/lottie/souq_okaz.json
+  String get souqOkaz => 'assets/lottie/souq_okaz.json';
+
   /// List of all assets
-  List<String> get values => [souqOkaz, loader, shoppingLoader];
+  List<String> get values => [loader, shoppingLoader, souqOkaz];
 }
 
 class $AssetsTranslationsGen {

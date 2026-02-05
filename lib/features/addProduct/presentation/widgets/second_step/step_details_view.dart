@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
 import 'package:okaz/features/addProduct/presentation/widgets/second_step/select_location_page/location_widget.dart';
 
 import '../../controller/add_product_controller.dart';
@@ -15,6 +16,8 @@ class StepDetailsView extends ConsumerWidget {
     final state = ref.watch(addProductControllerProvider).value!;
     final controller =
         ref.read(addProductControllerProvider.notifier);
+    final mapController =
+        ref.watch(mapControllerProvider);
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -122,17 +125,23 @@ class StepDetailsView extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
 
-// LocationWidget(latlng: LatLng(25.2816415,  51.5242998)),
-        Container(
-          height: 180,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.grey.shade200,
-          ),
-          child: const Center(
-            child: Text('Map View'),
-          ),
-        ),
+LocationWidget(latlng: LatLng(
+  
+  mapController.value?.latLng?.latitude??
+  25.2816415, 
+  mapController.value?.latLng?.longitude??
+  
+   51.5242998)),
+        // Container(
+        //   height: 180,
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(12),
+        //     color: Colors.grey.shade200,
+        //   ),
+        //   child: const Center(
+        //     child: Text('Map View'),
+        //   ),
+        // ),
       ],
     );
   }

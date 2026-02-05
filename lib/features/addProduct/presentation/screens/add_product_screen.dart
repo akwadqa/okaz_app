@@ -31,7 +31,8 @@ title: Text(context.tr('add_ad_title')),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.close),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () =>                     context.goNamed(AppRoutes.mainScreen)
+,
         ),
       ),
       body: Column(

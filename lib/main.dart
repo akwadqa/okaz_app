@@ -23,7 +23,7 @@ Future<void> main() async {
     DevicePreview(
         enabled: !kReleaseMode,
         builder: (context) {
-          return UncontrolledProviderScope(
+          return UncontrolledProviderScope( 
             container: container,
             child: EasyLocalization(
               supportedLocales: const [Locale('en'), Locale('ar')],

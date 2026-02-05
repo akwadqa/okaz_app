@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/addProduct/presentation/screens/add_product_screen.dart';
+import 'package:okaz/features/addProduct/presentation/widgets/second_step/select_location_page/app_map_screen.dart';
 import 'package:okaz/features/auth/signIn/presentation/screens/sign_in_screen.dart';
 import 'package:okaz/features/auth/signUp/presentation/screens/signup_screen.dart';
 import 'package:okaz/features/auth/verification/presentation/screens/verification_account_screen.dart';
 import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/screens/main_screen.dart';
 import 'package:okaz/features/onBoarding/presentation/screens/on_boarding_screen.dart';
+import 'package:okaz/features/onBoarding/presentation/screens/splash_screen.dart';
 
 import '../../../features/addProduct/presentation/screens/successfull_new_ad_screen.dart';
 import 'app_routes.dart';
@@ -22,7 +24,7 @@ class AppRouter {
   AppRouter(Ref ref) : goRouter = _createRouter(ref);
 
   static GoRouter _createRouter(Ref ref) {
-    String initialRoute = AppRoutes.onBoarding;
+    String initialRoute = AppRoutes.splashScreen;
     return GoRouter(
       navigatorKey: rootKey,
       initialLocation: initialRoute,
@@ -66,20 +68,20 @@ class AppRouter {
       // },
 
       routes: <RouteBase>[
-        // GoRoute(
-        //   path: AppRoutes.splashScreen,
-        //   parentNavigatorKey: rootKey,
-        //   pageBuilder: (BuildContext context, GoRouterState state) {
-        //     return CustomTransitionPage(
-        //       child: SplashScreen(),
-        //       key: state.pageKey,
-        //       transitionsBuilder:
-        //           (context, animation, secondaryAnimation, child) {
-        //         return FadeTransition(opacity: animation, child: child);
-        //       },
-        //     );
-        //   },
-        // ),
+        GoRoute(
+          path: AppRoutes.splashScreen,
+          parentNavigatorKey: rootKey,
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              child: SplashScreen(),
+              key: state.pageKey,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+            );
+          },
+        ),
         GoRoute(
           path: AppRoutes.onBoarding,
           name: AppRoutes.onBoarding,
@@ -194,6 +196,22 @@ class AppRouter {
             pageBuilder: (BuildContext context, GoRouterState state) {
               return CustomTransitionPage(
                 child: HomeScreen(),
+                key: state.pageKey,
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
+      
+        GoRoute(
+            path: AppRoutes.selectLocationScreen,
+            name: AppRoutes.selectLocationScreen,
+            parentNavigatorKey: rootKey,
+            pageBuilder: (BuildContext context, GoRouterState state) {
+              return CustomTransitionPage(
+                child: SelectLocationPage(id: state.extra as String?,),
                 key: state.pageKey,
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) {

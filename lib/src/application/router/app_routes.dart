@@ -8,13 +8,13 @@ abstract class AppRoutes {
   static const String splashScreen = '/splash';
   static const String homeScreen = '/home';
   static const String newAdSuccsessScreen = '/new_add_success';
+  static const String selectLocationScreen = '/select_location';
 
 
   static const String addNewProduct = '/add_product';
   static const String guestListScreen = '/guest_list';
   static const String contactListScreen = '/contact_list';
   static const String uploadImageScreen = '/upload_image';
-  static const String selectLocationScreen = '/select_location';
   static const String successEventScreen = '/success_event';
   static const String guestsScreen = '/guest_screen';
   static const String templatesScreen = '/templates_screen';

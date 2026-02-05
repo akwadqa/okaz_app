@@ -2,7 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
@@ -18,7 +18,7 @@ abstract class AppInitializer {
   static Future<void> init() async {
     //-- Flutter init --
     WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-    
+
     // -- FIREBASE INIT -- //
     // await Firebase.initializeApp(
     //   options: DefaultFirebaseOptions.currentPlatform,
@@ -27,20 +27,20 @@ abstract class AppInitializer {
     // -- Initialize Notifications -- //
     // final container = ProviderContainer();
     // await container.read(notificationServiceProvider).initialize();
-    
+
     //-- ENV FILE LOAD  --
     await dotenv.load(fileName: '.env');
     //-- Hive initialize --
     await Hive.initFlutter();
     await HiveInitializer.initialize();
-    
+
     //-- Load base URL's  --
     ServicesUrls.init();
-    
-    // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    return ErrorPage(details: details);
-  };
+
+    FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+    ErrorWidget.builder = (FlutterErrorDetails details) {
+      return ErrorPage(details: details);
+    };
     //-- Localization init  --
     await EasyLocalization.ensureInitialized();
   }
@@ -67,8 +67,9 @@ Future<void> handleSplashScreen(ProviderContainer container) async {
 
   if (loadDuration < minSplashDuration) {
     await Future.delayed(
-        Duration(milliseconds: minSplashDuration - loadDuration));
+      Duration(milliseconds: minSplashDuration - loadDuration),
+    );
   }
 
-  // FlutterNativeSplash.remove();
+  FlutterNativeSplash.remove();
 }

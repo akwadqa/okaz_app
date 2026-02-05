@@ -35,4 +35,5 @@ class HomeScreenSearchFiled extends StatelessWidget {
       ),
     ).symmetricPadding(horizontal: 16);
   }
+
 }

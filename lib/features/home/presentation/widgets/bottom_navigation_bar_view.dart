@@ -18,7 +18,7 @@ class BottomNavigationBarView extends StatelessWidget {
         height: 70,
         onTap: (value) {
           if(value==1){
-            context.push(AppRoutes.addNewProduct);
+            context.goNamed(AppRoutes.addNewProduct);
           }
         },
         items: [

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/home/presentation/screens/home_screen.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:lottie/lottie.dart';
+import 'package:okaz/gen/assets.gen.dart';
 
-import '../../src/application/router/app_routes.dart';
+import '../../../../src/application/router/app_routes.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
+import '../../../../src/logger/log_services/dev_logger.dart';
+
 
 class SplashScreen extends ConsumerWidget {
   const SplashScreen({super.key});
@@ -16,7 +17,7 @@ class SplashScreen extends ConsumerWidget {
     bool _navigated = false;
 
     return Lottie.asset(
-      'assets/splash/splash.json',
+      Assets.lottie.souqOkaz,
       repeat: false,
       fit: BoxFit.cover,
       frameRate: FrameRate.max,
@@ -26,16 +27,16 @@ class SplashScreen extends ConsumerWidget {
 
         Future.delayed(composition.duration + Duration(seconds: 2), () async {
           final storage = ref.read(localStorageServiceProvider);
-          // final isFirstTime = await storage.isFirstTimeOpen();
+          final isFirstTime = await storage.isFirstTimeOpen();
           final isAuth = await ref.read(isAuthenticatedProvider.future);
 
           Dev.logLine(' isAuth: $isAuth');
 
           // ===== First-time onboarding =====
-          // if (isFirstTime) {
-          //   context.goNamed(AppRoutes.onBoarding);
-          //   return;
-          // }
+          if (isFirstTime) {
+            context.goNamed(AppRoutes.onBoarding);
+            return;
+          }
 
           // ===== Not authenticated =====
           if (!isAuth) {

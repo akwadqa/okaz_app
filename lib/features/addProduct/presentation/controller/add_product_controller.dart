@@ -1,3 +1,4 @@
+import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/model/category_model.dart';
@@ -195,15 +196,17 @@ void removeImage(int index) {
 
   bool canGoNext() {
     final s = state.value!;
+    final mapCtrl=ref.read(mapControllerProvider).value?.latLng;
     switch (s.step) {
       case 1:
         return s.category != null;
       case 2:
-        return s.adType != null && s.city != null;
+        return s.adType != null && s.city != null&&mapCtrl!=null;
       case 3:
         return true; // specs later
       case 4:
-        return true;
+      return s.images.isNotEmpty&& s.titleAr!=null &&s.titleEn!=null &&s.descAr!=null &&s.descEn!=null &&s.price!=null ;
+        // return true;
       default:
         return false;
     }

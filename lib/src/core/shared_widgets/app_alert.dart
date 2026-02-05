@@ -90,7 +90,7 @@ class AppAlert {
       transitionDuration: const Duration(milliseconds: 150),
       pageBuilder: (ctx, animation, secondaryAnimation) {
         return PopScope(
-          canPop: false,
+          canPop: true,
           child: Container(
               // padding: EdgeInsets.all(30),
               // width: 50,
