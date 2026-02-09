@@ -16,7 +16,7 @@ class ProductDetailsScreenContactBar extends StatelessWidget {
         children: [
           Expanded(
             child: Align(
-              alignment: AlignmentDirectional.centerEnd,
+              alignment: AlignmentDirectional.centerStart,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

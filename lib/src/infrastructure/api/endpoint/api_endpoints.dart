@@ -1,11 +1,10 @@
 class ApiEndPoints {
-  final domain="invite.api.";
+  final domain = "invite.api.";
 
   //? --- Home ---
   static const String homeServices = 'invite.api.api.get_home_page_data';
   //? --- Event ---
   static const String createEvent = 'invite.api.api.create_event';
-
 
   //? --- AUTH ---
   static const String signIn = 'invite.api.auth.send_otp';
@@ -30,5 +29,15 @@ class ApiEndPoints {
 
   static const String sendFcmToken = 'fcm_frappe.api.device_token';
 
+  //? --- Okaz ---
 
+  //? --- Product ---
+  static const String productDetails = 'product_details';
+  static const String addProductToFavorite = 'product_favorite';
+
+  //? --- Filter ---
+  static const String productsByFilter = 'products_by_filter';
+
+  //? --- Search ---
+  static const String search = 'search';
 }

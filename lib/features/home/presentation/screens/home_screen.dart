@@ -10,6 +10,7 @@ import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_drawer.dart';
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
 import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
@@ -25,7 +26,11 @@ class HomeScreen extends StatelessWidget {
       extendBody: true,
       drawer: HomeScreenDrawer(),
       backgroundColor: AppColors.background,
-      appBar: AppBar(centerTitle: true, title: Text('Okaz Market'.tr())),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Okaz Market'.tr()),
+        backgroundColor: AppColors.background,
+      ),
       body: _HomeScreenContent(),
       bottomNavigationBar: BottomNavigationBarView(),
     );
@@ -39,7 +44,10 @@ class _HomeScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        HomeScreenSearchFiled(title: 'serch_for_any_thing'.tr()),
+        HomeScreenSearchFiled(
+          title: 'serch_for_any_thing'.tr(),
+          onTap: () => context.push(AppRoutes.searchScreen),
+        ),
         20.verticalSpace,
         HomeScreenAddsSection(),
         36.verticalSpace,

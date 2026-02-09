@@ -10,13 +10,14 @@ class ProductDetailsScreenActionChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ProductDetailsScreenOutlinedChip(
           icon: Assets.icons.eyeIc,
           label: '50',
           onTap: () {},
         ),
-        const SizedBox(width: 12),
+        const Spacer(),
         ProductDetailsScreenOutlinedChip(
           icon: Assets.icons.likeLightIc,
           label: '4',

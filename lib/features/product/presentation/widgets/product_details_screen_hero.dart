@@ -50,15 +50,17 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             ),
           ),
 
-          Positioned(
-            left: 16,
+          Positioned.directional(
+            textDirection: TextDirection.ltr,
+            start: 16,
             top: 28,
             child: ProductDetailsScreenIconCircleButton(
               icon: Assets.icons.starIc,
             ),
           ),
-          Positioned(
-            right: 16,
+          Positioned.directional(
+            textDirection: TextDirection.ltr,
+            end: 16,
             top: 28,
             child: IconButton(
               onPressed: () => context.pop(),
@@ -102,7 +104,7 @@ class ProductDetailsScreenIconCircleButton extends StatelessWidget {
       shape: const StadiumBorder(),
       elevation: 0,
       child: Padding(
-        padding:  EdgeInsets.all(toProduct ? 4: 6),
+        padding: EdgeInsets.all(toProduct ? 4 : 6),
         child: InkWell(
           onTap: onTap,
           customBorder: const StadiumBorder(),

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'filter_controller.dart';
+part of 'search_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,44 +9,44 @@ part of 'filter_controller.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(FilterController)
-const filterControllerProvider = FilterControllerProvider._();
+@ProviderFor(SearchController)
+const searchControllerProvider = SearchControllerProvider._();
 
-final class FilterControllerProvider
-    extends $AsyncNotifierProvider<FilterController, FilterState> {
-  const FilterControllerProvider._()
+final class SearchControllerProvider
+    extends $AsyncNotifierProvider<SearchController, SearchState> {
+  const SearchControllerProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'filterControllerProvider',
+        name: r'searchControllerProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$filterControllerHash();
+  String debugGetCreateSourceHash() => _$searchControllerHash();
 
   @$internal
   @override
-  FilterController create() => FilterController();
+  SearchController create() => SearchController();
 }
 
-String _$filterControllerHash() => r'89d587ec8147cf44ddab4f95e4b537f96145abed';
+String _$searchControllerHash() => r'7fc6c9fe8473987f1ebd2dae5c704f6a9e950ab2';
 
-abstract class _$FilterController extends $AsyncNotifier<FilterState> {
-  FutureOr<FilterState> build();
+abstract class _$SearchController extends $AsyncNotifier<SearchState> {
+  FutureOr<SearchState> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<FilterState>, FilterState>;
+    final ref = this.ref as $Ref<AsyncValue<SearchState>, SearchState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<FilterState>, FilterState>,
-              AsyncValue<FilterState>,
+              AnyNotifier<AsyncValue<SearchState>, SearchState>,
+              AsyncValue<SearchState>,
               Object?,
               Object?
             >;
