@@ -103,6 +103,10 @@ class AppTextStyle {
     fontWeight: FontWeight.w700,
     fontSize: 20,
   );
+  static TextStyle rubikBold22 = GoogleFonts.rubik(
+    fontWeight: FontWeight.w700,
+    fontSize: 22,
+  );
 
   //************************* Poppins ////////////// */
   static TextStyle poppinsMedium16 = GoogleFonts.poppins(

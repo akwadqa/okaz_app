@@ -17,6 +17,7 @@ import 'package:okaz/features/onBoarding/presentation/screens/splash_screen.dart
 import 'package:okaz/features/profile/presentation/screens/profile_screen.dart';
 import 'package:okaz/features/settings/presentation/screens/settings_screen.dart';
 import 'package:okaz/features/product/presentation/screens/product_details_screen.dart';
+import 'package:okaz/features/search/presentation/screens/search_screen.dart';
 
 import '../../../features/addProduct/presentation/screens/successfull_new_ad_screen.dart';
 import 'app_routes.dart';
@@ -323,6 +324,21 @@ class AppRouter {
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
               child: ProductDetailsScreen(),
+              key: state.pageKey,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(opacity: animation, child: child);
+                  },
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.searchScreen,
+          name: AppRoutes.searchScreen,
+          parentNavigatorKey: rootKey,
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              child: SearchScreen(),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

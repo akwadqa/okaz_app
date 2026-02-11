@@ -83,6 +83,14 @@
     "subcategories": "Subcategories",
     "applying_filters": "Applying filters",
     "cancel": "Cancel",
+
+    "search" : "Search",
+    "search_for_product" : "Search for product..",
+    "no_result_search" : "Sorry, we couldn't find what you were looking for",
+    "recent_searches" : "Recent searches",
+    "delete_all" : "Delete all",
+    "most_searched" : "Most searched words",
+
     "product_details": {
         "ad_info": {
             "category": "Category:",

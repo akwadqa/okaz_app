@@ -82,6 +82,13 @@
     "subcategories": "الفئات الفرعية",
     "applying_filters": "تطبيق الفلاتر",
     "cancel": "إلغاء",
+    "search" : "البحث",
+    "search_for_product" : "البحث عن سلعة ..",
+    "no_result_search" : "عذرا لم نجد ما تبحث عنه",
+    "recent_searches" : "عمليات البحث الأخيرة",
+    "delete_all" : "مسح الكل",
+    "most_searched" : "الكلمات الأكثر بحثا",
+
     "product_details": {
         "ad_info": {
             "category": "القسم:",

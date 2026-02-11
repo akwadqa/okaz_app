@@ -14,8 +14,6 @@ import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,11 +24,11 @@ class HomeScreen extends StatelessWidget {
       extendBody: true,
       drawer: HomeScreenDrawer(),
       backgroundColor: AppColors.background,
-      appBar: AppBar(centerTitle: true, title: Text('Okaz Market'.tr()),actions: [GestureDetector(
-        onTap: () {
-          context.push(AppRoutes.notificationScreen);
-        },
-        child: Assets.icons.notificationIc.svg(height: 25,color: Colors.black).onlyPadding(end: 20))],),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Okaz Market'.tr()),
+        backgroundColor: AppColors.background,
+      ),
       body: _HomeScreenContent(),
       // bottomNavigationBar: BottomNavigationBarView(),
     );
@@ -44,7 +42,10 @@ class _HomeScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        HomeScreenSearchFiled(title: 'serch_for_any_thing'.tr()),
+        HomeScreenSearchFiled(
+          title: 'serch_for_any_thing'.tr(),
+          onTap: () => context.push(AppRoutes.searchScreen),
+        ),
         20.verticalSpace,
         HomeScreenAddsSection(),
         36.verticalSpace,

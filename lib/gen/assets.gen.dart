@@ -152,6 +152,10 @@ class $AssetsIconsGen {
   SvgGenImage get messagesIc =>
       const SvgGenImage('assets/icons/messages_ic.svg');
 
+  /// File path: assets/icons/most_search_ic.svg
+  SvgGenImage get mostSearchIc =>
+      const SvgGenImage('assets/icons/most_search_ic.svg');
+
   /// File path: assets/icons/notification_ic.svg
   SvgGenImage get notificationIc =>
       const SvgGenImage('assets/icons/notification_ic.svg');
@@ -263,6 +267,7 @@ class $AssetsIconsGen {
     logoutIc,
     logoutWithCornerIc,
     messagesIc,
+    mostSearchIc,
     notificationIc,
     oclockIc,
     passwordIc,
@@ -337,6 +342,10 @@ class $AssetsImagesGen {
   AssetGenImage get iponeImage =>
       const AssetGenImage('assets/images/ipone_image.jpg');
 
+  /// File path: assets/images/no_search_image.png
+  AssetGenImage get noSearchImage =>
+      const AssetGenImage('assets/images/no_search_image.png');
+
   /// File path: assets/images/on_boarding_im1.png
   AssetGenImage get onBoardingIm1 =>
       const AssetGenImage('assets/images/on_boarding_im1.png');
@@ -407,6 +416,7 @@ class $AssetsImagesGen {
     invitationCreateIm,
     inviteTypeImage,
     iponeImage,
+    noSearchImage,
     onBoardingIm1,
     onBoardingIm2,
     onBoardingIm3,

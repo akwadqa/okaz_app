@@ -51,7 +51,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
             const SliverToBoxAdapter(child: ProductDetailsScreenHero()),
             const SliverToBoxAdapter(child: ProductDetailsScreenHeaderInfo()),
 
-            /// ✅ Tabs pinned (تثبت في أعلى الشاشة أثناء السحب)
             SliverPersistentHeader(
               pinned: true,
               delegate: _ProductDetailsScreenTabsHeaderDelegate(
@@ -59,7 +58,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
               ),
             ),
 
-            /// ✅ محتوى التبويب الحالي (يتغير حسب التاب)
             SliverToBoxAdapter(
               child: ProductDetailsScreenTabSwitcher(
                 controller: _tabController,
@@ -89,22 +87,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen>
             ),
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
-            /// ✅ التعليقات جزء من السحب وتظهر بعد ما تنزل تحت
             const SliverToBoxAdapter(
               child: ProductDetailsScreenCommentsSection(),
             ),
-
-            /// ✅ مساحة تحت عشان bottom composer ما يغطي آخر المحتوى
-            // SliverToBoxAdapter(
-            //   child: SizedBox(
-            //     height: _composerHeight + MediaQuery.of(context).padding.bottom,
-            //   ),
-            // ),
           ],
         ),
       ),
 
-      /// ✅ الثابت الوحيد: حقل الإدخال
       bottomNavigationBar: const ProductDetailsScreenMessageComposer(),
     );
   }

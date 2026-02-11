@@ -30,5 +30,15 @@ class ApiEndPoints {
 
   static const String sendFcmToken = 'fcm_frappe.api.device_token';
 
+  //? --- Okaz ---
 
+  //? --- Product ---
+  static const String productDetails = 'product_details';
+  static const String addProductToFavorite = 'product_favorite';
+
+  //? --- Filter ---
+  static const String productsByFilter = 'products_by_filter';
+
+  //? --- Search ---
+  static const String search = 'search';
 }
