@@ -13,7 +13,7 @@ class SignInFooter extends StatelessWidget {
 
     return  GestureDetector(
       onTap: () {
-        context.pushReplacement(AppRoutes.homeScreen);
+        context.pushReplacement(AppRoutes.mainScreen);
       },
       child: Text(
                 'continue_as_guest'.tr(),

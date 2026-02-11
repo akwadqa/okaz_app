@@ -23,8 +23,8 @@ class CustomBackArrowWidget extends StatelessWidget {
             // borderRadius: BorderRadius.all(Radius.circular(16)),
           ),
           child: Icon(
-            Icons.arrow_back,
-            color: AppColors.primary,
+            Icons.arrow_back_ios,
+            color: AppColors.black,
             // size: 18,
           )),
     );

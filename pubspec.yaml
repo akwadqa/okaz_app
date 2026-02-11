@@ -93,6 +93,7 @@ dependencies:
   flutter_native_splash: ^2.4.7
   # flutter_google_places_sdk: ^0.4.3
   flutter_google_places_hoc081098: ^2.0.0
+  dropdown_button2: ^2.3.9
 
 
 

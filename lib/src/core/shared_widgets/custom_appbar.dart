@@ -29,7 +29,7 @@ class CustomAppbar extends StatelessWidget {
       title: Text(
         context.tr(title),
           style: textTheme.displayLarge!.copyWith(
-        color: AppColors.primary,
+        color: AppColors.black,
         fontWeight: FontWeight.w800,
         fontSize: 20
       ),

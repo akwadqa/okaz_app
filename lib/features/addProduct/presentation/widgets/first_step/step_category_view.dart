@@ -28,7 +28,7 @@ class StepCategoryView extends ConsumerWidget {
 
             children: [
               /// 🔍 Search
-              HomeScreenSearchFiled(),
+              HomeScreenSearchFiled(title: '',),
 
               12.verticalSpace,
 

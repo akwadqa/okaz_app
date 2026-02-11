@@ -2,6 +2,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_product_item.dart';
+import 'package:okaz/src/core/shared_widgets/app_empty_data_widget.dart';
 import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import '../controller/my_profile_controller.dart';
@@ -16,6 +18,7 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profileAsync = ref.watch(profileControllerProvider);
+    final widthS = MediaQuery.of(context).size.width;
 
     return profileAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -45,19 +48,23 @@ class ProfileScreen extends ConsumerWidget {
                       .changeTab(tab),
                 ),
                 const SizedBox(height: 12),
+              items.isEmpty?
+                    AppEmptyDataWidget(text: "no_favorites",height: 150,)
+                    :
                 Expanded(
                   child: GridView.builder(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     itemCount: items.length,
                     gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
+                         SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 12,
-                          childAspectRatio: 0.7,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio:0.55,
                         ),
                     itemBuilder: (_, index) =>
-                        ProfileItemCard(item: items[index]),
+                    ProductsScreenProductItem(item: items[index])
+                        // ProfileItemCard(item: items[index]),
                   ),
                 ),
               ],

@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/widgets/bottom_navigation_bar_view.dart';
+import 'package:okaz/features/profile/presentation/screens/profile_screen.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 
@@ -27,12 +27,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   //   });
   // }
   static final List<Widget> _pages = [
-    HomeScreen(),
-    Container(),
-    // ScanPage(),
-    // NotificationsScreen(),
-    // MessagesScreen(),
-    SettingsScreen(),
+    HomeScreen(),      // 0
+  SizedBox(),        // 1 (Add)
+  SettingsScreen(),  // 2
+  ProfileScreen(),   // 3
   ];
 
   @override
@@ -40,19 +38,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final selectedIndex = ref.watch(bottomNavIndexProvider);
 
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBarView(),
       extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          // context.pushNamed(AppRoutes.createEventScreen);
-          context.push(AppRoutes.okazationsSecreen, extra: true);
-        },
-        child: SizedBox(
-          width: 70,
-          height: 70,
-          child: Center(child: Assets.icons.addEventIc.svg()),
-        ),
-      ),
       resizeToAvoidBottomInset: false,
       body: _pages[selectedIndex],
       // bottomNavigationBar: BottomNavigationBarView(),

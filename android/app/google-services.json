@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "628523502099",
+    "project_id": "souq-okaz-ee1f1",
+    "storage_bucket": "souq-okaz-ee1f1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628523502099:android:4a7779bbfe6080dde14de6",
+        "android_client_info": {
+          "package_name": "qa.app.okaz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAImnbFbyublxPxwZ_qD4IB1WYchDnWIQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

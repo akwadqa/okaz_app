@@ -7,15 +7,21 @@ abstract class AppColors {
   static const Color secondPrimary = Color(0xFFF6EAE5);
   static const Color primaryOpacity = Color(0xFFFFECDC);
   static const Color background = Color(0xFFF5F5F5);
+  
+  static const Color chipBorder = Color(0xFFC0BAB9);
+
   static const Color primaryBorder = Color(0xFFE4D7D3);
   
   static const Color thirdPrimary = Color(0xFFA981BB);
   static const Color purbleOpacity = Color(0xFFA0A3E3);
+  
+  static const Color grey97 = Color(0xFF979797);
+
   // static const Color background = Color(0xffFAFAF9);
 
   
   static const Color fieldBackground = Color(0xFFEFF0F6);
-  static const Color dividerColor = Color(0xFFEDF1F3);
+  static const Color dividerColor = Color(0xFFe9e9e9);
   static const Color white = Color(0xFFFFFFFF);
   static const Color cardWhite = Color(0xFFF5F5F5);
   static const Color redOpacity = Color(0xFFFFF6E5);
@@ -23,6 +29,9 @@ abstract class AppColors {
   static const Color greenOpacity = Color(0xFFE9F7EF);
   static const Color shadow = Color(0x3F3B41C5);
   static const Color dark = Color(0xFF201C11);
+  static const Color borderGrey = Color(0xFFe8e8e8);
+  static const Color borderGrey2 = Color(0xFFe2e2e2);
+  static const Color switchBackground = Color(0xFFF3F4F6);
 
   // okazation Colors – Wedding
   static const Color weddingBg = Color(0xFFFFDCDC);
@@ -82,7 +91,7 @@ abstract class AppColors {
   static const Color black900 = Color(0xFF484848);
   static const Color lightGray = Color(0xFFE5E5E5);
   static const Color grey600 = Color(0xFF757575);
-  static const Color grey = Color(0xFFE7e7e7);
+  static const Color grey = Color(0xFFEdeded);
   static const Color green = Color(0xFF69A94B);
   static const Color mediumGray = Color(0xFFD7D7D7);
   static const Color grayBorder = Color(0xFFCCCCCC);

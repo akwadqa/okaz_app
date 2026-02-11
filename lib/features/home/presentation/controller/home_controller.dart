@@ -1,7 +1,9 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:okaz/features/home/data/repositories/home_repository.dart';
 import 'package:okaz/features/home/domain/model/home/home_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 part 'home_controller.g.dart';
 
 @riverpod
@@ -25,4 +27,7 @@ class HomeController extends _$HomeController {
     return result.value!;
   }
 }
+
 final bottomNavIndexProvider = StateProvider<int>((ref) => 0);
+// @riverpod
+// Future<int> bottomNavIndex(Ref ref) async =>0;

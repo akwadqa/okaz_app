@@ -32,7 +32,7 @@ class ProfileTabBar extends StatelessWidget {
               child: AnimatedContainer(
                 curve: Curves.linear,
                 duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.symmetric(vertical: 12),
+                padding: const EdgeInsets.symmetric(vertical: 6),
                 decoration: BoxDecoration(
                   color: isSelected ? AppColors.primary : Colors.transparent,
                   borderRadius: BorderRadius.circular(24),

@@ -52,6 +52,7 @@
   "view_ad": "View ad",
   "go_to_home": "Go to home",
   "no_notifications": "Notifications is Empty",
+  "no_favorites": "Favorites is Empty",
 
   "pricing_services": "Pricing & Services",
   "notification": "Notification",
@@ -67,5 +68,71 @@
   "ad_added_success_desc": "Your ad is now under review and will be published soon. You can track the status of your ad from your profile.",
   "edit_my_profile": "Edit My Profile",
   "change_language": "Change Language",
-  "add_ad": "Publish ad"
+  "add_ad": "Publish ad",
+    "Okaz Market": "Okaz Market",
+    "serch_for_any_thing": "Search for anything...",
+    "search_by_section": "Search by section",
+    "search_in_section": "Search in section ",
+    "required": "Required",
+    "for_sale": "For sale",
+    "filters": "Filters",
+    "distinctive": "Distinctive",
+   "reset": "Reset",
+    "search_by_specific_word": "Search by specific word",
+    "search_by_model_color_or_condition...": "Search by model, color, or condition...",
+    "subcategories": "Subcategories",
+    "applying_filters": "Applying filters",
+    "cancel": "Cancel",
+    "product_details": {
+        "ad_info": {
+            "category": "Category:",
+            "ad_type": "Ad type:",
+            "type": "Type:",
+            "sub_category": "Subcategory:",
+            "city": "City:",
+            "condition": "Condition:"
+        },
+        "ad_info_values": {
+            "phones": "Phones",
+            "for_sale": "For sale",
+            "iphone16_series": "iPhone 16 series",
+            "iphone": "iPhone",
+            "doha": "Doha",
+            "new": "New"
+        },
+        "tech_specs_tab": "Technical Specs",
+        "ad_info_tab": "Ad Info",
+        "views": "Views",
+        "likes": "Likes",
+        "report_ad": "Report Ad",
+        "description_label": "Description",
+        "description_text": "Phones for sale in installments (new)",
+        "product_title": "iPhone 16",
+        "price": "{value} QAR",
+        "hours_ago": "{hours} hours",
+        "comments_title": "Comments",
+        "view_all": "View all",
+        "message_placeholder": "Write a message...",
+        "contact_label": "Phone number",
+        "phone_number": "+974 5555 2222",
+        "whatsapp": "WhatsApp",
+        "call": "Call",
+        "specs": {
+            "sim_type": "SIM type",
+            "storage_capacity": "Storage capacity",
+            "camera_resolution": "Camera resolution",
+            "os": "Operating system",
+            "ram": "RAM",
+            "network_type": "Network type",
+            "battery_capacity": "Battery capacity"
+        },
+        "spec_values": {
+            "sim_3": "3 SIMs",
+            "storage_lt_512": "Less than 512 MB",
+            "other": "Other",
+            "ios": "iOS",
+            "g5": "5G",
+            "battery_other": "Other"
+        }
+    }
 }

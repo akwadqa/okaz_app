@@ -89,6 +89,10 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
     fontSize: 10,
   );
+  static TextStyle rubikRegular8 = GoogleFonts.rubik(
+    fontWeight: FontWeight.w400,
+    fontSize: 8,
+  );
 
   //? Bold :
   static TextStyle rubikBold18 = GoogleFonts.rubik(

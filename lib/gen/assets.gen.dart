@@ -43,11 +43,18 @@ class $AssetsIconsGen {
   SvgGenImage get bnbSettingsIc =>
       const SvgGenImage('assets/icons/bnb_settings_ic.svg');
 
+  /// File path: assets/icons/call_ic.svg
+  SvgGenImage get callIc => const SvgGenImage('assets/icons/call_ic.svg');
+
   /// File path: assets/icons/car_ic.svg
   SvgGenImage get carIc => const SvgGenImage('assets/icons/car_ic.svg');
 
   /// File path: assets/icons/chat_ic.svg
   SvgGenImage get chatIc => const SvgGenImage('assets/icons/chat_ic.svg');
+
+  /// File path: assets/icons/comments_dark_ic.svg
+  SvgGenImage get commentsDarkIc =>
+      const SvgGenImage('assets/icons/comments_dark_ic.svg');
 
   /// File path: assets/icons/confirm_guest_ic.svg
   SvgGenImage get confirmGuestIc =>
@@ -91,6 +98,9 @@ class $AssetsIconsGen {
   SvgGenImage get eventTimeIc =>
       const SvgGenImage('assets/icons/event_time_ic.svg');
 
+  /// File path: assets/icons/eye_ic.svg
+  SvgGenImage get eyeIc => const SvgGenImage('assets/icons/eye_ic.svg');
+
   /// File path: assets/icons/failed_guest_ic.svg
   SvgGenImage get failedGuestIc =>
       const SvgGenImage('assets/icons/failed_guest_ic.svg');
@@ -98,6 +108,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/family_stuffs_ic.svg
   SvgGenImage get familyStuffsIc =>
       const SvgGenImage('assets/icons/family_stuffs_ic.svg');
+
+  /// File path: assets/icons/filter_ic.svg
+  SvgGenImage get filterIc => const SvgGenImage('assets/icons/filter_ic.svg');
 
   /// File path: assets/icons/full_name_ic.svg
   SvgGenImage get fullNameIc =>
@@ -115,6 +128,14 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/lang_ic.svg
   SvgGenImage get langIc => const SvgGenImage('assets/icons/lang_ic.svg');
+
+  /// File path: assets/icons/like_light_ic.svg
+  SvgGenImage get likeLightIc =>
+      const SvgGenImage('assets/icons/like_light_ic.svg');
+
+  /// File path: assets/icons/likes_dark_ic.svg
+  SvgGenImage get likesDarkIc =>
+      const SvgGenImage('assets/icons/likes_dark_ic.svg');
 
   /// File path: assets/icons/location_ic.svg
   SvgGenImage get locationIc =>
@@ -134,6 +155,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/notification_ic.svg
   SvgGenImage get notificationIc =>
       const SvgGenImage('assets/icons/notification_ic.svg');
+
+  /// File path: assets/icons/oclock_ic.svg
+  SvgGenImage get oclockIc => const SvgGenImage('assets/icons/oclock_ic.svg');
 
   /// File path: assets/icons/password_ic.svg
   SvgGenImage get passwordIc =>
@@ -161,6 +185,9 @@ class $AssetsIconsGen {
   SvgGenImage get realestateIc =>
       const SvgGenImage('assets/icons/realestate_ic.svg');
 
+  /// File path: assets/icons/report_ic.svg
+  SvgGenImage get reportIc => const SvgGenImage('assets/icons/report_ic.svg');
+
   /// File path: assets/icons/rocket_ic.svg
   SvgGenImage get rocketIc => const SvgGenImage('assets/icons/rocket_ic.svg');
 
@@ -171,9 +198,16 @@ class $AssetsIconsGen {
   /// File path: assets/icons/scan_ic.svg
   SvgGenImage get scanIc => const SvgGenImage('assets/icons/scan_ic.svg');
 
+  /// File path: assets/icons/send_comment_ic.svg
+  SvgGenImage get sendCommentIc =>
+      const SvgGenImage('assets/icons/send_comment_ic.svg');
+
   /// File path: assets/icons/settings_ic.svg
   SvgGenImage get settingsIc =>
       const SvgGenImage('assets/icons/settings_ic.svg');
+
+  /// File path: assets/icons/star_ic.svg
+  SvgGenImage get starIc => const SvgGenImage('assets/icons/star_ic.svg');
 
   /// File path: assets/icons/title_ic.svg
   SvgGenImage get titleIc => const SvgGenImage('assets/icons/title_ic.svg');
@@ -186,6 +220,10 @@ class $AssetsIconsGen {
   SvgGenImage get waitingGuestIc =>
       const SvgGenImage('assets/icons/waiting_guest_ic.svg');
 
+  /// File path: assets/icons/whatsapp_ic.svg
+  SvgGenImage get whatsappIc =>
+      const SvgGenImage('assets/icons/whatsapp_ic.svg');
+
   /// List of all assets
   List<dynamic> get values => [
     addContactIc,
@@ -195,8 +233,10 @@ class $AssetsIconsGen {
     bnbAddIc,
     bnbHomeIc,
     bnbSettingsIc,
+    callIc,
     carIc,
     chatIc,
+    commentsDarkIc,
     confirmGuestIc,
     contactsIc,
     dateIc,
@@ -208,18 +248,23 @@ class $AssetsIconsGen {
     electronicIc,
     eventDateIc,
     eventTimeIc,
+    eyeIc,
     failedGuestIc,
     familyStuffsIc,
+    filterIc,
     fullNameIc,
     googleIc,
     homeIc,
     iconCorner,
     langIc,
+    likeLightIc,
+    likesDarkIc,
     locationIc,
     logoutIc,
     logoutWithCornerIc,
     messagesIc,
     notificationIc,
+    oclockIc,
     passwordIc,
     persone,
     phoneNumberIc,
@@ -227,13 +272,17 @@ class $AssetsIconsGen {
     qatarCountry,
     qatarFlag,
     realestateIc,
+    reportIc,
     rocketIc,
     saveEventIc,
     scanIc,
+    sendCommentIc,
     settingsIc,
+    starIc,
     titleIc,
     uploadImageIc,
     waitingGuestIc,
+    whatsappIc,
   ];
 }
 
@@ -283,6 +332,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/invite_type_image.jpg
   AssetGenImage get inviteTypeImage =>
       const AssetGenImage('assets/images/invite_type_image.jpg');
+
+  /// File path: assets/images/ipone_image.jpg
+  AssetGenImage get iponeImage =>
+      const AssetGenImage('assets/images/ipone_image.jpg');
 
   /// File path: assets/images/on_boarding_im1.png
   AssetGenImage get onBoardingIm1 =>
@@ -353,6 +406,7 @@ class $AssetsImagesGen {
     imErrorScreen,
     invitationCreateIm,
     inviteTypeImage,
+    iponeImage,
     onBoardingIm1,
     onBoardingIm2,
     onBoardingIm3,
