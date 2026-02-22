@@ -33,8 +33,8 @@ class VerificationScreenPin extends StatelessWidget {
           if (value == null || value.isEmpty) {
             return 'please_enter_code'.tr();
           }
-          if (value.length < 4) {
-            return 'code_must_be_4_numbers'.tr();
+          if (value.length < 6) {
+            return 'code_must_be_6_numbers'.tr();
           }
           return null;
         },
@@ -51,7 +51,7 @@ class VerificationScreenPin extends StatelessWidget {
         errorPinTheme: pinTheme.copyBorderWith(
           border: Border.all(color: AppColors.darkRed),
         ),
-        length: 4,
+        length: 6,
         defaultPinTheme: pinTheme,
       ),
     );

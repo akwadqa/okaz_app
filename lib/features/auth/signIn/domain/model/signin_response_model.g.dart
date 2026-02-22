@@ -9,20 +9,14 @@ part of 'signin_response_model.dart';
 _SigninResponseModel _$SigninResponseModelFromJson(Map<String, dynamic> json) =>
     _SigninResponseModel(
       mobileNumber: json['mobile_number'] as String,
-      remainingAttempts: (json['remaining_attempts'] as num).toInt(),
-      allowLoginAfter: (json['allow_login_after'] as num).toInt(),
-      validation: LoginValidation.fromJson(
-        json['validation'] as Map<String, dynamic>,
-      ),
+      userExist: json['user_exist'] as bool,
     );
 
 Map<String, dynamic> _$SigninResponseModelToJson(
   _SigninResponseModel instance,
 ) => <String, dynamic>{
   'mobile_number': instance.mobileNumber,
-  'remaining_attempts': instance.remainingAttempts,
-  'allow_login_after': instance.allowLoginAfter,
-  'validation': instance.validation,
+  'user_exist': instance.userExist,
 };
 
 _LoginValidation _$LoginValidationFromJson(Map<String, dynamic> json) =>

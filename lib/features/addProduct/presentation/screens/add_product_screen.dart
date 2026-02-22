@@ -9,6 +9,7 @@ import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
+import '../../../../src/core/shared_widgets/auht_guard.dart';
 import '../controller/add_product_controller.dart';
 import '../widgets/first_step/step_category_view.dart';
 import '../widgets/second_step/step_details_view.dart';
@@ -27,20 +28,22 @@ class AddProductScreen extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-title: Text(context.tr('add_ad_title')),
+        title: Text(context.tr('add_ad_title')),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.close),
-          onPressed: () =>                     context.goNamed(AppRoutes.mainScreen)
-,
+          onPressed: () => context.goNamed(AppRoutes.mainScreen),
         ),
       ),
-      body: Column(
-        children: [
-          _ProgressBar(step: state.step),
-          Expanded(child: _StepContent(step: state.step)),
-          _BottomButtons(step: state.step),
-        ],
+      body: AuthGuard(
+        child: Column(
+          children: [
+            _ProgressBar(step: state.step),
+
+            Expanded(child: _StepContent(step: state.step)),
+            _BottomButtons(step: state.step),
+          ],
+        ),
       ),
     );
   }
@@ -59,13 +62,11 @@ class _ProgressBar extends StatelessWidget {
         spacing: 8,
         children: [
           Text(
- context.tr(
-    'step_from_total',
-    namedArgs: {
-      'current': step.toString(),
-      'total': '4',
-    },
-  ),            style: AppTextStyle.rubikSemiBold14.copyWith(
+            context.tr(
+              'step_from_total',
+              namedArgs: {'current': step.toString(), 'total': '4'},
+            ),
+            style: AppTextStyle.rubikSemiBold14.copyWith(
               color: AppColors.primary,
             ),
           ),

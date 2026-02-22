@@ -298,6 +298,10 @@ class $AssetsImagesGen {
   AssetGenImage get rectangle =>
       const AssetGenImage('assets/images/Rectangle.png');
 
+  /// File path: assets/images/access_denied.svg
+  SvgGenImage get accessDenied =>
+      const SvgGenImage('assets/images/access_denied.svg');
+
   /// File path: assets/images/all_event_image.jpg
   AssetGenImage get allEventImage =>
       const AssetGenImage('assets/images/all_event_image.jpg');
@@ -405,6 +409,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<dynamic> get values => [
     rectangle,
+    accessDenied,
     allEventImage,
     backgroundEventIm,
     bookImage,

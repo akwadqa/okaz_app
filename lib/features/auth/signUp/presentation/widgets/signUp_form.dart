@@ -28,8 +28,8 @@ class _SignUpFormState extends State<SignUpForm> {
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController fullNameController = TextEditingController();
-
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -43,9 +43,18 @@ class _SignUpFormState extends State<SignUpForm> {
           AppTextFormField(
             // hint: 'firstName'.tr(),
             hint: 'mohamad',
-            label: 'fullName'.tr(),
-            controller: fullNameController,
+            label: 'first_name'.tr(),
+            controller: firstNameController,
             isRequired: true,
+            withIcon: false,
+          ),
+             1.verticalSpace,
+          AppTextFormField(
+            // hint: 'firstName'.tr(),
+            hint: 'kilani',
+            label: 'last_name'.tr(),
+            controller: lastNameController,
+            isRequired: false,
             withIcon: false,
           ),
          
@@ -160,7 +169,8 @@ class _SignUpFormState extends State<SignUpForm> {
     _formKey.currentState?.save();
     await ref.read(signUpControllerProvider.notifier).signUp(
           SignupParams(
-            fullNamae: fullNameController.text,
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
 
             mobileNumber: phoneController.text,
           ),

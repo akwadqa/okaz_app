@@ -2,13 +2,15 @@ import 'package:dio/dio.dart';
 
 class SignupParams {
 
-  final String fullNamae;
+  final String firstName;
+  final String? lastName;
 
   final String mobileNumber;
 
   SignupParams(
       {
-      required this.fullNamae,
+      required this.firstName,
+      required this.lastName,
 
       required this.mobileNumber});
 
@@ -17,7 +19,8 @@ class SignupParams {
 
     return {
 
-      'full_name': fullNamae,
+      'first_name': firstName,
+      'last_name': lastName,
       'mobile_no': mobileNumber,
     };
   }

@@ -9,7 +9,7 @@ part 'settings_controller.g.dart';
 class SettingsController extends _$SettingsController {
   @override
   FutureOr<SettingsState> build() async {
-    return const SettingsState(notificationState: true);
+    return const SettingsState(logoutState: AsyncValue.loading());
   }
   // Future<HomeModel> getSettingsData() async {
   //   state = const AsyncLoading();
@@ -25,14 +25,14 @@ class SettingsController extends _$SettingsController {
   //   return result.value!;
   // }
 
-  void onNotificationChange(bool value) {
-    final current = state.value;
-    if (current == null) return;
+  // void onNotificationChange(bool value) {
+  //   final current = state.value;
+  //   if (current == null) return;
 
-    state = AsyncData(
-      current.copyWith(notificationState: value),
-    );
-  }
+  //   state = AsyncData(
+  //     current.copyWith(notificationState: value),
+  //   );
+  // }
 
   // 🔴 Delete Account
   Future<void> deleteAccount() async {
@@ -75,8 +75,8 @@ class SettingsController extends _$SettingsController {
 
     await storage.logout();
 
-    state = AsyncData(
-      current.copyWith(logoutState: AsyncData(result)),
-    );
+    // state = AsyncData(
+    //   current.copyWith(logoutState: AsyncData(result)),
+    // );
   }
 }

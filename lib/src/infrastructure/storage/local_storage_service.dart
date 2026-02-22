@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,11 +44,16 @@ class LocalStorageService {
   }
 
   Future<String?> getToken() async {
-    return await _secureStorage.read(key: Keys.securedToken);
+    final token= await _secureStorage.read(key: Keys.securedToken);
+    Dev.logLine("TOKEN $token");
+    return token;
+
   }
 
   Future<void> removeToken() async {
     await _secureStorage.delete(key: Keys.securedToken);
+    Dev.logLine("TOKEN REMOVED");
+    getToken();
   }
 
   // ============================

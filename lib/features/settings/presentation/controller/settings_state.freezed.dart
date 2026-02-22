@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SettingsState {
 
- bool get notificationState;// Async actions
+// Async actions
  AsyncValue<void> get deleteAccountState; AsyncValue<void> get logoutState;
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
@@ -26,16 +26,16 @@ $SettingsStateCopyWith<SettingsState> get copyWith => _$SettingsStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsState&&(identical(other.notificationState, notificationState) || other.notificationState == notificationState)&&(identical(other.deleteAccountState, deleteAccountState) || other.deleteAccountState == deleteAccountState)&&(identical(other.logoutState, logoutState) || other.logoutState == logoutState));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SettingsState&&(identical(other.deleteAccountState, deleteAccountState) || other.deleteAccountState == deleteAccountState)&&(identical(other.logoutState, logoutState) || other.logoutState == logoutState));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,notificationState,deleteAccountState,logoutState);
+int get hashCode => Object.hash(runtimeType,deleteAccountState,logoutState);
 
 @override
 String toString() {
-  return 'SettingsState(notificationState: $notificationState, deleteAccountState: $deleteAccountState, logoutState: $logoutState)';
+  return 'SettingsState(deleteAccountState: $deleteAccountState, logoutState: $logoutState)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $SettingsStateCopyWith<$Res>  {
   factory $SettingsStateCopyWith(SettingsState value, $Res Function(SettingsState) _then) = _$SettingsStateCopyWithImpl;
 @useResult
 $Res call({
- bool notificationState, AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState
+ AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState
 });
 
 
@@ -63,10 +63,9 @@ class _$SettingsStateCopyWithImpl<$Res>
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? notificationState = null,Object? deleteAccountState = null,Object? logoutState = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? deleteAccountState = null,Object? logoutState = null,}) {
   return _then(_self.copyWith(
-notificationState: null == notificationState ? _self.notificationState : notificationState // ignore: cast_nullable_to_non_nullable
-as bool,deleteAccountState: null == deleteAccountState ? _self.deleteAccountState : deleteAccountState // ignore: cast_nullable_to_non_nullable
+deleteAccountState: null == deleteAccountState ? _self.deleteAccountState : deleteAccountState // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>,logoutState: null == logoutState ? _self.logoutState : logoutState // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>,
   ));
@@ -153,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool notificationState,  AsyncValue<void> deleteAccountState,  AsyncValue<void> logoutState)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( AsyncValue<void> deleteAccountState,  AsyncValue<void> logoutState)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SettingsState() when $default != null:
-return $default(_that.notificationState,_that.deleteAccountState,_that.logoutState);case _:
+return $default(_that.deleteAccountState,_that.logoutState);case _:
   return orElse();
 
 }
@@ -174,10 +173,10 @@ return $default(_that.notificationState,_that.deleteAccountState,_that.logoutSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool notificationState,  AsyncValue<void> deleteAccountState,  AsyncValue<void> logoutState)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( AsyncValue<void> deleteAccountState,  AsyncValue<void> logoutState)  $default,) {final _that = this;
 switch (_that) {
 case _SettingsState():
-return $default(_that.notificationState,_that.deleteAccountState,_that.logoutState);case _:
+return $default(_that.deleteAccountState,_that.logoutState);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,10 +193,10 @@ return $default(_that.notificationState,_that.deleteAccountState,_that.logoutSta
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool notificationState,  AsyncValue<void> deleteAccountState,  AsyncValue<void> logoutState)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( AsyncValue<void> deleteAccountState,  AsyncValue<void> logoutState)?  $default,) {final _that = this;
 switch (_that) {
 case _SettingsState() when $default != null:
-return $default(_that.notificationState,_that.deleteAccountState,_that.logoutState);case _:
+return $default(_that.deleteAccountState,_that.logoutState);case _:
   return null;
 
 }
@@ -209,10 +208,9 @@ return $default(_that.notificationState,_that.deleteAccountState,_that.logoutSta
 
 
 class _SettingsState implements SettingsState {
-  const _SettingsState({required this.notificationState, this.deleteAccountState = const AsyncData(null), this.logoutState = const AsyncData(null)});
+  const _SettingsState({this.deleteAccountState = const AsyncData(null), this.logoutState = const AsyncData(null)});
   
 
-@override final  bool notificationState;
 // Async actions
 @override@JsonKey() final  AsyncValue<void> deleteAccountState;
 @override@JsonKey() final  AsyncValue<void> logoutState;
@@ -227,16 +225,16 @@ _$SettingsStateCopyWith<_SettingsState> get copyWith => __$SettingsStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsState&&(identical(other.notificationState, notificationState) || other.notificationState == notificationState)&&(identical(other.deleteAccountState, deleteAccountState) || other.deleteAccountState == deleteAccountState)&&(identical(other.logoutState, logoutState) || other.logoutState == logoutState));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SettingsState&&(identical(other.deleteAccountState, deleteAccountState) || other.deleteAccountState == deleteAccountState)&&(identical(other.logoutState, logoutState) || other.logoutState == logoutState));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,notificationState,deleteAccountState,logoutState);
+int get hashCode => Object.hash(runtimeType,deleteAccountState,logoutState);
 
 @override
 String toString() {
-  return 'SettingsState(notificationState: $notificationState, deleteAccountState: $deleteAccountState, logoutState: $logoutState)';
+  return 'SettingsState(deleteAccountState: $deleteAccountState, logoutState: $logoutState)';
 }
 
 
@@ -247,7 +245,7 @@ abstract mixin class _$SettingsStateCopyWith<$Res> implements $SettingsStateCopy
   factory _$SettingsStateCopyWith(_SettingsState value, $Res Function(_SettingsState) _then) = __$SettingsStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool notificationState, AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState
+ AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState
 });
 
 
@@ -264,10 +262,9 @@ class __$SettingsStateCopyWithImpl<$Res>
 
 /// Create a copy of SettingsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? notificationState = null,Object? deleteAccountState = null,Object? logoutState = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? deleteAccountState = null,Object? logoutState = null,}) {
   return _then(_SettingsState(
-notificationState: null == notificationState ? _self.notificationState : notificationState // ignore: cast_nullable_to_non_nullable
-as bool,deleteAccountState: null == deleteAccountState ? _self.deleteAccountState : deleteAccountState // ignore: cast_nullable_to_non_nullable
+deleteAccountState: null == deleteAccountState ? _self.deleteAccountState : deleteAccountState // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>,logoutState: null == logoutState ? _self.logoutState : logoutState // ignore: cast_nullable_to_non_nullable
 as AsyncValue<void>,
   ));

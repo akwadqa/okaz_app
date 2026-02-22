@@ -18,7 +18,7 @@ class SignupDataSource {
         data: params.toMap(),
       );
       if (response.data == null || response.statusCode != 200) {
-        throw Exception('Request signIn failed');
+        throw Exception('Request signUp failed');
       }
 
       return ApiResponse.fromJson(
@@ -26,7 +26,7 @@ class SignupDataSource {
         (json) => SignupResponseModel.fromJson(json as Map<String, dynamic>),
       );
     } catch (e) {
-      Dev.logLine('Error in signIn: ${(e as DioException).message}');
+      Dev.logLine('Error in signUp: ${(e as DioException).message}');
       rethrow;
     }
   }

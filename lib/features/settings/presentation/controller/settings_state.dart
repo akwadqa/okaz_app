@@ -6,7 +6,6 @@ part 'settings_state.freezed.dart';
 @freezed
 abstract class SettingsState with _$SettingsState {
   const factory SettingsState({
-    required bool notificationState,
 
     // Async actions
     @Default(AsyncData(null))

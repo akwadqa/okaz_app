@@ -6,6 +6,7 @@ import 'package:okaz/features/filter/presentation/widgets/products_screen/produc
 import 'package:okaz/src/core/shared_widgets/app_empty_data_widget.dart';
 import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../../src/core/shared_widgets/auht_guard.dart';
 import '../controller/my_profile_controller.dart';
 import '../controller/profile_state.dart';
 import '../widgets/profile_header.dart';
@@ -30,44 +31,45 @@ class ProfileScreen extends ConsumerWidget {
 
         return Scaffold(
           backgroundColor: AppColors.background,
-            appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 65),
-        child: CustomAppbar(
-          title: context.tr('profile'),
-          withBackButton: false,
-        ),
-      ),
-          body: SafeArea(
-            child: Column(
-              children: [
-                const ProfileHeader(),
-                ProfileTabBar(
-                  selectedTab: state.selectedTab,
-                  onTabChanged: (tab) => ref
-                      .read(profileControllerProvider.notifier)
-                      .changeTab(tab),
-                ),
-                const SizedBox(height: 12),
-              items.isEmpty?
-                    AppEmptyDataWidget(text: "no_favorites",height: 150,)
-                    :
-                Expanded(
-                  child: GridView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: items.length,
-                    gridDelegate:
-                         SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio:0.55,
-                        ),
-                    itemBuilder: (_, index) =>
-                    ProductsScreenProductItem(item: items[index])
-                        // ProfileItemCard(item: items[index]),
+          appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 65),
+            child: CustomAppbar(
+              title: context.tr('profile'),
+              withBackButton: false,
+            ),
+          ),
+          body: AuthGuard(
+            child: SafeArea(
+              child: Column(
+                children: [
+                  const ProfileHeader(),
+                  ProfileTabBar(
+                    selectedTab: state.selectedTab,
+                    onTabChanged: (tab) => ref
+                        .read(profileControllerProvider.notifier)
+                        .changeTab(tab),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 12),
+                  items.isEmpty
+                      ? AppEmptyDataWidget(text: "no_items", height: 150)
+                      : Expanded(
+                          child: GridView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            itemCount: items.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  childAspectRatio: 0.55,
+                                ),
+                            itemBuilder: (_, index) =>
+                                ProductsScreenProductItem(item: items[index]),
+                            // ProfileItemCard(item: items[index]),
+                          ),
+                        ),
+                ],
+              ),
             ),
           ),
         );

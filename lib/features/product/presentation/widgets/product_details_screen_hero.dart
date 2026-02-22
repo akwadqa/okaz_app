@@ -50,17 +50,15 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             ),
           ),
 
-          Positioned.directional(
-            textDirection: TextDirection.ltr,
-            start: 16,
+          PositionedDirectional(
+            end: 16,
             top: 28,
             child: ProductDetailsScreenIconCircleButton(
               icon: Assets.icons.starIc,
             ),
           ),
-          Positioned.directional(
-            textDirection: TextDirection.ltr,
-            end: 16,
+          PositionedDirectional(
+            start: 16,
             top: 28,
             child: IconButton(
               onPressed: () => context.pop(),

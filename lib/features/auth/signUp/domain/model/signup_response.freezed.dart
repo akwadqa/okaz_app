@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SignupResponseModel {
 
-@JsonKey(name: 'user_id') String get userId; String get subscriber;@JsonKey(name: 'first_name') String get firstName;@JsonKey(name: 'last_name') String get lastName; String get email;@JsonKey(name: 'mobile_no') String get mobileNo;
+// @JsonKey(name: 'user_id') required String userId,
+@JsonKey(name: 'first_name') String get firstName;@JsonKey(name: 'last_name') String? get lastName;@JsonKey(name: 'mobile_no') String get mobileNo;
 /// Create a copy of SignupResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $SignupResponseModelCopyWith<SignupResponseModel> get copyWith => _$SignupRespon
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupResponseModel&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.subscriber, subscriber) || other.subscriber == subscriber)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNo, mobileNo) || other.mobileNo == mobileNo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignupResponseModel&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.mobileNo, mobileNo) || other.mobileNo == mobileNo));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userId,subscriber,firstName,lastName,email,mobileNo);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,mobileNo);
 
 @override
 String toString() {
-  return 'SignupResponseModel(userId: $userId, subscriber: $subscriber, firstName: $firstName, lastName: $lastName, email: $email, mobileNo: $mobileNo)';
+  return 'SignupResponseModel(firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo)';
 }
 
 
@@ -48,7 +49,7 @@ abstract mixin class $SignupResponseModelCopyWith<$Res>  {
   factory $SignupResponseModelCopyWith(SignupResponseModel value, $Res Function(SignupResponseModel) _then) = _$SignupResponseModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'user_id') String userId, String subscriber,@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String lastName, String email,@JsonKey(name: 'mobile_no') String mobileNo
+@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String? lastName,@JsonKey(name: 'mobile_no') String mobileNo
 });
 
 
@@ -65,14 +66,11 @@ class _$SignupResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of SignupResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? subscriber = null,Object? firstName = null,Object? lastName = null,Object? email = null,Object? mobileNo = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? firstName = null,Object? lastName = freezed,Object? mobileNo = null,}) {
   return _then(_self.copyWith(
-userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,subscriber: null == subscriber ? _self.subscriber : subscriber // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,mobileNo: null == mobileNo ? _self.mobileNo : mobileNo // ignore: cast_nullable_to_non_nullable
+firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String?,mobileNo: null == mobileNo ? _self.mobileNo : mobileNo // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -158,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'user_id')  String userId,  String subscriber, @JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName,  String email, @JsonKey(name: 'mobile_no')  String mobileNo)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String? lastName, @JsonKey(name: 'mobile_no')  String mobileNo)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SignupResponseModel() when $default != null:
-return $default(_that.userId,_that.subscriber,_that.firstName,_that.lastName,_that.email,_that.mobileNo);case _:
+return $default(_that.firstName,_that.lastName,_that.mobileNo);case _:
   return orElse();
 
 }
@@ -179,10 +177,10 @@ return $default(_that.userId,_that.subscriber,_that.firstName,_that.lastName,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'user_id')  String userId,  String subscriber, @JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName,  String email, @JsonKey(name: 'mobile_no')  String mobileNo)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String? lastName, @JsonKey(name: 'mobile_no')  String mobileNo)  $default,) {final _that = this;
 switch (_that) {
 case _SignupResponseModel():
-return $default(_that.userId,_that.subscriber,_that.firstName,_that.lastName,_that.email,_that.mobileNo);case _:
+return $default(_that.firstName,_that.lastName,_that.mobileNo);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +197,10 @@ return $default(_that.userId,_that.subscriber,_that.firstName,_that.lastName,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'user_id')  String userId,  String subscriber, @JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String lastName,  String email, @JsonKey(name: 'mobile_no')  String mobileNo)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'first_name')  String firstName, @JsonKey(name: 'last_name')  String? lastName, @JsonKey(name: 'mobile_no')  String mobileNo)?  $default,) {final _that = this;
 switch (_that) {
 case _SignupResponseModel() when $default != null:
-return $default(_that.userId,_that.subscriber,_that.firstName,_that.lastName,_that.email,_that.mobileNo);case _:
+return $default(_that.firstName,_that.lastName,_that.mobileNo);case _:
   return null;
 
 }
@@ -214,14 +212,12 @@ return $default(_that.userId,_that.subscriber,_that.firstName,_that.lastName,_th
 @JsonSerializable()
 
 class _SignupResponseModel extends SignupResponseModel {
-  const _SignupResponseModel({@JsonKey(name: 'user_id') required this.userId, required this.subscriber, @JsonKey(name: 'first_name') required this.firstName, @JsonKey(name: 'last_name') required this.lastName, required this.email, @JsonKey(name: 'mobile_no') required this.mobileNo}): super._();
+  const _SignupResponseModel({@JsonKey(name: 'first_name') required this.firstName, @JsonKey(name: 'last_name') required this.lastName, @JsonKey(name: 'mobile_no') required this.mobileNo}): super._();
   factory _SignupResponseModel.fromJson(Map<String, dynamic> json) => _$SignupResponseModelFromJson(json);
 
-@override@JsonKey(name: 'user_id') final  String userId;
-@override final  String subscriber;
+// @JsonKey(name: 'user_id') required String userId,
 @override@JsonKey(name: 'first_name') final  String firstName;
-@override@JsonKey(name: 'last_name') final  String lastName;
-@override final  String email;
+@override@JsonKey(name: 'last_name') final  String? lastName;
 @override@JsonKey(name: 'mobile_no') final  String mobileNo;
 
 /// Create a copy of SignupResponseModel
@@ -237,16 +233,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignupResponseModel&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.subscriber, subscriber) || other.subscriber == subscriber)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.email, email) || other.email == email)&&(identical(other.mobileNo, mobileNo) || other.mobileNo == mobileNo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SignupResponseModel&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.lastName, lastName) || other.lastName == lastName)&&(identical(other.mobileNo, mobileNo) || other.mobileNo == mobileNo));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,userId,subscriber,firstName,lastName,email,mobileNo);
+int get hashCode => Object.hash(runtimeType,firstName,lastName,mobileNo);
 
 @override
 String toString() {
-  return 'SignupResponseModel(userId: $userId, subscriber: $subscriber, firstName: $firstName, lastName: $lastName, email: $email, mobileNo: $mobileNo)';
+  return 'SignupResponseModel(firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo)';
 }
 
 
@@ -257,7 +253,7 @@ abstract mixin class _$SignupResponseModelCopyWith<$Res> implements $SignupRespo
   factory _$SignupResponseModelCopyWith(_SignupResponseModel value, $Res Function(_SignupResponseModel) _then) = __$SignupResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'user_id') String userId, String subscriber,@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String lastName, String email,@JsonKey(name: 'mobile_no') String mobileNo
+@JsonKey(name: 'first_name') String firstName,@JsonKey(name: 'last_name') String? lastName,@JsonKey(name: 'mobile_no') String mobileNo
 });
 
 
@@ -274,14 +270,11 @@ class __$SignupResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of SignupResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? subscriber = null,Object? firstName = null,Object? lastName = null,Object? email = null,Object? mobileNo = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? firstName = null,Object? lastName = freezed,Object? mobileNo = null,}) {
   return _then(_SignupResponseModel(
-userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,subscriber: null == subscriber ? _self.subscriber : subscriber // ignore: cast_nullable_to_non_nullable
-as String,firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
-as String,lastName: null == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
-as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String,mobileNo: null == mobileNo ? _self.mobileNo : mobileNo // ignore: cast_nullable_to_non_nullable
+firstName: null == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String,lastName: freezed == lastName ? _self.lastName : lastName // ignore: cast_nullable_to_non_nullable
+as String?,mobileNo: null == mobileNo ? _self.mobileNo : mobileNo // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

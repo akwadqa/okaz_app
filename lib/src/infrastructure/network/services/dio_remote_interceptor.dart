@@ -81,7 +81,7 @@ class RemoteInterceptor extends Interceptor {
       // ref.read().go(Routes.login);
     }
 
-    // ⚠️ باقي الحالات: نفس السابق
+
     switch (err.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:

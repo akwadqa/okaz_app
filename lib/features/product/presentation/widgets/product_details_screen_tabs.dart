@@ -16,6 +16,7 @@ class ProductDetailsScreenTabs extends StatelessWidget {
           labelColor: AppColors.primary,
           unselectedLabelColor: AppColors.grayHint,
           indicatorColor: AppColors.primary,
+          
           indicatorWeight: 4,
           dividerColor: Colors.transparent,
           tabs: [

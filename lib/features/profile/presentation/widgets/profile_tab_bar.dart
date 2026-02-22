@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 import '../controller/profile_state.dart';
-
 class ProfileTabBar extends StatelessWidget {
   final ProfileTab selectedTab;
   final ValueChanged<ProfileTab> onTabChanged;
@@ -16,39 +15,47 @@ class ProfileTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(32),
-      ),
-      child: Row(
-        children: ProfileTab.values.map((tab) {
-          final isSelected = tab == selectedTab;
-          return Expanded(
-            child: GestureDetector(
-              onTap: () => onTabChanged(tab),
-              child: AnimatedContainer(
-                curve: Curves.linear,
-                duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                decoration: BoxDecoration(
-                  color: isSelected ? AppColors.primary : Colors.transparent,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Text(
-                  tab == ProfileTab.myAds ? 'إعلاناتي' : 'المفضلة',
-                  textAlign: TextAlign.center,
-                  style: AppTextStyle.interRegular16.copyWith(
-                    color: isSelected ? Colors.white : Colors.grey.shade700,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+    return DefaultTabController(
+      length: ProfileTab.values.length,
+      initialIndex: selectedTab.index,
+      child: Builder(
+        builder: (context) {
+          final controller = DefaultTabController.of(context);
+
+          controller.addListener(() {
+            if (!controller.indexIsChanging) {
+              onTabChanged(ProfileTab.values[controller.index]);
+            }
+          });
+
+          return Container(
+            height: 50,
+            margin: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(4),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: TabBar(
+              indicator: BoxDecoration(
+                color: AppColors.primary,
+                borderRadius: BorderRadius.circular(24),
               ),
+              indicatorSize: TabBarIndicatorSize.tab,
+              
+              dividerColor: Colors.transparent,
+              splashFactory: NoSplash.splashFactory,
+              overlayColor:
+                  WidgetStateProperty.all(Colors.transparent),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey.shade700,
+              tabs: const [
+                Tab(text: 'إعلاناتي'),
+                Tab(text: 'المفضلة'),
+              ],
             ),
           );
-        }).toList(),
+        },
       ),
     );
   }

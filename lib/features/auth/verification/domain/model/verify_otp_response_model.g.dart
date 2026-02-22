@@ -9,7 +9,6 @@ part of 'verify_otp_response_model.dart';
 _VerifyOtpResponseModel _$VerifyOtpResponseModelFromJson(
   Map<String, dynamic> json,
 ) => _VerifyOtpResponseModel(
-  userId: json['user_id'] as String,
   fullName: json['full_name'] as String,
   mobileNo: json['mobile_no'] as String,
   token: json['token'] as String,
@@ -18,7 +17,6 @@ _VerifyOtpResponseModel _$VerifyOtpResponseModelFromJson(
 Map<String, dynamic> _$VerifyOtpResponseModelToJson(
   _VerifyOtpResponseModel instance,
 ) => <String, dynamic>{
-  'user_id': instance.userId,
   'full_name': instance.fullName,
   'mobile_no': instance.mobileNo,
   'token': instance.token,

@@ -9,6 +9,8 @@
   "start_now": "Start now",
   "skip": "Skip",
   "phone_number": "Phone Number",
+    "login_required_message": "Please login or create an account to access this feature.",
+  "login_required": "Login required",
   "login": "Login",
   "welcome_back": "Welcome back",
   "login_subtitle": "Log in to bid on the best items in Okaz market",
@@ -53,6 +55,7 @@
   "go_to_home": "Go to home",
   "no_notifications": "Notifications is Empty",
   "no_favorites": "Favorites is Empty",
+  "no_items": "No items yet",
 
   "pricing_services": "Pricing & Services",
   "notification": "Notification",

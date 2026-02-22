@@ -1,32 +1,32 @@
 class ApiEndPoints {
-  final domain="okaze.api.";
+  static const domain="okaz.api";
 
   //? --- Home ---
-  static const String homeServices = 'okaze.api.api.get_home_page_data';
+  static const String homeServices = 'okaz.api.api.get_home_page_data';
   //? --- Event ---
-  static const String createEvent = 'okaze.api.api.create_event';
+  static const String createEvent = 'okaz.api.api.create_event';
 
 
   //? --- AUTH ---
-  static const String signIn = 'okaze.api.auth.send_otp';
-  static const String signUp = 'okaze.api.auth.register';
-  static const String verifyOtp = 'okaze.api.auth.verify_otp';
+  static const String signIn = '$domain.auth.send_otp';
+  static const String signUp = '$domain.auth.sign_up';
+  static const String verifyOtp = '$domain.auth.verify_otp';
 
   //? --- Notification ---
-  static const String appNotification = 'okaze.api.api.get_notification_logs';
+  static const String appNotification = 'okaz.api.api.get_notification_logs';
 
   //? --- Settings ---
-  static const String deleteAccountApi = 'okaze.api.auth.delete_user';
-  static const String logoutApi = 'okaze.api.auth.logout';
+  static const String deleteAccountApi = '$domain.profile.delete_user_profile';
+  static const String logoutApi = '$domain.auth.logout';
 
   //? --- EventsCollection ---
-  static const String getUserEvents = 'okaze.api.api.get_user_events';
-  static const String getEventDetails = 'okaze.api.api.get_event';
+  static const String getUserEvents = 'okaz.api.api.get_user_events';
+  static const String getEventDetails = 'okaz.api.api.get_event';
 
   //? --- QR SCAN ---
-  static String scanQr = 'okaze.api.api.check_in';
-  static String getScaned = 'okaze.api.api.get_scan_events';
-  static const String getActiveGates = 'okaze.api.api.get_active_gates';
+  static String scanQr = 'okaz.api.api.check_in';
+  static String getScaned = 'okaz.api.api.get_scan_events';
+  static const String getActiveGates = 'okaz.api.api.get_active_gates';
 
   static const String sendFcmToken = 'fcm_frappe.api.device_token';
 

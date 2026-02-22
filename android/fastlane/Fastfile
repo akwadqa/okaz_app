@@ -1,38 +1,21 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
+  desc "Lane for Android Firebase App Distribution"
+  lane :firebase_distribution do
+    sh "flutter clean"
+    sh "flutter build apk --split-per-abi --no-tree-shake-icons"
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
-  end
+    firebase_app_distribution(
+      app: "1:628523502099:android:4a7779bbfe6080dde14de6",
+      # firebase_cli_token: ENV["FIREBASE_TOKEN"],
 
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk",
+      testers: "mouazhariry5@gmail.com,moh.allaaadeen@gmail.com,abdullahka715@gmail.com",
+      release_notes: "Fix 3 flows work correct, add cash payment methos, Edit and handle driver profile data"
+    )
   end
 end
+
+# ENV["FIREBASE_TOKEN"]

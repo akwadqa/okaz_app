@@ -17,6 +17,7 @@ class VerificationAccountScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      resizeToAvoidBottomInset: false,
         body: AuthScreen(
       withBackButton: true,
       child: _VerificationScreenContent(
