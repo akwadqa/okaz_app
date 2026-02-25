@@ -14,10 +14,8 @@ class StepDetailsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(addProductControllerProvider).value!;
-    final controller =
-        ref.read(addProductControllerProvider.notifier);
-    final mapController =
-        ref.watch(mapControllerProvider);
+    final controller = ref.read(addProductControllerProvider.notifier);
+    final mapController = ref.watch(mapControllerProvider);
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -80,12 +78,7 @@ class StepDetailsView extends ConsumerWidget {
             showAddSelectSheet<String>(
               context: context,
               title: 'اختر المدينة',
-              items: const [
-                'الدوحة',
-                'الريان',
-                'الوكرة',
-                'الخور',
-              ],
+              items: const ['الدوحة', 'الريان', 'الوكرة', 'الخور'],
               selected: state.city,
               labelBuilder: (v) => v,
               onConfirm: controller.setCity,
@@ -113,25 +106,18 @@ class StepDetailsView extends ConsumerWidget {
         //     );
         //   }, isRequired: true,
         // ),
-
         const SizedBox(height: 12),
 
         /// الموقع (NO *)
-        const Text(
-          'الموقع',
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        const Text('الموقع', style: TextStyle(fontWeight: FontWeight.w600)),
         const SizedBox(height: 8),
 
-LocationWidget(latlng: LatLng(
-  
-  mapController.value?.latLng?.latitude??
-  25.2816415, 
-  mapController.value?.latLng?.longitude??
-  
-   51.5242998)),
+        LocationWidget(
+          latlng: LatLng(
+            mapController.value?.latLng?.latitude ?? 25.2816415,
+            mapController.value?.latLng?.longitude ?? 51.5242998,
+          ),
+        ),
         // Container(
         //   height: 180,
         //   decoration: BoxDecoration(
