@@ -9,6 +9,7 @@ import 'package:okaz/features/auth/verification/presentation/screens/verificatio
 import 'package:okaz/features/filter/presentation/screens/filters_screen.dart';
 import 'package:okaz/features/filter/presentation/screens/products_screen.dart';
 import 'package:okaz/features/filter/presentation/screens/search_sub_categories_screen.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/home/presentation/screens/home_screen.dart';
 import 'package:okaz/features/home/presentation/screens/main_screen.dart';
 import 'package:okaz/features/notifications/presentation/screens/notifications_screen.dart';
@@ -85,8 +86,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -150,21 +151,21 @@ class AppRouter {
             );
           },
         ),
-          GoRoute(
-            path: AppRoutes.newAdSuccsessScreen,
-            name: AppRoutes.newAdSuccsessScreen,
-            parentNavigatorKey: rootKey,
-            pageBuilder: (BuildContext context, GoRouterState state) {
-              return CustomTransitionPage(
-                child: SuccessfullNewAdScreen(),
-                key: state.pageKey,
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-              );
-            },
-          ),
+        GoRoute(
+          path: AppRoutes.newAdSuccsessScreen,
+          name: AppRoutes.newAdSuccsessScreen,
+          parentNavigatorKey: rootKey,
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              child: SuccessfullNewAdScreen(),
+              key: state.pageKey,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                    return FadeTransition(opacity: animation, child: child);
+                  },
+            );
+          },
+        ),
         GoRoute(
           path: AppRoutes.homeScreen,
           name: AppRoutes.homeScreen,
@@ -175,8 +176,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -190,9 +191,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
-
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -217,12 +217,12 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: SelectLocationPage(id: state.extra as String?,),
+              child: SelectLocationPage(id: state.extra as String?),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -236,8 +236,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -251,8 +251,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -266,8 +266,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                return FadeTransition(opacity: animation, child: child);
-              },
+                    return FadeTransition(opacity: animation, child: child);
+                  },
             );
           },
         ),
@@ -278,7 +278,9 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: SearchSubCategoriesScreen(),
+              child: SearchSubCategoriesScreen(
+                subCategoryModel: state.extra as SubCategoryModel,
+              ),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

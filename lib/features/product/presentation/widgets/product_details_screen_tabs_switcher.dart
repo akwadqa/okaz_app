@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_ad_info_tab.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_specs.dart';
 
 class ProductDetailsScreenTabSwitcher extends StatelessWidget {
   final TabController controller;
-  const ProductDetailsScreenTabSwitcher({super.key, required this.controller});
-
+  const ProductDetailsScreenTabSwitcher({
+    super.key,
+    required this.controller,
+    required this.productDetailsModel,
+  });
+  final ProductDetailsModel productDetailsModel;
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
@@ -13,12 +18,14 @@ class ProductDetailsScreenTabSwitcher extends StatelessWidget {
       child: IndexedStack(
         key: ValueKey(controller.index),
         index: controller.index,
-        children: const [
-          /// ✅ فقط معلومات الإعلان (بدون ListView داخلي)
-          ProductDetailsScreenAdInfoTab(),
+        children: [
+          ProductDetailsScreenAdInfoTab(
+            productDetailsModel: productDetailsModel,
+          ),
 
-          /// ✅ فقط قائمة المواصفات (بدون ListView داخلي)
-          ProductDetailsScreenSpecsTab(),
+          ProductDetailsScreenSpecsTab(
+            productDetailsModel: productDetailsModel,
+          ),
         ],
       ),
     );

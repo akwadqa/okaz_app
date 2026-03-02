@@ -1,4 +1,4 @@
-import 'package:okaz/features/home/domain/model/home/home_model.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
 import 'package:okaz/src/infrastructure/api/response/api_response.dart';
 import 'package:okaz/src/infrastructure/network/services/network_service.dart';

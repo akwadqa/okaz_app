@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:okaz/features/home/data/repositories/home_repository.dart';
-import 'package:okaz/features/home/domain/model/home/home_model.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
+import 'package:okaz/features/home/presentation/controller/home_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_controller.g.dart';
@@ -9,22 +10,36 @@ part 'home_controller.g.dart';
 @riverpod
 class HomeController extends _$HomeController {
   @override
-  FutureOr<HomeModel> build() async {
-    return await getHomeData();
+  FutureOr<HomeState> build() async {
+    return HomeState.init();
   }
 
-  Future<HomeModel> getHomeData() async {
-    state = const AsyncLoading();
-
-    final result = await AsyncValue.guard(() async {
+  Future<HomeModel?> getHomeData() async {
+    try {
+      state = AsyncData(state.value!.copyWith(homeModel: AsyncLoading()));
       final repo = ref.read(homeRepositoryProvider);
-      return await repo.getHomeData(page: 1);
-    });
-    // (error) => AsyncError(error, StackTrace.current);
+      final response = await repo.getHomeData();
 
-    state = result;
+      if (response.hasFailed) {
+        state = AsyncData(
+          state.value!.copyWith(
+            homeModel: AsyncError(
+              response.message ?? 'Something went wrong',
+              StackTrace.fromString(response.message ?? ''),
+            ),
+          ),
+        );
+        return null;
+      }
 
-    return result.value!;
+      state = AsyncData(
+        state.value!.copyWith(homeModel: AsyncData(response.data!)),
+      );
+      return response.data;
+    } catch (e, st) {
+      state = AsyncData(state.value!.copyWith(homeModel: AsyncError(e, st)));
+      return null;
+    }
   }
 }
 

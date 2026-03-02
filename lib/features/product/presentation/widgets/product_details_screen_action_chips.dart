@@ -1,11 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class ProductDetailsScreenActionChips extends StatelessWidget {
-  const ProductDetailsScreenActionChips({super.key});
+  const ProductDetailsScreenActionChips({
+    super.key,
+    required this.productDetailsModel,
+  });
+  final ProductDetailsModel productDetailsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +19,13 @@ class ProductDetailsScreenActionChips extends StatelessWidget {
       children: [
         ProductDetailsScreenOutlinedChip(
           icon: Assets.icons.eyeIc,
-          label: '50',
+          label: productDetailsModel.views.toString(),
           onTap: () {},
         ),
         const Spacer(),
         ProductDetailsScreenOutlinedChip(
           icon: Assets.icons.likeLightIc,
-          label: '4',
+          label: productDetailsModel.likes.toString(),
           onTap: () {},
         ),
         const Spacer(),

@@ -1,20 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 class ProductDetailsScreenAdInfoTab extends StatelessWidget {
-  const ProductDetailsScreenAdInfoTab({super.key});
+  const ProductDetailsScreenAdInfoTab({
+    super.key,
+    required this.productDetailsModel,
+  });
+  final ProductDetailsModel productDetailsModel;
 
   @override
   Widget build(BuildContext context) {
     final rows = <ProductDetailsScreenInfoRowData>[
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.category',
-        valueKey: 'product_details.ad_info_values.phones',
+        valueKey: productDetailsModel.category ?? 'Category',
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.ad_type',
-        valueKey: 'product_details.ad_info_values.for_sale',
+        valueKey: productDetailsModel.listingType ?? 'Type',
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.type',
@@ -22,15 +27,15 @@ class ProductDetailsScreenAdInfoTab extends StatelessWidget {
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.sub_category',
-        valueKey: 'product_details.ad_info_values.iphone',
+        valueKey: productDetailsModel.subcategory ?? 'SubCategory',
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.city',
-        valueKey: 'product_details.ad_info_values.doha',
+        valueKey: productDetailsModel.city ?? 'City',
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.condition',
-        valueKey: 'product_details.ad_info_values.new',
+        valueKey: productDetailsModel.condition ?? 'Condition',
       ),
     ];
 

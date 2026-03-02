@@ -1,5 +1,6 @@
 import 'package:okaz/features/home/data/datasources/home_dataSource.dart';
-import 'package:okaz/features/home/domain/model/home/home_model.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
+import 'package:okaz/src/infrastructure/api/response/api_response.dart';
 import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
 import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,15 +16,15 @@ class HomeRepository {
   final HomeRemoteDataSource _remoteDataSource;
 
   HomeRepository(this._remoteDataSource);
-  Future<HomeModel> getHomeData({required int page}) async {
+  Future<ApiResponse<HomeModel>> getHomeData() async {
     try {
-      final result = await _remoteDataSource.getHomeData(page: page);
+      final result = await _remoteDataSource.getHomeData();
   
       if (result.hasFailed) {
         throw AppException(message:  result.message ?? 'Failed to fetch data');
       }
   
-      return result.data!;
+      return result;
     } catch (e) {
       throw AppException(message: 'Failed to fetch HomeModel: $e');
     }

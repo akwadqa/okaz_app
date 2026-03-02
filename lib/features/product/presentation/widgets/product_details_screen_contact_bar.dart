@@ -1,11 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class ProductDetailsScreenContactBar extends StatelessWidget {
-  const ProductDetailsScreenContactBar({super.key});
+  const ProductDetailsScreenContactBar({
+    super.key,
+    required this.productDetailsModel,
+  });
+  final ProductDetailsModel productDetailsModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +26,13 @@ class ProductDetailsScreenContactBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'product_details.contact_label'.tr(),
+                    '${productDetailsModel.userInfo?.firstName} ${productDetailsModel.userInfo?.lastName}',
+                    // 'product_details.contact_label'.tr(),
                     style: AppTextStyle.rubikSemiBold16,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '97455552222',
+                    productDetailsModel.userInfo?.mobileNo ?? '000000000',
                     // AppTextStyle.rubikRegular16.copyWith(color: AppColors.text),
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   ),

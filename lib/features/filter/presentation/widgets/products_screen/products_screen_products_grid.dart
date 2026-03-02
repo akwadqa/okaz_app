@@ -13,10 +13,10 @@ class ProductsScreenProductsGrid extends StatelessWidget {
       sliver: SliverGrid.builder(
         itemCount: 8,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-             crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                          childAspectRatio:0.55,
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 0.45,
         ),
         itemBuilder: (context, index) => ProductsScreenProductItem(item: null),
       ),

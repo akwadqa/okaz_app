@@ -1,11 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
 
 class ProductDetailsScreenHero extends StatefulWidget {
-  const ProductDetailsScreenHero({super.key});
+  const ProductDetailsScreenHero({
+    super.key,
+    required this.productDetailsModel,
+  });
+  final ProductDetailsModel productDetailsModel;
 
   @override
   State<ProductDetailsScreenHero> createState() =>
@@ -15,12 +22,6 @@ class ProductDetailsScreenHero extends StatefulWidget {
 class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
-
-  final _images = [
-    Assets.images.iponeImage,
-    Assets.images.iponeImage,
-    Assets.images.iponeImage,
-  ];
 
   @override
   void dispose() {
@@ -43,10 +44,15 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             ),
             child: PageView.builder(
               controller: _pageController,
-              itemCount: _images.length,
+              itemCount: widget.productDetailsModel.images?.length,
               onPageChanged: (index) => setState(() => _currentIndex = index),
-              itemBuilder: (context, index) =>
-                  _images[index].image(fit: BoxFit.cover),
+              itemBuilder: (context, index) => CachedNetworkImage(
+                imageUrl:
+                    ServicesUrls.imageUrl +
+                    (widget.productDetailsModel.images?[index].image ?? ''),
+                fit: BoxFit.cover,
+              ),
+              // widget.productDetailsModel.images[index].(fit: BoxFit.cover),
             ),
           ),
 
@@ -72,7 +78,7 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             bottom: 18,
             child: Center(
               child: ProductDetailsScreenCarouselIndicator(
-                count: _images.length,
+                count: widget.productDetailsModel.images?.length ?? 0,
                 currentIndex: _currentIndex,
               ),
             ),

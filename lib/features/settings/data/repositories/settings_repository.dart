@@ -1,5 +1,5 @@
 import 'package:okaz/features/home/data/datasources/home_dataSource.dart';
-import 'package:okaz/features/home/domain/model/home/home_model.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/settings/data/datasources/settings_dataSource.dart';
 import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
 import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';

@@ -1,11 +1,13 @@
 class ApiEndPoints {
-  static const domain="okaz.api";
+  static const domain = "okaz.api";
 
   //? --- Home ---
-  static const String homeServices = 'okaz.api.api.get_home_page_data';
+  static const String homeServices = 'okaz.api.category.home_page';
   //? --- Event ---
   static const String createEvent = 'okaz.api.api.create_event';
 
+  //? --- Comment ---
+  static const String createComment = 'okaz.api.comment.create_comment';
 
   //? --- AUTH ---
   static const String signIn = '$domain.auth.send_otp';
@@ -33,8 +35,9 @@ class ApiEndPoints {
   //? --- Okaz ---
 
   //? --- Product ---
-  static const String productDetails = 'product_details';
+  static const String productDetails = 'okaz.api.post.post_details';
   static const String addProductToFavorite = 'product_favorite';
+  static const String deletePost = 'okaz.api.post.delete_post';
 
   //? --- Filter ---
   static const String productsByFilter = 'products_by_filter';

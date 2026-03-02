@@ -26,14 +26,8 @@ class ProductsScreenProductItem extends StatelessWidget {
               flex: 3,
               child: Container(
                 width: double.infinity,
-                decoration: BoxDecoration(
-
-                   
-                ),
-                child:
-                
-                
-                 Stack(
+                decoration: BoxDecoration(),
+                child: Stack(
                   children: [
                     Positioned(
                       right: 0,
@@ -69,19 +63,19 @@ class ProductsScreenProductItem extends StatelessWidget {
                   spacing: 10,
                   children: [
                     Text(
-                     item?.title??"iphone",
+                      item?.title ?? "iphone",
                       style: AppTextStyle.rubikSemiBold16.copyWith(
                         color: AppColors.textDart,
                       ),
                     ),
                     Text(
-                     item?.condition??"new ",
+                      item?.condition ?? "new ",
                       style: AppTextStyle.rubikRegular12.copyWith(
                         color: AppColors.grayHint,
                       ),
                     ),
                     Text(
-                   '${item?.price??44} ر.ق',
+                      '${item?.price ?? 44} ر.ق',
                       style: AppTextStyle.rubikMedium14.copyWith(
                         color: AppColors.primary,
                       ),
@@ -92,7 +86,7 @@ class ProductsScreenProductItem extends StatelessWidget {
                         Assets.icons.commentsDarkIc.svg(),
 
                         Text(
-                          '${item?.comments??1}',
+                          '${item?.comments ?? 1}',
                           style: AppTextStyle.rubikRegular12.copyWith(
                             color: AppColors.grayHint,
                           ),
@@ -101,7 +95,7 @@ class ProductsScreenProductItem extends StatelessWidget {
                         Assets.icons.likesDarkIc.svg(),
 
                         Text(
-                         '${item?.likes??5}',
+                          '${item?.likes ?? 5}',
                           style: AppTextStyle.rubikRegular12.copyWith(
                             color: AppColors.grayHint,
                           ),

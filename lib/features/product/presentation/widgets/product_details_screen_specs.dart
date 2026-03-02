@@ -1,43 +1,58 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_comments.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 class ProductDetailsScreenSpecsTab extends StatelessWidget {
-  const ProductDetailsScreenSpecsTab({super.key});
+  const ProductDetailsScreenSpecsTab({
+    super.key,
+    required this.productDetailsModel,
+  });
+
+  final ProductDetailsModel productDetailsModel;
 
   @override
   Widget build(BuildContext context) {
-    final items = <ProductDetailsScreenSpecItemData>[
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.sim_type',
-        valueKey: 'product_details.spec_values.sim_3',
-      ),
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.storage_capacity',
-        valueKey: 'product_details.spec_values.storage_lt_512',
-      ),
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.camera_resolution',
-        valueKey: 'product_details.spec_values.other',
-      ),
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.os',
-        valueKey: 'product_details.spec_values.ios',
-      ),
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.ram',
-        valueKey: 'product_details.spec_values.other',
-      ),
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.network_type',
-        valueKey: 'product_details.spec_values.g5',
-      ),
-      ProductDetailsScreenSpecItemData(
-        titleKey: 'product_details.specs.battery_capacity',
-        valueKey: 'product_details.spec_values.battery_other',
-      ),
-    ];
+    final items = productDetailsModel.attributes!
+        .map(
+          (e) => ProductDetailsScreenSpecItemData(
+            titleKey: e.categoryAttribute ?? 'Attribute',
+            valueKey: e.value ?? 'value',
+          ),
+        )
+        .toList();
+
+    // final items = <ProductDetailsScreenSpecItemData>[
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.sim_type',
+    //     valueKey: 'product_details.spec_values.sim_3',
+    //   ),
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.storage_capacity',
+    //     valueKey: 'product_details.spec_values.storage_lt_512',
+    //   ),
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.camera_resolution',
+    //     valueKey: 'product_details.spec_values.other',
+    //   ),
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.os',
+    //     valueKey: 'product_details.spec_values.ios',
+    //   ),
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.ram',
+    //     valueKey: 'product_details.spec_values.other',
+    //   ),
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.network_type',
+    //     valueKey: 'product_details.spec_values.g5',
+    //   ),
+    //   ProductDetailsScreenSpecItemData(
+    //     titleKey: 'product_details.specs.battery_capacity',
+    //     valueKey: 'product_details.spec_values.battery_other',
+    //   ),
+    // ];
 
     return Container(
       color: AppColors.white,
