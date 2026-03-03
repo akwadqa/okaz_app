@@ -72,16 +72,32 @@ class ProductController extends _$ProductController {
     }
   }
 
-  Future<void> addProductToFavorite(String productId) async {
-    state = const AsyncLoading();
+  Future<bool?> addPostToFavorite(String productId) async {
     try {
+      state = AsyncData(state.value!.copyWith(favoritePost: AsyncLoading()));
       final repo = ref.read(productRepositoryProvider);
-      final data = await repo.addProductToFavorite(productId);
-      state = AsyncData(data);
-      return data;
+      final response = await repo.addPostToFavorite(productId);
+
+      if (response.hasFailed) {
+        state = AsyncData(
+          state.value!.copyWith(
+            favoritePost: AsyncError(
+              response.message ?? 'Something went wrong',
+              StackTrace.fromString(response.message ?? ''),
+            ),
+          ),
+        );
+        return null;
+      }
+
+      state = AsyncData(
+        state.value!.copyWith(favoritePost: AsyncData(response.data!)),
+      );
+      return response.data;
     } catch (e, st) {
-      state = AsyncError(e, st);
-      rethrow;
+      state = AsyncData(state.value!.copyWith(favoritePost: AsyncError(e, st)));
+      return null;
     }
   }
+
 }

@@ -11,27 +11,27 @@ class ProductRemoteDataSource {
 
   ProductRemoteDataSource(this._networkService);
 
-  Future<ApiResponse> addProductToFavorite(String productId) async {
-    try {
-      final response = await _networkService.post(
-        ApiEndPoints.addProductToFavorite,
-        // data: data,
-        queryParameters: {},
-      );
+  // Future<ApiResponse> addProductToFavorite(String productId) async {
+  //   try {
+  //     final response = await _networkService.post(
+  //       ApiEndPoints.addProductToFavorite,
+  //       // data: data,
+  //       queryParameters: {},
+  //     );
 
-      if (response.data == null || response.statusCode != 200) {
-        throw Exception('Request failed');
-      }
+  //     if (response.data == null || response.statusCode != 200) {
+  //       throw Exception('Request failed');
+  //     }
 
-      return ApiResponse.fromJson(
-        response.data as Map<String, dynamic>,
-        (json) {},
-      );
-    } catch (e) {
-      Dev.logLine('Error in submitData: e');
-      rethrow;
-    }
-  }
+  //     return ApiResponse.fromJson(
+  //       response.data as Map<String, dynamic>,
+  //       (json) {},
+  //     );
+  //   } catch (e) {
+  //     Dev.logLine('Error in submitData: e');
+  //     rethrow;
+  //   }
+  // }
 
   Future<ApiResponse<ProductDetailsModel>> getProductDetails(
     String productId,
@@ -57,9 +57,7 @@ class ProductRemoteDataSource {
     }
   }
 
-  Future<ApiResponse<String>> deletePost(
-    String productId,
-  ) async {
+  Future<ApiResponse<String>> deletePost(String productId) async {
     try {
       final body = {'post_id': productId};
       final response = await _networkService.delete(
@@ -80,4 +78,50 @@ class ProductRemoteDataSource {
       rethrow;
     }
   }
+
+  Future<ApiResponse<bool>> addPostToFavorite(String postId) async {
+    try {
+      final data = {'post_id': postId};
+      final response = await _networkService.put(
+        ApiEndPoints.addPostToFavorite,
+        data: data,
+        queryParameters: {},
+      );
+
+      if (response.data == null || response.statusCode != 200) {
+        throw Exception('Request failed');
+      }
+
+      return ApiResponse.fromJson(
+        response.data as Map<String, dynamic>,
+        (json) => (json as Map<String, dynamic>)['is_favorite'] as bool,
+      );
+    } catch (e) {
+      Dev.logLine('Error in submitData: e');
+      rethrow;
+    }
+  }
+
+  // Future<ApiResponse<bool>> likePost(String postId) async {
+  //   try {
+  //     final data = {'post_id': postId};
+  //     final response = await _networkService.put(
+  //       ApiEndPoints.addPostToFavorite,
+  //       data: data,
+  //       queryParameters: {},
+  //     );
+
+  //     if (response.data == null || response.statusCode != 200) {
+  //       throw Exception('Request failed');
+  //     }
+
+  //     return ApiResponse.fromJson(
+  //       response.data as Map<String, dynamic>,
+  //       (json) => (json as Map<String, dynamic>)['is_favorite'],
+  //     );
+  //   } catch (e) {
+  //     Dev.logLine('Error in submitData: e');
+  //     rethrow;
+  //   }
+  // }
 }

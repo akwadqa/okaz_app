@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileState {
 
- ProfileTab get selectedTab; List<ProfileItem> get myAds; List<ProfileItem> get favorites;
+ ProfileTab get selectedTab; List<ProfileItem> get myAds; AsyncValue<UserResponseModel>? get profileData; AsyncValue<UserResponseModel>? get updateprofileData; List<ProfileItem> get favorites;
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ProfileStateCopyWith<ProfileState> get copyWith => _$ProfileStateCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.selectedTab, selectedTab) || other.selectedTab == selectedTab)&&const DeepCollectionEquality().equals(other.myAds, myAds)&&const DeepCollectionEquality().equals(other.favorites, favorites));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.selectedTab, selectedTab) || other.selectedTab == selectedTab)&&const DeepCollectionEquality().equals(other.myAds, myAds)&&(identical(other.profileData, profileData) || other.profileData == profileData)&&(identical(other.updateprofileData, updateprofileData) || other.updateprofileData == updateprofileData)&&const DeepCollectionEquality().equals(other.favorites, favorites));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,selectedTab,const DeepCollectionEquality().hash(myAds),const DeepCollectionEquality().hash(favorites));
+int get hashCode => Object.hash(runtimeType,selectedTab,const DeepCollectionEquality().hash(myAds),profileData,updateprofileData,const DeepCollectionEquality().hash(favorites));
 
 @override
 String toString() {
-  return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, favorites: $favorites)';
+  return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, profileData: $profileData, updateprofileData: $updateprofileData, favorites: $favorites)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ProfileStateCopyWith<$Res>  {
   factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) _then) = _$ProfileStateCopyWithImpl;
 @useResult
 $Res call({
- ProfileTab selectedTab, List<ProfileItem> myAds, List<ProfileItem> favorites
+ ProfileTab selectedTab, List<ProfileItem> myAds, AsyncValue<UserResponseModel>? profileData, AsyncValue<UserResponseModel>? updateprofileData, List<ProfileItem> favorites
 });
 
 
@@ -62,11 +62,13 @@ class _$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? selectedTab = null,Object? myAds = null,Object? favorites = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? selectedTab = null,Object? myAds = null,Object? profileData = freezed,Object? updateprofileData = freezed,Object? favorites = null,}) {
   return _then(_self.copyWith(
 selectedTab: null == selectedTab ? _self.selectedTab : selectedTab // ignore: cast_nullable_to_non_nullable
 as ProfileTab,myAds: null == myAds ? _self.myAds : myAds // ignore: cast_nullable_to_non_nullable
-as List<ProfileItem>,favorites: null == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
+as List<ProfileItem>,profileData: freezed == profileData ? _self.profileData : profileData // ignore: cast_nullable_to_non_nullable
+as AsyncValue<UserResponseModel>?,updateprofileData: freezed == updateprofileData ? _self.updateprofileData : updateprofileData // ignore: cast_nullable_to_non_nullable
+as AsyncValue<UserResponseModel>?,favorites: null == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
 as List<ProfileItem>,
   ));
 }
@@ -152,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  List<ProfileItem> favorites)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProfileItem> favorites)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
-return $default(_that.selectedTab,_that.myAds,_that.favorites);case _:
+return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprofileData,_that.favorites);case _:
   return orElse();
 
 }
@@ -173,10 +175,10 @@ return $default(_that.selectedTab,_that.myAds,_that.favorites);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  List<ProfileItem> favorites)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProfileItem> favorites)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState():
-return $default(_that.selectedTab,_that.myAds,_that.favorites);case _:
+return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprofileData,_that.favorites);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +195,10 @@ return $default(_that.selectedTab,_that.myAds,_that.favorites);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  List<ProfileItem> favorites)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProfileItem> favorites)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
-return $default(_that.selectedTab,_that.myAds,_that.favorites);case _:
+return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprofileData,_that.favorites);case _:
   return null;
 
 }
@@ -208,7 +210,7 @@ return $default(_that.selectedTab,_that.myAds,_that.favorites);case _:
 
 
 class _ProfileState implements ProfileState {
-  const _ProfileState({this.selectedTab = ProfileTab.myAds, final  List<ProfileItem> myAds = const [], final  List<ProfileItem> favorites = const []}): _myAds = myAds,_favorites = favorites;
+  const _ProfileState({this.selectedTab = ProfileTab.myAds, final  List<ProfileItem> myAds = const [], this.profileData, this.updateprofileData, final  List<ProfileItem> favorites = const []}): _myAds = myAds,_favorites = favorites;
   
 
 @override@JsonKey() final  ProfileTab selectedTab;
@@ -219,6 +221,8 @@ class _ProfileState implements ProfileState {
   return EqualUnmodifiableListView(_myAds);
 }
 
+@override final  AsyncValue<UserResponseModel>? profileData;
+@override final  AsyncValue<UserResponseModel>? updateprofileData;
  final  List<ProfileItem> _favorites;
 @override@JsonKey() List<ProfileItem> get favorites {
   if (_favorites is EqualUnmodifiableListView) return _favorites;
@@ -237,16 +241,16 @@ _$ProfileStateCopyWith<_ProfileState> get copyWith => __$ProfileStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.selectedTab, selectedTab) || other.selectedTab == selectedTab)&&const DeepCollectionEquality().equals(other._myAds, _myAds)&&const DeepCollectionEquality().equals(other._favorites, _favorites));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.selectedTab, selectedTab) || other.selectedTab == selectedTab)&&const DeepCollectionEquality().equals(other._myAds, _myAds)&&(identical(other.profileData, profileData) || other.profileData == profileData)&&(identical(other.updateprofileData, updateprofileData) || other.updateprofileData == updateprofileData)&&const DeepCollectionEquality().equals(other._favorites, _favorites));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,selectedTab,const DeepCollectionEquality().hash(_myAds),const DeepCollectionEquality().hash(_favorites));
+int get hashCode => Object.hash(runtimeType,selectedTab,const DeepCollectionEquality().hash(_myAds),profileData,updateprofileData,const DeepCollectionEquality().hash(_favorites));
 
 @override
 String toString() {
-  return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, favorites: $favorites)';
+  return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, profileData: $profileData, updateprofileData: $updateprofileData, favorites: $favorites)';
 }
 
 
@@ -257,7 +261,7 @@ abstract mixin class _$ProfileStateCopyWith<$Res> implements $ProfileStateCopyWi
   factory _$ProfileStateCopyWith(_ProfileState value, $Res Function(_ProfileState) _then) = __$ProfileStateCopyWithImpl;
 @override @useResult
 $Res call({
- ProfileTab selectedTab, List<ProfileItem> myAds, List<ProfileItem> favorites
+ ProfileTab selectedTab, List<ProfileItem> myAds, AsyncValue<UserResponseModel>? profileData, AsyncValue<UserResponseModel>? updateprofileData, List<ProfileItem> favorites
 });
 
 
@@ -274,11 +278,13 @@ class __$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? selectedTab = null,Object? myAds = null,Object? favorites = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? selectedTab = null,Object? myAds = null,Object? profileData = freezed,Object? updateprofileData = freezed,Object? favorites = null,}) {
   return _then(_ProfileState(
 selectedTab: null == selectedTab ? _self.selectedTab : selectedTab // ignore: cast_nullable_to_non_nullable
 as ProfileTab,myAds: null == myAds ? _self._myAds : myAds // ignore: cast_nullable_to_non_nullable
-as List<ProfileItem>,favorites: null == favorites ? _self._favorites : favorites // ignore: cast_nullable_to_non_nullable
+as List<ProfileItem>,profileData: freezed == profileData ? _self.profileData : profileData // ignore: cast_nullable_to_non_nullable
+as AsyncValue<UserResponseModel>?,updateprofileData: freezed == updateprofileData ? _self.updateprofileData : updateprofileData // ignore: cast_nullable_to_non_nullable
+as AsyncValue<UserResponseModel>?,favorites: null == favorites ? _self._favorites : favorites // ignore: cast_nullable_to_non_nullable
 as List<ProfileItem>,
   ));
 }

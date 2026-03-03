@@ -40,11 +40,11 @@ class ProductRepository {
 
     throw AppException(response.message);
   }
-  Future<dynamic> addProductToFavorite(String productID) async {
-    final response = await _remoteDataSource.addProductToFavorite(productID);
+  Future<ApiResponse<bool>> addPostToFavorite(String productID) async {
+    final response = await _remoteDataSource.addPostToFavorite(productID);
 
     if (response.status == 200) {
-      return response.data!;
+      return response;
     }
 
     throw AppException(response.message);
