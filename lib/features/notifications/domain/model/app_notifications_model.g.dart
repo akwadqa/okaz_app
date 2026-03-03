@@ -7,17 +7,17 @@ part of 'app_notifications_model.dart';
 // **************************************************************************
 
 _AppNotificationsModel _$AppNotificationsModelFromJson(
-  Map<String, dynamic> json,
-) => _AppNotificationsModel(
-  emailContent: json['content'] as String,
-  subject: json['subject'] as String,
-  creation: DateTime.parse(json['creation'] as String),
-);
+        Map<String, dynamic> json) =>
+    _AppNotificationsModel(
+      emailContent: json['content'] as String,
+      subject: json['subject'] as String,
+      creation: DateTime.parse(json['creation'] as String),
+    );
 
 Map<String, dynamic> _$AppNotificationsModelToJson(
-  _AppNotificationsModel instance,
-) => <String, dynamic>{
-  'content': instance.emailContent,
-  'subject': instance.subject,
-  'creation': instance.creation.toIso8601String(),
-};
+        _AppNotificationsModel instance) =>
+    <String, dynamic>{
+      'content': instance.emailContent,
+      'subject': instance.subject,
+      'creation': instance.creation.toIso8601String(),
+    };

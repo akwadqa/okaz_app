@@ -16,15 +16,15 @@ final class HomeRepositoryProvider
     extends $FunctionalProvider<HomeRepository, HomeRepository, HomeRepository>
     with $Provider<HomeRepository> {
   const HomeRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'homeRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'homeRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$homeRepositoryHash();

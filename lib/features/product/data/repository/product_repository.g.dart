@@ -12,24 +12,20 @@ part of 'product_repository.dart';
 @ProviderFor(productRepository)
 const productRepositoryProvider = ProductRepositoryProvider._();
 
-final class ProductRepositoryProvider
-    extends
-        $FunctionalProvider<
-          ProductRepository,
-          ProductRepository,
-          ProductRepository
-        >
-    with $Provider<ProductRepository> {
+final class ProductRepositoryProvider extends $FunctionalProvider<
+    ProductRepository,
+    ProductRepository,
+    ProductRepository> with $Provider<ProductRepository> {
   const ProductRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'productRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'productRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$productRepositoryHash();
@@ -37,8 +33,8 @@ final class ProductRepositoryProvider
   @$internal
   @override
   $ProviderElement<ProductRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   ProductRepository create(Ref ref) {

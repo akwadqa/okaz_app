@@ -12,24 +12,20 @@ part of 'comment_repository.dart';
 @ProviderFor(commentRepository)
 const commentRepositoryProvider = CommentRepositoryProvider._();
 
-final class CommentRepositoryProvider
-    extends
-        $FunctionalProvider<
-          CommentRepository,
-          CommentRepository,
-          CommentRepository
-        >
-    with $Provider<CommentRepository> {
+final class CommentRepositoryProvider extends $FunctionalProvider<
+    CommentRepository,
+    CommentRepository,
+    CommentRepository> with $Provider<CommentRepository> {
   const CommentRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'commentRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'commentRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$commentRepositoryHash();
@@ -37,8 +33,8 @@ final class CommentRepositoryProvider
   @$internal
   @override
   $ProviderElement<CommentRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   CommentRepository create(Ref ref) {

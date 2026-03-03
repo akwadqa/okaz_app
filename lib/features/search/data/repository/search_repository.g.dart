@@ -12,24 +12,20 @@ part of 'search_repository.dart';
 @ProviderFor(searchRepository)
 const searchRepositoryProvider = SearchRepositoryProvider._();
 
-final class SearchRepositoryProvider
-    extends
-        $FunctionalProvider<
-          SearchRepository,
-          SearchRepository,
-          SearchRepository
-        >
-    with $Provider<SearchRepository> {
+final class SearchRepositoryProvider extends $FunctionalProvider<
+    SearchRepository,
+    SearchRepository,
+    SearchRepository> with $Provider<SearchRepository> {
   const SearchRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'searchRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'searchRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$searchRepositoryHash();

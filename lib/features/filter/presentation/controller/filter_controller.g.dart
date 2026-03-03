@@ -15,15 +15,15 @@ const filterControllerProvider = FilterControllerProvider._();
 final class FilterControllerProvider
     extends $AsyncNotifierProvider<FilterController, FilterState> {
   const FilterControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'filterControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'filterControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$filterControllerHash();
@@ -42,14 +42,11 @@ abstract class _$FilterController extends $AsyncNotifier<FilterState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<AsyncValue<FilterState>, FilterState>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<FilterState>, FilterState>,
-              AsyncValue<FilterState>,
-              Object?,
-              Object?
-            >;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<FilterState>, FilterState>,
+        AsyncValue<FilterState>,
+        Object?,
+        Object?>;
     element.handleValue(ref, created);
   }
 }

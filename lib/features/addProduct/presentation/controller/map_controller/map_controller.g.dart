@@ -15,15 +15,15 @@ const mapControllerProvider = MapControllerProvider._();
 final class MapControllerProvider
     extends $AsyncNotifierProvider<MapController, MapState> {
   const MapControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'mapControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'mapControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$mapControllerHash();
@@ -42,14 +42,11 @@ abstract class _$MapController extends $AsyncNotifier<MapState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<AsyncValue<MapState>, MapState>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<MapState>, MapState>,
-              AsyncValue<MapState>,
-              Object?,
-              Object?
-            >;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<MapState>, MapState>,
+        AsyncValue<MapState>,
+        Object?,
+        Object?>;
     element.handleValue(ref, created);
   }
 }

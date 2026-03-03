@@ -15,15 +15,15 @@ const addProductControllerProvider = AddProductControllerProvider._();
 final class AddProductControllerProvider
     extends $AsyncNotifierProvider<AddProductController, AddProductState> {
   const AddProductControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'addProductControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'addProductControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$addProductControllerHash();
@@ -43,14 +43,11 @@ abstract class _$AddProductController extends $AsyncNotifier<AddProductState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<AsyncValue<AddProductState>, AddProductState>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<AddProductState>, AddProductState>,
-              AsyncValue<AddProductState>,
-              Object?,
-              Object?
-            >;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<AddProductState>, AddProductState>,
+        AsyncValue<AddProductState>,
+        Object?,
+        Object?>;
     element.handleValue(ref, created);
   }
 }

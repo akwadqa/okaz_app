@@ -7,20 +7,17 @@ part of 'home_model.dart';
 // **************************************************************************
 
 _HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => _HomeModel(
-  banners: (json['banners'] as List<dynamic>?)
-      ?.map(
-        (e) =>
-            e == null ? null : BannerModel.fromJson(e as Map<String, dynamic>),
-      )
-      .toList(),
-  categories: (json['categories'] as List<dynamic>?)
-      ?.map(
-        (e) => e == null
-            ? null
-            : CategoryModel.fromJson(e as Map<String, dynamic>),
-      )
-      .toList(),
-);
+      banners: (json['banners'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : BannerModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : CategoryModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
     <String, dynamic>{
@@ -29,10 +26,10 @@ Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
     };
 
 _BannerModel _$BannerModelFromJson(Map<String, dynamic> json) => _BannerModel(
-  categoryName: json['category_name'] as String?,
-  categoryNameAr: json['category_name_ar'] as String?,
-  image: json['image'] as String?,
-);
+      categoryName: json['category_name'] as String?,
+      categoryNameAr: json['category_name_ar'] as String?,
+      image: json['image'] as String?,
+    );
 
 Map<String, dynamic> _$BannerModelToJson(_BannerModel instance) =>
     <String, dynamic>{
@@ -47,11 +44,9 @@ _CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
       categoryName: json['category_name'] as String?,
       categoryNameAr: json['category_name_ar'] as String?,
       subcategories: (json['subcategories'] as List<dynamic>?)
-          ?.map(
-            (e) => e == null
-                ? null
-                : SubCategoryModel.fromJson(e as Map<String, dynamic>),
-          )
+          ?.map((e) => e == null
+              ? null
+              : SubCategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

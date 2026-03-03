@@ -15,15 +15,15 @@ const currentLanguageProvider = CurrentLanguageProvider._();
 final class CurrentLanguageProvider
     extends $NotifierProvider<CurrentLanguage, String> {
   const CurrentLanguageProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'currentLanguageProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'currentLanguageProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$currentLanguageHash();
@@ -50,14 +50,8 @@ abstract class _$CurrentLanguage extends $Notifier<String> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<String, String>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<String, String>,
-              String,
-              Object?,
-              Object?
-            >;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<String, String>, String, Object?, Object?>;
     element.handleValue(ref, created);
   }
 }

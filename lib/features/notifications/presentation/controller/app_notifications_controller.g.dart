@@ -13,22 +13,18 @@ part of 'app_notifications_controller.dart';
 const appNotificationsControllerProvider =
     AppNotificationsControllerProvider._();
 
-final class AppNotificationsControllerProvider
-    extends
-        $AsyncNotifierProvider<
-          AppNotificationsController,
-          List<AppNotificationsModel>
-        > {
+final class AppNotificationsControllerProvider extends $AsyncNotifierProvider<
+    AppNotificationsController, List<AppNotificationsModel>> {
   const AppNotificationsControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'appNotificationsControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'appNotificationsControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$appNotificationsControllerHash();
@@ -48,23 +44,14 @@ abstract class _$AppNotificationsController
   @override
   void runBuild() {
     final created = build();
-    final ref =
-        this.ref
-            as $Ref<
-              AsyncValue<List<AppNotificationsModel>>,
-              List<AppNotificationsModel>
-            >;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<
-                AsyncValue<List<AppNotificationsModel>>,
-                List<AppNotificationsModel>
-              >,
-              AsyncValue<List<AppNotificationsModel>>,
-              Object?,
-              Object?
-            >;
+    final ref = this.ref as $Ref<AsyncValue<List<AppNotificationsModel>>,
+        List<AppNotificationsModel>>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<List<AppNotificationsModel>>,
+            List<AppNotificationsModel>>,
+        AsyncValue<List<AppNotificationsModel>>,
+        Object?,
+        Object?>;
     element.handleValue(ref, created);
   }
 }

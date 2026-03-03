@@ -12,24 +12,20 @@ part of 'filter_repository.dart';
 @ProviderFor(filterRepository)
 const filterRepositoryProvider = FilterRepositoryProvider._();
 
-final class FilterRepositoryProvider
-    extends
-        $FunctionalProvider<
-          FilterRepository,
-          FilterRepository,
-          FilterRepository
-        >
-    with $Provider<FilterRepository> {
+final class FilterRepositoryProvider extends $FunctionalProvider<
+    FilterRepository,
+    FilterRepository,
+    FilterRepository> with $Provider<FilterRepository> {
   const FilterRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'filterRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'filterRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$filterRepositoryHash();

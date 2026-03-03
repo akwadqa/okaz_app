@@ -16,15 +16,15 @@ final class AppRouterProvider
     extends $FunctionalProvider<AppRouter, AppRouter, AppRouter>
     with $Provider<AppRouter> {
   const AppRouterProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'appRouterProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'appRouterProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$appRouterHash();

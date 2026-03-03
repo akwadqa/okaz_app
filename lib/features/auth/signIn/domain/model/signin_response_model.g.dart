@@ -13,11 +13,11 @@ _SigninResponseModel _$SigninResponseModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SigninResponseModelToJson(
-  _SigninResponseModel instance,
-) => <String, dynamic>{
-  'mobile_number': instance.mobileNumber,
-  'user_exist': instance.userExist,
-};
+        _SigninResponseModel instance) =>
+    <String, dynamic>{
+      'mobile_number': instance.mobileNumber,
+      'user_exist': instance.userExist,
+    };
 
 _LoginValidation _$LoginValidationFromJson(Map<String, dynamic> json) =>
     _LoginValidation(

@@ -37,35 +37,39 @@ _ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ProductDetailsModelToJson(
-  _ProductDetailsModel instance,
-) => <String, dynamic>{
-  'title': instance.title,
-  'title_arabic': instance.titleArabic,
-  'description': instance.description,
-  'description_arabic': instance.descriptionArabic,
-  'price': instance.price,
-  'currency': instance.currency,
-  'city': instance.city,
-  'condition': instance.condition,
-  'post_type': instance.listingType,
-  'category': instance.category,
-  'subcategory': instance.subcategory,
-  'images': instance.images,
-  'attributes': instance.attributes,
-  'likes': instance.likes,
-  'comments': instance.comments,
-  'views': instance.views,
-  'created_on': instance.createdOn,
-  'user_info': instance.userInfo,
-  'is_favorited': instance.isFavorited,
-  'is_liked': instance.isLiked,
-};
+        _ProductDetailsModel instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'title_arabic': instance.titleArabic,
+      'description': instance.description,
+      'description_arabic': instance.descriptionArabic,
+      'price': instance.price,
+      'currency': instance.currency,
+      'city': instance.city,
+      'condition': instance.condition,
+      'post_type': instance.listingType,
+      'category': instance.category,
+      'subcategory': instance.subcategory,
+      'images': instance.images,
+      'attributes': instance.attributes,
+      'likes': instance.likes,
+      'comments': instance.comments,
+      'views': instance.views,
+      'created_on': instance.createdOn,
+      'user_info': instance.userInfo,
+      'is_favorited': instance.isFavorited,
+      'is_liked': instance.isLiked,
+    };
 
 _ProductImage _$ProductImageFromJson(Map<String, dynamic> json) =>
-    _ProductImage(image: json['image'] as String?);
+    _ProductImage(
+      image: json['image'] as String?,
+    );
 
 Map<String, dynamic> _$ProductImageToJson(_ProductImage instance) =>
-    <String, dynamic>{'image': instance.image};
+    <String, dynamic>{
+      'image': instance.image,
+    };
 
 _ProductAttribute _$ProductAttributeFromJson(Map<String, dynamic> json) =>
     _ProductAttribute(

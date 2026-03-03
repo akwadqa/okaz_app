@@ -12,24 +12,20 @@ part of 'verify_otp_repository.dart';
 @ProviderFor(verifyOtpRepository)
 const verifyOtpRepositoryProvider = VerifyOtpRepositoryProvider._();
 
-final class VerifyOtpRepositoryProvider
-    extends
-        $FunctionalProvider<
-          VerifyOtpRepository,
-          VerifyOtpRepository,
-          VerifyOtpRepository
-        >
-    with $Provider<VerifyOtpRepository> {
+final class VerifyOtpRepositoryProvider extends $FunctionalProvider<
+    VerifyOtpRepository,
+    VerifyOtpRepository,
+    VerifyOtpRepository> with $Provider<VerifyOtpRepository> {
   const VerifyOtpRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'verifyOtpRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'verifyOtpRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$verifyOtpRepositoryHash();
@@ -37,8 +33,8 @@ final class VerifyOtpRepositoryProvider
   @$internal
   @override
   $ProviderElement<VerifyOtpRepository> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   VerifyOtpRepository create(Ref ref) {

@@ -12,24 +12,20 @@ part of 'signUp_repository.dart';
 @ProviderFor(signupRepository)
 const signupRepositoryProvider = SignupRepositoryProvider._();
 
-final class SignupRepositoryProvider
-    extends
-        $FunctionalProvider<
-          SignupRepository,
-          SignupRepository,
-          SignupRepository
-        >
-    with $Provider<SignupRepository> {
+final class SignupRepositoryProvider extends $FunctionalProvider<
+    SignupRepository,
+    SignupRepository,
+    SignupRepository> with $Provider<SignupRepository> {
   const SignupRepositoryProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'signupRepositoryProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'signupRepositoryProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$signupRepositoryHash();

@@ -15,15 +15,15 @@ const dioProvider = DioProvider._();
 final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
     with $Provider<Dio> {
   const DioProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'dioProvider',
-        isAutoDispose: false,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'dioProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$dioHash();
@@ -56,25 +56,20 @@ const networkServiceProvider = NetworkServiceFamily._();
 
 /// NetworkService injection
 
-final class NetworkServiceProvider
-    extends
-        $FunctionalProvider<
-          NetworkService<dynamic>,
-          NetworkService<dynamic>,
-          NetworkService<dynamic>
-        >
-    with $Provider<NetworkService<dynamic>> {
+final class NetworkServiceProvider extends $FunctionalProvider<
+    NetworkService<dynamic>,
+    NetworkService<dynamic>,
+    NetworkService<dynamic>> with $Provider<NetworkService<dynamic>> {
   /// NetworkService injection
-  const NetworkServiceProvider._({
-    required NetworkServiceFamily super.from,
-    required Dio? super.argument,
-  }) : super(
-         retry: null,
-         name: r'networkServiceProvider',
-         isAutoDispose: false,
-         dependencies: null,
-         $allTransitiveDependencies: null,
-       );
+  const NetworkServiceProvider._(
+      {required NetworkServiceFamily super.from, required Dio? super.argument})
+      : super(
+          retry: null,
+          name: r'networkServiceProvider',
+          isAutoDispose: false,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$networkServiceHash();
@@ -89,13 +84,16 @@ final class NetworkServiceProvider
   @$internal
   @override
   $ProviderElement<NetworkService<dynamic>> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+          $ProviderPointer pointer) =>
+      $ProviderElement(pointer);
 
   @override
   NetworkService<dynamic> create(Ref ref) {
     final argument = this.argument as Dio?;
-    return networkService(ref, argument);
+    return networkService(
+      ref,
+      argument,
+    );
   }
 
   /// {@macro riverpod.override_with_value}
@@ -124,17 +122,19 @@ String _$networkServiceHash() => r'7aecc727f9e648c49709ba09cd80c82e38d00614';
 final class NetworkServiceFamily extends $Family
     with $FunctionalFamilyOverride<NetworkService<dynamic>, Dio?> {
   const NetworkServiceFamily._()
-    : super(
-        retry: null,
-        name: r'networkServiceProvider',
-        dependencies: null,
-        $allTransitiveDependencies: null,
-        isAutoDispose: false,
-      );
+      : super(
+          retry: null,
+          name: r'networkServiceProvider',
+          dependencies: null,
+          $allTransitiveDependencies: null,
+          isAutoDispose: false,
+        );
 
   /// NetworkService injection
 
-  NetworkServiceProvider call([Dio? dio]) =>
+  NetworkServiceProvider call([
+    Dio? dio,
+  ]) =>
       NetworkServiceProvider._(argument: dio, from: this);
 
   @override

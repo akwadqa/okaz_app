@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:okaz/features/addProduct/domain/model/category_model.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -39,7 +41,6 @@ class AddProductScreen extends ConsumerWidget {
         child: Column(
           children: [
             _ProgressBar(step: state.step),
-
             Expanded(child: _StepContent(step: state.step)),
             _BottomButtons(step: state.step),
           ],
@@ -143,60 +144,84 @@ class _BottomButtons extends ConsumerWidget {
               // ),
             ),
           if (step > 1) const SizedBox(width: 12),
-          Flexible(
-            flex: 3,
-            child: CustomButtonWidget(
-              text: step != 4 ? 'next' : "",
-              onTap: canProceed
-                  ? () {
-                      {
-                        if (step == 4) {
-                          // submitProduct();
-                          context.push(AppRoutes.newAdSuccsessScreen);
-                        } else {
-                          controller.nextStep();
+          Consumer(builder: (context, ref, widget) {
+            ref.listen(addProductControllerProvider, (prev, next) {
+              final wasLoading = prev is AsyncLoading;
+              final isSuccess = next is AsyncData;
+
+              if (wasLoading && isSuccess) {
+                debugPrint("Success newAdSuccsessScreen");
+                context.push(AppRoutes.newAdSuccsessScreen);
+              }
+              if (next is AsyncError) {
+                showErrorDialog(context, next.error.toString());
+              }
+            });
+
+            final state = ref.watch(addProductControllerProvider);
+            final provider = ref.read(addProductControllerProvider.notifier);
+            if (state is AsyncLoading) {
+              return AppLoader();
+              // const FadeCircleLoadingIndicator();
+            }
+            return Flexible(
+              flex: 3,
+              child: CustomButtonWidget(
+                text: step != 4 ? 'next' : "",
+                onTap: canProceed
+                    ? () {
+                        {
+                          if (step == 4) {
+                            // submitProduct();
+                            provider.submitPost();
+                          } else {
+                            controller.nextStep();
+                          }
                         }
                       }
-                    }
-                  : null,
-              isFiled: true,
-              height: 55,
-              width: double.infinity,
-              backgroundColor: canProceed ? AppColors.primary : AppColors.gray,
-              radius: 24,
-              child: step == 4
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 12,
-                      children: [
-                        Text(
-                          context.tr("add_ad"),
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.displaySmall!
-                              .copyWith(
-                                fontSize: 16,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                        ),
-                        Assets.icons.rocketIc.svg(),
-                      ],
-                    )
-                  : null,
-            ),
-            // ElevatedButton(
-            //   onPressed:canProceed
-            //       ? () {
-            //           if (step == 4) {
-            //             // submitProduct();
-            //           } else {
-            //             notifier.nextStep();
-            //           }
-            //         }
-            //       : null, // 🚫 disabled
-            //   child: Text(step == 4 ? 'نشر الإعلان' : 'التالي'),
-            // ),
-          ),
+                    : null,
+                isFiled: true,
+                height: 55,
+                width: double.infinity,
+                backgroundColor:
+                    canProceed ? AppColors.primary : AppColors.gray,
+                radius: 24,
+                child: step == 4
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: 12,
+                        children: [
+                          Text(
+                            context.tr("add_ad"),
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                          Assets.icons.rocketIc.svg(),
+                        ],
+                      )
+                    : null,
+              ),
+              // ElevatedButton(
+              //   onPressed:canProceed
+              //       ? () {
+              //           if (step == 4) {
+              //             // submitProduct();
+              //           } else {
+              //             notifier.nextStep();
+              //           }
+              //         }
+              //       : null, // 🚫 disabled
+              //   child: Text(step == 4 ? 'نشر الإعلان' : 'التالي'),
+              // ),
+            );
+          }),
         ],
       ),
     );

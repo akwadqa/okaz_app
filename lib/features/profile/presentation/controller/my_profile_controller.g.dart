@@ -15,15 +15,15 @@ const profileControllerProvider = ProfileControllerProvider._();
 final class ProfileControllerProvider
     extends $AsyncNotifierProvider<ProfileController, ProfileState> {
   const ProfileControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'profileControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'profileControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$profileControllerHash();
@@ -42,14 +42,11 @@ abstract class _$ProfileController extends $AsyncNotifier<ProfileState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<AsyncValue<ProfileState>, ProfileState>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<ProfileState>, ProfileState>,
-              AsyncValue<ProfileState>,
-              Object?,
-              Object?
-            >;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<ProfileState>, ProfileState>,
+        AsyncValue<ProfileState>,
+        Object?,
+        Object?>;
     element.handleValue(ref, created);
   }
 }

@@ -15,15 +15,15 @@ const verifyOtpControllerProvider = VerifyOtpControllerProvider._();
 final class VerifyOtpControllerProvider
     extends $AsyncNotifierProvider<VerifyOtpController, VerifyOtpState> {
   const VerifyOtpControllerProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'verifyOtpControllerProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'verifyOtpControllerProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
 
   @override
   String debugGetCreateSourceHash() => _$verifyOtpControllerHash();
@@ -43,14 +43,11 @@ abstract class _$VerifyOtpController extends $AsyncNotifier<VerifyOtpState> {
   void runBuild() {
     final created = build();
     final ref = this.ref as $Ref<AsyncValue<VerifyOtpState>, VerifyOtpState>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<AsyncValue<VerifyOtpState>, VerifyOtpState>,
-              AsyncValue<VerifyOtpState>,
-              Object?,
-              Object?
-            >;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<VerifyOtpState>, VerifyOtpState>,
+        AsyncValue<VerifyOtpState>,
+        Object?,
+        Object?>;
     element.handleValue(ref, created);
   }
 }

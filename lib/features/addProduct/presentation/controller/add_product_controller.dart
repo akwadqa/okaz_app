@@ -1,6 +1,12 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:okaz/features/addProduct/data/repositories/add_post_repositories.dart';
 import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../../domain/model/add_post_params.dart';
 import '../../domain/model/category_model.dart';
 import 'add_product_state.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,15 +26,15 @@ class AddProductController extends _$AddProductController {
   // Stepper
   // ------------------------
 
-void nextStep() {
-  final current = state.value!;
-  if (!canGoNext()) return;
-  if (current.step >= 4) return;
+  void nextStep() {
+    final current = state.value!;
+    if (!canGoNext()) return;
+    if (current.step >= 4) return;
 
-  state = AsyncData(
-    current.copyWith(step: current.step + 1),
-  );
-}
+    state = AsyncData(
+      current.copyWith(step: current.step + 1),
+    );
+  }
 
   void previousStep() {
     final current = state.value!;
@@ -79,51 +85,47 @@ void nextStep() {
     );
   }
 
-void updateSpec(String key, dynamic value) {
-  final current = state.value!;
-  final updatedSpecs = Map<String, dynamic>.from(current.specs);
+  void updateSpec(String key, dynamic value) {
+    final current = state.value!;
+    final updatedSpecs = Map<String, dynamic>.from(current.specs);
 
-  updatedSpecs[key] = value;
+    updatedSpecs[key] = value;
 
-  state = AsyncData(
-    current.copyWith(specs: updatedSpecs),
-  );
-}
-
+    state = AsyncData(
+      current.copyWith(specs: updatedSpecs),
+    );
+  }
 
   // --------------------------------------------------
   // Step 4 – Images
   // --------------------------------------------------
 
+  /// Pick image from gallery
+  Future<void> pickImage() async {
+    final current = state.value!;
+    if (current.images.length >= 5) return;
 
-/// Pick image from gallery
-Future<void> pickImage() async {
-  final current = state.value!;
-  if (current.images.length >= 5) return;
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
-  final XFile? image =
-      await _picker.pickImage(source: ImageSource.gallery);
+    if (image == null) return;
 
-  if (image == null) return;
+    final updated = List<String>.from(current.images)..add(image.path);
 
-  final updated = List<String>.from(current.images)
-    ..add(image.path);
+    state = AsyncData(
+      current.copyWith(images: updated),
+    );
+  }
 
-  state = AsyncData(
-    current.copyWith(images: updated),
-  );
-}
+  /// Remove image
+  void removeImage(int index) {
+    final current = state.value!;
+    final updated = List<String>.from(current.images)..removeAt(index);
 
-/// Remove image
-void removeImage(int index) {
-  final current = state.value!;
-  final updated = List<String>.from(current.images)
-    ..removeAt(index);
+    state = AsyncData(
+      current.copyWith(images: updated),
+    );
+  }
 
-  state = AsyncData(
-    current.copyWith(images: updated),
-  );
-}
   void addImage(String path) {
     final current = state.value!;
     final updated = List<String>.from(current.images)..add(path);
@@ -196,37 +198,41 @@ void removeImage(int index) {
 
   bool canGoNext() {
     final s = state.value!;
-    final mapCtrl=ref.read(mapControllerProvider).value?.latLng;
+    final mapCtrl = ref.read(mapControllerProvider).value?.latLng;
     switch (s.step) {
       case 1:
         return s.category != null;
       case 2:
-        return s.adType != null && s.city != null&&mapCtrl!=null;
+        return s.adType != null && s.city != null && mapCtrl != null;
       case 3:
         return true; // specs later
       case 4:
-      return s.images.isNotEmpty&& s.titleAr!=null &&s.titleEn!=null &&s.descAr!=null &&s.descEn!=null &&s.price!=null ;
-        // return true;
+        return s.images.isNotEmpty &&
+            s.titleAr != null &&
+            s.titleEn != null &&
+            s.descAr != null &&
+            s.descEn != null &&
+            s.price != null;
+      // return true;
       default:
         return false;
     }
   }
+
   bool canGoNextForSpecs(List<ProductSpec> specs) {
-  final values = state.value!.specs;
+    final values = state.value!.specs;
 
-  for (final spec in specs) {
-    if (spec.required) {
-      final value = values[spec.key];
+    for (final spec in specs) {
+      if (spec.required) {
+        final value = values[spec.key];
 
-      if (value == null ||
-          (value is String && value.isEmpty)) {
-        return false;
+        if (value == null || (value is String && value.isEmpty)) {
+          return false;
+        }
       }
     }
+    return true;
   }
-  return true;
-}
-
 
   // ------------------------
   // Reset (optional)
@@ -234,5 +240,73 @@ void removeImage(int index) {
 
   void reset() {
     state = AsyncData(AddProductState.init());
+  }
+
+  Future<void> submitPost() async {
+    final current = state.value!;
+    final mapCtrl = ref.read(mapControllerProvider).value?.latLng;
+
+    if (!canGoNext()) return;
+
+    state = const AsyncLoading();
+
+    try {
+      // 🔹 Convert specs map to attributes list
+      final attributesList = current.specs.entries.map((e) {
+        return {
+          "option": e.key,
+          "value": e.value.toString(),
+        };
+      }).toList();
+
+      final attributesJson = jsonEncode(attributesList);
+
+      // 🔹 Convert image paths to File
+      final imageFiles = current.images.map((path) => File(path)).toList();
+
+      // 🔹 Build params
+      final params = AddPostParams(
+        title: current.titleEn!, // or titleAr depending backend
+        description: current.descEn!,
+        subcategory: current.subCategory!,
+        postType: current.adType!,
+        city: current.city!,
+        price: current.price!.toString(),
+        attributes: attributesJson,
+        images: imageFiles,
+        status: current.adType!,
+        isFeatured: current.isFeatured?1:0,
+
+        condition: "New", // change if dynamic
+      );
+      log("===== ADD POST DEBUG =====");
+
+      log("Title: ${current.titleEn}");
+      log("Description: ${current.descEn}");
+      log("Subcategory: ${current.subCategory}");
+      log("Post Type: ${current.adType}");
+      log("City: ${current.city}");
+      log("Price: ${current.price}");
+      log("Status: Live");
+      log("Condition: New");
+
+      log("Specs: ${current.specs}");
+
+      log("Attributes JSON: $attributesJson");
+
+      log("Images:");
+      for (final path in current.images) {
+        log(" - $path");
+      }
+
+      log("===== END DEBUG =====");
+      // 🔹 Call datasource
+      final result =
+          await ref.read(addPostRepositoriesProvider).submitData(params);
+
+      state = AsyncData(current); // success
+    } catch (e, st) {
+      state = AsyncError(e, st);
+    }
   }
 }
