@@ -438,7 +438,7 @@ Future<void> showConfirmationDialog({
                   Text(
                     description.tr(),
                     textAlign: TextAlign.center,
-                    style: AppTextStyle.interRegular16
+                    style: AppTextStyle.interRegular16,
                   ),
 
                   30.verticalSpace,
@@ -538,5 +538,193 @@ Future<void> showErrorDialog(BuildContext context, String message) {
     context: context,
     title: Text(message),
     icon: Icon(Icons.error, color: AppColors.darkRed, size: 50),
+  );
+}
+
+void showReportDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        child: Container(
+          // الأبعاد حسب CSS
+          width: 345,
+          height: 489,
+          decoration: BoxDecoration(
+            color: const Color(0xFFF5F5F5), // background: #F5F5F5
+            borderRadius: BorderRadius.circular(12), // border-radius: 12px
+            boxShadow: [
+              BoxShadow(
+                color: const Color(
+                  0xFF94A3B2,
+                ).withOpacity(0.15), // rgba(148, 163, 184, 0.15)
+                blurRadius: 12,
+                offset: const Offset(0, 6), // 0px 6px 12px
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              // زر الإغلاق (X) في الزاوية
+              Positioned(
+                top: 10,
+                right: 10,
+                child: IconButton(
+                  icon: const Icon(Icons.close, size: 24, color: Colors.black),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 25),
+
+                    // الأيقونة العلوية (Group 1618873331)
+                    Container(
+                      width: 47,
+                      height: 47,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF6EAE5), // background: #F6EAE5
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.error_outline,
+                          color: Color(0xFFB8502E),
+                          size: 24,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // عنوان: الإبلاغ عن إعلان
+                    const Text(
+                      "الإبلاغ عن إعلان",
+                      style: TextStyle(
+                        color: Color(0xFFB8502E),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.27,
+                        fontFamily: 'Inter',
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // نصوص التوضيح (Frame 1000002936)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          const Text(
+                            "يرجى كتابة سبب الإبلاغ",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black,
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            "ساعدنا في فهم المشكلة المتعلقة بهذا الإعلان",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF757575),
+                              fontFamily: 'Inter',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    // حقل إدخال النص (Rectangle 18)
+                    Container(
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: const Color(0xFFE8E8E8)),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
+                      child: const TextField(
+                        maxLines: 4,
+                        textAlign: TextAlign.right,
+                        decoration: InputDecoration(
+                          hintText: "اكتب تفاصيل البلاغ هنا ..",
+                          hintStyle: TextStyle(
+                            color: Color(0xFF878787),
+                            fontSize: 14,
+                          ),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+
+                    const Spacer(),
+
+                    // زر إرسال البلاغ
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFB8502E),
+                        minimumSize: const Size(301, 51),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        elevation: 0,
+                      ),
+                      child: const Text(
+                        "إرسال البلاغ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    // زر إلغاء
+                    OutlinedButton(
+                      onPressed: () => Navigator.pop(context),
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(301, 51),
+                        side: const BorderSide(color: Color(0xFFB8502E)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      child: const Text(
+                        "إلغاء",
+                        style: TextStyle(
+                          color: Color(0xFFB8502E),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
   );
 }

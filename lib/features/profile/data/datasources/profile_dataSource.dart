@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
 import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
@@ -100,7 +101,7 @@ class ProfileDatasource {
     try {
       final data = {
         ...user.toJson(),
-       ...{
+        ...{
           if (user.filePath != null)
             'filedata': await MultipartFile.fromFile(user.filePath!.path),
         },
@@ -125,4 +126,31 @@ class ProfileDatasource {
     }
   }
 
+  Future<ApiResponse<List<ProductDetailsModel>>> getProfilePost(
+    int page,
+  ) async {
+    try {
+      final data = {'page_no': page, 'limit': 10};
+      final response = await _networkService.put(
+        ApiEndPoints.userPosts,
+        data: data,
+        queryParameters: {},
+      );
+
+      if (response.data == null || response.statusCode != 200) {
+        throw Exception('Failed to load data');
+        
+      }
+
+      return ApiResponse.fromJson(
+        response.data,
+        (json) => (json as List)
+            .map((item) => ProductDetailsModel.fromJson(item as Map<String, dynamic>))
+            .toList(),
+      );
+    } catch (e) {
+      debugPrint('Error in getData: e');
+      rethrow;
+    }
+  }
 }

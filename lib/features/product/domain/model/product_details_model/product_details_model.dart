@@ -3,103 +3,101 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_details_model.freezed.dart';
 part 'product_details_model.g.dart';
 
+
 @freezed
 abstract class ProductDetailsModel with _$ProductDetailsModel {
   const factory ProductDetailsModel({
     String? title,
-
-    @JsonKey(name: 'title_arabic')
-    String? titleArabic,
-
+    @JsonKey(name: 'title_ar') String? titleAr,
     String? description,
-
-    @JsonKey(name: 'description_arabic')
-    String? descriptionArabic,
-
-    int? price,
+    @JsonKey(name: 'description_ar') String? descriptionAr,
+    num? price,
     String? currency,
     String? city,
+    double? latitude,
+    double? longitude,
     String? condition,
-
-    @JsonKey(name: 'post_type')
-    String? listingType,
-
+    @JsonKey(name: 'post_type') String? postType,
     String? category,
     String? subcategory,
-
-    List<ProductImage>? images,
-    List<ProductAttribute>? attributes,
-
+    List<PostImage>? images,
+    List<PostAttribute>? attributes,
+    @JsonKey(name: 'is_featured') int? isFeatured,
+    @JsonKey(name: 'parent_comments') List<Comment>? parentComments,
     int? likes,
     int? comments,
     int? views,
-
-    @JsonKey(name: 'created_on')
-    String? createdOn,
-
-    @JsonKey(name: 'user_info')
-    ProductUserInfo? userInfo,
-
-    @JsonKey(name: 'is_favorited')
-    bool? isFavorited,
-
-    @JsonKey(name: 'is_liked')
-    bool? isLiked,
+    int? reports,
+    @JsonKey(name: 'created_on') String? createdOn,
+    @JsonKey(name: 'user_info') PostOwner? userInfo,
+    @JsonKey(name: 'user_is_owner') bool? userIsOwner,
+    @JsonKey(name: 'is_favorited') String? isFavorited,
+    @JsonKey(name: 'is_liked') String? isLiked,
   }) = _ProductDetailsModel;
 
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$ProductDetailsModelFromJson(json);
 }
 
-/* ===================== Images ===================== */
-
 @freezed
-abstract class ProductImage with _$ProductImage {
-  const factory ProductImage({
+abstract class PostImage with _$PostImage {
+  const factory PostImage({
     String? image,
-  }) = _ProductImage;
+  }) = _PostImage;
 
-  factory ProductImage.fromJson(Map<String, dynamic> json) =>
-      _$ProductImageFromJson(json);
+  factory PostImage.fromJson(Map<String, dynamic> json) =>
+      _$PostImageFromJson(json);
 }
 
-/* ===================== Attributes ===================== */
-
 @freezed
-abstract class ProductAttribute with _$ProductAttribute {
-  const factory ProductAttribute({
-    @JsonKey(name: 'option')
-    String? categoryAttribute,
+abstract class PostAttribute with _$PostAttribute {
+  const factory PostAttribute({
+    String? option,
     String? value,
-  }) = _ProductAttribute;
+  }) = _PostAttribute;
 
-  factory ProductAttribute.fromJson(Map<String, dynamic> json) =>
-      _$ProductAttributeFromJson(json);
+  factory PostAttribute.fromJson(Map<String, dynamic> json) =>
+      _$PostAttributeFromJson(json);
 }
 
-/* ===================== User Info ===================== */
+@freezed
+abstract class Comment with _$Comment {
+  const factory Comment({
+    String? name,
+    String? content,
+    @JsonKey(name: 'comment_by') CommenterInfo? commentBy,
+    String? timestamp,
+    int? edited,
+    @JsonKey(name: 'child_comments') List<Comment>? childComments,
+  }) = _Comment;
+
+  factory Comment.fromJson(Map<String, dynamic> json) =>
+      _$CommentFromJson(json);
+}
 
 @freezed
-abstract class ProductUserInfo with _$ProductUserInfo {
-  const factory ProductUserInfo({
-    @JsonKey(name: 'user_id')
-    String? userId,
+abstract class CommenterInfo with _$CommenterInfo {
+  const factory CommenterInfo({
+    @JsonKey(name: 'app_user_id') String? appUserId,
+    @JsonKey(name: 'first_name') String? firstName,
+    String? image,
+  }) = _CommenterInfo;
 
-    @JsonKey(name: 'app_user_id')
-    String? appUserId,
+  factory CommenterInfo.fromJson(Map<String, dynamic> json) =>
+      _$CommenterInfoFromJson(json);
+}
 
-    @JsonKey(name: 'first_name')
-    String? firstName,
-
-    @JsonKey(name: 'last_name')
-    String? lastName,
-
-    @JsonKey(name: 'mobile_no')
-    String? mobileNo,
-
+@freezed
+abstract class PostOwner with _$PostOwner {
+  const factory PostOwner({
+    @JsonKey(name: 'post_owner') String? postOwnerEmail,
+    @JsonKey(name: 'owner_app_id') String? ownerAppId,
+    @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'mobile_no') String? mobileNo,
     String? country,
-  }) = _ProductUserInfo;
+  }) = _PostOwner;
 
-  factory ProductUserInfo.fromJson(Map<String, dynamic> json) =>
-      _$ProductUserInfoFromJson(json);
+  factory PostOwner.fromJson(Map<String, dynamic> json) =>
+      _$PostOwnerFromJson(json);
 }

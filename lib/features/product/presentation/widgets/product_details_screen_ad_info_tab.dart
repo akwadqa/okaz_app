@@ -19,7 +19,7 @@ class ProductDetailsScreenAdInfoTab extends StatelessWidget {
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.ad_type',
-        valueKey: productDetailsModel.listingType ?? 'Type',
+        valueKey: productDetailsModel.postType ?? 'Type',
       ),
       ProductDetailsScreenInfoRowData(
         titleKey: 'product_details.ad_info.type',

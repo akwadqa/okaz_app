@@ -15,8 +15,8 @@ class ProfileController extends _$ProfileController {
     // await Future.delayed(const Duration(milliseconds: 400));
 
     return ProfileState(
-      myAds: _mockMyAds(),
-      favorites: _mockFavorites(),
+      // myAds: _mockMyAds(),
+      // favorites: _mockFavorites(),
       selectedTab: ProfileTab.myAds,
     );
   }

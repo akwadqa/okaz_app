@@ -31,7 +31,7 @@ class CommentController extends _$CommentController {
       }
 
       state = AsyncData(
-        state.value!.copyWith(createComment: AsyncData(response.data!)),
+        state.value!.copyWith(createComment: AsyncData(response)),
       );
       return response.data;
     } catch (e, st) {
@@ -61,7 +61,7 @@ class CommentController extends _$CommentController {
       }
 
       state = AsyncData(
-        state.value!.copyWith(updateComment: AsyncData(response.data!)),
+        state.value!.copyWith(updateComment: AsyncData(response)),
       );
       return response.data;
     } catch (e, st) {

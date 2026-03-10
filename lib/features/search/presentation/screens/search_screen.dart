@@ -46,8 +46,8 @@ class _SearchScreenContent extends StatelessWidget {
         SearchScreenSearchBar(),
         Divider(height: 24, color: AppColors.dividerColor),
         // SearchScreenNoSearchContent(),
-        // SearchScreenSearchContent(),
-        SearchSceeenEmptyContent(),
+        SearchScreenSearchContent(),
+        // SearchSceeenEmptyContent(),
       ],
     );
   }

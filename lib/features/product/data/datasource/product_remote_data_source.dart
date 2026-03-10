@@ -88,7 +88,7 @@ class ProductRemoteDataSource {
         queryParameters: {},
       );
 
-      if (response.data == null || response.statusCode != 200) {
+      if (response.data == null || response.statusCode > 201) {
         throw Exception('Request failed');
       }
 
@@ -102,26 +102,49 @@ class ProductRemoteDataSource {
     }
   }
 
-  // Future<ApiResponse<bool>> likePost(String postId) async {
-  //   try {
-  //     final data = {'post_id': postId};
-  //     final response = await _networkService.put(
-  //       ApiEndPoints.addPostToFavorite,
-  //       data: data,
-  //       queryParameters: {},
-  //     );
+  Future<ApiResponse<bool>> likePost(String postId) async {
+    try {
+      final data = {'post_id': postId};
+      final response = await _networkService.put(
+        ApiEndPoints.likePost,
+        data: data,
+        queryParameters: {},
+      );
 
-  //     if (response.data == null || response.statusCode != 200) {
-  //       throw Exception('Request failed');
-  //     }
+      if (response.data == null || response.statusCode > 201) {
+        throw Exception('Request failed');
+      }
 
-  //     return ApiResponse.fromJson(
-  //       response.data as Map<String, dynamic>,
-  //       (json) => (json as Map<String, dynamic>)['is_favorite'],
-  //     );
-  //   } catch (e) {
-  //     Dev.logLine('Error in submitData: e');
-  //     rethrow;
-  //   }
-  // }
+      return ApiResponse.fromJson(
+        response.data as Map<String, dynamic>,
+        (json) => (json as Map<String, dynamic>)['is_liked'],
+      );
+    } catch (e) {
+      Dev.logLine('Error in submitData: e');
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse> updatePostViews(String postId) async {
+    try {
+      final data = {'post_id': postId};
+      final response = await _networkService.put(
+        ApiEndPoints.updatePostViews,
+        data: data,
+        queryParameters: {},
+      );
+
+      if (response.data == null || response.statusCode > 201) {
+        throw Exception('Request failed');
+      }
+
+      return ApiResponse.fromJson(
+        response.data as Map<String, dynamic>,
+        (json) {},
+      );
+    } catch (e) {
+      Dev.logLine('Error in submitData: e');
+      rethrow;
+    }
+  }
 }

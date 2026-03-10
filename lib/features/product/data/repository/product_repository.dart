@@ -18,9 +18,9 @@ class ProductRepository {
 
   ProductRepository(this._remoteDataSource);
 
-
-
-  Future<ApiResponse<ProductDetailsModel>> getProductDetails(String productID) async {
+  Future<ApiResponse<ProductDetailsModel>> getProductDetails(
+    String productID,
+  ) async {
     final response = await _remoteDataSource.getProductDetails(productID);
 
     if (response.status == 200) {
@@ -29,7 +29,6 @@ class ProductRepository {
 
     throw AppException(response.message);
   }
-
 
   Future<ApiResponse<String>> deletePost(String productID) async {
     final response = await _remoteDataSource.deletePost(productID);
@@ -40,10 +39,31 @@ class ProductRepository {
 
     throw AppException(response.message);
   }
+
   Future<ApiResponse<bool>> addPostToFavorite(String productID) async {
     final response = await _remoteDataSource.addPostToFavorite(productID);
 
-    if (response.status == 200) {
+    if (response.status! <= 201) {
+      return response;
+    }
+
+    throw AppException(response.message);
+  }
+
+  Future<ApiResponse> updatePostViews(String productID) async {
+    final response = await _remoteDataSource.updatePostViews(productID);
+
+    if (response.status! <= 201) {
+      return response;
+    }
+
+    throw AppException(response.message);
+  }
+
+  Future<ApiResponse<bool>> likePost(String productID) async {
+    final response = await _remoteDataSource.likePost(productID);
+
+    if ((response.status ?? 0) <= 201) {
       return response;
     }
 

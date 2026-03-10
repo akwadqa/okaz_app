@@ -37,9 +37,11 @@ class ApiEndPoints {
   //? --- Product ---
   static const String createPost = 'okaz.api.post.create_post';
   static const String updatePost= 'okaz.api.post.update_post_details';
+  static const String updatePostViews= 'okaz.api.post.update_post_views';
   static const String productDetails = 'okaz.api.post.post_details';
   static const String addProductToFavorite = 'product_favorite';
   static const String deletePost = 'okaz.api.post.delete_post';
+  static const String likePost = 'okaz.api.engagement.toggle_post_like';
   static const String addPostToFavorite =
       'okaz.api.engagement.toggle_post_favorite';
 

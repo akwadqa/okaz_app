@@ -64,7 +64,8 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
     );
     return controller.when(
       data: (homeModel) => _buildBody(context, homeModel),
-      error: (e, st) => AppErrorWidget(),
+      error: (e, st) =>
+          AppErrorWidget(onTap: () => context.push(AppRoutes.productsScreen)),
       loading: () => AppLoader(),
     );
   }
@@ -92,25 +93,6 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
               ),
             )
             .toList(),
-        // HomeScreenCategorySection(
-        //   title: 'الإلكترونيات',
-        //   icon: Assets.icons.electronicIc.svg(),
-        // ),
-        // 20.verticalSpace,
-        // HomeScreenCategorySection(
-        //   title: 'عقارات',
-        //   icon: Assets.icons.realestateIc.svg(),
-        // ),
-        // 20.verticalSpace,
-        // HomeScreenCategorySection(
-        //   title: 'احتياجات الأسرة',
-        //   icon: Assets.icons.familyStuffsIc.svg(),
-        // ),
-        // 20.verticalSpace,
-        // HomeScreenCategorySection(
-        //   title: 'المركبات',
-        //   icon: Assets.icons.carIc.svg(),
-        // ),
       ],
     );
   }

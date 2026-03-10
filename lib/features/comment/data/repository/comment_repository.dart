@@ -22,8 +22,8 @@ class CommentRepository {
   Future<ApiResponse> createComment(CreateCommentModel comment) async {
     final response = await _remoteDataSource.createComment(comment);
 
-    if (response.status! > 201) {
-      return response.data!;
+    if ((response.status ?? 0) <= 201) {
+      return response;
     }
 
     throw AppException(response.message);
@@ -32,8 +32,8 @@ class CommentRepository {
   Future<ApiResponse> updateComment(UpdateCommentModel comment) async {
     final response = await _remoteDataSource.updateComment(comment);
 
-    if (response.status! > 201) {
-      return response.data!;
+    if (response.status! <= 201) {
+      return response;
     }
 
     throw AppException(response.message);
@@ -42,7 +42,7 @@ class CommentRepository {
   Future<ApiResponse> deleteComment(String commentId) async {
     final response = await _remoteDataSource.deleteComment(commentId);
 
-    if (response.status! > 201) {
+    if (response.status! <= 201) {
       return response.data!;
     }
 

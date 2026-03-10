@@ -846,7 +846,7 @@ as List<SubCategoryModel?>?,
 /// @nodoc
 mixin _$SubCategoryModel {
 
- String? get name;@JsonKey(name: 'category_name') String? get categoryName;@JsonKey(name: 'category_name_ar') String? get categoryNameAr; String? get image;
+ String? get name;@JsonKey(name: 'category_name') String? get categoryName;@JsonKey(name: 'category_name_ar') String? get categoryNameAr; String? get image;@JsonKey(name: 'main_attributes') List<AttributeModel>? get mainAttributes;
 /// Create a copy of SubCategoryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -859,16 +859,16 @@ $SubCategoryModelCopyWith<SubCategoryModel> get copyWith => _$SubCategoryModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubCategoryModel&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryName, categoryName) || other.categoryName == categoryName)&&(identical(other.categoryNameAr, categoryNameAr) || other.categoryNameAr == categoryNameAr)&&(identical(other.image, image) || other.image == image));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SubCategoryModel&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryName, categoryName) || other.categoryName == categoryName)&&(identical(other.categoryNameAr, categoryNameAr) || other.categoryNameAr == categoryNameAr)&&(identical(other.image, image) || other.image == image)&&const DeepCollectionEquality().equals(other.mainAttributes, mainAttributes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,categoryName,categoryNameAr,image);
+int get hashCode => Object.hash(runtimeType,name,categoryName,categoryNameAr,image,const DeepCollectionEquality().hash(mainAttributes));
 
 @override
 String toString() {
-  return 'SubCategoryModel(name: $name, categoryName: $categoryName, categoryNameAr: $categoryNameAr, image: $image)';
+  return 'SubCategoryModel(name: $name, categoryName: $categoryName, categoryNameAr: $categoryNameAr, image: $image, mainAttributes: $mainAttributes)';
 }
 
 
@@ -879,7 +879,7 @@ abstract mixin class $SubCategoryModelCopyWith<$Res>  {
   factory $SubCategoryModelCopyWith(SubCategoryModel value, $Res Function(SubCategoryModel) _then) = _$SubCategoryModelCopyWithImpl;
 @useResult
 $Res call({
- String? name,@JsonKey(name: 'category_name') String? categoryName,@JsonKey(name: 'category_name_ar') String? categoryNameAr, String? image
+ String? name,@JsonKey(name: 'category_name') String? categoryName,@JsonKey(name: 'category_name_ar') String? categoryNameAr, String? image,@JsonKey(name: 'main_attributes') List<AttributeModel>? mainAttributes
 });
 
 
@@ -896,13 +896,14 @@ class _$SubCategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of SubCategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? categoryName = freezed,Object? categoryNameAr = freezed,Object? image = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? categoryName = freezed,Object? categoryNameAr = freezed,Object? image = freezed,Object? mainAttributes = freezed,}) {
   return _then(_self.copyWith(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,categoryName: freezed == categoryName ? _self.categoryName : categoryName // ignore: cast_nullable_to_non_nullable
 as String?,categoryNameAr: freezed == categoryNameAr ? _self.categoryNameAr : categoryNameAr // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,mainAttributes: freezed == mainAttributes ? _self.mainAttributes : mainAttributes // ignore: cast_nullable_to_non_nullable
+as List<AttributeModel>?,
   ));
 }
 
@@ -987,10 +988,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name, @JsonKey(name: 'category_name')  String? categoryName, @JsonKey(name: 'category_name_ar')  String? categoryNameAr,  String? image)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name, @JsonKey(name: 'category_name')  String? categoryName, @JsonKey(name: 'category_name_ar')  String? categoryNameAr,  String? image, @JsonKey(name: 'main_attributes')  List<AttributeModel>? mainAttributes)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SubCategoryModel() when $default != null:
-return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image);case _:
+return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image,_that.mainAttributes);case _:
   return orElse();
 
 }
@@ -1008,10 +1009,10 @@ return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name, @JsonKey(name: 'category_name')  String? categoryName, @JsonKey(name: 'category_name_ar')  String? categoryNameAr,  String? image)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name, @JsonKey(name: 'category_name')  String? categoryName, @JsonKey(name: 'category_name_ar')  String? categoryNameAr,  String? image, @JsonKey(name: 'main_attributes')  List<AttributeModel>? mainAttributes)  $default,) {final _that = this;
 switch (_that) {
 case _SubCategoryModel():
-return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image);case _:
+return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image,_that.mainAttributes);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -1028,10 +1029,10 @@ return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name, @JsonKey(name: 'category_name')  String? categoryName, @JsonKey(name: 'category_name_ar')  String? categoryNameAr,  String? image)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name, @JsonKey(name: 'category_name')  String? categoryName, @JsonKey(name: 'category_name_ar')  String? categoryNameAr,  String? image, @JsonKey(name: 'main_attributes')  List<AttributeModel>? mainAttributes)?  $default,) {final _that = this;
 switch (_that) {
 case _SubCategoryModel() when $default != null:
-return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image);case _:
+return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image,_that.mainAttributes);case _:
   return null;
 
 }
@@ -1043,13 +1044,22 @@ return $default(_that.name,_that.categoryName,_that.categoryNameAr,_that.image);
 @JsonSerializable()
 
 class _SubCategoryModel implements SubCategoryModel {
-  const _SubCategoryModel({this.name, @JsonKey(name: 'category_name') this.categoryName, @JsonKey(name: 'category_name_ar') this.categoryNameAr, this.image});
+  const _SubCategoryModel({this.name, @JsonKey(name: 'category_name') this.categoryName, @JsonKey(name: 'category_name_ar') this.categoryNameAr, this.image, @JsonKey(name: 'main_attributes') final  List<AttributeModel>? mainAttributes}): _mainAttributes = mainAttributes;
   factory _SubCategoryModel.fromJson(Map<String, dynamic> json) => _$SubCategoryModelFromJson(json);
 
 @override final  String? name;
 @override@JsonKey(name: 'category_name') final  String? categoryName;
 @override@JsonKey(name: 'category_name_ar') final  String? categoryNameAr;
 @override final  String? image;
+ final  List<AttributeModel>? _mainAttributes;
+@override@JsonKey(name: 'main_attributes') List<AttributeModel>? get mainAttributes {
+  final value = _mainAttributes;
+  if (value == null) return null;
+  if (_mainAttributes is EqualUnmodifiableListView) return _mainAttributes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
 
 /// Create a copy of SubCategoryModel
 /// with the given fields replaced by the non-null parameter values.
@@ -1064,16 +1074,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubCategoryModel&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryName, categoryName) || other.categoryName == categoryName)&&(identical(other.categoryNameAr, categoryNameAr) || other.categoryNameAr == categoryNameAr)&&(identical(other.image, image) || other.image == image));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SubCategoryModel&&(identical(other.name, name) || other.name == name)&&(identical(other.categoryName, categoryName) || other.categoryName == categoryName)&&(identical(other.categoryNameAr, categoryNameAr) || other.categoryNameAr == categoryNameAr)&&(identical(other.image, image) || other.image == image)&&const DeepCollectionEquality().equals(other._mainAttributes, _mainAttributes));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,categoryName,categoryNameAr,image);
+int get hashCode => Object.hash(runtimeType,name,categoryName,categoryNameAr,image,const DeepCollectionEquality().hash(_mainAttributes));
 
 @override
 String toString() {
-  return 'SubCategoryModel(name: $name, categoryName: $categoryName, categoryNameAr: $categoryNameAr, image: $image)';
+  return 'SubCategoryModel(name: $name, categoryName: $categoryName, categoryNameAr: $categoryNameAr, image: $image, mainAttributes: $mainAttributes)';
 }
 
 
@@ -1084,7 +1094,7 @@ abstract mixin class _$SubCategoryModelCopyWith<$Res> implements $SubCategoryMod
   factory _$SubCategoryModelCopyWith(_SubCategoryModel value, $Res Function(_SubCategoryModel) _then) = __$SubCategoryModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? name,@JsonKey(name: 'category_name') String? categoryName,@JsonKey(name: 'category_name_ar') String? categoryNameAr, String? image
+ String? name,@JsonKey(name: 'category_name') String? categoryName,@JsonKey(name: 'category_name_ar') String? categoryNameAr, String? image,@JsonKey(name: 'main_attributes') List<AttributeModel>? mainAttributes
 });
 
 
@@ -1101,12 +1111,291 @@ class __$SubCategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of SubCategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? categoryName = freezed,Object? categoryNameAr = freezed,Object? image = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? categoryName = freezed,Object? categoryNameAr = freezed,Object? image = freezed,Object? mainAttributes = freezed,}) {
   return _then(_SubCategoryModel(
 name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,categoryName: freezed == categoryName ? _self.categoryName : categoryName // ignore: cast_nullable_to_non_nullable
 as String?,categoryNameAr: freezed == categoryNameAr ? _self.categoryNameAr : categoryNameAr // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,mainAttributes: freezed == mainAttributes ? _self._mainAttributes : mainAttributes // ignore: cast_nullable_to_non_nullable
+as List<AttributeModel>?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$AttributeModel {
+
+ String? get name; String? get title;@JsonKey(name: 'data_type') String? get dataType;@JsonKey(name: 'is_main_filter') int? get isMainFilter;@JsonKey(name: 'is_filterable') int? get isFilterable; String? get values;
+/// Create a copy of AttributeModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AttributeModelCopyWith<AttributeModel> get copyWith => _$AttributeModelCopyWithImpl<AttributeModel>(this as AttributeModel, _$identity);
+
+  /// Serializes this AttributeModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AttributeModel&&(identical(other.name, name) || other.name == name)&&(identical(other.title, title) || other.title == title)&&(identical(other.dataType, dataType) || other.dataType == dataType)&&(identical(other.isMainFilter, isMainFilter) || other.isMainFilter == isMainFilter)&&(identical(other.isFilterable, isFilterable) || other.isFilterable == isFilterable)&&(identical(other.values, values) || other.values == values));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,title,dataType,isMainFilter,isFilterable,values);
+
+@override
+String toString() {
+  return 'AttributeModel(name: $name, title: $title, dataType: $dataType, isMainFilter: $isMainFilter, isFilterable: $isFilterable, values: $values)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $AttributeModelCopyWith<$Res>  {
+  factory $AttributeModelCopyWith(AttributeModel value, $Res Function(AttributeModel) _then) = _$AttributeModelCopyWithImpl;
+@useResult
+$Res call({
+ String? name, String? title,@JsonKey(name: 'data_type') String? dataType,@JsonKey(name: 'is_main_filter') int? isMainFilter,@JsonKey(name: 'is_filterable') int? isFilterable, String? values
+});
+
+
+
+
+}
+/// @nodoc
+class _$AttributeModelCopyWithImpl<$Res>
+    implements $AttributeModelCopyWith<$Res> {
+  _$AttributeModelCopyWithImpl(this._self, this._then);
+
+  final AttributeModel _self;
+  final $Res Function(AttributeModel) _then;
+
+/// Create a copy of AttributeModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? name = freezed,Object? title = freezed,Object? dataType = freezed,Object? isMainFilter = freezed,Object? isFilterable = freezed,Object? values = freezed,}) {
+  return _then(_self.copyWith(
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,dataType: freezed == dataType ? _self.dataType : dataType // ignore: cast_nullable_to_non_nullable
+as String?,isMainFilter: freezed == isMainFilter ? _self.isMainFilter : isMainFilter // ignore: cast_nullable_to_non_nullable
+as int?,isFilterable: freezed == isFilterable ? _self.isFilterable : isFilterable // ignore: cast_nullable_to_non_nullable
+as int?,values: freezed == values ? _self.values : values // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [AttributeModel].
+extension AttributeModelPatterns on AttributeModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AttributeModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _AttributeModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AttributeModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _AttributeModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AttributeModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _AttributeModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? name,  String? title, @JsonKey(name: 'data_type')  String? dataType, @JsonKey(name: 'is_main_filter')  int? isMainFilter, @JsonKey(name: 'is_filterable')  int? isFilterable,  String? values)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _AttributeModel() when $default != null:
+return $default(_that.name,_that.title,_that.dataType,_that.isMainFilter,_that.isFilterable,_that.values);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? name,  String? title, @JsonKey(name: 'data_type')  String? dataType, @JsonKey(name: 'is_main_filter')  int? isMainFilter, @JsonKey(name: 'is_filterable')  int? isFilterable,  String? values)  $default,) {final _that = this;
+switch (_that) {
+case _AttributeModel():
+return $default(_that.name,_that.title,_that.dataType,_that.isMainFilter,_that.isFilterable,_that.values);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? name,  String? title, @JsonKey(name: 'data_type')  String? dataType, @JsonKey(name: 'is_main_filter')  int? isMainFilter, @JsonKey(name: 'is_filterable')  int? isFilterable,  String? values)?  $default,) {final _that = this;
+switch (_that) {
+case _AttributeModel() when $default != null:
+return $default(_that.name,_that.title,_that.dataType,_that.isMainFilter,_that.isFilterable,_that.values);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _AttributeModel implements AttributeModel {
+  const _AttributeModel({this.name, this.title, @JsonKey(name: 'data_type') this.dataType, @JsonKey(name: 'is_main_filter') this.isMainFilter, @JsonKey(name: 'is_filterable') this.isFilterable, this.values});
+  factory _AttributeModel.fromJson(Map<String, dynamic> json) => _$AttributeModelFromJson(json);
+
+@override final  String? name;
+@override final  String? title;
+@override@JsonKey(name: 'data_type') final  String? dataType;
+@override@JsonKey(name: 'is_main_filter') final  int? isMainFilter;
+@override@JsonKey(name: 'is_filterable') final  int? isFilterable;
+@override final  String? values;
+
+/// Create a copy of AttributeModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AttributeModelCopyWith<_AttributeModel> get copyWith => __$AttributeModelCopyWithImpl<_AttributeModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$AttributeModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AttributeModel&&(identical(other.name, name) || other.name == name)&&(identical(other.title, title) || other.title == title)&&(identical(other.dataType, dataType) || other.dataType == dataType)&&(identical(other.isMainFilter, isMainFilter) || other.isMainFilter == isMainFilter)&&(identical(other.isFilterable, isFilterable) || other.isFilterable == isFilterable)&&(identical(other.values, values) || other.values == values));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,name,title,dataType,isMainFilter,isFilterable,values);
+
+@override
+String toString() {
+  return 'AttributeModel(name: $name, title: $title, dataType: $dataType, isMainFilter: $isMainFilter, isFilterable: $isFilterable, values: $values)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AttributeModelCopyWith<$Res> implements $AttributeModelCopyWith<$Res> {
+  factory _$AttributeModelCopyWith(_AttributeModel value, $Res Function(_AttributeModel) _then) = __$AttributeModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String? name, String? title,@JsonKey(name: 'data_type') String? dataType,@JsonKey(name: 'is_main_filter') int? isMainFilter,@JsonKey(name: 'is_filterable') int? isFilterable, String? values
+});
+
+
+
+
+}
+/// @nodoc
+class __$AttributeModelCopyWithImpl<$Res>
+    implements _$AttributeModelCopyWith<$Res> {
+  __$AttributeModelCopyWithImpl(this._self, this._then);
+
+  final _AttributeModel _self;
+  final $Res Function(_AttributeModel) _then;
+
+/// Create a copy of AttributeModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? name = freezed,Object? title = freezed,Object? dataType = freezed,Object? isMainFilter = freezed,Object? isFilterable = freezed,Object? values = freezed,}) {
+  return _then(_AttributeModel(
+name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String?,dataType: freezed == dataType ? _self.dataType : dataType // ignore: cast_nullable_to_non_nullable
+as String?,isMainFilter: freezed == isMainFilter ? _self.isMainFilter : isMainFilter // ignore: cast_nullable_to_non_nullable
+as int?,isFilterable: freezed == isFilterable ? _self.isFilterable : isFilterable // ignore: cast_nullable_to_non_nullable
+as int?,values: freezed == values ? _self.values : values // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }

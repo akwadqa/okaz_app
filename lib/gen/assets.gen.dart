@@ -228,6 +228,10 @@ class $AssetsIconsGen {
   SvgGenImage get whatsappIc =>
       const SvgGenImage('assets/icons/whatsapp_ic.svg');
 
+  /// File path: assets/icons/yellow_star_ic.svg
+  SvgGenImage get yellowStarIc =>
+      const SvgGenImage('assets/icons/yellow_star_ic.svg');
+
   /// List of all assets
   List<dynamic> get values => [
     addContactIc,
@@ -288,6 +292,7 @@ class $AssetsIconsGen {
     uploadImageIc,
     waitingGuestIc,
     whatsappIc,
+    yellowStarIc,
   ];
 }
 

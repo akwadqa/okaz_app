@@ -29,7 +29,7 @@ class _SearchSubCategoriesScreenContent extends StatelessWidget {
       children: [
         SearchSubCategoriesHeading(subCategoryModel: subCategoryModel),
         Divider(height: 24, color: AppColors.dividerColor),
-        SubCategoriesSection(),
+        SubCategoriesSection(subCategoryModel),
         Divider(height: 24, color: AppColors.dividerColor),
         SearchSubCategoriesCompaniesSection(),
       ],

@@ -6,28 +6,33 @@ import 'package:okaz/features/product/domain/model/product_details_model/product
 class ProductState {
   final AsyncValue<ProductDetailsModel>? productDetailsModel;
   final AsyncValue<String>? deletePost;
-  final AsyncValue<bool>? favoritePost;
+  final bool? favoritePost;
+  final bool? likePost;
 
   factory ProductState.init() => ProductState(
     productDetailsModel: AsyncLoading(),
     deletePost: AsyncLoading(),
+    likePost: false,
   );
 
   ProductState({
     this.productDetailsModel,
     this.deletePost,
     this.favoritePost,
+    this.likePost,
   });
 
   ProductState copyWith({
     AsyncValue<ProductDetailsModel>? productDetailsModel,
     AsyncValue<String>? deletePost,
-    AsyncValue<bool>? favoritePost,
+    bool? favoritePost,
+    bool? likePost,
   }) {
     return ProductState(
       productDetailsModel: productDetailsModel ?? this.productDetailsModel,
       deletePost: deletePost ?? this.deletePost,
       favoritePost: favoritePost ?? this.favoritePost,
+      likePost: likePost ?? this.likePost,
     );
   }
 }

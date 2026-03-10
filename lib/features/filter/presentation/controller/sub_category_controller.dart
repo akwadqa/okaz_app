@@ -1,19 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 
-final subCategoriesProvider = Provider<List<String>>((ref) {
-  return const [
-    'ايفون',
-    'سامسونج',
-    'شاومي',
-    'هواوي',
-    'اوبو',
-    'فيفو',
-    'ريلمي',
-  ];
-});
+
 
 final selectedSubCategoryProvider = StateProvider<String>((ref) {
-  final items = ref.read(subCategoriesProvider);
+  final items = ref.watch(mainSubcategory).mainAttributes?.first.values?.split(',') ?? [];
   return items.isNotEmpty ? items.first : '';
+});
+
+final mainSubcategory = StateProvider<SubCategoryModel>((ref) {
+  return SubCategoryModel();
 });

@@ -27,7 +27,7 @@ abstract class BannerModel with _$BannerModel {
 }
 
 @freezed
- abstract class CategoryModel with _$CategoryModel {
+abstract class CategoryModel with _$CategoryModel {
   const factory CategoryModel({
     String? name,
     @JsonKey(name: 'category_name') String? categoryName,
@@ -46,8 +46,24 @@ abstract class SubCategoryModel with _$SubCategoryModel {
     @JsonKey(name: 'category_name') String? categoryName,
     @JsonKey(name: 'category_name_ar') String? categoryNameAr,
     String? image,
+    @JsonKey(name: 'main_attributes') List<AttributeModel>? mainAttributes,
   }) = _SubCategoryModel;
 
   factory SubCategoryModel.fromJson(Map<String, dynamic> json) =>
       _$SubCategoryModelFromJson(json);
+}
+
+@freezed
+abstract class AttributeModel with _$AttributeModel {
+  const factory AttributeModel({
+    String? name,
+    String? title,
+    @JsonKey(name: 'data_type') String? dataType,
+    @JsonKey(name: 'is_main_filter') int? isMainFilter,
+    @JsonKey(name: 'is_filterable') int? isFilterable,
+    String? values,
+  }) = _AttributeModel;
+
+  factory AttributeModel.fromJson(Map<String, dynamic> json) =>
+      _$AttributeModelFromJson(json);
 }

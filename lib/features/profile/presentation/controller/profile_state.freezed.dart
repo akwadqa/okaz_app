@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileState {
 
- ProfileTab get selectedTab; List<ProfileItem> get myAds; AsyncValue<UserResponseModel>? get profileData; AsyncValue<UserResponseModel>? get updateprofileData; List<ProfileItem> get favorites;
+ ProfileTab get selectedTab; List<ProductDetailsModel> get myAds; AsyncValue<UserResponseModel>? get profileData; AsyncValue<UserResponseModel>? get updateprofileData; List<ProductDetailsModel> get favorites;
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $ProfileStateCopyWith<$Res>  {
   factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) _then) = _$ProfileStateCopyWithImpl;
 @useResult
 $Res call({
- ProfileTab selectedTab, List<ProfileItem> myAds, AsyncValue<UserResponseModel>? profileData, AsyncValue<UserResponseModel>? updateprofileData, List<ProfileItem> favorites
+ ProfileTab selectedTab, List<ProductDetailsModel> myAds, AsyncValue<UserResponseModel>? profileData, AsyncValue<UserResponseModel>? updateprofileData, List<ProductDetailsModel> favorites
 });
 
 
@@ -66,10 +66,10 @@ class _$ProfileStateCopyWithImpl<$Res>
   return _then(_self.copyWith(
 selectedTab: null == selectedTab ? _self.selectedTab : selectedTab // ignore: cast_nullable_to_non_nullable
 as ProfileTab,myAds: null == myAds ? _self.myAds : myAds // ignore: cast_nullable_to_non_nullable
-as List<ProfileItem>,profileData: freezed == profileData ? _self.profileData : profileData // ignore: cast_nullable_to_non_nullable
+as List<ProductDetailsModel>,profileData: freezed == profileData ? _self.profileData : profileData // ignore: cast_nullable_to_non_nullable
 as AsyncValue<UserResponseModel>?,updateprofileData: freezed == updateprofileData ? _self.updateprofileData : updateprofileData // ignore: cast_nullable_to_non_nullable
 as AsyncValue<UserResponseModel>?,favorites: null == favorites ? _self.favorites : favorites // ignore: cast_nullable_to_non_nullable
-as List<ProfileItem>,
+as List<ProductDetailsModel>,
   ));
 }
 
@@ -154,7 +154,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProfileItem> favorites)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProductDetailsModel> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProductDetailsModel> favorites)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
 return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprofileData,_that.favorites);case _:
@@ -175,7 +175,7 @@ return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprof
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProfileItem> favorites)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ProfileTab selectedTab,  List<ProductDetailsModel> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProductDetailsModel> favorites)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState():
 return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprofileData,_that.favorites);case _:
@@ -195,7 +195,7 @@ return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprof
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProfileTab selectedTab,  List<ProfileItem> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProfileItem> favorites)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ProfileTab selectedTab,  List<ProductDetailsModel> myAds,  AsyncValue<UserResponseModel>? profileData,  AsyncValue<UserResponseModel>? updateprofileData,  List<ProductDetailsModel> favorites)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
 return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprofileData,_that.favorites);case _:
@@ -210,12 +210,12 @@ return $default(_that.selectedTab,_that.myAds,_that.profileData,_that.updateprof
 
 
 class _ProfileState implements ProfileState {
-  const _ProfileState({this.selectedTab = ProfileTab.myAds, final  List<ProfileItem> myAds = const [], this.profileData, this.updateprofileData, final  List<ProfileItem> favorites = const []}): _myAds = myAds,_favorites = favorites;
+  const _ProfileState({this.selectedTab = ProfileTab.myAds, final  List<ProductDetailsModel> myAds = const [], this.profileData, this.updateprofileData, final  List<ProductDetailsModel> favorites = const []}): _myAds = myAds,_favorites = favorites;
   
 
 @override@JsonKey() final  ProfileTab selectedTab;
- final  List<ProfileItem> _myAds;
-@override@JsonKey() List<ProfileItem> get myAds {
+ final  List<ProductDetailsModel> _myAds;
+@override@JsonKey() List<ProductDetailsModel> get myAds {
   if (_myAds is EqualUnmodifiableListView) return _myAds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_myAds);
@@ -223,8 +223,8 @@ class _ProfileState implements ProfileState {
 
 @override final  AsyncValue<UserResponseModel>? profileData;
 @override final  AsyncValue<UserResponseModel>? updateprofileData;
- final  List<ProfileItem> _favorites;
-@override@JsonKey() List<ProfileItem> get favorites {
+ final  List<ProductDetailsModel> _favorites;
+@override@JsonKey() List<ProductDetailsModel> get favorites {
   if (_favorites is EqualUnmodifiableListView) return _favorites;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_favorites);
@@ -261,7 +261,7 @@ abstract mixin class _$ProfileStateCopyWith<$Res> implements $ProfileStateCopyWi
   factory _$ProfileStateCopyWith(_ProfileState value, $Res Function(_ProfileState) _then) = __$ProfileStateCopyWithImpl;
 @override @useResult
 $Res call({
- ProfileTab selectedTab, List<ProfileItem> myAds, AsyncValue<UserResponseModel>? profileData, AsyncValue<UserResponseModel>? updateprofileData, List<ProfileItem> favorites
+ ProfileTab selectedTab, List<ProductDetailsModel> myAds, AsyncValue<UserResponseModel>? profileData, AsyncValue<UserResponseModel>? updateprofileData, List<ProductDetailsModel> favorites
 });
 
 
@@ -282,10 +282,10 @@ class __$ProfileStateCopyWithImpl<$Res>
   return _then(_ProfileState(
 selectedTab: null == selectedTab ? _self.selectedTab : selectedTab // ignore: cast_nullable_to_non_nullable
 as ProfileTab,myAds: null == myAds ? _self._myAds : myAds // ignore: cast_nullable_to_non_nullable
-as List<ProfileItem>,profileData: freezed == profileData ? _self.profileData : profileData // ignore: cast_nullable_to_non_nullable
+as List<ProductDetailsModel>,profileData: freezed == profileData ? _self.profileData : profileData // ignore: cast_nullable_to_non_nullable
 as AsyncValue<UserResponseModel>?,updateprofileData: freezed == updateprofileData ? _self.updateprofileData : updateprofileData // ignore: cast_nullable_to_non_nullable
 as AsyncValue<UserResponseModel>?,favorites: null == favorites ? _self._favorites : favorites // ignore: cast_nullable_to_non_nullable
-as List<ProfileItem>,
+as List<ProductDetailsModel>,
   ));
 }
 

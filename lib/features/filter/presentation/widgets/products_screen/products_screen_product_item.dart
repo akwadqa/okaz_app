@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_hero.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
@@ -10,7 +11,8 @@ import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 import '../../../../profile/domain/profile_item.dart';
 
 class ProductsScreenProductItem extends StatelessWidget {
-  final ProfileItem? item;
+  // final ProfileItem? item;
+  final ProductDetailsModel? item;
 
   const ProductsScreenProductItem({super.key, required this.item});
 

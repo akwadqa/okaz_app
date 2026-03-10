@@ -6,6 +6,7 @@ import 'package:okaz/features/filter/presentation/controller/sub_category_contro
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -15,6 +16,8 @@ class ProductsScreenHeading extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedTitle = ref.watch(selectedSubCategoryProvider);
+
+    final subCategory = ref.watch(mainSubcategory);
     final title = selectedTitle.isEmpty ? 'ايفون' : selectedTitle;
 
     return Column(
@@ -40,7 +43,11 @@ class ProductsScreenHeading extends ConsumerWidget {
             GestureDetector(
               onTap: () => context.pop(),
               child: Text(
-                'هواتف',
+                translate(
+                  subCategory.categoryNameAr ?? '',
+                  subCategory.categoryName ?? '',
+                  context,
+                ),
                 style: AppTextStyle.rubikSemiBold18.copyWith(
                   color: AppColors.grayHint,
                 ),
