@@ -3,7 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
-import 'package:okaz/features/product/presentation/widgets/product_details_screen_comments.dart';
+import 'package:okaz/features/product/presentation/widgets/product_details_comment_section/product_details_screen_comments_section.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_header_info.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_hero.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_message_composer.dart';
@@ -11,6 +11,7 @@ import 'package:okaz/features/product/presentation/widgets/product_details_scree
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_tabs_switcher.dart';
 import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -39,7 +40,7 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
     Future(() {
       ref
           .read(productControllerProvider.notifier)
-          .getProductDetails('07acht7r0u');
+          .getProductDetails('goqg36nmh5');
     });
   }
 
@@ -60,13 +61,22 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
       body: SafeArea(
         top: false,
         child: controller!.when(
-          data: (data) => _buildProductDetailsBody(data),
+          data: (data) {
+            ref
+                .read(productControllerProvider.notifier)
+                // .updatePostViews(data.views.toString());
+                .updatePostViews('goqg36nmh5');
+            return _buildProductDetailsBody(data);
+          },
           error: (e, st) => AppErrorWidget(),
           loading: () => AppLoader(),
         ),
       ),
 
-      bottomNavigationBar: const ProductDetailsScreenMessageComposer(),
+      bottomNavigationBar: controller.whenOrNull(
+        data: (data) => ProductDetailsScreenMessageComposer(),
+      ),
+      // bottomNavigationBar:  ProductDetailsScreenMessageComposer(),
     );
   }
 
@@ -112,7 +122,11 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
                   ),
                 ),
                 Text(
-                  productDetailsModel.description ?? 'Description',
+                  translate(
+                    productDetailsModel.descriptionAr ?? '',
+                    productDetailsModel.description ?? '',
+                    context,
+                  ),
                   // 'product_details.description_text'.tr(),
                   style: AppTextStyle.rubikRegular16,
                 ),
@@ -122,7 +136,11 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 20)),
 
-        const SliverToBoxAdapter(child: ProductDetailsScreenCommentsSection()),
+        SliverToBoxAdapter(
+          child: ProductDetailsScreenCommentsSection(
+            productDetailsModel: productDetailsModel,
+          ),
+        ),
       ],
     );
   }

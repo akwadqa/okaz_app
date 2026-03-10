@@ -33,7 +33,11 @@ class ProductController extends _$ProductController {
       }
 
       state = AsyncData(
-        state.value!.copyWith(productDetailsModel: AsyncData(response.data!)),
+        state.value!.copyWith(
+          productDetailsModel: AsyncData(response.data!),
+          favoritePost: response.data?.isFavorited?.isNotEmpty ?? false,
+          likePost: response.data?.isLiked?.isNotEmpty ?? false,
+        ),
       );
       return response.data;
     } catch (e, st) {
@@ -72,16 +76,123 @@ class ProductController extends _$ProductController {
     }
   }
 
-  Future<void> addProductToFavorite(String productId) async {
-    state = const AsyncLoading();
+  Future<bool?> addPostToFavorite(String productId) async {
     try {
+      state = AsyncData(state.value!.copyWith(favoritePost: true));
       final repo = ref.read(productRepositoryProvider);
-      final data = await repo.addProductToFavorite(productId);
-      state = AsyncData(data);
-      return data;
+      final response = await repo.addPostToFavorite(productId);
+
+      if (response.hasFailed) {
+        state = AsyncData(state.value!.copyWith(favoritePost: false));
+
+        return null;
+      }
+
+      return response.data;
     } catch (e, st) {
       state = AsyncError(e, st);
-      rethrow;
+
+      state = AsyncData(state.value!.copyWith(favoritePost: false));
+      return null;
+    }
+  }
+
+  Future<bool?> likePost(String productId) async {
+    final currentProduct = state.value!.productDetailsModel!.value!;
+    try {
+      state = AsyncData(
+        state.value!.copyWith(
+          likePost: true,
+          productDetailsModel: AsyncData(
+            currentProduct.copyWith(likes: currentProduct.likes! + 1),
+          ),
+        ),
+      );
+      final repo = ref.read(productRepositoryProvider);
+      final response = await repo.likePost(productId);
+
+      if (response.hasFailed) {
+        state = AsyncData(
+          state.value!.copyWith(
+            likePost: false,
+            productDetailsModel: AsyncData(
+              currentProduct.copyWith(likes: currentProduct.likes!),
+            ),
+          ),
+        );
+
+        return null;
+      }
+
+      return response.data;
+    } catch (e, st) {
+      state = AsyncError(e, st);
+      state = AsyncData(
+        state.value!.copyWith(
+          likePost: false,
+          productDetailsModel: AsyncData(
+            currentProduct.copyWith(likes: currentProduct.likes!),
+          ),
+        ),
+      );
+      return null;
+    }
+  }
+
+  Future<bool?> unLikePost(String productId) async {
+    final currentProduct = state.value!.productDetailsModel!.value!;
+    try {
+      state = AsyncData(
+        state.value!.copyWith(
+          likePost: false,
+          productDetailsModel: AsyncData(
+            currentProduct.copyWith(likes: currentProduct.likes! - 1),
+          ),
+        ),
+      );
+      final repo = ref.read(productRepositoryProvider);
+      final response = await repo.likePost(productId);
+
+      if (response.hasFailed) {
+        state = AsyncData(
+          state.value!.copyWith(
+            likePost: true,
+            productDetailsModel: AsyncData(
+              currentProduct.copyWith(likes: currentProduct.likes!),
+            ),
+          ),
+        );
+
+        return null;
+      }
+
+      return response.data;
+    } catch (e, st) {
+      state = AsyncError(e, st);
+      state = AsyncData(
+        state.value!.copyWith(
+          likePost: true,
+          productDetailsModel: AsyncData(
+            currentProduct.copyWith(likes: currentProduct.likes!),
+          ),
+        ),
+      );
+      return null;
+    }
+  }
+
+  Future<void> updatePostViews(String productId) async {
+    try {
+      final repo = ref.read(productRepositoryProvider);
+      final response = await repo.updatePostViews(productId);
+
+      if (response.hasFailed) {
+        return;
+      }
+
+      return;
+    } catch (e, st) {
+      return;
     }
   }
 }

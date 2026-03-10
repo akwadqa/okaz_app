@@ -12,7 +12,9 @@ class ProductScreenFilterItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(subCategoriesProvider);
+    final items =
+        ref.watch(mainSubcategory).mainAttributes?.first.values?.split(',') ??
+        [];
     final category = ref.watch(selectedSubCategoryProvider);
 
     return DropdownButtonHideUnderline(

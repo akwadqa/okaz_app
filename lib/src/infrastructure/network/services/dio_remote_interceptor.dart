@@ -25,7 +25,10 @@ class RemoteInterceptor extends Interceptor {
     final token = await ref.read(localStorageServiceProvider).getToken();
     final language = ref.read(currentLanguageProvider);
 
-    // options.headers['Authorization'] = "token 13f237c84355ded:99a131094d2127e";
+    //? This for soudi arabia :
+    // options.headers['Authorization'] = "token 676c03535f0e73a:9b1441b19c92b95";
+    //? This for qatar:
+    // options.headers['Authorization'] = "token d84061e02106846:e4269723b2f9547";
 
     if (token != null) {
       options.headers['Authorization'] = "token $token";

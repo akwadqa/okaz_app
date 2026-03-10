@@ -3,12 +3,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CommentState {
   final AsyncValue? createComment;
+  final AsyncValue? updateComment;
+  final AsyncValue? deleteComment;
 
-  CommentState({this.createComment});
+  CommentState({this.createComment, this.updateComment, this.deleteComment});
 
-  factory CommentState.init() => CommentState(createComment: null);
+  factory CommentState.init() =>
+      CommentState(createComment: null, updateComment: null);
 
-  CommentState copyWith({AsyncValue? createComment}) {
-    return CommentState(createComment: createComment ?? this.createComment);
+  CommentState copyWith({
+    AsyncValue? createComment,
+    AsyncValue? updateComment,
+    AsyncValue? deleteComment,
+  }) {
+    return CommentState(
+      createComment: createComment ?? this.createComment,
+      updateComment: updateComment ?? this.updateComment,
+      deleteComment: deleteComment ?? this.deleteComment,
+    );
   }
 }

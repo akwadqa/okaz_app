@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/features/product/presentation/controller/product_controller.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
@@ -61,6 +64,7 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             top: 28,
             child: ProductDetailsScreenIconCircleButton(
               icon: Assets.icons.starIc,
+              productDetailsModel: widget.productDetailsModel,
             ),
           ),
           PositionedDirectional(
@@ -89,30 +93,85 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
   }
 }
 
-class ProductDetailsScreenIconCircleButton extends StatelessWidget {
+class ProductDetailsScreenIconCircleButton extends ConsumerStatefulWidget {
   final SvgGenImage icon;
   final VoidCallback? onTap;
+  final ProductDetailsModel? productDetailsModel;
   final bool toProduct;
 
   const ProductDetailsScreenIconCircleButton({
     super.key,
     required this.icon,
+    this.productDetailsModel,
     this.onTap,
     this.toProduct = false,
   });
 
   @override
+  ConsumerState<ProductDetailsScreenIconCircleButton> createState() =>
+      _ProductDetailsScreenIconCircleButtonState();
+}
+
+class _ProductDetailsScreenIconCircleButtonState
+    extends ConsumerState<ProductDetailsScreenIconCircleButton>
+    with SingleTickerProviderStateMixin {
+  // bool isSelected = false;
+  double _scale = 1.0;
+
+  void _handleTap() {
+    _scale = 1.0;
+    ref
+        .read(productControllerProvider.notifier)
+        .addPostToFavorite('goqg36nmh5');
+    setState(() {
+      _scale = 1.3;
+    });
+
+    if (widget.onTap != null) widget.onTap!();
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        setState(() => _scale = 1.0);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: AppColors.white,
+    bool isSelected =
+        ref.watch(productControllerProvider).value!.favoritePost ?? false;
 
-      radius: 12,
-      child: Padding(
-        padding: EdgeInsets.all(toProduct ? 4 : 6),
+    return ProviderScope(
+      overrides: [
+        productControllerProvider.overrideWith(() => ProductController()),
+      ],
+      child: CircleAvatar(
+        backgroundColor: Colors.white,
+        radius: 12,
         child: GestureDetector(
-          onTap: onTap,
-
-          child: SizedBox(width: 20, height: 20, child: icon.svg()),
+          onTap: _handleTap,
+          child: AnimatedScale(
+            scale: _scale,
+            duration: const Duration(milliseconds: 150),
+            curve: Curves.easeInOut,
+            child: Padding(
+              padding: EdgeInsets.all(widget.toProduct ? 4 : 6),
+              child: SizedBox(
+                width: 20,
+                height: 20,
+                child: isSelected
+                    ? Assets.icons.yellowStarIc.svg()
+                    : widget.icon.svg(
+                        colorFilter: isSelected
+                            ? const ColorFilter.mode(
+                                Colors.yellow,
+                                BlendMode.dst,
+                              )
+                            : null,
+                      ),
+              ),
+            ),
+          ),
         ),
       ),
     );
