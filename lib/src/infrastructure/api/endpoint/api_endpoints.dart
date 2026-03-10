@@ -30,6 +30,9 @@ class ApiEndPoints {
   static const String deletePost = 'okaz.api.post.delete_post';
   static const String createPost = 'okaz.api.post.create_post';
 
+  //? --- Category ---
+  static const String subCategoryAttributes = 'okaz.api.category.subcategory_attributes';
+
   //? --- Filter ---
   static const String productsByFilter = 'products_by_filter';
 

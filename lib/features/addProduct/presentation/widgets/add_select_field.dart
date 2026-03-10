@@ -5,7 +5,7 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class AddSelectField extends StatelessWidget {
-   AddSelectField({
+  const AddSelectField({
     super.key,
     this.controller,
     required this.hint,
@@ -40,20 +40,17 @@ class AddSelectField extends StatelessWidget {
   String? emailVal(String? val, BuildContext context) {
     if ((val?.isEmpty ?? true) || val == null) {
       return null;
-    } else {
-    
-    }
+    } else {}
     return null;
   }
 
- OutlineInputBorder _border(Color color)=>OutlineInputBorder(
-                borderRadius: BorderRadius.circular(24),
-                borderSide: BorderSide(color: color),
-              );
-
+  OutlineInputBorder _border(Color color) => OutlineInputBorder(
+        borderRadius: BorderRadius.circular(24),
+        borderSide: BorderSide(color: color),
+      );
 
   // 👈 control password visibility
- @override
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +58,7 @@ class AddSelectField extends StatelessWidget {
         /// Label
         Row(
           children: [
-            Text(label, style: AppTextStyle.rubikMedium16),
+            Text(label.tr(), style: AppTextStyle.rubikMedium16),
             if (isRequired)
               const Text(
                 ' *',
@@ -69,7 +66,7 @@ class AddSelectField extends StatelessWidget {
               ),
           ],
         ),
-        const SizedBox(height: 12),
+        12.verticalSpace,
 
         /// Field
         InkWell(
@@ -83,11 +80,9 @@ class AddSelectField extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                hintText: value?.isNotEmpty == true ? value : hint,
+                hintText: value?.isNotEmpty == true ? value : hint.tr(),
                 hintStyle: AppTextStyle.rubikRegular16.copyWith(
-                  color: value == null
-                      ? AppColors.grayHint
-                      : AppColors.black,
+                  color: value == null ? AppColors.grayHint : AppColors.black,
                 ),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),

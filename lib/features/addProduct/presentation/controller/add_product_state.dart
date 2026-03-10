@@ -1,4 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 
 class AddProductState extends Equatable {
   final int step;
@@ -6,13 +11,14 @@ class AddProductState extends Equatable {
   // Step 1
   final String? category;
   final String? subCategory;
-
   // Step 2
   final String? adType;
+  final String? mainSubCategoryType;
   final String? city;
 
   // Step 3 (dynamic specs)
   final Map<String, dynamic> specs;
+final List<SubcategoryAttributeModel> attributes;
 
   // Step 4
   final List<String> images;
@@ -22,12 +28,14 @@ class AddProductState extends Equatable {
   final String? descEn;
   final double? price;
   final bool isFeatured;
+  final LatLng? latLng;
 
   const AddProductState({
     required this.step,
     this.category,
     this.subCategory,
     this.adType,
+    this.mainSubCategoryType,
     this.city,
     required this.specs,
     required this.images,
@@ -36,7 +44,7 @@ class AddProductState extends Equatable {
     this.titleEn,
     this.descEn,
     this.price,
-    required this.isFeatured,
+    required this.isFeatured, required this.attributes,  this.latLng,
   });
 
   /// Initial state
@@ -45,6 +53,7 @@ class AddProductState extends Equatable {
       step: 1,
       specs: {},
       images: [],
+      attributes: [],
       isFeatured: false,
     );
   }
@@ -55,8 +64,10 @@ class AddProductState extends Equatable {
     String? category,
     String? subCategory,
     String? adType,
+    String? mainSubCategoryType,
     String? city,
     Map<String, dynamic>? specs,
+    List<SubcategoryAttributeModel>? attributes,
     List<String>? images,
     String? titleAr,
     String? descAr,
@@ -64,14 +75,17 @@ class AddProductState extends Equatable {
     String? descEn,
     double? price,
     bool? isFeatured,
+    LatLng? latLng,
   }) {
     return AddProductState(
       step: step ?? this.step,
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
       adType: adType ?? this.adType,
+      mainSubCategoryType: mainSubCategoryType ?? this.mainSubCategoryType,
       city: city ?? this.city,
       specs: specs ?? this.specs,
+      attributes: attributes ?? this.attributes,
       images: images ?? this.images,
       titleAr: titleAr ?? this.titleAr,
       descAr: descAr ?? this.descAr,
@@ -79,6 +93,7 @@ class AddProductState extends Equatable {
       descEn: descEn ?? this.descEn,
       price: price ?? this.price,
       isFeatured: isFeatured ?? this.isFeatured,
+      latLng: latLng ?? this.latLng,
     );
   }
 
@@ -98,5 +113,7 @@ class AddProductState extends Equatable {
         descEn,
         price,
         isFeatured,
+        mainSubCategoryType,
+        latLng,
       ];
 }

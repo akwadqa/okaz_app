@@ -34,7 +34,7 @@ final class SettingsControllerProvider
 }
 
 String _$settingsControllerHash() =>
-    r'41331b404a2938e0669fdbefffb157eb1f722c5d';
+    r'034f56156ca3569fbf806dc85d9565e07263ad49';
 
 abstract class _$SettingsController extends $AsyncNotifier<SettingsState> {
   FutureOr<SettingsState> build();

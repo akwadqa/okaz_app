@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
 import 'package:okaz/features/addProduct/presentation/widgets/second_step/select_location_page/location_widget.dart';
+import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 
 import '../../controller/add_product_controller.dart';
 import '../add_select_field.dart';
@@ -16,20 +18,23 @@ class StepDetailsView extends ConsumerWidget {
     final state = ref.watch(addProductControllerProvider).value!;
     final controller = ref.read(addProductControllerProvider.notifier);
     final mapController = ref.watch(mapControllerProvider);
+    final attributes = state.attributes;
+    final mainFilters = attributes.firstWhere((e) => e.isMainFilter == 1);
 
+    final otherFilters = attributes.where((e) => e.isMainFilter == 0).toList();
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
         /// نوع الإعلان *
         AddSelectField(
-          label: 'نوع الإعلان',
+          label: 'ad_type',
           isRequired: true,
-          hint: 'اختر نوع الإعلان',
+          hint: 'select_ad_type',
           value: _adTypeLabel(state.adType),
           onTap: () {
             showAddSelectSheet<String>(
               context: context,
-              title: 'اختر نوع الإعلان',
+              title: 'select_ad_type',
               items: const ['sell', 'wanted'],
               selected: state.adType,
               labelBuilder: _adTypeLabel,
@@ -40,45 +45,37 @@ class StepDetailsView extends ConsumerWidget {
 
         /// الفئات الفرعية *
         AddSelectField(
-          label: 'الفئات الفرعية',
+          label: 'sub_categories',
           isRequired: true,
-          hint: 'اختر الفئة الفرعية',
-          value: state.subCategory,
+          hint: 'select_sub_category',
+          value: state.mainSubCategoryType,
           onTap: () {
             showAddSelectSheet<String>(
               context: context,
-              title: 'اختر الفئة الفرعية',
-              items: const [
-                'ايفون',
-                'سامسونج',
-                'ريلمي',
-                'شاومي',
-                'هواوي',
-                'ايباد',
-                'تابلت أندرويد',
-                'هواتف أندرويد أخرى',
-                'سماعات رأس',
-                'السماعات الذكية والأساور الذكية',
-                'أخرى',
-              ],
-              selected: state.subCategory,
+              title: mainFilters.title,
+              items: mainFilters.values,
+              selected: state.mainSubCategoryType,
               labelBuilder: (v) => v,
-              onConfirm: controller.setSubCategory,
+              onConfirm:(v){ 
+                
+          controller.updateSpec(mainFilters.title, v);
+                controller.setSubCategoryType(v);
+                },
             );
           },
         ),
 
         /// المدينة *
         AddSelectField(
-          label: 'المدينة',
+          label: 'city',
           isRequired: true,
-          hint: 'اختر المدينة',
+          hint: 'select_city',
           value: state.city,
           onTap: () {
             showAddSelectSheet<String>(
               context: context,
-              title: 'اختر المدينة',
-              items: const ['الدوحة', 'الريان', 'الوكرة', 'الخور'],
+              title: 'select_city'.tr(),
+              items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
               selected: state.city,
               labelBuilder: (v) => v,
               onConfirm: controller.setCity,
@@ -106,11 +103,12 @@ class StepDetailsView extends ConsumerWidget {
         //     );
         //   }, isRequired: true,
         // ),
-        const SizedBox(height: 12),
+        12.verticalSpace,
 
         /// الموقع (NO *)
-        const Text('الموقع', style: TextStyle(fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8),
+        Text('location',
+            style: TextStyle(fontWeight: FontWeight.w600)),
+        8.verticalSpace,
 
         LocationWidget(
           latlng: LatLng(
@@ -132,14 +130,14 @@ class StepDetailsView extends ConsumerWidget {
     );
   }
 
-  static String _adTypeLabel(String? value) {
-    switch (value) {
-      case 'sell':
-        return 'للبيع';
-      case 'wanted':
-        return 'مطلوب';
-      default:
-        return '';
-    }
+static String _adTypeLabel(String? value) {
+  switch (value) {
+    case 'sell':
+      return 'sell';
+    case 'wanted':
+      return 'wanted';
+    default:
+      return '';
   }
+}
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_google_places_hoc081098/google_maps_webservice_places.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:okaz/features/addProduct/presentation/controller/add_product_controller.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -93,6 +94,7 @@ class MapController extends _$MapController {
 
     try {
       await Future.delayed(const Duration(seconds: 1));
+      ref.read(addProductControllerProvider.notifier).setLatLng(state.value?.latLng??state.value!.initialLatLng!);
       state = AsyncData(
         state.value!.copyWith(selectedPlace: const AsyncData(null)),
       );

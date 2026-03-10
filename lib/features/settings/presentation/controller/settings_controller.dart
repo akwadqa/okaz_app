@@ -71,12 +71,12 @@ class SettingsController extends _$SettingsController {
       //  final result =
       await repo.logout();
     });
-    await Future.delayed(Duration(seconds: 2));
+    // await Future.delayed(Duration(seconds: 2));
 
     await storage.logout();
 
-    // state = AsyncData(
-    //   current.copyWith(logoutState: AsyncData(result)),
-    // );
+    state = AsyncData(
+      current.copyWith(logoutState: AsyncData(result)),
+    );
   }
 }

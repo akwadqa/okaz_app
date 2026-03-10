@@ -88,23 +88,28 @@
     "recent_searches": "عمليات البحث الأخيرة",
     "delete_all": "مسح الكل",
     "most_searched": "الكلمات الأكثر بحثا",
+    "ad_type": "نوع الإعلان",
+    "select_ad_type": "اختر نوع الإعلان",
+  
+    "sub_categories": "الفئات الفرعية",
+    "select_sub_category": "اختر الفئة الفرعية",
+  
+    "city": "المدينة",
+    "select_city": "اختر المدينة",
+  
+    "location": "الموقع",
+  
+    "sell": "للبيع",
+    "wanted": "مطلوب",
+  
+    "doha": "الدوحة",
+    "al_rayyan": "الريان",
+    "al_wakrah": "الوكرة",
+    "al_khor": "الخور",
+    "new": "جديد",
+
     "product_details": {
-        "ad_info": {
-            "category": "القسم:",
-            "ad_type": "نوع الاعلان:",
-            "type": "النوع:",
-            "sub_category": "الفئة الفرعية:",
-            "city": "المدينة:",
-            "condition": "الحالة:"
-        },
-        "ad_info_values": {
-            "phones": "هواتف",
-            "for_sale": "للبيع",
-            "iphone16_series": "سلسلة ايفون 16",
-            "iphone": "ايفون",
-            "doha": "الدوحة",
-            "new": "جديد"
-        },
+      
         "tech_specs_tab": "المواصفات الفنية",
         "ad_info_tab": "معلومات الإعلان",
         "views": "مشاهدة",

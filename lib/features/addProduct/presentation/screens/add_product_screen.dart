@@ -8,6 +8,8 @@ import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
+import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -115,12 +117,13 @@ class _BottomButtons extends ConsumerWidget {
     final controller = ref.read(addProductControllerProvider.notifier);
 
     final canProceed = state.step == 3
-        ? controller.canGoNextForSpecs(mockProductSpecs)
+        ? controller.canGoNextForSpecs(state.attributes)
         : controller.canGoNext();
 
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (step > 1)
             Flexible(
@@ -149,7 +152,7 @@ class _BottomButtons extends ConsumerWidget {
               final wasLoading = prev is AsyncLoading;
               final isSuccess = next is AsyncData;
 
-              if (wasLoading && isSuccess) {
+              if (wasLoading && isSuccess && next.value?.step==4) {
                 debugPrint("Success newAdSuccsessScreen");
                 context.push(AppRoutes.newAdSuccsessScreen);
               }
@@ -170,6 +173,7 @@ class _BottomButtons extends ConsumerWidget {
                 text: step != 4 ? 'next' : "",
                 onTap: canProceed
                     ? () {
+                      Dev.logMap(state.value!.specs);
                         {
                           if (step == 4) {
                             // submitProduct();
@@ -207,7 +211,7 @@ class _BottomButtons extends ConsumerWidget {
                         ],
                       )
                     : null,
-              ),
+              ).centered(),
               // ElevatedButton(
               //   onPressed:canProceed
               //       ? () {

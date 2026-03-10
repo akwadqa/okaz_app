@@ -16,47 +16,44 @@ import '../widgets/settings_item_card.dart';
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
-@override
-Widget build(BuildContext context, WidgetRef ref) {
-  final authAsync = ref.watch(isAuthenticatedProvider);
-  final settingsAsync = ref.watch(settingsControllerProvider);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authAsync = ref.watch(isAuthenticatedProvider);
+    final settingsAsync = ref.watch(settingsControllerProvider);
 
-  return authAsync.when(
-    loading: () => const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
-    ),
-    error: (e, _) => const Scaffold(
-      body: Center(child: Text('Something went wrong')),
-    ),
-    data: (isAuthenticated) {
-      return _buildContent(context, ref, isAuthenticated);
-    },
-  );
-}
-Widget _buildContent(
-  BuildContext context,
-  WidgetRef ref,
-  bool isAuthenticated,
-) {
-  return Scaffold(
-    backgroundColor: AppColors.background,
-    appBar: PreferredSize(
-      preferredSize: const Size(double.infinity, 65),
-      child: CustomAppbar(
-        title: context.tr('settings'),
-        withBackButton: false,
-      ),
-    ),
-    body: SingleChildScrollView(
+    return Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 65),
+          child: CustomAppbar(
+            title: context.tr('settings'),
+            withBackButton: false,
+          ),
+        ),
+        body: authAsync.when(
+          loading: () => Center(child: CircularProgressIndicator()),
+          error: (e, _) => Center(child: Text('Something went wrong')),
+          data: (isAuthenticated) {
+            return _buildContent(context, ref, isAuthenticated);
+          },
+        ));
+  }
+
+  Widget _buildContent(
+    BuildContext context,
+    WidgetRef ref,
+    bool isAuthenticated,
+  ) {
+    return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: Column(
         spacing: 20,
         children: [
-          if (isAuthenticated)
-            SettingsItemCard(
-              title: 'edit_my_profile',
-              icon: Assets.icons.editProfileIc,
-            ),
+          // if (isAuthenticated)
+          //   SettingsItemCard(
+          //     title: 'edit_my_profile',
+          //     icon: Assets.icons.editProfileIc,
+          //   ),
 
           // Always visible
           GestureDetector(
@@ -71,11 +68,11 @@ Widget _buildContent(
           ),
 
           if (isAuthenticated) ...[
-             SettingsItemCard(
-              title: 'pricing_services'.tr(),
-              icon: Assets.icons.privacyIc,
+            SettingsItemCard(
+              title: 'notifications'.tr(),
+              icon: Assets.icons.notificationIc,
             ),
-               SettingsItemCard(
+            SettingsItemCard(
               title: 'logout'.tr(),
               icon: Assets.icons.logoutIc,
               onTap: () {
@@ -86,16 +83,18 @@ Widget _buildContent(
                   confirmText: "logout_confirm",
                   confirmColor: AppColors.primary,
                   icon: Assets.icons.logoutIc.svg(height: 25, width: 25),
-                  onConfirm: () async{
-                   await ref.read(settingsControllerProvider.notifier).logout();
-context.pushReplacement(AppRoutes.signInScreen);
+                  onConfirm: () async {
+                    await ref
+                        .read(settingsControllerProvider.notifier)
+                        .logout();
+                    context.pushReplacement(AppRoutes.signInScreen);
                     // delete user logic
                   },
                   deleteAcc: false,
                 );
               },
             ),
-             SettingsItemCard(
+            SettingsItemCard(
               title: 'delete_user',
               icon: Assets.icons.deleteIc,
               onTap: () {
@@ -117,20 +116,18 @@ context.pushReplacement(AppRoutes.signInScreen);
               },
             ),
             100.verticalSpace,
-          ]else...[
-             SettingsItemCard(
-              title: 'login_required',
-              icon: Assets.icons.logoutIc,
-              onTap: () {
-context.pushReplacement(AppRoutes.signInScreen);
-              })
+          ] else ...[
+            SettingsItemCard(
+                title: 'login_required',
+                icon: Assets.icons.logoutIc,
+                onTap: () {
+                  context.pushReplacement(AppRoutes.signInScreen);
+                })
           ]
         ],
       ),
-    ),
-  );
-}
-
+    );
+  }
 }
 
   // @override

@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddPostParams {
   final String title;
@@ -12,9 +13,9 @@ class AddPostParams {
   final String price;
   final String attributes; // JSON string
   final List<File> images;
-  final String status;
   final String condition;
 final int isFeatured;
+final LatLng latLng;
   AddPostParams({
     required this.title,
     required this.description,
@@ -24,8 +25,7 @@ final int isFeatured;
     required this.price,
     required this.attributes,
     required this.images,
-    required this.status,
-    required this.condition, required this.isFeatured,
+    required this.condition, required this.isFeatured, required this.latLng,
   });
 
   AddPostParams copyWith({
@@ -37,9 +37,9 @@ final int isFeatured;
     String? price,
     String? attributes,
     List<File>? images,
-    String? status,
     String? condition,
     int? isFeatured,
+    LatLng? latLng,
   }) {
     return AddPostParams(
       title: title ?? this.title,
@@ -50,9 +50,9 @@ final int isFeatured;
       price: price ?? this.price,
       attributes: attributes ?? this.attributes,
       images: images ?? this.images,
-      status: status ?? this.status,
       condition: condition ?? this.condition,
       isFeatured: isFeatured ?? this.isFeatured,
+      latLng: latLng ?? this.latLng,
     );
   }
 
@@ -69,7 +69,7 @@ final int isFeatured;
       other.price == price &&
       other.attributes == attributes &&
       listEquals(other.images, images) &&
-      other.status == status &&
+     
       other.condition == condition &&
       other.isFeatured == isFeatured;
   }
@@ -84,8 +84,12 @@ final int isFeatured;
       price.hashCode ^
       attributes.hashCode ^
       images.hashCode ^
-      status.hashCode ^
       condition.hashCode ^
       isFeatured.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'AddPostParams(title: $title, description: $description, subcategory: $subcategory, postType: $postType, city: $city, price: $price, attributes: $attributes, images: $images, condition: $condition, isFeatured: $isFeatured, latLng: $latLng)';
   }
 }

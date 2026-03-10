@@ -2,8 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/features/addProduct/data/repositories/add_post_repositories.dart';
+import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
 import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/model/add_post_params.dart';
@@ -25,16 +28,48 @@ class AddProductController extends _$AddProductController {
   // ------------------------
   // Stepper
   // ------------------------
-
-  void nextStep() {
+  Future<void> nextStep() async {
     final current = state.value!;
+
     if (!canGoNext()) return;
     if (current.step >= 4) return;
+    if (current.step == 1) {
+      state = const AsyncLoading();
+
+      try {
+        Dev.logLine(current.subCategory);
+        Dev.logLine(current.category);
+        final attributes = await ref
+            .read(addPostRepositoriesProvider)
+            .getSubCategoryList(
+                subCategoryId: current.subCategory ?? current.category ?? "");
+
+        state = AsyncData(
+          current.copyWith(
+            step: 2,
+            attributes: attributes,
+          ),
+        );
+      } catch (e, st) {
+        state = AsyncError(e, st);
+      }
+
+      return;
+    }
 
     state = AsyncData(
       current.copyWith(step: current.step + 1),
     );
   }
+  // void nextStep() {
+  //   final current = state.value!;
+  //   if (!canGoNext()) return;
+  //   if (current.step >= 4) return;
+
+  //   state = AsyncData(
+  //     current.copyWith(step: current.step + 1),
+  //   );
+  // }
 
   void previousStep() {
     final current = state.value!;
@@ -79,9 +114,21 @@ class AddProductController extends _$AddProductController {
     );
   }
 
+  void setSubCategoryType(String value) {
+    state = AsyncData(
+      state.value!.copyWith(mainSubCategoryType: value),
+    );
+  }
+
   void setCity(String value) {
     state = AsyncData(
       state.value!.copyWith(city: value),
+    );
+  }
+
+  void setLatLng(LatLng value) {
+    state = AsyncData(
+      state.value!.copyWith(latLng: value),
     );
   }
 
@@ -89,8 +136,13 @@ class AddProductController extends _$AddProductController {
     final current = state.value!;
     final updatedSpecs = Map<String, dynamic>.from(current.specs);
 
-    updatedSpecs[key] = value;
-
+    if (value == null ||
+        (value is String && value.trim().isEmpty) ||
+        (value is List && value.isEmpty)) {
+      updatedSpecs.remove(key);
+    } else {
+      updatedSpecs[key] = value;
+    }
     state = AsyncData(
       current.copyWith(specs: updatedSpecs),
     );
@@ -201,7 +253,7 @@ class AddProductController extends _$AddProductController {
     final mapCtrl = ref.read(mapControllerProvider).value?.latLng;
     switch (s.step) {
       case 1:
-        return s.category != null;
+        return s.subCategory != null;
       case 2:
         return s.adType != null && s.city != null && mapCtrl != null;
       case 3:
@@ -218,18 +270,50 @@ class AddProductController extends _$AddProductController {
         return false;
     }
   }
+// bool canGoNextForSpecs(List<SubcategoryAttributeModel> specs) {
+//   final values = state.value!.specs;
 
-  bool canGoNextForSpecs(List<ProductSpec> specs) {
+//   for (final spec in specs) {
+//     // validate only required attributes
+//     if (spec.isMainFilter == 1) {
+//       final value = values[spec.title];
+
+//       if (value == null) {
+//         return false;
+//       }
+
+//       if (value is String && value.trim().isEmpty) {
+//         return false;
+//       }
+
+//       if (value is List && value.isEmpty) {
+//         return false;
+//       }
+//     }
+//   }
+
+//   return true;
+// }
+  bool canGoNextForSpecs(List<SubcategoryAttributeModel> specs) {
     final values = state.value!.specs;
+    Dev.logMap(values);
 
     for (final spec in specs) {
-      if (spec.required) {
-        final value = values[spec.key];
+      // if (spec.required) {
+      final value = values[spec.title];
 
-        if (value == null || (value is String && value.isEmpty)) {
-          return false;
-        }
+      if (value == null) {
+        return false;
       }
+
+      if (value is String && value.trim().isEmpty) {
+        return false;
+      }
+
+      if (value is List && value.isEmpty) {
+        return false;
+      }
+      // }
     }
     return true;
   }
@@ -245,7 +329,11 @@ class AddProductController extends _$AddProductController {
   Future<void> submitPost() async {
     final current = state.value!;
     final mapCtrl = ref.read(mapControllerProvider).value?.latLng;
-
+    Dev.logLine(mapCtrl?.latitude);
+    Dev.logLine(current.latLng?.latitude);
+    Dev.logLine("mapCtrl?");
+    Dev.logLine(mapCtrl?.longitude);
+    Dev.logLine(current.latLng?.longitude);
     if (!canGoNext()) return;
 
     state = const AsyncLoading();
@@ -268,16 +356,16 @@ class AddProductController extends _$AddProductController {
       final params = AddPostParams(
         title: current.titleEn!, // or titleAr depending backend
         description: current.descEn!,
-        subcategory: current.subCategory!,
+        subcategory: "Phone",
         postType: current.adType!,
         city: current.city!,
         price: current.price!.toString(),
         attributes: attributesJson,
         images: imageFiles,
-        status: current.adType!,
-        isFeatured: current.isFeatured?1:0,
+        condition: current.adType!,
+        isFeatured: current.isFeatured ? 1 : 0,
 
-        condition: "New", // change if dynamic
+        latLng: current.latLng!,
       );
       log("===== ADD POST DEBUG =====");
 
@@ -302,7 +390,7 @@ class AddProductController extends _$AddProductController {
       log("===== END DEBUG =====");
       // 🔹 Call datasource
       final result =
-          await ref.read(addPostRepositoriesProvider).submitData(params);
+          await ref.read(addPostRepositoriesProvider).createPost(params);
 
       state = AsyncData(current); // success
     } catch (e, st) {

@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/material.dart';
+import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 import 'package:pinput/pinput.dart';
@@ -54,6 +55,6 @@ class VerificationScreenPin extends StatelessWidget {
         length: 6,
         defaultPinTheme: pinTheme,
       ),
-    );
+    ).symmetricPadding(horizontal: 8);
   }
 }
