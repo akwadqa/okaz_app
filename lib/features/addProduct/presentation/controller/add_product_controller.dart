@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/features/addProduct/data/repositories/add_post_repositories.dart';
 import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
 import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
+import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -41,8 +42,7 @@ class AddProductController extends _$AddProductController {
         Dev.logLine(current.category);
         final attributes = await ref
             .read(addPostRepositoriesProvider)
-            .getSubCategoryList(
-                subCategoryId: current.subCategory ?? current.category ?? "");
+            .getSubCategoryList(subCategoryId: current.subCategory!.name!);
 
         state = AsyncData(
           current.copyWith(
@@ -98,7 +98,7 @@ class AddProductController extends _$AddProductController {
     );
   }
 
-  void setSubCategory(String value) {
+  void setSubCategory(SubCategoryModel value) {
     state = AsyncData(
       state.value!.copyWith(subCategory: value),
     );
@@ -111,6 +111,12 @@ class AddProductController extends _$AddProductController {
   void setAdType(String value) {
     state = AsyncData(
       state.value!.copyWith(adType: value),
+    );
+  }
+
+  void setConditionOfProduct(String value) {
+    state = AsyncData(
+      state.value!.copyWith(condition: value),
     );
   }
 
@@ -255,7 +261,10 @@ class AddProductController extends _$AddProductController {
       case 1:
         return s.subCategory != null;
       case 2:
-        return s.adType != null && s.city != null && mapCtrl != null;
+        return s.adType != null &&
+            s.condition != null &&
+            s.city != null &&
+            mapCtrl != null;
       case 3:
         return true; // specs later
       case 4:
@@ -334,6 +343,7 @@ class AddProductController extends _$AddProductController {
     Dev.logLine("mapCtrl?");
     Dev.logLine(mapCtrl?.longitude);
     Dev.logLine(current.latLng?.longitude);
+    Dev.logMap(current.specs);
     if (!canGoNext()) return;
 
     state = const AsyncLoading();
@@ -342,7 +352,7 @@ class AddProductController extends _$AddProductController {
       // 🔹 Convert specs map to attributes list
       final attributesList = current.specs.entries.map((e) {
         return {
-          "option": e.key,
+          "title": e.key,
           "value": e.value.toString(),
         };
       }).toList();
@@ -354,15 +364,17 @@ class AddProductController extends _$AddProductController {
 
       // 🔹 Build params
       final params = AddPostParams(
-        title: current.titleEn!, // or titleAr depending backend
+        title: current.titleEn!, 
+        titleAr: current.titleAr!,
         description: current.descEn!,
-        subcategory: "Phone",
+        descriptionAr: current.descAr!,
+        subcategory: current.subCategory?.categoryName ?? "",
         postType: current.adType!,
         city: current.city!,
         price: current.price!.toString(),
         attributes: attributesJson,
         images: imageFiles,
-        condition: current.adType!,
+        condition: current.condition!,
         isFeatured: current.isFeatured ? 1 : 0,
 
         latLng: current.latLng!,
@@ -370,6 +382,7 @@ class AddProductController extends _$AddProductController {
       log("===== ADD POST DEBUG =====");
 
       log("Title: ${current.titleEn}");
+      log("TitleAr: ${current.titleAr}");
       log("Description: ${current.descEn}");
       log("Subcategory: ${current.subCategory}");
       log("Post Type: ${current.adType}");
@@ -391,8 +404,12 @@ class AddProductController extends _$AddProductController {
       // 🔹 Call datasource
       final result =
           await ref.read(addPostRepositoriesProvider).createPost(params);
-
-      state = AsyncData(current); // success
+      // if (result.hasSucceeded) {
+        state = AsyncData(current); // success
+      // } else {
+      //   throw AsyncError(
+      //       result.message ?? "Something went wrong", StackTrace.current);
+      // }
     } catch (e, st) {
       state = AsyncError(e, st);
     }

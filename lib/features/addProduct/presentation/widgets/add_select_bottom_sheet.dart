@@ -255,7 +255,7 @@ Future<void> showAddSelectSheet<T>({
       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
     ),
     builder: (_) => AddSelectBottomSheet<T>(
-      title: title,
+      title: title.tr(),
       items: items,
       initialValue: selected,
       labelBuilder: labelBuilder,

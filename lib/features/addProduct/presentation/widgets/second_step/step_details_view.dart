@@ -35,14 +35,29 @@ class StepDetailsView extends ConsumerWidget {
             showAddSelectSheet<String>(
               context: context,
               title: 'select_ad_type',
-              items: const ['sell', 'wanted'],
+              items: const ['Sale', 'wanted'],
               selected: state.adType,
               labelBuilder: _adTypeLabel,
               onConfirm: controller.setAdType,
             );
           },
         ),
-
+ AddSelectField(
+          label: 'condition',
+          isRequired: true,
+          hint: 'condition_of_product',
+          value: _conditionLabel(state.condition),
+          onTap: () {
+               showAddSelectSheet<String>(
+              context: context,
+              title: 'select_condition',
+    items: const ['New', 'Used'],
+              selected: state.condition,
+              labelBuilder: _conditionLabel,
+              onConfirm: controller.setConditionOfProduct,
+            );
+          },
+        ),
         /// الفئات الفرعية *
         AddSelectField(
           label: 'sub_categories',
@@ -56,30 +71,29 @@ class StepDetailsView extends ConsumerWidget {
               items: mainFilters.values,
               selected: state.mainSubCategoryType,
               labelBuilder: (v) => v,
-              onConfirm:(v){ 
-                
-          controller.updateSpec(mainFilters.title, v);
+              onConfirm: (v) {
+                controller.updateSpec(mainFilters.title, v);
                 controller.setSubCategoryType(v);
-                },
+              },
             );
           },
         ),
 
-        /// المدينة *
+       
         AddSelectField(
           label: 'city',
           isRequired: true,
           hint: 'select_city',
           value: state.city,
           onTap: () {
-            showAddSelectSheet<String>(
-              context: context,
-              title: 'select_city'.tr(),
-              items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
-              selected: state.city,
-              labelBuilder: (v) => v,
-              onConfirm: controller.setCity,
-            );
+            // showAddSelectSheet<String>(
+            //   context: context,
+            //   title: 'select_city'.tr(),
+            //   items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
+            //   selected: state.city,
+            //   labelBuilder: (v) => v,
+            //   onConfirm: controller.setCity,
+            // );
           },
         ),
 
@@ -106,16 +120,20 @@ class StepDetailsView extends ConsumerWidget {
         12.verticalSpace,
 
         /// الموقع (NO *)
-        Text('location',
-            style: TextStyle(fontWeight: FontWeight.w600)),
+        Text('location', style: TextStyle(fontWeight: FontWeight.w600)),
         8.verticalSpace,
-
         LocationWidget(
-          latlng: LatLng(
-            mapController.value?.latLng?.latitude ?? 25.2816415,
-            mapController.value?.latLng?.longitude ?? 51.5242998,
-          ),
-        ),
+          latlng: state.latLng ??
+              mapController.value?.latLng ??
+              mapController.value?.initialLatLng ??
+              const LatLng(25.2816415, 51.5242998),
+        )
+        // LocationWidget(
+        //   latlng: LatLng(
+        //     mapController.value?.latLng?.latitude ?? 25.2816415,
+        //     mapController.value?.latLng?.longitude ?? 51.5242998,
+        //   ),
+        // ),
         // Container(
         //   height: 180,
         //   decoration: BoxDecoration(
@@ -130,14 +148,26 @@ class StepDetailsView extends ConsumerWidget {
     );
   }
 
-static String _adTypeLabel(String? value) {
-  switch (value) {
-    case 'sell':
-      return 'sell';
-    case 'wanted':
-      return 'wanted';
-    default:
-      return '';
+  static String _adTypeLabel(String? value) {
+    switch (value) {
+      case 'Sale':
+        return 'Sale';
+      case 'wanted':
+        return 'wanted';
+      default:
+        return '';
+    }
   }
+
+  static String _conditionLabel(String? value) {
+    switch (value) {
+      case 'Used':
+        return 'Used';
+      case 'New':
+        return 'New';
+      default:
+        return '';
+    }
+  
 }
 }

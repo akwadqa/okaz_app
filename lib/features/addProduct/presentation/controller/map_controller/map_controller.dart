@@ -6,11 +6,12 @@ import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:google_api_headers/google_api_headers.dart';
-
+import 'package:geocoding/geocoding.dart';
 import 'map_state.dart';
 
 part 'map_controller.g.dart';
-@riverpod
+@Riverpod(keepAlive: true)
+
 class MapController extends _$MapController {
   late final GoogleMapsPlaces _places;
 
@@ -21,8 +22,11 @@ class MapController extends _$MapController {
     
     );
 
-    const initial = LatLng(25.2854, 51.5310);
+  final addState =
+      ref.read(addProductControllerProvider).value;
 
+  final initial =
+      addState?.latLng ?? const LatLng(25.2854, 51.5310);
     return MapState(
       latLng: null,
       initialLatLng: initial,
@@ -87,24 +91,75 @@ class MapController extends _$MapController {
   }
 
   /// Confirm
-  Future<void> confirmLocation() async {
-    state = AsyncData(
-      state.value!.copyWith(selectedPlace: const AsyncLoading()),
+  // Future<void> confirmLocation() async {
+  //   state = AsyncData(
+  //     state.value!.copyWith(selectedPlace: const AsyncLoading()),
+  //   );
+
+  //   try {
+  //     await Future.delayed(const Duration(seconds: 1));
+  //     ref.read(addProductControllerProvider.notifier).setLatLng(state.value?.latLng??state.value!.initialLatLng!);
+  //     state = AsyncData(
+  //       state.value!.copyWith(selectedPlace: const AsyncData(null)),
+  //     );
+  //   } catch (e, st) {
+  //     state = AsyncData(
+  //       state.value!.copyWith(selectedPlace: AsyncError(e, st)),
+  //     );
+  //   }
+  // }
+Future<String?> _getCityFromLatLng(LatLng latLng) async {
+  try {
+    final placemarks = await placemarkFromCoordinates(
+      latLng.latitude,
+      latLng.longitude,
     );
 
-    try {
-      await Future.delayed(const Duration(seconds: 1));
-      ref.read(addProductControllerProvider.notifier).setLatLng(state.value?.latLng??state.value!.initialLatLng!);
-      state = AsyncData(
-        state.value!.copyWith(selectedPlace: const AsyncData(null)),
-      );
-    } catch (e, st) {
-      state = AsyncData(
-        state.value!.copyWith(selectedPlace: AsyncError(e, st)),
-      );
-    }
-  }
+    if (placemarks.isEmpty) return null;
 
+    final place = placemarks.first;
+
+    return place.locality ?? place.subAdministrativeArea;
+  } catch (e) {
+    Dev.logError("Geocoding error: $e");
+    return null;
+  }
+}
+Future<void> confirmLocation() async {
+  state = AsyncData(
+    state.value!.copyWith(selectedPlace: const AsyncLoading()),
+  );
+
+  try {
+    final latLng =
+        state.value?.latLng ?? state.value!.initialLatLng!;
+
+    /// 🔹 get city
+    final city = await _getCityFromLatLng(latLng);
+
+    /// 🔹 send location to AddPostController
+    final addCtrl =
+        ref.read(addProductControllerProvider.notifier);
+
+    addCtrl.setLatLng(latLng);
+
+    if (city != null) {
+      addCtrl.setCity(city);
+    }
+
+    state = AsyncData(
+      state.value!.copyWith(
+        selectedPlace: const AsyncData(null),
+      ),
+    );
+  } catch (e, st) {
+    state = AsyncData(
+      state.value!.copyWith(
+        selectedPlace: AsyncError(e, st),
+      ),
+    );
+  }
+}
   /// 🔹 Get LatLng from placeId (search box)
   // Future<LatLng?> getPlaceLocation(String placeId) async {
   //   try {

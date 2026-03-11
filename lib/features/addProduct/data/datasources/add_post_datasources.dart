@@ -3,6 +3,7 @@ import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_at
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
 import 'package:okaz/src/infrastructure/api/response/api_response.dart';
+import 'package:okaz/src/infrastructure/network/exception/dio_exceptions.dart';
 
 import '../../../../src/infrastructure/network/services/network_service.dart';
 import '../../../../src/logger/log_services/dev_logger.dart';
@@ -17,7 +18,9 @@ class AddPostDatasources {
     try {
       final formData = FormData.fromMap({
         "title": params.title,
+        "title_ar": params.titleAr,
         "description": params.description,
+        "description_ar": params.descriptionAr,
         "subcategory": params.subcategory,
         "post_type": params.postType,
         "city": params.city,
@@ -42,8 +45,8 @@ class AddPostDatasources {
         // queryParameters: {},
       );
 
-      if (response.data == null || response.statusCode != 200) {
-        throw Exception('Request failed');
+      if (response.data == null || response.statusCode != 201) {
+        throw AppException('Request failed');
       }
 
       return ApiResponse.fromJson(

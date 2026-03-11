@@ -234,65 +234,66 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
-    addContactIc,
-    addEventIc,
-    appIcon,
-    bnbAccountIc,
-    bnbAddIc,
-    bnbHomeIc,
-    bnbSettingsIc,
-    callIc,
-    carIc,
-    chatIc,
-    commentsDarkIc,
-    confirmGuestIc,
-    contactsIc,
-    dateIc,
-    deleteContactAlertIc,
-    deleteContactIc,
-    deleteIc,
-    deleteWithCornerIc,
-    editProfileIc,
-    electronicIc,
-    eventDateIc,
-    eventTimeIc,
-    eyeIc,
-    failedGuestIc,
-    familyStuffsIc,
-    filterIc,
-    fullNameIc,
-    googleIc,
-    homeIc,
-    iconCorner,
-    langIc,
-    likeLightIc,
-    likesDarkIc,
-    locationIc,
-    logoutIc,
-    logoutWithCornerIc,
-    messagesIc,
-    mostSearchIc,
-    notificationIc,
-    oclockIc,
-    passwordIc,
-    persone,
-    phoneNumberIc,
-    privacyIc,
-    qatarCountry,
-    qatarFlag,
-    realestateIc,
-    reportIc,
-    rocketIc,
-    saveEventIc,
-    scanIc,
-    sendCommentIc,
-    settingsIc,
-    starIc,
-    titleIc,
-    uploadImageIc,
-    waitingGuestIc,
-    whatsappIc,
-  ];
+        addContactIc,
+        addEventIc,
+        appIcon,
+        bnbAccountIc,
+        bnbAddIc,
+        bnbHomeIc,
+        bnbSettingsIc,
+        callIc,
+        carIc,
+        chatIc,
+        commentsDarkIc,
+        confirmGuestIc,
+        contactsIc,
+        dateIc,
+        deleteContactAlertIc,
+        deleteContactIc,
+        deleteIc,
+        deleteWithCornerIc,
+        editProfileIc,
+        electronicIc,
+        eventDateIc,
+        eventTimeIc,
+        eyeIc,
+        failedGuestIc,
+        familyStuffsIc,
+        filterIc,
+        fullNameIc,
+        googleIc,
+        homeIc,
+        iconCorner,
+        langIc,
+        likeLightIc,
+        likesDarkIc,
+        locationIc,
+        logoutIc,
+        logoutWithCornerIc,
+        messagesIc,
+        mostSearchIc,
+        notificationIc,
+        oclockIc,
+        passwordIc,
+        persone,
+        phoneNumberIc,
+        privacyIc,
+        qatarCountry,
+        qatarFlag,
+        realestateIc,
+        reportIc,
+        rocketIc,
+        saveEventIc,
+        scanIc,
+        sendCommentIc,
+        settingsIc,
+        starIc,
+        titleIc,
+        uploadImageIc,
+        waitingGuestIc,
+        whatsappIc,
+        yellowStarIc
+      ];
 }
 
 class $AssetsImagesGen {
@@ -412,35 +413,35 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<dynamic> get values => [
-    rectangle,
-    accessDenied,
-    allEventImage,
-    backgroundEventIm,
-    bookImage,
-    emptyData,
-    emptyMessages,
-    emptyNotificationIm,
-    emptySearchIm,
-    imErrorScreen,
-    invitationCreateIm,
-    inviteTypeImage,
-    iponeImage,
-    noSearchImage,
-    onBoardingIm1,
-    onBoardingIm2,
-    onBoardingIm3,
-    phoneImage,
-    qatarCountry,
-    qatarFlag,
-    qrTemplateImage,
-    splashBackIm,
-    splashImage,
-    successImageAdded,
-    template1Image,
-    template2Image,
-    templateReplyImage,
-    watchImage,
-  ];
+        rectangle,
+        accessDenied,
+        allEventImage,
+        backgroundEventIm,
+        bookImage,
+        emptyData,
+        emptyMessages,
+        emptyNotificationIm,
+        emptySearchIm,
+        imErrorScreen,
+        invitationCreateIm,
+        inviteTypeImage,
+        iponeImage,
+        noSearchImage,
+        onBoardingIm1,
+        onBoardingIm2,
+        onBoardingIm3,
+        phoneImage,
+        qatarCountry,
+        qatarFlag,
+        qrTemplateImage,
+        splashBackIm,
+        splashImage,
+        successImageAdded,
+        template1Image,
+        template2Image,
+        templateReplyImage,
+        watchImage
+      ];
 }
 
 class $AssetsLottieGen {
@@ -552,8 +553,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;
@@ -574,11 +582,17 @@ class AssetGenImageAnimation {
 }
 
 class SvgGenImage {
-  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = false;
+  const SvgGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = false;
 
-  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
-    : _isVecFormat = true;
+  const SvgGenImage.vec(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  }) : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -634,8 +648,7 @@ class SvgGenImage {
       placeholderBuilder: placeholderBuilder,
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
-      colorFilter:
-          colorFilter ??
+      colorFilter: colorFilter ??
           (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
       clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,

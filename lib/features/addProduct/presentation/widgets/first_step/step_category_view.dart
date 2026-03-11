@@ -32,11 +32,11 @@ class StepCategoryView extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             children: [
               /// 🔍 Search
-              HomeScreenSearchFiled(
-                title: '',
-              ),
+              // HomeScreenSearchFiled(
+              //   title: '',
+              // ),
 
-              12.verticalSpace,
+              // 12.verticalSpace,
 
               /// Title
               Text(
@@ -44,7 +44,7 @@ class StepCategoryView extends ConsumerWidget {
                 style: AppTextStyle.rubikBold18,
                 // textAlign: TextAlign.center,
               ),
-              6.verticalSpace,
+              12.verticalSpace,
               Text(
                 "select_category_desc".tr(),
                 style: AppTextStyle.interRegular14,
@@ -127,10 +127,10 @@ class StepCategoryView extends ConsumerWidget {
 class _CategorySection extends StatelessWidget {
   final CategoryModel category;
   final String? selectedCategory;
-  final String? selectedSubCategory;
+  final SubCategoryModel? selectedSubCategory;
 
   final Function(String) onCategorySelect;
-  final Function(String) onSubCategorySelect;
+  final Function(SubCategoryModel) onSubCategorySelect;
 
   const _CategorySection({
     required this.category,
@@ -195,12 +195,12 @@ class _CategorySection extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 onCategorySelect(category.name ?? "");
-                onSubCategorySelect(sub?.categoryName ?? "");
+                onSubCategorySelect(sub!);
               },
               child: Row(
                 children: [
-                  AppScaledRadio<String>(
-                    value: sub?.name ?? "",
+                  AppScaledRadio<SubCategoryModel>(
+                    value: sub!,
                     groupValue: selectedSubCategory,
                     onChanged: (v) {
                       onCategorySelect(category.name ?? "");

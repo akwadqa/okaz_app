@@ -1,5 +1,6 @@
 import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
+import 'package:okaz/src/infrastructure/api/response/api_response.dart';
 import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -21,11 +22,12 @@ class AddPostRepositories {
 Future<void> createPost(AddPostParams params) async {
   final response = await _remoteDataSource.createPost(params);
 
-  if (response.status == 200) {
-    return response.data!;
+  if (response.hasFailed) {
+  throw AppException(message:  response.message);
+
+    // return response.data!;
   }
 
-  throw AppException(message:  response.message);
 }
 Future<List<SubcategoryAttributeModel>> getSubCategoryList({required String subCategoryId}) async {
   try {

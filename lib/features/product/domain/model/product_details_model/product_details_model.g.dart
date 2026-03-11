@@ -45,41 +45,44 @@ _ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ProductDetailsModelToJson(
-  _ProductDetailsModel instance,
-) => <String, dynamic>{
-  'title': instance.title,
-  'title_ar': instance.titleAr,
-  'description': instance.description,
-  'description_ar': instance.descriptionAr,
-  'price': instance.price,
-  'currency': instance.currency,
-  'city': instance.city,
-  'latitude': instance.latitude,
-  'longitude': instance.longitude,
-  'condition': instance.condition,
-  'post_type': instance.postType,
-  'category': instance.category,
-  'subcategory': instance.subcategory,
-  'images': instance.images,
-  'attributes': instance.attributes,
-  'is_featured': instance.isFeatured,
-  'parent_comments': instance.parentComments,
-  'likes': instance.likes,
-  'comments': instance.comments,
-  'views': instance.views,
-  'reports': instance.reports,
-  'created_on': instance.createdOn,
-  'user_info': instance.userInfo,
-  'user_is_owner': instance.userIsOwner,
-  'is_favorited': instance.isFavorited,
-  'is_liked': instance.isLiked,
-};
+        _ProductDetailsModel instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'title_ar': instance.titleAr,
+      'description': instance.description,
+      'description_ar': instance.descriptionAr,
+      'price': instance.price,
+      'currency': instance.currency,
+      'city': instance.city,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'condition': instance.condition,
+      'post_type': instance.postType,
+      'category': instance.category,
+      'subcategory': instance.subcategory,
+      'images': instance.images,
+      'attributes': instance.attributes,
+      'is_featured': instance.isFeatured,
+      'parent_comments': instance.parentComments,
+      'likes': instance.likes,
+      'comments': instance.comments,
+      'views': instance.views,
+      'reports': instance.reports,
+      'created_on': instance.createdOn,
+      'user_info': instance.userInfo,
+      'user_is_owner': instance.userIsOwner,
+      'is_favorited': instance.isFavorited,
+      'is_liked': instance.isLiked,
+    };
 
-_PostImage _$PostImageFromJson(Map<String, dynamic> json) =>
-    _PostImage(image: json['image'] as String?);
+_PostImage _$PostImageFromJson(Map<String, dynamic> json) => _PostImage(
+      image: json['image'] as String?,
+    );
 
 Map<String, dynamic> _$PostImageToJson(_PostImage instance) =>
-    <String, dynamic>{'image': instance.image};
+    <String, dynamic>{
+      'image': instance.image,
+    };
 
 _PostAttribute _$PostAttributeFromJson(Map<String, dynamic> json) =>
     _PostAttribute(
@@ -88,29 +91,32 @@ _PostAttribute _$PostAttributeFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$PostAttributeToJson(_PostAttribute instance) =>
-    <String, dynamic>{'option': instance.option, 'value': instance.value};
+    <String, dynamic>{
+      'option': instance.option,
+      'value': instance.value,
+    };
 
 _Comment _$CommentFromJson(Map<String, dynamic> json) => _Comment(
-  name: json['name'] as String?,
-  content: json['content'] as String?,
-  commentBy: json['comment_by'] == null
-      ? null
-      : CommenterInfo.fromJson(json['comment_by'] as Map<String, dynamic>),
-  timestamp: json['timestamp'] as String?,
-  edited: (json['edited'] as num?)?.toInt(),
-  childComments: (json['child_comments'] as List<dynamic>?)
-      ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
-      .toList(),
-);
+      name: json['name'] as String?,
+      content: json['content'] as String?,
+      commentBy: json['comment_by'] == null
+          ? null
+          : CommenterInfo.fromJson(json['comment_by'] as Map<String, dynamic>),
+      timestamp: json['timestamp'] as String?,
+      edited: (json['edited'] as num?)?.toInt(),
+      childComments: (json['child_comments'] as List<dynamic>?)
+          ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
 
 Map<String, dynamic> _$CommentToJson(_Comment instance) => <String, dynamic>{
-  'name': instance.name,
-  'content': instance.content,
-  'comment_by': instance.commentBy,
-  'timestamp': instance.timestamp,
-  'edited': instance.edited,
-  'child_comments': instance.childComments,
-};
+      'name': instance.name,
+      'content': instance.content,
+      'comment_by': instance.commentBy,
+      'timestamp': instance.timestamp,
+      'edited': instance.edited,
+      'child_comments': instance.childComments,
+    };
 
 _CommenterInfo _$CommenterInfoFromJson(Map<String, dynamic> json) =>
     _CommenterInfo(
@@ -127,13 +133,13 @@ Map<String, dynamic> _$CommenterInfoToJson(_CommenterInfo instance) =>
     };
 
 _PostOwner _$PostOwnerFromJson(Map<String, dynamic> json) => _PostOwner(
-  postOwnerEmail: json['post_owner'] as String?,
-  ownerAppId: json['owner_app_id'] as String?,
-  firstName: json['first_name'] as String?,
-  lastName: json['last_name'] as String?,
-  mobileNo: json['mobile_no'] as String?,
-  country: json['country'] as String?,
-);
+      postOwnerEmail: json['post_owner'] as String?,
+      ownerAppId: json['owner_app_id'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      mobileNo: json['mobile_no'] as String?,
+      country: json['country'] as String?,
+    );
 
 Map<String, dynamic> _$PostOwnerToJson(_PostOwner instance) =>
     <String, dynamic>{
