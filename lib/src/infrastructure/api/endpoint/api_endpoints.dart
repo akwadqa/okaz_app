@@ -28,6 +28,7 @@ class ApiEndPoints {
 
   static const String productDetails = 'okaz.api.post.post_details';
   static const String addProductToFavorite = 'product_favorite';
+  static const String sendReport = 'okaz.api.engagement.create_report';
 
   //? --- Post ---
   static const String deletePost = 'okaz.api.post.delete_post';
@@ -49,7 +50,7 @@ class ApiEndPoints {
   static const String favoritePosts = 'okaz.api.profile.favorite_posts';
 
   //? --- Filter ---
-  static const String productsByFilter = 'products_by_filter';
+  static const String productsByFilter = 'okaz.api.post.posts';
 
   //? --- Search ---
   static const String search = 'search';

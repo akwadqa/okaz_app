@@ -60,6 +60,16 @@ class ProductRepository {
     throw AppException(response.message);
   }
 
+  Future<ApiResponse> sendReport(String postId, String title) async {
+    final response = await _remoteDataSource.sendReport(postId, title);
+
+    if (response.status! <= 201) {
+      return response;
+    }
+
+    throw AppException(response.message);
+  }
+
   Future<ApiResponse<bool>> likePost(String productID) async {
     final response = await _remoteDataSource.likePost(productID);
 

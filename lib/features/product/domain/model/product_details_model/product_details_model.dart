@@ -8,17 +8,19 @@ part 'product_details_model.g.dart';
 abstract class ProductDetailsModel with _$ProductDetailsModel {
   const factory ProductDetailsModel({
     String? title,
+    String? name,
     @JsonKey(name: 'title_ar') String? titleAr,
     String? description,
     @JsonKey(name: 'description_ar') String? descriptionAr,
     num? price,
     String? currency,
     String? city,
-    double? latitude,
-    double? longitude,
+    String? latitude,
+    String? longitude,
     String? condition,
     @JsonKey(name: 'post_type') String? postType,
     String? category,
+    String? image,
     String? subcategory,
     List<PostImage>? images,
     List<PostAttribute>? attributes,
@@ -31,8 +33,8 @@ abstract class ProductDetailsModel with _$ProductDetailsModel {
     @JsonKey(name: 'created_on') String? createdOn,
     @JsonKey(name: 'user_info') PostOwner? userInfo,
     @JsonKey(name: 'user_is_owner') bool? userIsOwner,
-    @JsonKey(name: 'is_favorited') String? isFavorited,
-    @JsonKey(name: 'is_liked') String? isLiked,
+    @JsonKey(name: 'is_favorited') bool? isFavorited,
+    @JsonKey(name: 'is_liked') bool? isLiked,
   }) = _ProductDetailsModel;
 
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>

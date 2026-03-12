@@ -16,9 +16,11 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
   final VoidCallback? onDelete;
   final bool showMenu;
   final bool showChildren;
+  final String postId;
   const ProductDetailsScreenCommentTile({
     super.key,
     required this.comment,
+    required this.postId,
     this.onEdit,
     this.onDelete,
     this.showMenu = true,
@@ -36,20 +38,17 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 22,
-                backgroundColor:
-                    (comment.commentBy?.image == null ||
+                backgroundColor: (comment.commentBy?.image == null ||
                         comment.commentBy?.image == '')
                     ? AppColors.grayHint
                     : null,
-                backgroundImage:
-                    (comment.commentBy?.image == null ||
+                backgroundImage: (comment.commentBy?.image == null ||
                         comment.commentBy?.image == '')
                     ? null
                     : CachedNetworkImageProvider(
                         ServicesUrls.imageUrl + comment.commentBy!.image!,
                       ),
-                child:
-                    (comment.commentBy?.image == null ||
+                child: (comment.commentBy?.image == null ||
                         comment.commentBy?.image == '')
                     ? Text(
                         comment.commentBy?.firstName
@@ -116,6 +115,7 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
                   await showEditCommentBottomSheet(
                     context,
                     comment: subCommint,
+                    postId: postId
                   );
                 },
               ),

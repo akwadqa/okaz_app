@@ -11,7 +11,8 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import '../../../../gen/assets.gen.dart';
 
 class ProductDetailsScreenMessageComposer extends ConsumerStatefulWidget {
-  const ProductDetailsScreenMessageComposer({super.key});
+  const ProductDetailsScreenMessageComposer({super.key, required this.postId});
+  final String postId;
 
   @override
   ConsumerState<ProductDetailsScreenMessageComposer> createState() =>
@@ -45,7 +46,7 @@ class _ProductDetailsScreenMessageComposerState
           _controller.clear();
           ref
               .read(productControllerProvider.notifier)
-              .getProductDetails('goqg36nmh5');
+              .getProductDetails(widget.postId);
         }
       },
     );
@@ -81,8 +82,7 @@ class _ProductDetailsScreenMessageComposerState
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
-            suffixIcon:
-                controller?.maybeWhen(
+            suffixIcon: controller?.maybeWhen(
                   loading: () => SizedBox(width: 40, child: const AppLoader()),
                   orElse: () => InkWell(
                     onTap: () {
@@ -91,7 +91,7 @@ class _ProductDetailsScreenMessageComposerState
                           .createComment(
                             CreateCommentModel(
                               content: _controller.text,
-                              postId: 'goqg36nmh5',
+                              postId: widget.postId,
                               parentComment: null,
                             ),
                           );
@@ -105,12 +105,10 @@ class _ProductDetailsScreenMessageComposerState
                 ) ??
                 InkWell(
                   onTap: () {
-                    ref
-                        .read(commentControllerProvider.notifier)
-                        .createComment(
+                    ref.read(commentControllerProvider.notifier).createComment(
                           CreateCommentModel(
                             content: _controller.text,
-                            postId: 'goqg36nmh5',
+                            postId: widget.postId,
                             parentComment: null,
                           ),
                         );

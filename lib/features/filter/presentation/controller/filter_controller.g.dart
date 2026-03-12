@@ -33,7 +33,7 @@ final class FilterControllerProvider
   FilterController create() => FilterController();
 }
 
-String _$filterControllerHash() => r'89d587ec8147cf44ddab4f95e4b537f96145abed';
+String _$filterControllerHash() => r'7fd59a21c40c2b0636928e8cf3066f4153952588';
 
 abstract class _$FilterController extends $AsyncNotifier<FilterState> {
   FutureOr<FilterState> build();

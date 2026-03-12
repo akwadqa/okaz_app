@@ -122,7 +122,7 @@ class _ProductDetailsScreenIconCircleButtonState
     _scale = 1.0;
     ref
         .read(productControllerProvider.notifier)
-        .addPostToFavorite('goqg36nmh5');
+        .addPostToFavorite(widget.productDetailsModel?.name ?? 'id');
     setState(() {
       _scale = 1.3;
     });
@@ -139,7 +139,7 @@ class _ProductDetailsScreenIconCircleButtonState
   @override
   Widget build(BuildContext context) {
     bool isSelected =
-        ref.watch(productControllerProvider).value!.favoritePost ?? false;
+        ref.watch(productControllerProvider).value?.favoritePost ?? false;
 
     return ProviderScope(
       overrides: [

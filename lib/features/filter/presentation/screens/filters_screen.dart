@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/filter/presentation/controller/filters_form_controller.dart';
+import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
 import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_drop_down_menu.dart';
 import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_footer.dart';
 import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_radio_menu.dart';
@@ -31,7 +31,7 @@ class FiltersScreen extends ConsumerWidget {
         actionsPadding: EdgeInsets.symmetric(horizontal: 22),
         actions: [
           GestureDetector(
-            onTap: () => ref.read(filtersControllerProvider.notifier).reset(),
+            onTap: () => ref.read(filterControllerProvider.notifier).reset(),
             child: Text(
               'reset'.tr(),
               style: AppTextStyle.rubikSemiBold14.copyWith(
@@ -51,51 +51,69 @@ class _FiltersScreenContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(filtersControllerProvider);
+    final items = ref.watch(filterControllerProvider
+        .select((value) => value.value!.subCategoryAttributes!.value!));
     return Column(
       children: [
         Divider(color: AppColors.borderGrey, height: 0),
-
         Expanded(
-          child: SingleChildScrollView(
-            child: Padding(
+          child: ListView.separated(
+              itemCount: items.length + 1,
+              separatorBuilder: (context, index) => 22.verticalSpace,
               padding: EdgeInsets.symmetric(horizontal: 22),
-              child: Column(
-                spacing: 22,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  2.verticalSpace,
-                  FiltersScreenSearchFiled(),
-                  FiltersScreenDropDownMenu(
-                    title: 'موديلات ايفون',
-                    items: FiltersController.iphoneModels,
-                    value: state.selectedModel,
-                    onChanged: (val) {
-                      ref
-                          .read(filtersControllerProvider.notifier)
-                          .selectModel(val);
-                    },
-                  ),
-                  FiltersScreenDropDownMenu(
-                    title: 'السعة التخزينية',
-                    items: FiltersController.storageOptions,
-                    value: state.selectedStorage,
-                    onChanged: (val) {
-                      ref
-                          .read(filtersControllerProvider.notifier)
-                          .selectStorage(val);
-                    },
-                  ),
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return FiltersScreenSearchFiled();
+                }
 
-                  // FiltersScreenWrapMenu(title: 'نوع الشريحة'),
-                  FiltersScreenWrapMenu(title: 'نوع الشريحة'),
-                  FiltersScreenSwitchItem(),
-                  FiltersScreenRadioMenu(),
-                  2.verticalSpace,
-                ],
-              ),
-            ),
-          ),
+                switch (items[index - 1].dataType) {
+                  case 'Checkbox':
+                    return FiltersScreenSwitchItem(items[index - 1]);
+
+                  case 'Select':
+                    return FiltersScreenWrapMenu(
+                      subcategoryAttributeModel: items[index - 1],
+                    );
+
+                  default:
+                    return SizedBox();
+                }
+
+                // child: Column(
+                //   spacing: 22,
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     2.verticalSpace,
+                //     FiltersScreenSearchFiled(),
+                //     FiltersScreenDropDownMenu(
+                //       title: 'موديلات ايفون',
+                //       items: FiltersController.iphoneModels,
+                //       value: state.selectedModel,
+                //       onChanged: (val) {
+                //         ref
+                //             .read(filtersControllerProvider.notifier)
+                //             .selectModel(val);
+                //       },
+                //     ),
+                //     FiltersScreenDropDownMenu(
+                //       title: 'السعة التخزينية',
+                //       items: FiltersController.storageOptions,
+                //       value: state.selectedStorage,
+                //       onChanged: (val) {
+                //         ref
+                //             .read(filtersControllerProvider.notifier)
+                //             .selectStorage(val);
+                //       },
+                //     ),
+
+                //     // FiltersScreenWrapMenu(title: 'نوع الشريحة'),
+                //     FiltersScreenWrapMenu(title: 'نوع الشريحة'),
+                //     FiltersScreenSwitchItem(),
+                //     FiltersScreenRadioMenu(),
+                //     2.verticalSpace,
+                //   ],
+                // ),
+              }),
         ),
         FiltersScreenFooter(),
       ],

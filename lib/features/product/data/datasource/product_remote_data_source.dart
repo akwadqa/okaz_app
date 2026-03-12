@@ -147,4 +147,27 @@ class ProductRemoteDataSource {
       rethrow;
     }
   }
+
+  Future<ApiResponse> sendReport(String postId, String title) async {
+    try {
+      final data = {'post_id': postId, 'reason': title};
+      final response = await _networkService.put(
+        ApiEndPoints.sendReport,
+        data: data,
+        queryParameters: {},
+      );
+
+      if (response.data == null || response.statusCode > 201) {
+        throw Exception('Request failed');
+      }
+
+      return ApiResponse.fromJson(
+        response.data as Map<String, dynamic>,
+        (json) {},
+      );
+    } catch (e) {
+      Dev.logLine('Error in submitData: e');
+      rethrow;
+    }
+  }
 }

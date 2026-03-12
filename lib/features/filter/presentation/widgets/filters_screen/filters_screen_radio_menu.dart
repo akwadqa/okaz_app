@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/filter/presentation/controller/filters_form_controller.dart';
 import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_radio_item.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -10,8 +9,8 @@ class FiltersScreenRadioMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(filtersControllerProvider);
-    final selected = state.selectedNetwork ?? '';
+    // final state = ref.watch(filtersControllerProvider);
+    // final selected = state.selectedNetwork ?? '';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,16 +22,16 @@ class FiltersScreenRadioMenu extends ConsumerWidget {
         ),
         Wrap(
           spacing: 29,
-          children: FiltersController.networkTypes.map((item) {
-            return FiltersScreenRadioItem(
-              title: item,
-              groupValue: selected,
-              onChanged: (val) {
-                if (val == null) return;
-                ref.read(filtersControllerProvider.notifier).selectNetwork(val);
-              },
-            );
-          }).toList(),
+          // children: FiltersController.networkTypes.map((item) {
+          //   return FiltersScreenRadioItem(
+          //     title: item,
+          //     groupValue: selected,
+          //     onChanged: (val) {
+          //       if (val == null) return;
+          //       ref.read(filtersControllerProvider.notifier).selectNetwork(val);
+          //     },
+          //   );
+          // }).toList(),
         ),
       ],
     );

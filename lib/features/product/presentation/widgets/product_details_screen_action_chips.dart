@@ -41,11 +41,11 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
           onTap: () {
             (isLike ?? false)
                 ? ref
-                      .read(productControllerProvider.notifier)
-                      .unLikePost('goqg36nmh5')
+                    .read(productControllerProvider.notifier)
+                    .unLikePost(productDetailsModel.name ?? 'id')
                 : ref
-                      .read(productControllerProvider.notifier)
-                      .likePost('goqg36nmh5');
+                    .read(productControllerProvider.notifier)
+                    .likePost(productDetailsModel.name ?? 'id');
           },
         ),
         const Spacer(),
@@ -53,7 +53,8 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
           icon: Assets.icons.reportIc,
           label: 'product_details.report_ad'.tr(),
           onTap: () {
-            showReportDialog(context);
+            showReportDialog(context, TextEditingController(),
+                productDetailsModel.name ?? 'id');
           },
           minWidth: 138,
         ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
@@ -5,6 +6,7 @@ import 'package:okaz/features/product/presentation/widgets/product_details_scree
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -12,14 +14,15 @@ import '../../../../profile/domain/profile_item.dart';
 
 class ProductsScreenProductItem extends StatelessWidget {
   // final ProfileItem? item;
-  final ProductDetailsModel? item;
+  final ProductDetailsModel item;
 
   const ProductsScreenProductItem({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push(AppRoutes.productDetailsScreen),
+      onTap: () =>
+          context.push(AppRoutes.productDetailsScreen, extra: item.name),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Column(
@@ -28,13 +31,17 @@ class ProductsScreenProductItem extends StatelessWidget {
               flex: 3,
               child: Container(
                 width: double.infinity,
-                decoration: BoxDecoration(),
+                color: AppColors.white,
                 child: Stack(
                   children: [
                     Positioned(
                       right: 0,
                       left: 0,
-                      child: Assets.images.iponeImage.image(fit: BoxFit.cover),
+                      // child: Assets.images.iponeImage.image(fit: BoxFit.cover),
+                      child: CachedNetworkImage(
+                        imageUrl: ServicesUrls.imageUrl + (item.image ?? ''),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Positioned(
                       right: 10,
@@ -86,7 +93,6 @@ class ProductsScreenProductItem extends StatelessWidget {
                       spacing: 5,
                       children: [
                         Assets.icons.commentsDarkIc.svg(),
-
                         Text(
                           '${item?.comments ?? 1}',
                           style: AppTextStyle.rubikRegular12.copyWith(
@@ -95,7 +101,6 @@ class ProductsScreenProductItem extends StatelessWidget {
                         ),
                         10.horizontalSpace,
                         Assets.icons.likesDarkIc.svg(),
-
                         Text(
                           '${item?.likes ?? 5}',
                           style: AppTextStyle.rubikRegular12.copyWith(

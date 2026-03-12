@@ -43,7 +43,7 @@ class CommentRepository {
     final response = await _remoteDataSource.deleteComment(commentId);
 
     if (response.status! <= 201) {
-      return response.data!;
+      return response;
     }
 
     throw AppException(response.message);

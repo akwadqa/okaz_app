@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +17,10 @@ class ProductsScreenSearchType extends ConsumerWidget {
       children: [
         Expanded(
           child: GestureDetector(
-            onTap: () => ref.read(searchTypeProvider.notifier).state = 0,
+            onTap: () {
+              ref.read(searchTypeProvider.notifier).state = 0;
+              ref.read(filterControllerProvider.notifier).getPosts();
+            },
             child: Container(
               alignment: Alignment.center,
               height: 40,
@@ -36,9 +38,8 @@ class ProductsScreenSearchType extends ConsumerWidget {
               child: Text(
                 'for_sale'.tr(),
                 style: AppTextStyle.rubikMedium14.copyWith(
-                  color: currentType == 0
-                      ? AppColors.white
-                      : AppColors.textDart,
+                  color:
+                      currentType == 0 ? AppColors.white : AppColors.textDart,
                 ),
               ),
             ),
@@ -46,7 +47,10 @@ class ProductsScreenSearchType extends ConsumerWidget {
         ),
         Expanded(
           child: GestureDetector(
-            onTap: () => ref.read(searchTypeProvider.notifier).state = 1,
+            onTap: () {
+              ref.read(searchTypeProvider.notifier).state = 1;
+              ref.read(filterControllerProvider.notifier).getPosts();
+            },
             child: Container(
               alignment: Alignment.center,
               height: 40,
@@ -64,9 +68,8 @@ class ProductsScreenSearchType extends ConsumerWidget {
               child: Text(
                 'required'.tr(),
                 style: AppTextStyle.rubikMedium14.copyWith(
-                  color: currentType == 1
-                      ? AppColors.white
-                      : AppColors.textDart,
+                  color:
+                      currentType == 1 ? AppColors.white : AppColors.textDart,
                 ),
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
 import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
