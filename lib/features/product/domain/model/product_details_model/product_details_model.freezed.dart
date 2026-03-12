@@ -15,6 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductDetailsModel {
   String? get title;
+  String? get name;
   @JsonKey(name: 'title_ar')
   String? get titleAr;
   String? get description;
@@ -23,12 +24,13 @@ mixin _$ProductDetailsModel {
   num? get price;
   String? get currency;
   String? get city;
-  double? get latitude;
-  double? get longitude;
+  String? get latitude;
+  String? get longitude;
   String? get condition;
   @JsonKey(name: 'post_type')
   String? get postType;
   String? get category;
+  String? get image;
   String? get subcategory;
   List<PostImage>? get images;
   List<PostAttribute>? get attributes;
@@ -47,9 +49,9 @@ mixin _$ProductDetailsModel {
   @JsonKey(name: 'user_is_owner')
   bool? get userIsOwner;
   @JsonKey(name: 'is_favorited')
-  String? get isFavorited;
+  bool? get isFavorited;
   @JsonKey(name: 'is_liked')
-  String? get isLiked;
+  bool? get isLiked;
 
   /// Create a copy of ProductDetailsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -68,6 +70,7 @@ mixin _$ProductDetailsModel {
         (other.runtimeType == runtimeType &&
             other is ProductDetailsModel &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.titleAr, titleAr) || other.titleAr == titleAr) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -87,6 +90,7 @@ mixin _$ProductDetailsModel {
                 other.postType == postType) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.subcategory, subcategory) ||
                 other.subcategory == subcategory) &&
             const DeepCollectionEquality().equals(other.images, images) &&
@@ -117,6 +121,7 @@ mixin _$ProductDetailsModel {
   int get hashCode => Object.hashAll([
         runtimeType,
         title,
+        name,
         titleAr,
         description,
         descriptionAr,
@@ -128,6 +133,7 @@ mixin _$ProductDetailsModel {
         condition,
         postType,
         category,
+        image,
         subcategory,
         const DeepCollectionEquality().hash(images),
         const DeepCollectionEquality().hash(attributes),
@@ -146,7 +152,7 @@ mixin _$ProductDetailsModel {
 
   @override
   String toString() {
-    return 'ProductDetailsModel(title: $title, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
+    return 'ProductDetailsModel(title: $title, name: $name, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, image: $image, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
   }
 }
 
@@ -158,17 +164,19 @@ abstract mixin class $ProductDetailsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? title,
+      String? name,
       @JsonKey(name: 'title_ar') String? titleAr,
       String? description,
       @JsonKey(name: 'description_ar') String? descriptionAr,
       num? price,
       String? currency,
       String? city,
-      double? latitude,
-      double? longitude,
+      String? latitude,
+      String? longitude,
       String? condition,
       @JsonKey(name: 'post_type') String? postType,
       String? category,
+      String? image,
       String? subcategory,
       List<PostImage>? images,
       List<PostAttribute>? attributes,
@@ -181,8 +189,8 @@ abstract mixin class $ProductDetailsModelCopyWith<$Res> {
       @JsonKey(name: 'created_on') String? createdOn,
       @JsonKey(name: 'user_info') PostOwner? userInfo,
       @JsonKey(name: 'user_is_owner') bool? userIsOwner,
-      @JsonKey(name: 'is_favorited') String? isFavorited,
-      @JsonKey(name: 'is_liked') String? isLiked});
+      @JsonKey(name: 'is_favorited') bool? isFavorited,
+      @JsonKey(name: 'is_liked') bool? isLiked});
 
   $PostOwnerCopyWith<$Res>? get userInfo;
 }
@@ -201,6 +209,7 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = freezed,
+    Object? name = freezed,
     Object? titleAr = freezed,
     Object? description = freezed,
     Object? descriptionAr = freezed,
@@ -212,6 +221,7 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
     Object? condition = freezed,
     Object? postType = freezed,
     Object? category = freezed,
+    Object? image = freezed,
     Object? subcategory = freezed,
     Object? images = freezed,
     Object? attributes = freezed,
@@ -231,6 +241,10 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
       title: freezed == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       titleAr: freezed == titleAr
           ? _self.titleAr
@@ -259,11 +273,11 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
       latitude: freezed == latitude
           ? _self.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       longitude: freezed == longitude
           ? _self.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       condition: freezed == condition
           ? _self.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -275,6 +289,10 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
       category: freezed == category
           ? _self.category
           : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
       subcategory: freezed == subcategory
           ? _self.subcategory
@@ -327,11 +345,11 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
       isFavorited: freezed == isFavorited
           ? _self.isFavorited
           : isFavorited // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isLiked: freezed == isLiked
           ? _self.isLiked
           : isLiked // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 
@@ -445,17 +463,19 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             String? title,
+            String? name,
             @JsonKey(name: 'title_ar') String? titleAr,
             String? description,
             @JsonKey(name: 'description_ar') String? descriptionAr,
             num? price,
             String? currency,
             String? city,
-            double? latitude,
-            double? longitude,
+            String? latitude,
+            String? longitude,
             String? condition,
             @JsonKey(name: 'post_type') String? postType,
             String? category,
+            String? image,
             String? subcategory,
             List<PostImage>? images,
             List<PostAttribute>? attributes,
@@ -468,8 +488,8 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             @JsonKey(name: 'created_on') String? createdOn,
             @JsonKey(name: 'user_info') PostOwner? userInfo,
             @JsonKey(name: 'user_is_owner') bool? userIsOwner,
-            @JsonKey(name: 'is_favorited') String? isFavorited,
-            @JsonKey(name: 'is_liked') String? isLiked)?
+            @JsonKey(name: 'is_favorited') bool? isFavorited,
+            @JsonKey(name: 'is_liked') bool? isLiked)?
         $default, {
     required TResult orElse(),
   }) {
@@ -478,6 +498,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
       case _ProductDetailsModel() when $default != null:
         return $default(
             _that.title,
+            _that.name,
             _that.titleAr,
             _that.description,
             _that.descriptionAr,
@@ -489,6 +510,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             _that.condition,
             _that.postType,
             _that.category,
+            _that.image,
             _that.subcategory,
             _that.images,
             _that.attributes,
@@ -525,17 +547,19 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
   TResult when<TResult extends Object?>(
     TResult Function(
             String? title,
+            String? name,
             @JsonKey(name: 'title_ar') String? titleAr,
             String? description,
             @JsonKey(name: 'description_ar') String? descriptionAr,
             num? price,
             String? currency,
             String? city,
-            double? latitude,
-            double? longitude,
+            String? latitude,
+            String? longitude,
             String? condition,
             @JsonKey(name: 'post_type') String? postType,
             String? category,
+            String? image,
             String? subcategory,
             List<PostImage>? images,
             List<PostAttribute>? attributes,
@@ -548,8 +572,8 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             @JsonKey(name: 'created_on') String? createdOn,
             @JsonKey(name: 'user_info') PostOwner? userInfo,
             @JsonKey(name: 'user_is_owner') bool? userIsOwner,
-            @JsonKey(name: 'is_favorited') String? isFavorited,
-            @JsonKey(name: 'is_liked') String? isLiked)
+            @JsonKey(name: 'is_favorited') bool? isFavorited,
+            @JsonKey(name: 'is_liked') bool? isLiked)
         $default,
   ) {
     final _that = this;
@@ -557,6 +581,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
       case _ProductDetailsModel():
         return $default(
             _that.title,
+            _that.name,
             _that.titleAr,
             _that.description,
             _that.descriptionAr,
@@ -568,6 +593,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             _that.condition,
             _that.postType,
             _that.category,
+            _that.image,
             _that.subcategory,
             _that.images,
             _that.attributes,
@@ -603,17 +629,19 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             String? title,
+            String? name,
             @JsonKey(name: 'title_ar') String? titleAr,
             String? description,
             @JsonKey(name: 'description_ar') String? descriptionAr,
             num? price,
             String? currency,
             String? city,
-            double? latitude,
-            double? longitude,
+            String? latitude,
+            String? longitude,
             String? condition,
             @JsonKey(name: 'post_type') String? postType,
             String? category,
+            String? image,
             String? subcategory,
             List<PostImage>? images,
             List<PostAttribute>? attributes,
@@ -626,8 +654,8 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             @JsonKey(name: 'created_on') String? createdOn,
             @JsonKey(name: 'user_info') PostOwner? userInfo,
             @JsonKey(name: 'user_is_owner') bool? userIsOwner,
-            @JsonKey(name: 'is_favorited') String? isFavorited,
-            @JsonKey(name: 'is_liked') String? isLiked)?
+            @JsonKey(name: 'is_favorited') bool? isFavorited,
+            @JsonKey(name: 'is_liked') bool? isLiked)?
         $default,
   ) {
     final _that = this;
@@ -635,6 +663,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
       case _ProductDetailsModel() when $default != null:
         return $default(
             _that.title,
+            _that.name,
             _that.titleAr,
             _that.description,
             _that.descriptionAr,
@@ -646,6 +675,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             _that.condition,
             _that.postType,
             _that.category,
+            _that.image,
             _that.subcategory,
             _that.images,
             _that.attributes,
@@ -671,6 +701,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
 class _ProductDetailsModel implements ProductDetailsModel {
   const _ProductDetailsModel(
       {this.title,
+      this.name,
       @JsonKey(name: 'title_ar') this.titleAr,
       this.description,
       @JsonKey(name: 'description_ar') this.descriptionAr,
@@ -682,6 +713,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
       this.condition,
       @JsonKey(name: 'post_type') this.postType,
       this.category,
+      this.image,
       this.subcategory,
       final List<PostImage>? images,
       final List<PostAttribute>? attributes,
@@ -705,6 +737,8 @@ class _ProductDetailsModel implements ProductDetailsModel {
   @override
   final String? title;
   @override
+  final String? name;
+  @override
   @JsonKey(name: 'title_ar')
   final String? titleAr;
   @override
@@ -719,9 +753,9 @@ class _ProductDetailsModel implements ProductDetailsModel {
   @override
   final String? city;
   @override
-  final double? latitude;
+  final String? latitude;
   @override
-  final double? longitude;
+  final String? longitude;
   @override
   final String? condition;
   @override
@@ -729,6 +763,8 @@ class _ProductDetailsModel implements ProductDetailsModel {
   final String? postType;
   @override
   final String? category;
+  @override
+  final String? image;
   @override
   final String? subcategory;
   final List<PostImage>? _images;
@@ -784,10 +820,10 @@ class _ProductDetailsModel implements ProductDetailsModel {
   final bool? userIsOwner;
   @override
   @JsonKey(name: 'is_favorited')
-  final String? isFavorited;
+  final bool? isFavorited;
   @override
   @JsonKey(name: 'is_liked')
-  final String? isLiked;
+  final bool? isLiked;
 
   /// Create a copy of ProductDetailsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -811,6 +847,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
         (other.runtimeType == runtimeType &&
             other is _ProductDetailsModel &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.titleAr, titleAr) || other.titleAr == titleAr) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -830,6 +867,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
                 other.postType == postType) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.subcategory, subcategory) ||
                 other.subcategory == subcategory) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
@@ -860,6 +898,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
   int get hashCode => Object.hashAll([
         runtimeType,
         title,
+        name,
         titleAr,
         description,
         descriptionAr,
@@ -871,6 +910,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
         condition,
         postType,
         category,
+        image,
         subcategory,
         const DeepCollectionEquality().hash(_images),
         const DeepCollectionEquality().hash(_attributes),
@@ -889,7 +929,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
 
   @override
   String toString() {
-    return 'ProductDetailsModel(title: $title, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
+    return 'ProductDetailsModel(title: $title, name: $name, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, image: $image, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
   }
 }
 
@@ -903,17 +943,19 @@ abstract mixin class _$ProductDetailsModelCopyWith<$Res>
   @useResult
   $Res call(
       {String? title,
+      String? name,
       @JsonKey(name: 'title_ar') String? titleAr,
       String? description,
       @JsonKey(name: 'description_ar') String? descriptionAr,
       num? price,
       String? currency,
       String? city,
-      double? latitude,
-      double? longitude,
+      String? latitude,
+      String? longitude,
       String? condition,
       @JsonKey(name: 'post_type') String? postType,
       String? category,
+      String? image,
       String? subcategory,
       List<PostImage>? images,
       List<PostAttribute>? attributes,
@@ -926,8 +968,8 @@ abstract mixin class _$ProductDetailsModelCopyWith<$Res>
       @JsonKey(name: 'created_on') String? createdOn,
       @JsonKey(name: 'user_info') PostOwner? userInfo,
       @JsonKey(name: 'user_is_owner') bool? userIsOwner,
-      @JsonKey(name: 'is_favorited') String? isFavorited,
-      @JsonKey(name: 'is_liked') String? isLiked});
+      @JsonKey(name: 'is_favorited') bool? isFavorited,
+      @JsonKey(name: 'is_liked') bool? isLiked});
 
   @override
   $PostOwnerCopyWith<$Res>? get userInfo;
@@ -947,6 +989,7 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? title = freezed,
+    Object? name = freezed,
     Object? titleAr = freezed,
     Object? description = freezed,
     Object? descriptionAr = freezed,
@@ -958,6 +1001,7 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
     Object? condition = freezed,
     Object? postType = freezed,
     Object? category = freezed,
+    Object? image = freezed,
     Object? subcategory = freezed,
     Object? images = freezed,
     Object? attributes = freezed,
@@ -977,6 +1021,10 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
       title: freezed == title
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       titleAr: freezed == titleAr
           ? _self.titleAr
@@ -1005,11 +1053,11 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
       latitude: freezed == latitude
           ? _self.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       longitude: freezed == longitude
           ? _self.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as String?,
       condition: freezed == condition
           ? _self.condition
           : condition // ignore: cast_nullable_to_non_nullable
@@ -1021,6 +1069,10 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
       category: freezed == category
           ? _self.category
           : category // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
       subcategory: freezed == subcategory
           ? _self.subcategory
@@ -1073,11 +1125,11 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
       isFavorited: freezed == isFavorited
           ? _self.isFavorited
           : isFavorited // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
       isLiked: freezed == isLiked
           ? _self.isLiked
           : isLiked // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 

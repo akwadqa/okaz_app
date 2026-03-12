@@ -35,14 +35,48 @@ class ProductController extends _$ProductController {
       state = AsyncData(
         state.value!.copyWith(
           productDetailsModel: AsyncData(response.data!),
-          favoritePost: response.data?.isFavorited?.isNotEmpty ?? false,
-          likePost: response.data?.isLiked?.isNotEmpty ?? false,
+          favoritePost: response.data?.isFavorited ?? false,
+          likePost: response.data?.isLiked ?? false,
         ),
       );
       return response.data;
     } catch (e, st) {
       state = AsyncData(
         state.value!.copyWith(productDetailsModel: AsyncError(e, st)),
+      );
+      return null;
+    }
+  }
+  Future<ProductDetailsModel?> sendReport(String productId , String title) async {
+    try {
+      state = AsyncData(
+        state.value!.copyWith(sendReport: AsyncLoading()),
+      );
+      final repo = ref.read(productRepositoryProvider);
+      final response = await repo.sendReport(productId, title);
+
+      if (response.hasFailed) {
+        state = AsyncData(
+          state.value!.copyWith(
+            sendReport: AsyncError(
+              response.message ?? 'Something went wrong',
+              StackTrace.fromString(response.message ?? ''),
+            ),
+          ),
+        );
+        return null;
+      }
+
+      state = AsyncData(
+        state.value!.copyWith(
+          sendReport: AsyncData(response.data),
+         
+        ),
+      );
+      return response.data;
+    } catch (e, st) {
+      state = AsyncData(
+        state.value!.copyWith(sendReport: AsyncError(e, st)),
       );
       return null;
     }

@@ -16,6 +16,7 @@ import 'product_details_screen_comment_tile.dart';
 Future<void> showEditCommentBottomSheet(
   BuildContext context, {
   required Comment comment,
+  required String postId,
 }) {
   return showModalBottomSheet<void>(
     context: context,
@@ -25,14 +26,15 @@ Future<void> showEditCommentBottomSheet(
       borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
     ),
     builder: (context) {
-      return _EditCommentBottomSheet(comment: comment);
+      return _EditCommentBottomSheet(comment: comment , postId: postId,);
     },
   );
 }
 
 class _EditCommentBottomSheet extends ConsumerStatefulWidget {
   final Comment comment;
-  const _EditCommentBottomSheet({required this.comment});
+  final String postId;
+  const _EditCommentBottomSheet({required this.comment,required this.postId});
 
   @override
   ConsumerState<_EditCommentBottomSheet> createState() =>
@@ -72,7 +74,7 @@ class _EditCommentBottomSheetState
         if (next is AsyncData) {
           ref
               .read(productControllerProvider.notifier)
-              .getProductDetails('goqg36nmh5');
+              .getProductDetails(widget.postId);
           context.pop();
         }
       },
@@ -88,6 +90,7 @@ class _EditCommentBottomSheetState
             ProductDetailsScreenCommentTile(
               comment: widget.comment,
               showMenu: false,
+              postId: widget.postId,
               showChildren: false,
             ),
             const SizedBox(height: 12),

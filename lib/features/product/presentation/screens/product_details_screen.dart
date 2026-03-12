@@ -16,7 +16,8 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class ProductDetailsScreen extends ConsumerStatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen(this.postId, {super.key});
+  final String postId;
 
   @override
   ConsumerState<ProductDetailsScreen> createState() =>
@@ -40,7 +41,7 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
     Future(() {
       ref
           .read(productControllerProvider.notifier)
-          .getProductDetails('goqg36nmh5');
+          .getProductDetails(widget.postId);
     });
   }
 
@@ -55,6 +56,16 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
     final controller = ref.watch(
       productControllerProvider.select((val) => val.value?.productDetailsModel),
     );
+
+    ref.listen(
+        productControllerProvider
+            .select((val) => val.value?.productDetailsModel), (previous, next) {
+      if (next is AsyncData) {
+        ref
+            .read(productControllerProvider.notifier)
+            .updatePostViews(next?.value?.name ?? 'id');
+      }
+    });
     return Scaffold(
       backgroundColor: AppColors.background,
 
@@ -62,10 +73,6 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
         top: false,
         child: controller!.when(
           data: (data) {
-            ref
-                .read(productControllerProvider.notifier)
-                // .updatePostViews(data.views.toString());
-                .updatePostViews('goqg36nmh5');
             return _buildProductDetailsBody(data);
           },
           error: (e, st) => AppErrorWidget(),
@@ -74,7 +81,9 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
       ),
 
       bottomNavigationBar: controller.whenOrNull(
-        data: (data) => ProductDetailsScreenMessageComposer(),
+        data: (data) => ProductDetailsScreenMessageComposer(
+          postId: data.name ?? 'id',
+        ),
       ),
       // bottomNavigationBar:  ProductDetailsScreenMessageComposer(),
     );
@@ -93,21 +102,18 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
             productDetailsModel: productDetailsModel,
           ),
         ),
-
         SliverPersistentHeader(
           pinned: true,
           delegate: _ProductDetailsScreenTabsHeaderDelegate(
             child: ProductDetailsScreenTabs(controller: _tabController),
           ),
         ),
-
         SliverToBoxAdapter(
           child: ProductDetailsScreenTabSwitcher(
             controller: _tabController,
             productDetailsModel: productDetailsModel,
           ),
         ),
-
         const SliverToBoxAdapter(child: SizedBox(height: 20)),
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 22),
@@ -135,7 +141,6 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 20)),
-
         SliverToBoxAdapter(
           child: ProductDetailsScreenCommentsSection(
             productDetailsModel: productDetailsModel,

@@ -9,17 +9,19 @@ part of 'product_details_model.dart';
 _ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) =>
     _ProductDetailsModel(
       title: json['title'] as String?,
+      name: json['name'] as String?,
       titleAr: json['title_ar'] as String?,
       description: json['description'] as String?,
       descriptionAr: json['description_ar'] as String?,
       price: json['price'] as num?,
       currency: json['currency'] as String?,
       city: json['city'] as String?,
-      latitude: (json['latitude'] as num?)?.toDouble(),
-      longitude: (json['longitude'] as num?)?.toDouble(),
+      latitude: json['latitude'] as String?,
+      longitude: json['longitude'] as String?,
       condition: json['condition'] as String?,
       postType: json['post_type'] as String?,
       category: json['category'] as String?,
+      image: json['image'] as String?,
       subcategory: json['subcategory'] as String?,
       images: (json['images'] as List<dynamic>?)
           ?.map((e) => PostImage.fromJson(e as Map<String, dynamic>))
@@ -40,14 +42,15 @@ _ProductDetailsModel _$ProductDetailsModelFromJson(Map<String, dynamic> json) =>
           ? null
           : PostOwner.fromJson(json['user_info'] as Map<String, dynamic>),
       userIsOwner: json['user_is_owner'] as bool?,
-      isFavorited: json['is_favorited'] as String?,
-      isLiked: json['is_liked'] as String?,
+      isFavorited: json['is_favorited'] as bool?,
+      isLiked: json['is_liked'] as bool?,
     );
 
 Map<String, dynamic> _$ProductDetailsModelToJson(
         _ProductDetailsModel instance) =>
     <String, dynamic>{
       'title': instance.title,
+      'name': instance.name,
       'title_ar': instance.titleAr,
       'description': instance.description,
       'description_ar': instance.descriptionAr,
@@ -59,6 +62,7 @@ Map<String, dynamic> _$ProductDetailsModelToJson(
       'condition': instance.condition,
       'post_type': instance.postType,
       'category': instance.category,
+      'image': instance.image,
       'subcategory': instance.subcategory,
       'images': instance.images,
       'attributes': instance.attributes,

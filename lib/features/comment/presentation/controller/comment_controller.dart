@@ -91,9 +91,9 @@ class CommentController extends _$CommentController {
       }
 
       state = AsyncData(
-        state.value!.copyWith(deleteComment: AsyncData(response.data!)),
+        state.value!.copyWith(deleteComment: AsyncData(response)),
       );
-      return response.data;
+      return;
     } catch (e, st) {
       state = AsyncData(
         state.value!.copyWith(deleteComment: AsyncError(e, st)),

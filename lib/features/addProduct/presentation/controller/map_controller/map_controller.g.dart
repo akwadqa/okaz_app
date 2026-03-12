@@ -20,7 +20,7 @@ final class MapControllerProvider
           argument: null,
           retry: null,
           name: r'mapControllerProvider',
-          isAutoDispose: true,
+          isAutoDispose: false,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
@@ -33,7 +33,7 @@ final class MapControllerProvider
   MapController create() => MapController();
 }
 
-String _$mapControllerHash() => r'64ff143d565a0fca33e3741d1eced5c531a8dc98';
+String _$mapControllerHash() => r'82953bef042e30f1d53027bb308b37bd1b479260';
 
 abstract class _$MapController extends $AsyncNotifier<MapState> {
   FutureOr<MapState> build();

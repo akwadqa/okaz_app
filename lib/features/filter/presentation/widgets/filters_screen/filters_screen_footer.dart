@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/filter/presentation/controller/filters_form_controller.dart';
+import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -12,12 +12,14 @@ class FiltersScreenFooter extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => context.pop(),
+      onTap: () {
+        context.pop();
+        ref.read(filterControllerProvider.notifier).getPosts();
+      },
       child: Container(
         width: double.infinity,
         height: 88,
         color: AppColors.white,
-
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -51,7 +53,7 @@ class FiltersScreenFooter extends ConsumerWidget {
             GestureDetector(
               onTap: () {
                 context.pop();
-                ref.read(filtersControllerProvider.notifier).reset();
+                // ref.read(filtersControllerProvider.notifier).reset();
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 29, vertical: 11),

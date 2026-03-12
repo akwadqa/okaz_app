@@ -1,14 +1,20 @@
 import 'dart:async';
 
 import 'package:bot_toast/bot_toast.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:okaz/features/comment/presentation/controller/comment_controller.dart';
+import 'package:okaz/features/product/presentation/controller/product_controller.dart';
+import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/core/utils/validator/app_validation.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -285,10 +291,10 @@ Future<void> showAutoClosingDialog(BuildContext context, String message) async {
       title: Text(
         message,
         style: Theme.of(context).textTheme.bodySmall!.copyWith(
-          fontSize: 16,
-          // fontWeight: FontWeight.w700,
-          // color: Colors.grey,
-        ),
+              fontSize: 16,
+              // fontWeight: FontWeight.w700,
+              // color: Colors.grey,
+            ),
       ).centered(),
       icon: Icon(Icons.error, color: AppColors.darkRed, size: 50),
       actions: [
@@ -300,10 +306,10 @@ Future<void> showAutoClosingDialog(BuildContext context, String message) async {
           child: Text(
             "OK".tr(),
             style: Theme.of(context).textTheme.displaySmall!.copyWith(
-              fontSize: 16,
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
-            ),
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
           ).centered(),
         ),
       ],
@@ -335,19 +341,19 @@ Dialog showYesNowChoicesDialog(
         Text(
           title.tr(),
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            // color: Colors.grey,
-          ),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                // color: Colors.grey,
+              ),
         ).centered(),
         40.verticalSpace,
         Text(
           dsc.tr(),
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
-            fontSize: 14,
-            color: AppColors.darkGray,
-            fontWeight: FontWeight.w500,
-          ),
+                fontSize: 14,
+                color: AppColors.darkGray,
+                fontWeight: FontWeight.w500,
+              ),
         ).centered(),
         40.verticalSpace,
         Row(
@@ -368,8 +374,7 @@ Dialog showYesNowChoicesDialog(
             Flexible(
               child: CustomButtonWidget(
                 text: context.tr("no"),
-                onTap:
-                    noButton ??
+                onTap: noButton ??
                     () {
                       Navigator.pop(context);
                     },
@@ -427,9 +432,9 @@ Future<void> showConfirmationDialog({
                     title.tr(),
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primary,
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primary,
+                        ),
                   ),
 
                   12.verticalSpace,
@@ -541,7 +546,175 @@ Future<void> showErrorDialog(BuildContext context, String message) {
   );
 }
 
-void showReportDialog(BuildContext context) {
+void showReportDialog(
+    BuildContext context, TextEditingController controller, String postId) {
+  final key = GlobalKey<FormState>();
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        child: Container(
+          width: 345,
+          height: 500,
+          decoration: BoxDecoration(
+            color: const Color(0xFFF5F5F5),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(
+                  0xFF94A3B2,
+                ).withOpacity(0.15),
+                blurRadius: 12,
+                offset: const Offset(0, 6), // 0px 6px 12px
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 10,
+                right: 10,
+                child: IconButton(
+                  icon: const Icon(Icons.close, size: 24, color: Colors.black),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 25),
+                    Container(
+                      width: 47,
+                      height: 47,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFFF6EAE5),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(child: Assets.icons.sendReportIc.svg()),
+                    ),
+                    const SizedBox(height: 20),
+                    Text("الإبلاغ عن إعلان",
+                        style: AppTextStyle.rubikSemiBold18
+                            .copyWith(color: AppColors.primary)),
+                    const SizedBox(height: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("يرجى كتابة سبب الإبلاغ",
+                            style: AppTextStyle.rubikSemiBold16),
+                        const SizedBox(height: 4),
+                        Text("ساعدنا في فهم المشكلة المتعلقة بهذا الإعلان",
+                            style: AppTextStyle.rubikRegular14
+                                .copyWith(color: AppColors.grey600)),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Form(
+                      key: key,
+                      child: Container(
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(24),
+                          border: Border.all(color: const Color(0xFFE8E8E8)),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
+                        child: TextFormField(
+                          controller: controller,
+                          validator: nameValidation(context),
+                          maxLines: 4,
+                          textAlign: TextAlign.right,
+                          decoration: InputDecoration(
+                            hintText: "اكتب تفاصيل البلاغ هنا ..",
+                            hintStyle: AppTextStyle.rubikRegular14
+                                .copyWith(color: AppColors.grayHint),
+                            border: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Consumer(builder: (context, ref, _) {
+                      ref.listen(
+                          productControllerProvider
+                              .select((val) => val.value!.sendReport),
+                          (previous, next) {
+                        if (next is AsyncError) {
+                          showErrorDialog(context, next.error.toString());
+                        }
+                        if (next is AsyncData) {
+                          context.pop();
+                        }
+                      });
+                      final reportController = ref.watch(
+                          productControllerProvider
+                              .select((val) => val.value!.sendReport));
+                      if (reportController is AsyncLoading) {
+                        return AppLoader();
+                      }
+                      return ElevatedButton(
+                        onPressed: () {
+                          if (key.currentState!.validate()) {
+                            ref
+                                .read(productControllerProvider.notifier)
+                                .sendReport(postId, controller.text);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          minimumSize: const Size(301, 45),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          "إرسال البلاغ",
+                          style: AppTextStyle.rubikBold20
+                              .copyWith(color: AppColors.white),
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 12),
+                    OutlinedButton(
+                      onPressed: () => context.pop(),
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(301, 51),
+                        side: const BorderSide(color: Color(0xFFB8502E)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      child: Text(
+                        "إلغاء",
+                        style: AppTextStyle.rubikBold20
+                            .copyWith(color: AppColors.primary),
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void showDeleteCommentDialog(BuildContext context, String commentId , String postId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -551,15 +724,13 @@ void showReportDialog(BuildContext context) {
         child: Container(
           // الأبعاد حسب CSS
           width: 345,
-          height: 489,
+          height: 244,
           decoration: BoxDecoration(
             color: const Color(0xFFF5F5F5), // background: #F5F5F5
             borderRadius: BorderRadius.circular(12), // border-radius: 12px
             boxShadow: [
               BoxShadow(
-                color: const Color(
-                  0xFF94A3B2,
-                ).withOpacity(0.15), // rgba(148, 163, 184, 0.15)
+                color: const Color(0xFF94A3B2).withOpacity(0.15),
                 blurRadius: 12,
                 offset: const Offset(0, 6), // 0px 6px 12px
               ),
@@ -567,157 +738,146 @@ void showReportDialog(BuildContext context) {
           ),
           child: Stack(
             children: [
-              // زر الإغلاق (X) في الزاوية
+              // زر الإغلاق (X) في الزاوية العلوية اليسرى (كما في CSS)
               Positioned(
-                top: 10,
-                right: 10,
-                child: IconButton(
-                  icon: const Icon(Icons.close, size: 24, color: Colors.black),
-                  onPressed: () => Navigator.pop(context),
+                top: 15,
+                left: 15,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(Icons.close, size: 16, color: Colors.black),
                 ),
               ),
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    const SizedBox(height: 25),
+                    const SizedBox(height: 25), // top: 25px
 
-                    // الأيقونة العلوية (Group 1618873331)
+                    // أيقونة الحذف (Rectangle 24 + Icon)
                     Container(
                       width: 47,
                       height: 47,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFF6EAE5), // background: #F6EAE5
-                        shape: BoxShape.circle,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF6EAE5),
+                        borderRadius: BorderRadius.circular(22),
                       ),
                       child: const Center(
                         child: Icon(
-                          Icons.error_outline,
+                          Icons.delete_outline_rounded,
                           color: Color(0xFFB8502E),
                           size: 24,
                         ),
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 20), // المسافة للعنوان (top: 92px)
 
-                    // عنوان: الإبلاغ عن إعلان
+                    // العنوان: هل تريد حذف الإعلان
                     const Text(
-                      "الإبلاغ عن إعلان",
+                      "هل تريد حذف الإعلان",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xFFB8502E),
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        letterSpacing: -0.27,
                         fontFamily: 'Inter',
+                        letterSpacing: -0.27,
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 20), // المسافة للوصف (top: 130px)
 
-                    // نصوص التوضيح (Frame 1000002936)
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          const Text(
-                            "يرجى كتابة سبب الإبلاغ",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                              fontFamily: 'Inter',
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            "ساعدنا في فهم المشكلة المتعلقة بهذا الإعلان",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xFF757575),
-                              fontFamily: 'Inter',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // حقل إدخال النص (Rectangle 18)
-                    Container(
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: const Color(0xFFE8E8E8)),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 12,
-                      ),
-                      child: const TextField(
-                        maxLines: 4,
-                        textAlign: TextAlign.right,
-                        decoration: InputDecoration(
-                          hintText: "اكتب تفاصيل البلاغ هنا ..",
-                          hintStyle: TextStyle(
-                            color: Color(0xFF878787),
-                            fontSize: 14,
-                          ),
-                          border: InputBorder.none,
-                        ),
+                    // النص الفرعي
+                    const Text(
+                      "هل أنت متأكد من رغبتك في حذف الإعلان؟",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF000000),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'Inter',
                       ),
                     ),
 
                     const Spacer(),
 
-                    // زر إرسال البلاغ
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFB8502E),
-                        minimumSize: const Size(301, 51),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                    // مجموعة الأزرار (Group 1000006978)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // زر إلغاء (الأبيض بحدود برتقالية)
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: OutlinedButton.styleFrom(
+                              fixedSize: const Size(138.14, 45.45),
+                              side: const BorderSide(color: Color(0xFFB8502E)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                            child: const Text(
+                              "إلغاء",
+                              style: TextStyle(
+                                color: Color(0xFFB8502E),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
                         ),
-                        elevation: 0,
-                      ),
-                      child: const Text(
-                        "إرسال البلاغ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
 
-                    const SizedBox(height: 12),
+                        const SizedBox(width: 15),
 
-                    // زر إلغاء
-                    OutlinedButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(301, 51),
-                        side: const BorderSide(color: Color(0xFFB8502E)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                        Expanded(
+                          child: Consumer(builder: (context, ref, _) {
+                            ref.listen(
+                                commentControllerProvider
+                                    .select((val) => val.value!.deleteComment),
+                                (previous, next) {
+                              if (next is AsyncError) {
+                                showErrorDialog(context, next.error.toString());
+                              }
+                              if (next is AsyncData) {
+                                context.pop();
+                                ref
+                                    .read(productControllerProvider.notifier)
+                                    .getProductDetails(postId);
+                              }
+                            });
+                            final reportController = ref.watch(
+                                commentControllerProvider
+                                    .select((val) => val.value!.deleteComment));
+                            if (reportController is AsyncLoading) {
+                              return AppLoader();
+                            }
+                            return ElevatedButton(
+                              onPressed: () {
+                                ref
+                                    .read(commentControllerProvider.notifier)
+                                    .deleteComment(commentId);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFB8502E),
+                                fixedSize: const Size(138.14, 45.45),
+                                elevation: 0,
+                                padding: EdgeInsets.zero,
+                                shadowColor:
+                                    const Color(0xFFB8502E).withOpacity(0.2),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                              ),
+                              child: Text(
+                                "حذف",
+                              ),
+                            );
+                          }),
                         ),
-                      ),
-                      child: const Text(
-                        "إلغاء",
-                        style: TextStyle(
-                          color: Color(0xFFB8502E),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      ],
                     ),
-                    const SizedBox(height: 25),
+                    const SizedBox(height: 25), // التوازن السفلي
                   ],
                 ),
               ),

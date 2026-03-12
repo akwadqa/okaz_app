@@ -33,7 +33,7 @@ final class CommentControllerProvider
   CommentController create() => CommentController();
 }
 
-String _$commentControllerHash() => r'ed3cf877dbb990e83cd1bb0e027c49b91922126b';
+String _$commentControllerHash() => r'75fb90bf3656e2ebbec16a623678e6d0830a7dd7';
 
 abstract class _$CommentController extends $AsyncNotifier<CommentState> {
   FutureOr<CommentState> build();

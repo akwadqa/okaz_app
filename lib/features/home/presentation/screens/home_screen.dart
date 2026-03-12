@@ -60,7 +60,8 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
   @override
   Widget build(BuildContext context) {
     final controller = ref.watch(
-      homeControllerProvider.select((val) => val.value!.homeModel),
+      homeControllerProvider
+          .select((val) => val.value?.homeModel ?? AsyncLoading()),
     );
     return controller.when(
       data: (homeModel) => _buildBody(context, homeModel),

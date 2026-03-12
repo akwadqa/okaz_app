@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/home/presentation/controller/home_controller.dart';
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
@@ -166,26 +167,35 @@ class _DrawerCategoryListState extends State<_DrawerCategoryList>
                   bottom: BorderSide(width: 4, color: AppColors.background),
                 ),
                 color: AppColors.white,
-                child: ListTile(
-                  onTap: () => context.pushNamed(
-                    AppRoutes.searchSubCategoryScreen,
-                    extra: subcategory,
-                  ),
-                  dense: true,
-                  visualDensity: const VisualDensity(vertical: -2),
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                  leading: SizedBox(),
-                  title: Text(
-                    translate(
-                      subcategory?.categoryNameAr ?? '',
-                      subcategory?.categoryName ?? '',
-                      context,
+                child: Consumer(builder: (context, ref, _) {
+                  return ListTile(
+                    onTap: () {
+                      ref.read(mainSubcategory.notifier).state = subcategory!;
+                      context.pushNamed(
+                        AppRoutes.searchSubCategoryScreen,
+                        extra: subcategory,
+                      );
+                      //   context.pushNamed(
+                      //   AppRoutes.searchSubCategoryScreen,
+                      //   extra: subcategory,
+                      // );
+                    },
+                    dense: true,
+                    visualDensity: const VisualDensity(vertical: -2),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                    leading: SizedBox(),
+                    title: Text(
+                      translate(
+                        subcategory?.categoryNameAr ?? '',
+                        subcategory?.categoryName ?? '',
+                        context,
+                      ),
+                      style: AppTextStyle.rubikRegular14.copyWith(
+                        color: AppColors.textDart,
+                      ),
                     ),
-                    style: AppTextStyle.rubikRegular14.copyWith(
-                      color: AppColors.textDart,
-                    ),
-                  ),
-                ),
+                  );
+                }),
               ),
             ),
           )

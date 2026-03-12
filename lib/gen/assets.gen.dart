@@ -206,6 +206,10 @@ class $AssetsIconsGen {
   SvgGenImage get sendCommentIc =>
       const SvgGenImage('assets/icons/send_comment_ic.svg');
 
+  /// File path: assets/icons/send_report_ic.svg
+  SvgGenImage get sendReportIc =>
+      const SvgGenImage('assets/icons/send_report_ic.svg');
+
   /// File path: assets/icons/settings_ic.svg
   SvgGenImage get settingsIc =>
       const SvgGenImage('assets/icons/settings_ic.svg');
@@ -286,6 +290,7 @@ class $AssetsIconsGen {
         saveEventIc,
         scanIc,
         sendCommentIc,
+        sendReportIc,
         settingsIc,
         starIc,
         titleIc,
