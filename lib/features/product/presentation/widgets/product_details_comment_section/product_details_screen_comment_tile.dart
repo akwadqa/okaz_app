@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/utils/extenssions/time_extension.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
@@ -13,6 +14,7 @@ import 'product_details_screen_sub_comment_tile.dart';
 class ProductDetailsScreenCommentTile extends StatelessWidget {
   final Comment comment;
   final VoidCallback? onEdit;
+  final VoidCallback? onReply;
   final VoidCallback? onDelete;
   final bool showMenu;
   final bool showChildren;
@@ -22,6 +24,7 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
     required this.comment,
     required this.postId,
     this.onEdit,
+    this.onReply,
     this.onDelete,
     this.showMenu = true,
     this.showChildren = true,
@@ -74,6 +77,7 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
                           CommentActionsMenu(
                             onEdit: onEdit,
                             onDelete: onDelete,
+                            onReply: onReply,
                           ),
                       ],
                     ),
@@ -82,7 +86,7 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: showMenu ? 200 : 180,
+                          width: showMenu ? 200 : 170,
                           child: Text(
                             comment.content ?? 'comment',
                             style: AppTextStyle.rubikRegular14.copyWith(
@@ -111,12 +115,13 @@ class ProductDetailsScreenCommentTile extends StatelessWidget {
             ...((comment.childComments ?? []).map(
               (subCommint) => ProductDetailsScreenSubCommentTile(
                 comment: subCommint,
+                onDelete: () {
+                  showDeleteCommentDialog(
+                      context, subCommint.name ?? 'id', postId);
+                },
                 onEdit: () async {
-                  await showEditCommentBottomSheet(
-                    context,
-                    comment: subCommint,
-                    postId: postId
-                  );
+                  await showEditCommentBottomSheet(context,
+                      comment: subCommint, postId: postId);
                 },
               ),
             )),

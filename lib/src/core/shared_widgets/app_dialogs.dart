@@ -714,7 +714,8 @@ void showReportDialog(
   );
 }
 
-void showDeleteCommentDialog(BuildContext context, String commentId , String postId) {
+void showDeleteCommentDialog(
+    BuildContext context, String commentId, String postId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -724,7 +725,7 @@ void showDeleteCommentDialog(BuildContext context, String commentId , String pos
         child: Container(
           // الأبعاد حسب CSS
           width: 345,
-          height: 244,
+          height: 260,
           decoration: BoxDecoration(
             color: const Color(0xFFF5F5F5), // background: #F5F5F5
             borderRadius: BorderRadius.circular(12), // border-radius: 12px
@@ -738,7 +739,6 @@ void showDeleteCommentDialog(BuildContext context, String commentId , String pos
           ),
           child: Stack(
             children: [
-              // زر الإغلاق (X) في الزاوية العلوية اليسرى (كما في CSS)
               Positioned(
                 top: 15,
                 left: 15,
@@ -747,14 +747,12 @@ void showDeleteCommentDialog(BuildContext context, String commentId , String pos
                   child: const Icon(Icons.close, size: 16, color: Colors.black),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    const SizedBox(height: 25), // top: 25px
+                    const SizedBox(height: 25),
 
-                    // أيقونة الحذف (Rectangle 24 + Icon)
                     Container(
                       width: 47,
                       height: 47,
@@ -771,34 +769,19 @@ void showDeleteCommentDialog(BuildContext context, String commentId , String pos
                       ),
                     ),
 
-                    const SizedBox(height: 20), // المسافة للعنوان (top: 92px)
+                    const SizedBox(height: 20),
 
-                    // العنوان: هل تريد حذف الإعلان
-                    const Text(
-                      "هل تريد حذف الإعلان",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFFB8502E),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Inter',
-                        letterSpacing: -0.27,
-                      ),
-                    ),
+                    Text("هل تريد حذف التعليق",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.rubikSemiBold18
+                            .copyWith(color: AppColors.primary)),
 
                     const SizedBox(height: 20), // المسافة للوصف (top: 130px)
 
                     // النص الفرعي
-                    const Text(
-                      "هل أنت متأكد من رغبتك في حذف الإعلان؟",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF000000),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Inter',
-                      ),
-                    ),
+                    Text("هل أنت متأكد من رغبتك في حذف التعليق؟",
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.rubikRegular16),
 
                     const Spacer(),
 

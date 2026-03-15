@@ -30,20 +30,17 @@ class ProductDetailsScreenSubCommentTile extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 22,
-            backgroundColor:
-                (comment.commentBy?.image == null ||
+            backgroundColor: (comment.commentBy?.image == null ||
                     comment.commentBy?.image == '')
                 ? AppColors.grayHint
                 : null,
-            backgroundImage:
-                (comment.commentBy?.image == null ||
+            backgroundImage: (comment.commentBy?.image == null ||
                     comment.commentBy?.image == '')
                 ? null
                 : CachedNetworkImageProvider(
                     ServicesUrls.imageUrl + comment.commentBy!.image!,
                   ),
-            child:
-                (comment.commentBy?.image == null ||
+            child: (comment.commentBy?.image == null ||
                     comment.commentBy?.image == '')
                 ? Text(
                     comment.commentBy?.firstName
@@ -74,7 +71,7 @@ class ProductDetailsScreenSubCommentTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 200,
+                      width: 180,
                       child: Text(
                         comment.content ?? 'comment',
                         style: AppTextStyle.rubikRegular14.copyWith(

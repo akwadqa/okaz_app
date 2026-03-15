@@ -48,6 +48,7 @@ class ProductsScreenProductItem extends StatelessWidget {
                       top: 10,
                       child: ProductDetailsScreenIconCircleButton(
                         icon: Assets.icons.starIc,
+                        productDetailsModel: item,
                         toProduct: true,
                       ),
                     ),
