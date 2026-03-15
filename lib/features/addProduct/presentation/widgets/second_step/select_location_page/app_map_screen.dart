@@ -11,6 +11,7 @@ import 'package:okaz/features/addProduct/presentation/controller/map_controller/
 import 'package:okaz/src/core/shared_widgets/app_alert.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
+import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -40,13 +41,15 @@ Widget build(BuildContext context) {
     mapControllerProvider.select((v) => v.value!.selectedPlace),
     (prev, next) async{
       if (next is AsyncLoading) {
-        // AppAlert.showLoadingDialog(context);
+        AppAlert.showLoadingDialog(context);
 
       } 
 
       if (next is AsyncData) {
+  if (context.canPop()) {
+    context.pop();
+  }
         context.pop(); // close page
-        // context.pop(); // close page
       }
 
       if (next is AsyncError) {
@@ -81,9 +84,9 @@ Widget build(BuildContext context) {
                 //       .getPlaceInfoFromLatLng();
                 // } else {
 
-                  await ref
-                      .read(mapControllerProvider.notifier)
-                      .getPlaceInfoFromLatLng();
+                  // await ref
+                  //     .read(mapControllerProvider.notifier)
+                  //     .getPlaceInfoFromLatLng();
                   await ref
                       .read(mapControllerProvider.notifier)
                       .confirmLocation();
@@ -148,7 +151,10 @@ Widget build(BuildContext context) {
                     padding: EdgeInsets.only(top: 10),
                     child: GestureDetector(
                       onTap: () => context.pop(),
-                      child: Icon(Icons.arrow_back_ios,color: Colors.white,)
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.primary,
+
+                        child: Center(child: Icon(Icons.arrow_back_ios,color: Colors.white,).onlyPadding(start: 6)))
                     ),
                   ),
                 

@@ -106,8 +106,11 @@
     "al_rayyan": "الريان",
     "al_wakrah": "الوكرة",
     "al_khor": "الخور",
+    "condition": "الحالة",
+    "condition_of_product": "حالة المنتج",
+    "select_condition": "اختر الحالة",
     "new": "جديد",
-
+    "used": "مستعمل",
     "product_details": {
       
         "tech_specs_tab": "المواصفات الفنية",

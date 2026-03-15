@@ -163,13 +163,13 @@ class _BottomButtons extends ConsumerWidget {
 
             final state = ref.watch(addProductControllerProvider);
             final provider = ref.read(addProductControllerProvider.notifier);
-            if (state is AsyncLoading) {
-              return AppLoader();
-              // const FadeCircleLoadingIndicator();
-            }
+            // if (state is AsyncLoading) {
+            //   return AppLoader();
+            //   // const FadeCircleLoadingIndicator();
+            // }
             return Flexible(
               flex: 3,
-              child: CustomButtonWidget(
+              child:state is AsyncLoading?AppLoader(): CustomButtonWidget(
                 text: step != 4 ? 'next' : "",
                 onTap: canProceed
                     ? () {

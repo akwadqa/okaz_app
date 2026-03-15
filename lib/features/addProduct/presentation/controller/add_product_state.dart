@@ -10,9 +10,10 @@ class AddProductState extends Equatable {
 
   // Step 1
   final String? category;
-  final String? subCategory;
+  final SubCategoryModel? subCategory;
   // Step 2
   final String? adType;
+  final String? condition;
   final String? mainSubCategoryType;
   final String? city;
 
@@ -33,6 +34,7 @@ final List<SubcategoryAttributeModel> attributes;
   const AddProductState({
     required this.step,
     this.category,
+    this.condition,
     this.subCategory,
     this.adType,
     this.mainSubCategoryType,
@@ -62,8 +64,9 @@ final List<SubcategoryAttributeModel> attributes;
   AddProductState copyWith({
     int? step,
     String? category,
-    String? subCategory,
+    SubCategoryModel? subCategory,
     String? adType,
+    String? condition,
     String? mainSubCategoryType,
     String? city,
     Map<String, dynamic>? specs,
@@ -82,6 +85,7 @@ final List<SubcategoryAttributeModel> attributes;
       category: category ?? this.category,
       subCategory: subCategory ?? this.subCategory,
       adType: adType ?? this.adType,
+      condition: condition ?? this.condition,
       mainSubCategoryType: mainSubCategoryType ?? this.mainSubCategoryType,
       city: city ?? this.city,
       specs: specs ?? this.specs,
@@ -102,6 +106,7 @@ final List<SubcategoryAttributeModel> attributes;
   List<Object?> get props => [
         step,
         category,
+        condition,
         subCategory,
         adType,
         city,

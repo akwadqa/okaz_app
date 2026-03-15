@@ -108,10 +108,12 @@
     "type": "Type:",
     "sub_category": "Subcategory:",
     "condition": "Condition:",
+
+    "condition_of_product": "Condition of the product",
+    "select_condition": "Select condition",
     "new": "New",
+    "used": "Used",
     "product_details": {
-     
-     
         "tech_specs_tab": "Technical Specs",
         "ad_info_tab": "Ad Info",
         "views": "Views",

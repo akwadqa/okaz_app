@@ -6,7 +6,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AddPostParams {
   final String title;
+  final String titleAr;
   final String description;
+  final String descriptionAr;
   final String subcategory;
   final String postType;
   final String city;
@@ -25,12 +27,14 @@ final LatLng latLng;
     required this.price,
     required this.attributes,
     required this.images,
-    required this.condition, required this.isFeatured, required this.latLng,
+    required this.condition, required this.isFeatured, required this.latLng, required this.titleAr, required this.descriptionAr,
   });
 
   AddPostParams copyWith({
     String? title,
+    String? titleAr,
     String? description,
+    String? descriptionAr,
     String? subcategory,
     String? postType,
     String? city,
@@ -43,7 +47,9 @@ final LatLng latLng;
   }) {
     return AddPostParams(
       title: title ?? this.title,
+      titleAr: titleAr ?? this.titleAr,
       description: description ?? this.description,
+      descriptionAr: descriptionAr ?? this.descriptionAr,
       subcategory: subcategory ?? this.subcategory,
       postType: postType ?? this.postType,
       city: city ?? this.city,

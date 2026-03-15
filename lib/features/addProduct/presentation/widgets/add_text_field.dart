@@ -34,7 +34,7 @@ class AddTextField extends StatelessWidget {
     final controller = TextEditingController(text: value);
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (label != null) ...[
           Row(
@@ -49,7 +49,8 @@ class AddTextField extends StatelessWidget {
         ],
 
         TextFormField(
-          controller: controller,
+          // controller: TextEditingController(text: value),
+          initialValue: value,
           onChanged: onChanged,
           maxLines: maxLines,
           keyboardType: keyboardType,
