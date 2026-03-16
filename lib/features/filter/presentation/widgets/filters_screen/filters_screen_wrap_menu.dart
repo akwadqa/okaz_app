@@ -18,7 +18,7 @@ class FiltersScreenWrapMenu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filters = ref.watch(filterControllerProvider
-        .select((val) => val.value!.selectedAttributes));
+        .select((val) => val.value!.tempAttributes));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 12,
@@ -36,12 +36,12 @@ class FiltersScreenWrapMenu extends ConsumerWidget {
               title: item,
               isSelected: isSelected,
               onTap: () {
-                if (subcategoryAttributeModel.isMainFilter == 1) {
-                  ref.read(selectedSubCategoryProvider.notifier).state = item;
-                }
+                // if (subcategoryAttributeModel.isMainFilter == 1) {
+                  // ref.read(selectedSubCategoryProvider.notifier).state = item;
+                // }
                 ref
                     .read(filterControllerProvider.notifier)
-                    .selectFilter(subcategoryAttributeModel, item);
+                    .selectFilterIntoTemp(subcategoryAttributeModel, item);
               },
             );
           }).toList(),

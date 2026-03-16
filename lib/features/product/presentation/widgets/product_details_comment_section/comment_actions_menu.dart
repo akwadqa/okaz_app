@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-enum CommentAction { edit, delete }
+enum CommentAction { edit, delete, reply }
 
 class CommentActionsMenu extends StatelessWidget {
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
-  const CommentActionsMenu({super.key, this.onEdit, this.onDelete});
+  final VoidCallback? onReply;
+  const CommentActionsMenu(
+      {super.key, this.onEdit, this.onDelete, this.onReply});
 
   @override
   Widget build(BuildContext context) {
@@ -20,25 +22,39 @@ class CommentActionsMenu extends StatelessWidget {
             onEdit?.call();
           } else if (value == CommentAction.delete) {
             onDelete?.call();
+          } else if (value == CommentAction.reply) {
+            onReply?.call();
           }
         },
         items: [
-          DropdownMenuItem(
-            value: CommentAction.edit,
-            child: Text(
-              'تعديل',
-              style: AppTextStyle.rubikRegular14.copyWith(
-                color: AppColors.grayHint,
+          if (onEdit != null)
+            DropdownMenuItem(
+              value: CommentAction.edit,
+              child: Text(
+                'تعديل',
+                style: AppTextStyle.rubikRegular14.copyWith(
+                  color: AppColors.grayHint,
+                ),
               ),
             ),
-          ),
-          DropdownMenuItem(
-            value: CommentAction.delete,
-            child: Text(
-              'حذف',
-              style: AppTextStyle.rubikRegular14.copyWith(color: AppColors.red),
+          if (onDelete != null)
+            DropdownMenuItem(
+              value: CommentAction.delete,
+              child: Text(
+                'حذف',
+                style:
+                    AppTextStyle.rubikRegular14.copyWith(color: AppColors.red),
+              ),
             ),
-          ),
+          if (onReply != null)
+            DropdownMenuItem(
+              value: CommentAction.reply,
+              child: Text(
+                'رد',
+                style: AppTextStyle.rubikRegular14
+                    .copyWith(color: AppColors.black),
+              ),
+            ),
         ],
         buttonStyleData: const ButtonStyleData(padding: EdgeInsets.zero),
         dropdownStyleData: DropdownStyleData(

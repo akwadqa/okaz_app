@@ -31,7 +31,7 @@ class _SearchSubCategoriesScreenContent extends StatelessWidget {
         Divider(height: 24, color: AppColors.dividerColor),
         SubCategoriesSection(subCategoryModel),
         Divider(height: 24, color: AppColors.dividerColor),
-        SearchSubCategoriesCompaniesSection(),
+        // SearchSubCategoriesCompaniesSection(),
       ],
     );
   }

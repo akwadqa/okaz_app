@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/features/product/presentation/controller/favorite_product_contrller.dart';
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
@@ -50,15 +51,13 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
               itemCount: widget.productDetailsModel.images?.length,
               onPageChanged: (index) => setState(() => _currentIndex = index),
               itemBuilder: (context, index) => CachedNetworkImage(
-                imageUrl:
-                    ServicesUrls.imageUrl +
+                imageUrl: ServicesUrls.imageUrl +
                     (widget.productDetailsModel.images?[index].image ?? ''),
                 fit: BoxFit.cover,
               ),
               // widget.productDetailsModel.images[index].(fit: BoxFit.cover),
             ),
           ),
-
           PositionedDirectional(
             end: 16,
             top: 28,
@@ -75,7 +74,6 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
               icon: Icon(Icons.arrow_back_ios_rounded, color: AppColors.white),
             ),
           ),
-
           Positioned(
             left: 0,
             right: 0,
@@ -96,13 +94,13 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
 class ProductDetailsScreenIconCircleButton extends ConsumerStatefulWidget {
   final SvgGenImage icon;
   final VoidCallback? onTap;
-  final ProductDetailsModel? productDetailsModel;
+  final ProductDetailsModel productDetailsModel;
   final bool toProduct;
 
   const ProductDetailsScreenIconCircleButton({
     super.key,
     required this.icon,
-    this.productDetailsModel,
+    required this.productDetailsModel,
     this.onTap,
     this.toProduct = false,
   });
@@ -121,8 +119,11 @@ class _ProductDetailsScreenIconCircleButtonState
   void _handleTap() {
     _scale = 1.0;
     ref
-        .read(productControllerProvider.notifier)
-        .addPostToFavorite(widget.productDetailsModel?.name ?? 'id');
+        .read(favoriteProductContrllerProvider(
+                widget.productDetailsModel.name.toString(),
+                widget.productDetailsModel?.isFavorited ?? false)
+            .notifier)
+        .addPostToFavorite(widget.productDetailsModel.name ?? 'id');
     setState(() {
       _scale = 1.3;
     });
@@ -138,38 +139,37 @@ class _ProductDetailsScreenIconCircleButtonState
 
   @override
   Widget build(BuildContext context) {
-    bool isSelected =
-        ref.watch(productControllerProvider).value?.favoritePost ?? false;
+    final favoriteAsync = ref.watch(favoriteProductContrllerProvider(
+        widget.productDetailsModel.name.toString(),
+        widget.productDetailsModel.isFavorited ?? false));
 
-    return ProviderScope(
-      overrides: [
-        productControllerProvider.overrideWith(() => ProductController()),
-      ],
-      child: CircleAvatar(
-        backgroundColor: Colors.white,
-        radius: 12,
-        child: GestureDetector(
-          onTap: _handleTap,
-          child: AnimatedScale(
-            scale: _scale,
-            duration: const Duration(milliseconds: 150),
-            curve: Curves.easeInOut,
-            child: Padding(
-              padding: EdgeInsets.all(widget.toProduct ? 4 : 6),
-              child: SizedBox(
-                width: 20,
-                height: 20,
-                child: isSelected
-                    ? Assets.icons.yellowStarIc.svg()
-                    : widget.icon.svg(
-                        colorFilter: isSelected
-                            ? const ColorFilter.mode(
-                                Colors.yellow,
-                                BlendMode.dst,
-                              )
-                            : null,
-                      ),
-              ),
+    final isSelected =
+        favoriteAsync.value ?? (widget.productDetailsModel.isFavorited ?? false);
+
+    return CircleAvatar(
+      backgroundColor: Colors.white,
+      radius: 12,
+      child: GestureDetector(
+        onTap: _handleTap,
+        child: AnimatedScale(
+          scale: _scale,
+          duration: const Duration(milliseconds: 150),
+          curve: Curves.easeInOut,
+          child: Padding(
+            padding: EdgeInsets.all(widget.toProduct ? 4 : 6),
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: isSelected
+                  ? Assets.icons.yellowStarIc.svg()
+                  : widget.icon.svg(
+                      colorFilter: isSelected
+                          ? const ColorFilter.mode(
+                              Colors.yellow,
+                              BlendMode.dst,
+                            )
+                          : null,
+                    ),
             ),
           ),
         ),

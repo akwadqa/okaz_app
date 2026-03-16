@@ -7,7 +7,7 @@ class ProductState {
   final AsyncValue<ProductDetailsModel>? productDetailsModel;
   final AsyncValue<String>? deletePost;
   final AsyncValue? sendReport;
-  final bool? favoritePost;
+  // final bool? favoritePost;
   final bool? likePost;
 
   factory ProductState.init() => ProductState(
@@ -19,7 +19,7 @@ class ProductState {
   ProductState({
     this.productDetailsModel,
     this.deletePost,
-    this.favoritePost,
+    // this.favoritePost,
     this.sendReport,
     this.likePost,
   });
@@ -35,7 +35,7 @@ class ProductState {
       productDetailsModel: productDetailsModel ?? this.productDetailsModel,
       deletePost: deletePost ?? this.deletePost,
       sendReport: sendReport ?? this.sendReport,
-      favoritePost: favoritePost ?? this.favoritePost,
+      // favoritePost: favoritePost ?? this.favoritePost,
       likePost: likePost ?? this.likePost,
     );
   }

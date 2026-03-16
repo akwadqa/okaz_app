@@ -16,7 +16,10 @@ class ProductsScreenFiltersButton extends ConsumerWidget {
     final count = ref.watch(filterControllerProvider
         .select((val) => val.value!.selectedAttributes.length));
     return GestureDetector(
-      onTap: () => context.push(AppRoutes.filtersScreen),
+      onTap: () {
+        ref.read(filterControllerProvider.notifier).getAttributesIntoTemp();
+        context.push(AppRoutes.filtersScreen);
+      },
       child: Container(
         // width: 83,
         padding: EdgeInsets.symmetric(horizontal: 10),

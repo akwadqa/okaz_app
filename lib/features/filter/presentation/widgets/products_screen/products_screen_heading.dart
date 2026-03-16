@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
 import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
@@ -62,7 +63,13 @@ class ProductsScreenHeading extends ConsumerWidget {
             ),
           ],
         ).symmetricPadding(horizontal: 22, vertical: 20),
-        HomeScreenSearchFiled(title: 'search_in_section'.tr()),
+        HomeScreenSearchFiled(
+          title: 'search_in_section'.tr(),
+          onChanged: (value) {
+            ref.read(filterControllerProvider.notifier).search = value;
+            ref.read(filterControllerProvider.notifier).getPosts();
+          },
+        ),
       ],
     );
   }

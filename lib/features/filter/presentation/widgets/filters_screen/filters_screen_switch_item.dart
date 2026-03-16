@@ -12,7 +12,7 @@ class FiltersScreenSwitchItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isOn = ref.watch(filterControllerProvider.select((val) =>
-            val.value!.selectedAttributes))[subcategoryAttributeModel.title] ??
+            val.value!.tempAttributes))[subcategoryAttributeModel.title] ??
         false;
 
     return Container(
@@ -49,7 +49,7 @@ class FiltersScreenSwitchItem extends ConsumerWidget {
             onChanged: (val) {
               ref
                   .read(filterControllerProvider.notifier)
-                  .selectFilter(subcategoryAttributeModel, val);
+                  .selectFilterIntoTemp(subcategoryAttributeModel, val);
             },
             activeTrackColor: AppColors.primary,
             activeThumbColor: AppColors.white,

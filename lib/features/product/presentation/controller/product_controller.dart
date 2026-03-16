@@ -110,26 +110,26 @@ class ProductController extends _$ProductController {
     }
   }
 
-  Future<bool?> addPostToFavorite(String productId) async {
-    try {
-      state = AsyncData(state.value!.copyWith(favoritePost: true));
-      final repo = ref.read(productRepositoryProvider);
-      final response = await repo.addPostToFavorite(productId);
+  // Future<bool?> addPostToFavorite(String productId) async {
+  //   try {
+  //     state = AsyncData(state.value!.copyWith(favoritePost: true));
+  //     final repo = ref.read(productRepositoryProvider);
+  //     final response = await repo.addPostToFavorite(productId);
 
-      if (response.hasFailed) {
-        state = AsyncData(state.value!.copyWith(favoritePost: false));
+  //     if (response.hasFailed) {
+  //       state = AsyncData(state.value!.copyWith(favoritePost: false));
 
-        return null;
-      }
+  //       return null;
+  //     }
 
-      return response.data;
-    } catch (e, st) {
-      state = AsyncError(e, st);
+  //     return response.data;
+  //   } catch (e, st) {
+  //     state = AsyncError(e, st);
 
-      state = AsyncData(state.value!.copyWith(favoritePost: false));
-      return null;
-    }
-  }
+  //     state = AsyncData(state.value!.copyWith(favoritePost: false));
+  //     return null;
+  //   }
+  // }
 
   Future<bool?> likePost(String productId) async {
     final currentProduct = state.value!.productDetailsModel!.value!;

@@ -71,12 +71,6 @@ class FilterController extends _$FilterController {
     }
   }
 
-  void reset() {
-    state = AsyncData(
-      state.value!.copyWith(selectedAttributes: {}),
-    );
-  }
-
   String search = '';
 
   Future<List<ProductDetailsModel>?> getPosts() async {
@@ -114,6 +108,90 @@ class FilterController extends _$FilterController {
         state.value!.copyWith(posts: AsyncError(e, st)),
       );
       return null;
+    }
+  }
+
+  void getAttributesIntoTemp() {
+    final currentAttr = state.value!.selectedAttributes;
+    state = AsyncData(
+      state.value!.copyWith(
+        tempAttributes: Map.from(currentAttr),
+      ),
+    );
+  }
+
+  void applyTempAttributes() {
+    final currentAttr = state.value!.tempAttributes;
+    final currentTitle = ref.read(selectedSubCategoryProvider);
+    ref.read(selectedSubCategoryProvider.notifier).state =
+        tempAttribute ?? currentTitle;
+    state = AsyncData(
+      state.value!.copyWith(
+        selectedAttributes: Map.from(currentAttr),
+      ),
+    );
+  }
+
+  // void clearTempAttributes() {
+  //   final mainFilter = ref.read(selectedSubCategoryProvider.notifier).state;
+  //   final tempWithMainFilter = state.value!.tempAttributes
+  //     ..removeWhere((k, v) {
+  //       return k == mainFilter;
+  //     });
+  //   state = AsyncData(
+  //     state.value!.copyWith(
+  //       tempAttributes: Map.from(tempWithMainFilter),
+  //     ),
+  //   );
+  // }
+
+  void clearTempAttributes() {
+    final currentState = state.value;
+    if (currentState == null) return;
+
+    // 1. قراءة القيمة الحالية للمرشح الرئيسي
+    // final mainFilter = ref.read(selectedSubCategoryProvider.notifier).state;
+    final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
+
+    // 2. الحصول على القيمة الخاصة بالمفتاح الرئيسي من الخريطة القديمة (إن وجدت)
+    final mainFilterValue = currentState.tempAttributes[mainFilter];
+    // 3. إنشاء خريطة جديدة تماماً (هذا يضمن تحديث الـ UI)
+    final Map<String, dynamic> newTempAttributes = {};
+
+    if (mainFilterValue != null) {
+      newTempAttributes[mainFilter!] = mainFilterValue;
+    }
+
+    // 4. تحديث الحالة
+    state = AsyncData(
+      currentState.copyWith(tempAttributes: newTempAttributes),
+    );
+  }
+
+  String? tempAttribute;
+
+  void selectFilterIntoTemp(
+      SubcategoryAttributeModel subcategoryAttributeModel, dynamic filter) {
+    final currentFilters = state.value!.tempAttributes;
+    if (currentFilters[subcategoryAttributeModel.title] == filter) {
+      if (subcategoryAttributeModel.isMainFilter != 0) {
+        tempAttribute = filter;
+        return;
+      }
+      state = AsyncData(
+        state.value!.copyWith(
+            tempAttributes: Map.from(
+                currentFilters..remove(subcategoryAttributeModel.title))),
+      );
+    } else {
+      if (subcategoryAttributeModel.isMainFilter != 0) {
+        tempAttribute = filter;
+      }
+      state = AsyncData(
+        state.value!.copyWith(
+            tempAttributes: Map.from(currentFilters
+              ..addAll({subcategoryAttributeModel.title: filter}))),
+      );
     }
   }
 }

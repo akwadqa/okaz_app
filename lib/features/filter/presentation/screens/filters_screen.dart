@@ -25,13 +25,18 @@ class FiltersScreen extends ConsumerWidget {
         title: Text('filters'.tr()),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () => context.pop(),
+          onPressed: () {
+            ref.read(filterControllerProvider.notifier).clearTempAttributes();
+            context.pop();
+          },
           icon: Icon(Icons.close),
         ),
         actionsPadding: EdgeInsets.symmetric(horizontal: 22),
         actions: [
           GestureDetector(
-            onTap: () => ref.read(filterControllerProvider.notifier).reset(),
+            onTap: () => ref
+                .read(filterControllerProvider.notifier)
+                .clearTempAttributes(),
             child: Text(
               'reset'.tr(),
               style: AppTextStyle.rubikSemiBold14.copyWith(

@@ -8,9 +8,11 @@ class HomeScreenSearchFiled extends StatelessWidget {
     super.key,
     required this.title,
     this.withPadding = true,
-    this.onTap, 
+    this.onTap,
+    this.onChanged, 
   });
   final String title;
+  final void Function(String)? onChanged;
   final bool withPadding;
   final VoidCallback? onTap;
   OutlineInputBorder _border() {
@@ -27,6 +29,7 @@ class HomeScreenSearchFiled extends StatelessWidget {
         onTap != null ? onTap!() : null;
       },
       readOnly: onTap != null,
+      onChanged: onChanged,
       cursorColor: AppColors.black,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(4),
