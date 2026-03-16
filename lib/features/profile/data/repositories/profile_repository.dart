@@ -1,6 +1,7 @@
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/data/datasources/profile_dataSource.dart';
+import 'package:okaz/features/profile/domain/model/post_model.dart';
 import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
 import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
 import 'package:okaz/src/infrastructure/api/response/api_response.dart';
@@ -72,15 +73,29 @@ class ProfileRepository {
     throw AppException(message: response.message);
   }
 
-  Future<ApiResponse<List<ProductDetailsModel>>> getProfilePost(
-    int page,
+  Future<ApiResponse<List<PostModel>>> getProfilePost(
+    {int? page,}
   ) async {
-    final response = await _remoteDataSource.getProfilePost(page);
+    final response = await _remoteDataSource.getProfilePosts(page:page);
 
-    if (response.status == 200) {
+    if (response.hasSucceeded) {
       return response;
     }
 
     throw AppException(message: response.message);
   }
+  Future<ApiResponse<List<PostModel>>> getFavoritePosts(
+    int page,
+  ) async {
+    final response = await _remoteDataSource.getFavoritePosts(page);
+
+    if (response.hasSucceeded) {
+      return response;
+    }
+
+    throw AppException(message: response.message);
+  }
+
+
+
 }

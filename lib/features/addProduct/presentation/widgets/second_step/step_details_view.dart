@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
+import 'package:okaz/features/addProduct/presentation/widgets/add_text_field.dart';
 import 'package:okaz/features/addProduct/presentation/widgets/second_step/select_location_page/location_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 
@@ -80,21 +81,22 @@ class StepDetailsView extends ConsumerWidget {
         ),
 
        
-        AddSelectField(
+        AddTextField(
           label: 'city',
           isRequired: true,
           hint: 'select_city',
           value: state.city,
-          onTap: () {
-            // showAddSelectSheet<String>(
-            //   context: context,
-            //   title: 'select_city'.tr(),
-            //   items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
-            //   selected: state.city,
-            //   labelBuilder: (v) => v,
-            //   onConfirm: controller.setCity,
-            // );
-          },
+          onChanged: controller.setCity ,
+          // onTap: () {
+          //   // showAddSelectSheet<String>(
+          //   //   context: context,
+          //   //   title: 'select_city'.tr(),
+          //   //   items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
+          //   //   selected: state.city,
+          //   //   labelBuilder: (v) => v,
+          //   //   onConfirm: controller.setCity,
+          //   // );
+          // },
         ),
 
         /// الحالة *

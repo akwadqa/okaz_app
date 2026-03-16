@@ -15,10 +15,10 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileState {
   ProfileTab get selectedTab;
-  List<ProductDetailsModel> get myAds;
+  List<PostModel> get myAds;
   AsyncValue<UserResponseModel>? get profileData;
   AsyncValue<UserResponseModel>? get updateprofileData;
-  List<ProductDetailsModel> get favorites;
+  List<PostModel> get favorites;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
@@ -66,10 +66,10 @@ abstract mixin class $ProfileStateCopyWith<$Res> {
   @useResult
   $Res call(
       {ProfileTab selectedTab,
-      List<ProductDetailsModel> myAds,
+      List<PostModel> myAds,
       AsyncValue<UserResponseModel>? profileData,
       AsyncValue<UserResponseModel>? updateprofileData,
-      List<ProductDetailsModel> favorites});
+      List<PostModel> favorites});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
       myAds: null == myAds
           ? _self.myAds
           : myAds // ignore: cast_nullable_to_non_nullable
-              as List<ProductDetailsModel>,
+              as List<PostModel>,
       profileData: freezed == profileData
           ? _self.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
       favorites: null == favorites
           ? _self.favorites
           : favorites // ignore: cast_nullable_to_non_nullable
-              as List<ProductDetailsModel>,
+              as List<PostModel>,
     ));
   }
 }
@@ -210,10 +210,10 @@ extension ProfileStatePatterns on ProfileState {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             ProfileTab selectedTab,
-            List<ProductDetailsModel> myAds,
+            List<PostModel> myAds,
             AsyncValue<UserResponseModel>? profileData,
             AsyncValue<UserResponseModel>? updateprofileData,
-            List<ProductDetailsModel> favorites)?
+            List<PostModel> favorites)?
         $default, {
     required TResult orElse(),
   }) {
@@ -244,10 +244,10 @@ extension ProfileStatePatterns on ProfileState {
   TResult when<TResult extends Object?>(
     TResult Function(
             ProfileTab selectedTab,
-            List<ProductDetailsModel> myAds,
+            List<PostModel> myAds,
             AsyncValue<UserResponseModel>? profileData,
             AsyncValue<UserResponseModel>? updateprofileData,
-            List<ProductDetailsModel> favorites)
+            List<PostModel> favorites)
         $default,
   ) {
     final _that = this;
@@ -276,10 +276,10 @@ extension ProfileStatePatterns on ProfileState {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             ProfileTab selectedTab,
-            List<ProductDetailsModel> myAds,
+            List<PostModel> myAds,
             AsyncValue<UserResponseModel>? profileData,
             AsyncValue<UserResponseModel>? updateprofileData,
-            List<ProductDetailsModel> favorites)?
+            List<PostModel> favorites)?
         $default,
   ) {
     final _that = this;
@@ -298,20 +298,20 @@ extension ProfileStatePatterns on ProfileState {
 class _ProfileState implements ProfileState {
   const _ProfileState(
       {this.selectedTab = ProfileTab.myAds,
-      final List<ProductDetailsModel> myAds = const [],
+      final List<PostModel> myAds = const [],
       this.profileData,
       this.updateprofileData,
-      final List<ProductDetailsModel> favorites = const []})
+      final List<PostModel> favorites = const []})
       : _myAds = myAds,
         _favorites = favorites;
 
   @override
   @JsonKey()
   final ProfileTab selectedTab;
-  final List<ProductDetailsModel> _myAds;
+  final List<PostModel> _myAds;
   @override
   @JsonKey()
-  List<ProductDetailsModel> get myAds {
+  List<PostModel> get myAds {
     if (_myAds is EqualUnmodifiableListView) return _myAds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_myAds);
@@ -321,10 +321,10 @@ class _ProfileState implements ProfileState {
   final AsyncValue<UserResponseModel>? profileData;
   @override
   final AsyncValue<UserResponseModel>? updateprofileData;
-  final List<ProductDetailsModel> _favorites;
+  final List<PostModel> _favorites;
   @override
   @JsonKey()
-  List<ProductDetailsModel> get favorites {
+  List<PostModel> get favorites {
     if (_favorites is EqualUnmodifiableListView) return _favorites;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_favorites);
@@ -379,10 +379,10 @@ abstract mixin class _$ProfileStateCopyWith<$Res>
   @useResult
   $Res call(
       {ProfileTab selectedTab,
-      List<ProductDetailsModel> myAds,
+      List<PostModel> myAds,
       AsyncValue<UserResponseModel>? profileData,
       AsyncValue<UserResponseModel>? updateprofileData,
-      List<ProductDetailsModel> favorites});
+      List<PostModel> favorites});
 }
 
 /// @nodoc
@@ -412,7 +412,7 @@ class __$ProfileStateCopyWithImpl<$Res>
       myAds: null == myAds
           ? _self._myAds
           : myAds // ignore: cast_nullable_to_non_nullable
-              as List<ProductDetailsModel>,
+              as List<PostModel>,
       profileData: freezed == profileData
           ? _self.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
@@ -424,7 +424,7 @@ class __$ProfileStateCopyWithImpl<$Res>
       favorites: null == favorites
           ? _self._favorites
           : favorites // ignore: cast_nullable_to_non_nullable
-              as List<ProductDetailsModel>,
+              as List<PostModel>,
     ));
   }
 }
