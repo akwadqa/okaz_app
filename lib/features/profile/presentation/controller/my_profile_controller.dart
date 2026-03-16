@@ -1,33 +1,56 @@
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/data/repositories/profile_repository.dart';
 import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
 import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import '../../domain/model/post_model.dart';
 import '../../domain/profile_item.dart';
 import 'profile_state.dart';
 
 part 'my_profile_controller.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ProfileController extends _$ProfileController {
+    List<PostModel> _myPosts = [];
+  int _myPostsCurrentPage = 1;
+  int _myPostsTotalPages = 1;
+    List<PostModel> _favoritePosts = [];
+  int _favoritePostsCurrentPage = 1;
+  int _favoritePostsTotalPages = 1;
   @override
   FutureOr<ProfileState> build() async {
-    // simulate API delay
-    // await Future.delayed(const Duration(milliseconds: 400));
-
-    return ProfileState(
-      // myAds: _mockMyAds(),
-      // favorites: _mockFavorites(),
+  final initial = ProfileState(
       selectedTab: ProfileTab.myAds,
+      myAds: [],
+      favorites: [],
     );
+
+    state = AsyncData(initial);
+
+    await fetchMyPosts(page: 1);
+
+    return initial;
   }
 
   // ───────────── Tabs ─────────────
-  // ✅ SAFE state update
-  void changeTab(ProfileTab tab) {
-    final current = state.value;
+  Future<void> changeTab(ProfileTab tab) async {
+    // final current = state.value;
+    // if (current == null) return;
+
+    // state = AsyncValue.data(current.copyWith(selectedTab: tab));
+        final current = state.value;
     if (current == null) return;
 
-    state = AsyncValue.data(current.copyWith(selectedTab: tab));
+    state = AsyncData(current.copyWith(selectedTab: tab));
+
+    if (tab == ProfileTab.myAds && _myPosts.isEmpty) {
+      await fetchMyPosts(page: 1);
+    }
+
+    if (tab == ProfileTab.favorites && _favoritePosts.isEmpty) {
+      await fetchMyPosts(page: 1);
+    }
   }
 
   Future<UserResponseModel?> getProfileData() async {
@@ -90,6 +113,124 @@ class ProfileController extends _$ProfileController {
     }
   }
 
+
+  // ───────────── My Posts Data ─────────────
+
+
+Future<List<PostModel>> fetchMyPosts({
+  required int page,
+  bool showLoading = true,
+}) async {
+  try {
+    final current = state.value;
+
+    /// show loading only first time
+    if (showLoading && (current?.myAds.isEmpty ?? true)) {
+      state = const AsyncLoading();
+    }
+
+    final repo = ref.read(profileRepositoryProvider);
+    final response = await repo.getProfilePost(page: page);
+
+    final pagination = response.pagination;
+
+    _myPostsCurrentPage = pagination?.currentPage ?? 1;
+    _myPostsTotalPages = pagination?.totalPages ?? 1;
+
+    if (page == 1) {
+      _myPosts = List.from(response.data ?? []);
+    } else {
+      _myPosts.addAll(response.data ?? []);
+    }
+
+    final previous = state.value ?? const ProfileState();
+
+    state = AsyncData(
+      previous.copyWith(
+        myAds: List.from(_myPosts),
+      ),
+    );
+
+    return _myPosts;
+  } catch (e, st) {
+    state = AsyncError(e, st);
+    return [];
+  }
+}
+  Future<bool> loadNextMyPostsPage() async {
+    if (_myPostsCurrentPage >= _myPostsTotalPages) return false;
+    final nextPage = _myPostsCurrentPage + 1;
+    final result = await fetchMyPosts(page: nextPage, showLoading: false);
+    return result.isNotEmpty;
+  }
+
+  Future<void> refreshMyPosts() async {
+    _myPosts.clear();
+    _myPostsCurrentPage = 1;
+    _myPostsTotalPages = 1;
+    await fetchMyPosts(page: 1);
+  }
+
+  // ───────────── Favorite Posts Data ─────────────
+
+
+  Future<List<PostModel>> fetchFavorites({required int page, bool showLoading = true}) async {
+    try {
+      if (showLoading) state = const AsyncLoading();
+
+      final repo = ref.read(profileRepositoryProvider);
+      final response = await repo.getFavoritePosts( page);
+
+ final pagination = response.pagination;
+
+      _favoritePostsCurrentPage = pagination?.currentPage ?? 1;
+      _favoritePostsTotalPages = pagination?.totalPages ?? 1;
+
+      if (page == 1) {
+        _favoritePosts = List.from(response.data ?? []);
+      } else {
+        _favoritePosts.addAll(response.data ?? []);
+      }
+
+  final current = state.value!;
+      state = AsyncData(
+        current.copyWith(
+          myAds: List.from(_favoritePosts),
+        ),
+      );
+      return _favoritePosts; 
+    } catch (e, st) {
+      state = AsyncError(e, st);
+      return [];
+    }
+  }
+
+  Future<bool> loadNextFavoritesPage() async {
+    if (_favoritePostsCurrentPage >= _favoritePostsTotalPages) return false;
+    final nextPage = _favoritePostsCurrentPage + 1;
+    final result = await fetchFavorites(page: nextPage, showLoading: false);
+    return result.isNotEmpty;
+  }
+
+  Future<void> refreshFavoritePosts() async {
+    _favoritePosts.clear();
+    _favoritePostsCurrentPage = 1;
+    _favoritePostsTotalPages = 1;
+    await fetchMyPosts(page: 1);
+  }
+
+    // ───────────── Refresh ─────────────
+  Future<void> refreshCurrentTab() async {
+    if (state.value!.selectedTab == ProfileTab.myAds) {
+      _myPosts.clear();
+      _myPostsCurrentPage = 1;
+      await fetchMyPosts(page: 1);
+    } else {
+      _favoritePosts.clear();
+      _favoritePostsCurrentPage = 1;
+      await fetchFavorites(page: 1);
+    }
+  }
   // ───────────── Mock Data ─────────────
   List<ProfileItem> _mockMyAds() => [
     ProfileItem(

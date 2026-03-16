@@ -17,7 +17,7 @@ class FilterRemoteDataSource {
           data: request.toJson());
 
       if (response.data == null || response.statusCode != 200) {
-        throw Exception('Failed to load data');
+        throw Exception('Failed to load getProductsByFilter');
       }
 
       return ApiResponse.fromJson(
@@ -28,7 +28,7 @@ class FilterRemoteDataSource {
             .toList(),
       );
     } catch (e) {
-      debugPrint('Error in getData: e');
+      debugPrint('Error in getProductsByFilter: $e');
       rethrow;
     }
   }

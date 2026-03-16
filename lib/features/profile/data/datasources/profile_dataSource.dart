@@ -9,6 +9,8 @@ import 'package:okaz/src/infrastructure/api/response/api_response.dart';
 import 'package:okaz/src/infrastructure/network/services/network_service.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 
+import '../../domain/model/post_model.dart';
+
 class ProfileDatasource {
   final NetworkService _networkService;
 
@@ -126,30 +128,57 @@ class ProfileDatasource {
     }
   }
 
-  Future<ApiResponse<List<ProductDetailsModel>>> getProfilePost(
-    int page,
-  ) async {
+  Future<ApiResponse<List<PostModel>>> getProfilePosts({
+    int? page,
+  }) async {
     try {
       final data = {'page_no': page, 'limit': 10};
-      final response = await _networkService.put(
+      final response = await _networkService.get(
         ApiEndPoints.userPosts,
-        data: data,
+         data: data,
         queryParameters: {},
       );
 
       if (response.data == null || response.statusCode != 200) {
-        throw Exception('Failed to load data');
-        
+        throw Exception('Failed to load getProfilePosts');
       }
 
       return ApiResponse.fromJson(
         response.data,
         (json) => (json as List)
-            .map((item) => ProductDetailsModel.fromJson(item as Map<String, dynamic>))
+            .map((item) => PostModel.fromJson(item as Map<String, dynamic>))
             .toList(),
       );
     } catch (e) {
-      debugPrint('Error in getData: e');
+      debugPrint('Error in getProfilePosts: $e');
+      rethrow;
+    }
+  }
+
+  Future<ApiResponse<List<PostModel>>> getFavoritePosts(
+    int page,
+  ) async {
+    try {
+      final data = {'page_no': page, 'limit': 10};
+
+      final response = await _networkService.get(
+        ApiEndPoints.favoritePosts,
+        data: data,
+        queryParameters: {},
+      );
+
+      if (response.data == null || response.statusCode != 200) {
+        throw Exception('Failed to load getFavoritePosts');
+      }
+
+      return ApiResponse.fromJson(
+        response.data,
+        (json) => (json as List)
+            .map((item) => PostModel.fromJson(item as Map<String, dynamic>))
+            .toList(),
+      );
+    } catch (e) {
+      debugPrint('Error in getFavoritePosts: $e');
       rethrow;
     }
   }
