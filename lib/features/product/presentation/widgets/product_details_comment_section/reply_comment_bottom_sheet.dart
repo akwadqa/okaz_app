@@ -102,10 +102,9 @@ class _EditCommentBottomSheetState
               controller: _controller,
               minLines: 1,
               maxLines: 5,
-              textAlign: TextAlign.right,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               decoration: InputDecoration(
-                hintText: 'product_details.message_placeholder'.tr(),
+                hintText: 'product_details_message_placeholder'.tr(),
                 hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -144,7 +143,6 @@ class _EditCommentBottomSheetState
                                   parentComment: widget.comment.name,
                                   content: _controller.text,
                                 ),
-                                
                               );
                         },
                         borderRadius: BorderRadius.circular(12),

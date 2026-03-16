@@ -48,13 +48,13 @@ class ProductsScreenSpecialItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'ساعة كلاسيكية',
+                  'classic_watch_title'.tr(),
                   style: AppTextStyle.interBold18.copyWith(
                     color: AppColors.white,
                   ),
                 ),
                 Text(
-                  'ارفع من مستوى أناقتك مع الساعات الفاخرة',
+                  'classic_watch_subtitle'.tr(),
                   style: AppTextStyle.interRegular16.copyWith(
                     color: AppColors.white,
                   ),

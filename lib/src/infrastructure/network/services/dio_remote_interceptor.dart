@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/src/application/router/app_router.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
+import 'package:okaz/src/application/router/routing/app_router_provider.dart';
 
 import '../../../core/localization/current_language.dart';
 import '../../api/response/api_response.dart';
@@ -68,20 +69,30 @@ class RemoteInterceptor extends Interceptor {
 
     // ✅ تحقق من إذا كان Unauthorized
 
-    final isUnauthorized =
-        (statusCode == 401 &&
-            (responseData['message']?.toString().toLowerCase().contains(
-                  "otp",
-                )) ==
-                false) ||
-        (responseData['exc_type']?.toString().contains('PermissionError')) ==
-            true;
+    // final isUnauthorized =
+    //     (statusCode == 401 &&
+    //         (responseData['message']?.toString().toLowerCase().contains(
+    //               "otp",
+    //             )) ==
+    //             false) ||
+    //     (responseData['exc_type']?.toString().contains('PermissionError')) ==
+    //         true;
 
+    final isUnauthorized = (statusCode == 401 &&
+            (responseData['message']?.toString().toLowerCase().contains(
+                      "otp",
+                    )) ==
+                false) ||
+        (responseData['exc_type']?.toString().contains(
+                  'AuthenticationError',
+                )) ==
+            true;
     if (isUnauthorized) {
       debugPrint("🚪 Session expired → redirect to Login");
 
       ref.read(localStorageServiceProvider).logout();
       rootKey.currentContext!.go(AppRoutes.signInScreen);
+      // ref.read(goRouterProvider).go(AppRoutes.signInScreen);
 
       // ref.read().go(Routes.login);
     }
@@ -165,8 +176,7 @@ class RemoteInterceptor extends Interceptor {
     if (data is Map && data['message'] != null) {
       message = data['message'].toString();
     } else {
-      message =
-          _getDefaultMessageForStatusCode(statusCode) ??
+      message = _getDefaultMessageForStatusCode(statusCode) ??
           err.message ??
           'Unexpected error occurred';
     }

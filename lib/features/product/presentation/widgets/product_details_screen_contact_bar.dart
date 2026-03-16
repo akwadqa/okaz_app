@@ -44,7 +44,7 @@ class ProductDetailsScreenContactBar extends StatelessWidget {
           const SizedBox(width: 12),
           ProductDetailsScreenPrimaryContactChip(
             icon: Assets.icons.callIc,
-            textKey: 'product_details.call',
+            textKey: 'product_details_call',
             onTap: () {
               openPhoneDialer(
                   productDetailsModel.userInfo?.mobileNo ?? '00000000');
@@ -53,7 +53,7 @@ class ProductDetailsScreenContactBar extends StatelessWidget {
           const SizedBox(width: 10),
           ProductDetailsScreenPrimaryContactChip(
             icon: Assets.icons.whatsappIc,
-            textKey: 'product_details.whatsapp',
+            textKey: 'product_details_whatsapp',
             onTap: () {
               openWhatsApp(
                   productDetailsModel.userInfo?.mobileNo ?? '00000000');

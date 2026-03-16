@@ -42,8 +42,8 @@ class CustomAppbar extends StatelessWidget {
            showSearch??false
           ? TextField(
               onChanged: onSearchTextChanged!,
-              decoration: const InputDecoration(
-                hintText: 'ابحث...',
+              decoration: InputDecoration(
+                hintText: 'search_hint'.tr(),
                 border: InputBorder.none,
               ),
             )

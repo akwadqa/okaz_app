@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/src/core/utils/extenssions/time_extension.dart';
@@ -46,7 +47,7 @@ class ProductDetailsScreenSubCommentTile extends StatelessWidget {
                     comment.commentBy?.firstName
                             ?.substring(0, 2)
                             .toUpperCase() ??
-                        "NA",
+                        'not_available'.tr(),
                   )
                 : null,
           ),
@@ -58,11 +59,11 @@ class ProductDetailsScreenSubCommentTile extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      comment.commentBy?.firstName ?? 'name',
+                      comment.commentBy?.firstName ?? 'name'.tr(),
                       style: AppTextStyle.rubikMedium16,
                     ),
                     const Spacer(),
-                    if (showMenu)
+                    if (showMenu && (onDelete != null || onEdit != null))
                       CommentActionsMenu(onEdit: onEdit, onDelete: onDelete),
                   ],
                 ),
@@ -73,7 +74,7 @@ class ProductDetailsScreenSubCommentTile extends StatelessWidget {
                     SizedBox(
                       width: 180,
                       child: Text(
-                        comment.content ?? 'comment',
+                        comment.content ?? 'comment'.tr(),
                         style: AppTextStyle.rubikRegular14.copyWith(
                           color: AppColors.grayHint,
                         ),

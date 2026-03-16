@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class FallbackScreen extends StatelessWidget {
@@ -5,11 +6,11 @@ class FallbackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Text(
-          'Not Found Screen',
-          style: TextStyle(fontSize: 26),
+          'not_found_screen'.tr(),
+          style: const TextStyle(fontSize: 26),
         ),
       ),
     );

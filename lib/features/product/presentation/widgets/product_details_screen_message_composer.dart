@@ -58,10 +58,9 @@ class _ProductDetailsScreenMessageComposerState
         child: TextFormField(
           controller: _controller,
           maxLines: 1,
-          textAlign: TextAlign.right,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           decoration: InputDecoration(
-            hintText: 'product_details.message_placeholder'.tr(),
+            hintText: 'product_details_message_placeholder'.tr(),
             hintStyle: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,

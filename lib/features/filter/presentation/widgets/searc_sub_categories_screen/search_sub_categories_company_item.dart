@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -31,7 +32,7 @@ class SearchSubCategoiesCompanyItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'هواتف - آيباد',
+            'phones_ipad'.tr(),
             style: AppTextStyle.rubikMedium14.copyWith(
               color: AppColors.textDart,
             ),
@@ -39,7 +40,7 @@ class SearchSubCategoiesCompanyItem extends StatelessWidget {
           SizedBox(
             width: 153,
             child: Text(
-              'جملة & مفرق بيع جميع أنواع الهواتف المحمولة بأفضل الأسعار',
+              'phones_ipad_desc'.tr(),
               textAlign: TextAlign.center,
               style: AppTextStyle.rubikRegular12.copyWith(
                 color: AppColors.grayHint,

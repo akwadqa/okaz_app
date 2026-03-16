@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/gen/assets.gen.dart';
@@ -45,7 +46,7 @@ class HomeScreenAddItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              bannerModel.categoryName ?? 'Category',
+              bannerModel.categoryName ?? 'category_name'.tr(),
               // 'ساعة كلاسيكية',
               style: AppTextStyle.interBold18.copyWith(color: AppColors.white),
             ),

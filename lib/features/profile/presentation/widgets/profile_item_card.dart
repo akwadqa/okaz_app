@@ -1,4 +1,5 @@
 // widgets/profile_item_card.dart
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../domain/profile_item.dart';
 
@@ -39,7 +40,7 @@ class ProfileItemCard extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 12, color: Colors.grey.shade600)),
                 const SizedBox(height: 6),
-                Text('${item.price} ر.ق',
+                Text('${item.price} ${'currency_qr'.tr()}',
                     style: const TextStyle(
                         color: Colors.brown, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 6),

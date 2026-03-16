@@ -14,28 +14,38 @@ class ProductDetailsScreenAdInfoTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final rows = <ProductDetailsScreenInfoRowData>[
       ProductDetailsScreenInfoRowData(
-        titleKey: 'product_details.ad_info.category',
-        valueKey: productDetailsModel.category ?? 'Category',
+        titleKey: 'product_details_ad_info_values_category',
+        valueKey: productDetailsModel.category ??
+            'product_details_ad_info_values_category',
       ),
       ProductDetailsScreenInfoRowData(
-        titleKey: 'product_details.ad_info.ad_type',
-        valueKey: productDetailsModel.postType ?? 'Type',
+        titleKey: 'ad_type',
+        valueKey: productDetailsModel.postType ?? 'ad_type',
+      ),
+      // ProductDetailsScreenInfoRowData(
+      //   titleKey: 'product_details_ad_info_values_type',
+      //   valueKey:
+      //       productDetailsModel.title ?? 'product_details_ad_info_values_type',
+      // ),
+      // ProductDetailsScreenInfoRowData(
+      //   titleKey: 'product_details_ad_info.type',
+      //   // valueKey: 'product_details_ad_info_values_iphone16_series',
+      //   valueKey: productDetailsModel.
+      // ),
+      ProductDetailsScreenInfoRowData(
+        titleKey: 'product_details_ad_info_values_sub_category',
+        valueKey: productDetailsModel.subcategory ??
+            'product_details_ad_info_values_sub_category',
       ),
       ProductDetailsScreenInfoRowData(
-        titleKey: 'product_details.ad_info.type',
-        valueKey: 'product_details.ad_info_values.iphone16_series',
+        titleKey: 'product_details_ad_info_values_city',
+        valueKey:
+            productDetailsModel.city ?? 'product_details_ad_info_values_city',
       ),
       ProductDetailsScreenInfoRowData(
-        titleKey: 'product_details.ad_info.sub_category',
-        valueKey: productDetailsModel.subcategory ?? 'SubCategory',
-      ),
-      ProductDetailsScreenInfoRowData(
-        titleKey: 'product_details.ad_info.city',
-        valueKey: productDetailsModel.city ?? 'City',
-      ),
-      ProductDetailsScreenInfoRowData(
-        titleKey: 'product_details.ad_info.condition',
-        valueKey: productDetailsModel.condition ?? 'Condition',
+        titleKey: 'product_details_ad_info_values_condition',
+        valueKey: productDetailsModel.condition ??
+            'product_details_ad_info_values_condition',
       ),
     ];
 

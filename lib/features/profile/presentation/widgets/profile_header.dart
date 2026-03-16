@@ -1,5 +1,6 @@
 // widgets/profile_header.dart
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
@@ -31,8 +32,8 @@ class ProfileHeader extends StatelessWidget {
             ),
           ],
         ),
-        const Text(
-          'هديل',
+        Text(
+          'profile_name_placeholder'.tr(),
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ],

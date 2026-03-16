@@ -90,7 +90,7 @@ class SearchScreenSearchContent extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    'title',
+                    'search_result_title'.tr(),
                     textAlign: TextAlign.right,
                     style: AppTextStyle.rubikMedium16,
                   ),
@@ -127,7 +127,7 @@ class SearchScreenNoSearchContent extends StatelessWidget {
             shrinkWrap: true,
             padding: EdgeInsets.symmetric(horizontal: 22),
             itemBuilder: (context, index) =>
-                SearchScreenRecentItem(title: 'ايفون'),
+                SearchScreenRecentItem(title: 'iphone'.tr()),
             separatorBuilder: (context, index) =>
                 Divider(height: 0, color: AppColors.dividerColor),
             itemCount: 3,
@@ -149,7 +149,7 @@ class SearchScreenNoSearchContent extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 22),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) =>
-                  SearchScreenFilterChip(title: 'هواتف'),
+                  SearchScreenFilterChip(title: 'phones'.tr()),
             ),
           ),
           // const Spacer(),

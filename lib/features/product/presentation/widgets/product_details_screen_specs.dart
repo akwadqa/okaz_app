@@ -16,8 +16,8 @@ class ProductDetailsScreenSpecsTab extends StatelessWidget {
     final items = productDetailsModel.attributes!
         .map(
           (e) => ProductDetailsScreenSpecItemData(
-            titleKey: e.option ?? 'Attribute',
-            valueKey: e.value ?? 'value',
+            titleKey: e.option ?? 'product_details_attribute_label',
+            valueKey: e.value ?? 'product_details_value_label',
           ),
         )
         .toList();
@@ -135,7 +135,7 @@ class ProductDetailsScreenDescriptionSection extends StatelessWidget {
             child: Align(
               alignment: AlignmentDirectional.centerStart,
               child: Text(
-                'product_details.description_text'.tr(),
+                'product_details_description_text'.tr(),
                 // AppTextStyle.rubikRegular16.copyWith(color: AppColors.text),
                 style: const TextStyle(fontSize: 16, color: Colors.black),
                 textAlign: TextAlign.right,
@@ -146,7 +146,7 @@ class ProductDetailsScreenDescriptionSection extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: Text(
-              'product_details.description_label'.tr(),
+              'product_details_description_label'.tr(),
               // AppTextStyle.rubikSemiBold16.copyWith(color: AppColors.primary),
               style: TextStyle(
                 fontSize: 16,

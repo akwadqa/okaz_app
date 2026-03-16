@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/features/filter/presentation/widgets/searc_sub_categories_screen/search_sub_categories_company_item.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
@@ -17,7 +18,7 @@ class SearchSubCategoriesCompaniesSection extends StatelessWidget {
       spacing: 20,
       children: [
         Text(
-          'الشركات',
+          'companies'.tr(),
           style: AppTextStyle.rubikSemiBold18.copyWith(
             color: AppColors.textDart,
           ),

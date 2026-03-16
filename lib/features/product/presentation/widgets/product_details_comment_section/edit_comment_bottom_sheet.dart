@@ -26,7 +26,10 @@ Future<void> showEditCommentBottomSheet(
       borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
     ),
     builder: (context) {
-      return _EditCommentBottomSheet(comment: comment , postId: postId,);
+      return _EditCommentBottomSheet(
+        comment: comment,
+        postId: postId,
+      );
     },
   );
 }
@@ -34,7 +37,7 @@ Future<void> showEditCommentBottomSheet(
 class _EditCommentBottomSheet extends ConsumerStatefulWidget {
   final Comment comment;
   final String postId;
-  const _EditCommentBottomSheet({required this.comment,required this.postId});
+  const _EditCommentBottomSheet({required this.comment, required this.postId});
 
   @override
   ConsumerState<_EditCommentBottomSheet> createState() =>
@@ -98,10 +101,9 @@ class _EditCommentBottomSheetState
               controller: _controller,
               minLines: 1,
               maxLines: 5,
-              textAlign: TextAlign.right,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               decoration: InputDecoration(
-                hintText: 'product_details.message_placeholder'.tr(),
+                hintText: 'product_details_message_placeholder'.tr(),
                 hintStyle: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -127,8 +129,7 @@ class _EditCommentBottomSheetState
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide.none,
                 ),
-                suffixIcon:
-                    updateState?.maybeWhen(
+                suffixIcon: updateState?.maybeWhen(
                       loading: () =>
                           SizedBox(width: 40, child: const AppLoader()),
                       orElse: () => InkWell(

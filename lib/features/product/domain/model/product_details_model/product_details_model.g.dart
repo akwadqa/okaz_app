@@ -126,6 +126,7 @@ _CommenterInfo _$CommenterInfoFromJson(Map<String, dynamic> json) =>
     _CommenterInfo(
       appUserId: json['app_user_id'] as String?,
       firstName: json['first_name'] as String?,
+      userIsOwner: json['user_is_owner'] as bool?,
       image: json['image'] as String?,
     );
 
@@ -133,6 +134,7 @@ Map<String, dynamic> _$CommenterInfoToJson(_CommenterInfo instance) =>
     <String, dynamic>{
       'app_user_id': instance.appUserId,
       'first_name': instance.firstName,
+      'user_is_owner': instance.userIsOwner,
       'image': instance.image,
     };
 

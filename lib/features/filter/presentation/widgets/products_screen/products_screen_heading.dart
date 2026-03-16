@@ -19,7 +19,7 @@ class ProductsScreenHeading extends ConsumerWidget {
     final selectedTitle = ref.watch(selectedSubCategoryProvider);
 
     final subCategory = ref.watch(mainSubcategory);
-    final title = selectedTitle.isEmpty ? 'ايفون' : selectedTitle;
+    final title = selectedTitle.isEmpty ? 'iphone'.tr() : selectedTitle;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class ProductsScreenHeading extends ConsumerWidget {
                 context.pop();
               },
               child: Text(
-                'الرئيسية',
+                'nav_home'.tr(),
                 style: AppTextStyle.rubikSemiBold18.copyWith(
                   color: AppColors.grayHint,
                 ),

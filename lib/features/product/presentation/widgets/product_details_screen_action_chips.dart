@@ -51,7 +51,7 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
         const Spacer(),
         ProductDetailsScreenOutlinedChip(
           icon: Assets.icons.reportIc,
-          label: 'product_details.report_ad'.tr(),
+          label: 'product_details_report_ad'.tr(),
           onTap: () {
             showReportDialog(context, TextEditingController(),
                 productDetailsModel.name ?? 'id');

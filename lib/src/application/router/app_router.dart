@@ -19,13 +19,21 @@ import 'package:okaz/features/profile/presentation/screens/profile_screen.dart';
 import 'package:okaz/features/settings/presentation/screens/settings_screen.dart';
 import 'package:okaz/features/product/presentation/screens/product_details_screen.dart';
 import 'package:okaz/features/search/presentation/screens/search_screen.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/addProduct/presentation/screens/successfull_new_ad_screen.dart';
 import 'app_routes.dart';
 import 'custom_navigation_observer.dart';
 import 'fallback_screen.dart';
 
+part 'app_router.g.dart';
+
 final GlobalKey<NavigatorState> rootKey = GlobalKey<NavigatorState>();
+
+@Riverpod(keepAlive: true)
+GoRouter goRouter(Ref ref) {
+  return AppRouter(ref).goRouter;
+}
 
 class AppRouter {
   final GoRouter goRouter;
@@ -86,8 +94,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -101,8 +109,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -116,8 +124,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -131,8 +139,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -146,8 +154,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -161,8 +169,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -176,8 +184,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -191,8 +199,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -206,8 +214,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -221,8 +229,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -236,8 +244,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -251,8 +259,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -266,12 +274,11 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
-
         GoRoute(
           path: AppRoutes.searchSubCategoryScreen,
           name: AppRoutes.searchSubCategoryScreen,
@@ -284,8 +291,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -299,8 +306,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -314,8 +321,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -329,8 +336,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),
@@ -344,8 +351,8 @@ class AppRouter {
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
+                return FadeTransition(opacity: animation, child: child);
+              },
             );
           },
         ),

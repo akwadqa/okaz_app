@@ -28,14 +28,14 @@ class ProductDetailsScreenCommentsSection extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'product_details.comments_title'.tr(),
+                  'product_details_comments_title'.tr(),
                   style: AppTextStyle.rubikSemiBold16.copyWith(
                     color: AppColors.primary,
                   ),
                 ),
                 const Spacer(),
                 Text(
-                  'product_details.view_all'.tr(),
+                  'product_details_view_all'.tr(),
                   style: AppTextStyle.rubikMedium12,
                 ),
               ],
@@ -48,16 +48,24 @@ class ProductDetailsScreenCommentsSection extends StatelessWidget {
                 ProductDetailsScreenCommentTile(
                   postId: productDetailsModel.name ?? 'id',
                   comment: c,
-                  onDelete: () => showDeleteCommentDialog(context,
-                      c.name ?? 'id', productDetailsModel.name ?? 'id'),
-                  onEdit: () async {
-                    await showEditCommentBottomSheet(context,
-                        comment: c, postId: productDetailsModel.name ?? 'id');
-                  },
-                  onReply: () async {
-                    await showReplyCommentBottomSheet(context,
-                        comment: c, postId: productDetailsModel.name ?? 'id');
-                  },
+                  onDelete: (c.commentBy?.userIsOwner ?? false)
+                      ? () => showDeleteCommentDialog(context, c.name ?? 'id',
+                          productDetailsModel.name ?? 'id')
+                      : null,
+                  onEdit: (c.commentBy?.userIsOwner ?? false)
+                      ? () async {
+                          await showEditCommentBottomSheet(context,
+                              comment: c,
+                              postId: productDetailsModel.name ?? 'id');
+                        }
+                      : null,
+                  onReply: (productDetailsModel.userIsOwner ?? false)
+                      ? () async {
+                          await showReplyCommentBottomSheet(context,
+                              comment: c,
+                              postId: productDetailsModel.name ?? 'id');
+                        }
+                      : null,
                 ),
                 const Divider(height: 1, color: AppColors.dividerColor),
               ],

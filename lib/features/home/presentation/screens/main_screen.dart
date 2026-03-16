@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -27,18 +28,21 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   //   });
   // }
   static final List<Widget> _pages = [
-    HomeScreen(),      // 0
-  SizedBox(),        // 1 (Add)
-  SettingsScreen(),  // 2
-  ProfileScreen(),   // 3
+    HomeScreen(), // 0
+    SizedBox(), // 1 (Add)
+    SettingsScreen(), // 2
+    ProfileScreen(), // 3
   ];
 
   @override
   Widget build(BuildContext context) {
     final selectedIndex = ref.watch(bottomNavIndexProvider);
 
+    final localeKey = context.locale.languageCode;
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBarView(),
+      bottomNavigationBar: BottomNavigationBarView(
+        key: ValueKey(localeKey),
+      ),
       extendBody: true,
       resizeToAvoidBottomInset: false,
       body: _pages[selectedIndex],

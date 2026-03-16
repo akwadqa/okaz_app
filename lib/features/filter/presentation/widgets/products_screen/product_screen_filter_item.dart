@@ -32,7 +32,7 @@ class ProductScreenFilterItem extends ConsumerWidget {
               (item) => DropdownMenuItem(
                 value: item,
                 child: Container(
-                  alignment: Alignment.centerRight,
+                  alignment: AlignmentGeometry.directional(-1, 0),
                   width: double.infinity,
                   height: double.infinity,
                   color: filters.values.contains(item)

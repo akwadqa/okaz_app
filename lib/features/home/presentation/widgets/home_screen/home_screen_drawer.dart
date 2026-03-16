@@ -35,7 +35,7 @@ class HomeScreenDrawer extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'الأقسام',
+                'sections'.tr(),
                 style: AppTextStyle.rubikBold18.copyWith(
                   color: AppColors.textDart,
                 ),

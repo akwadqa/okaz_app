@@ -25,7 +25,7 @@ class SearchSubCategoriesHeading extends StatelessWidget {
             GestureDetector(
               onTap: () => context.pop(),
               child: Text(
-                'الرئيسية',
+                'nav_home'.tr(),
                 style: AppTextStyle.rubikSemiBold18.copyWith(
                   color: AppColors.grayHint,
                 ),

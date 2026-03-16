@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
@@ -28,8 +29,8 @@ class AuthGuard extends ConsumerWidget {
       loading: () => const Center(
         child: AppLoader(),
       ),
-      error: (e, _) => const Center(
-        child: Text('Something went wrong'),
+      error: (e, _) => Center(
+        child: Text('something_went_wrong'.tr()),
       ),
     );
   }

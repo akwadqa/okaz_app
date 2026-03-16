@@ -2232,6 +2232,8 @@ mixin _$CommenterInfo {
   String? get appUserId;
   @JsonKey(name: 'first_name')
   String? get firstName;
+  @JsonKey(name: 'user_is_owner')
+  bool? get userIsOwner;
   String? get image;
 
   /// Create a copy of CommenterInfo
@@ -2254,16 +2256,19 @@ mixin _$CommenterInfo {
                 other.appUserId == appUserId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
+            (identical(other.userIsOwner, userIsOwner) ||
+                other.userIsOwner == userIsOwner) &&
             (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, appUserId, firstName, image);
+  int get hashCode =>
+      Object.hash(runtimeType, appUserId, firstName, userIsOwner, image);
 
   @override
   String toString() {
-    return 'CommenterInfo(appUserId: $appUserId, firstName: $firstName, image: $image)';
+    return 'CommenterInfo(appUserId: $appUserId, firstName: $firstName, userIsOwner: $userIsOwner, image: $image)';
   }
 }
 
@@ -2276,6 +2281,7 @@ abstract mixin class $CommenterInfoCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'app_user_id') String? appUserId,
       @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'user_is_owner') bool? userIsOwner,
       String? image});
 }
 
@@ -2294,6 +2300,7 @@ class _$CommenterInfoCopyWithImpl<$Res>
   $Res call({
     Object? appUserId = freezed,
     Object? firstName = freezed,
+    Object? userIsOwner = freezed,
     Object? image = freezed,
   }) {
     return _then(_self.copyWith(
@@ -2305,6 +2312,10 @@ class _$CommenterInfoCopyWithImpl<$Res>
           ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
+      userIsOwner: freezed == userIsOwner
+          ? _self.userIsOwner
+          : userIsOwner // ignore: cast_nullable_to_non_nullable
+              as bool?,
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -2406,15 +2417,19 @@ extension CommenterInfoPatterns on CommenterInfo {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'app_user_id') String? appUserId,
-            @JsonKey(name: 'first_name') String? firstName, String? image)?
+    TResult Function(
+            @JsonKey(name: 'app_user_id') String? appUserId,
+            @JsonKey(name: 'first_name') String? firstName,
+            @JsonKey(name: 'user_is_owner') bool? userIsOwner,
+            String? image)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _CommenterInfo() when $default != null:
-        return $default(_that.appUserId, _that.firstName, _that.image);
+        return $default(
+            _that.appUserId, _that.firstName, _that.userIsOwner, _that.image);
       case _:
         return orElse();
     }
@@ -2435,14 +2450,18 @@ extension CommenterInfoPatterns on CommenterInfo {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'app_user_id') String? appUserId,
-            @JsonKey(name: 'first_name') String? firstName, String? image)
+    TResult Function(
+            @JsonKey(name: 'app_user_id') String? appUserId,
+            @JsonKey(name: 'first_name') String? firstName,
+            @JsonKey(name: 'user_is_owner') bool? userIsOwner,
+            String? image)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _CommenterInfo():
-        return $default(_that.appUserId, _that.firstName, _that.image);
+        return $default(
+            _that.appUserId, _that.firstName, _that.userIsOwner, _that.image);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -2462,14 +2481,18 @@ extension CommenterInfoPatterns on CommenterInfo {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'app_user_id') String? appUserId,
-            @JsonKey(name: 'first_name') String? firstName, String? image)?
+    TResult? Function(
+            @JsonKey(name: 'app_user_id') String? appUserId,
+            @JsonKey(name: 'first_name') String? firstName,
+            @JsonKey(name: 'user_is_owner') bool? userIsOwner,
+            String? image)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _CommenterInfo() when $default != null:
-        return $default(_that.appUserId, _that.firstName, _that.image);
+        return $default(
+            _that.appUserId, _that.firstName, _that.userIsOwner, _that.image);
       case _:
         return null;
     }
@@ -2482,6 +2505,7 @@ class _CommenterInfo implements CommenterInfo {
   const _CommenterInfo(
       {@JsonKey(name: 'app_user_id') this.appUserId,
       @JsonKey(name: 'first_name') this.firstName,
+      @JsonKey(name: 'user_is_owner') this.userIsOwner,
       this.image});
   factory _CommenterInfo.fromJson(Map<String, dynamic> json) =>
       _$CommenterInfoFromJson(json);
@@ -2492,6 +2516,9 @@ class _CommenterInfo implements CommenterInfo {
   @override
   @JsonKey(name: 'first_name')
   final String? firstName;
+  @override
+  @JsonKey(name: 'user_is_owner')
+  final bool? userIsOwner;
   @override
   final String? image;
 
@@ -2519,16 +2546,19 @@ class _CommenterInfo implements CommenterInfo {
                 other.appUserId == appUserId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
+            (identical(other.userIsOwner, userIsOwner) ||
+                other.userIsOwner == userIsOwner) &&
             (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, appUserId, firstName, image);
+  int get hashCode =>
+      Object.hash(runtimeType, appUserId, firstName, userIsOwner, image);
 
   @override
   String toString() {
-    return 'CommenterInfo(appUserId: $appUserId, firstName: $firstName, image: $image)';
+    return 'CommenterInfo(appUserId: $appUserId, firstName: $firstName, userIsOwner: $userIsOwner, image: $image)';
   }
 }
 
@@ -2543,6 +2573,7 @@ abstract mixin class _$CommenterInfoCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'app_user_id') String? appUserId,
       @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'user_is_owner') bool? userIsOwner,
       String? image});
 }
 
@@ -2561,6 +2592,7 @@ class __$CommenterInfoCopyWithImpl<$Res>
   $Res call({
     Object? appUserId = freezed,
     Object? firstName = freezed,
+    Object? userIsOwner = freezed,
     Object? image = freezed,
   }) {
     return _then(_CommenterInfo(
@@ -2572,6 +2604,10 @@ class __$CommenterInfoCopyWithImpl<$Res>
           ? _self.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
+      userIsOwner: freezed == userIsOwner
+          ? _self.userIsOwner
+          : userIsOwner // ignore: cast_nullable_to_non_nullable
+              as bool?,
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable

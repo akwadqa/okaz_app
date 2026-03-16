@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatelessWidget {
@@ -39,8 +40,8 @@ class ErrorPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 32),
-                const Text(
-                  'Oops! Something went wrong',
+                Text(
+                  'oops_something_went_wrong'.tr(),
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -89,18 +90,18 @@ class ErrorPage extends StatelessWidget {
                     color: Colors.white.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.lightbulb_outline_rounded,
                         color: Colors.amber,
                         size: 20,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Text(
-                        'Check console for more details',
-                        style: TextStyle(color: Colors.white70, fontSize: 13),
+                        'check_console_details'.tr(),
+                        style: const TextStyle(color: Colors.white70, fontSize: 13),
                       ),
                     ],
                   ),

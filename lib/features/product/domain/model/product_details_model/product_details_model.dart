@@ -82,6 +82,7 @@ abstract class CommenterInfo with _$CommenterInfo {
   const factory CommenterInfo({
     @JsonKey(name: 'app_user_id') String? appUserId,
     @JsonKey(name: 'first_name') String? firstName,
+    @JsonKey(name: 'user_is_owner') bool? userIsOwner,
     String? image,
   }) = _CommenterInfo;
 

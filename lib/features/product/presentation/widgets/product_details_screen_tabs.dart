@@ -16,12 +16,12 @@ class ProductDetailsScreenTabs extends StatelessWidget {
           labelColor: AppColors.primary,
           unselectedLabelColor: AppColors.grayHint,
           indicatorColor: AppColors.primary,
-          
+
           indicatorWeight: 4,
           dividerColor: Colors.transparent,
           tabs: [
-            Tab(text: 'product_details.ad_info_tab'.tr()),
-            Tab(text: 'product_details.tech_specs_tab'.tr()),
+            Tab(text: 'product_details_ad_info_tab'.tr()),
+            Tab(text: 'product_details_tech_specs_tab'.tr()),
           ],
           // labelStyle: AppTextStyle.rubikSemiBold16,
           // unselectedLabelStyle: AppTextStyle.rubikSemiBold16,

@@ -149,13 +149,9 @@ class FilterController extends _$FilterController {
     final currentState = state.value;
     if (currentState == null) return;
 
-    // 1. قراءة القيمة الحالية للمرشح الرئيسي
-    // final mainFilter = ref.read(selectedSubCategoryProvider.notifier).state;
     final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
 
-    // 2. الحصول على القيمة الخاصة بالمفتاح الرئيسي من الخريطة القديمة (إن وجدت)
     final mainFilterValue = currentState.tempAttributes[mainFilter];
-    // 3. إنشاء خريطة جديدة تماماً (هذا يضمن تحديث الـ UI)
     final Map<String, dynamic> newTempAttributes = {};
 
     if (mainFilterValue != null) {

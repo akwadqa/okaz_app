@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
@@ -73,19 +74,19 @@ class ProductsScreenProductItem extends StatelessWidget {
                   spacing: 10,
                   children: [
                     Text(
-                      item?.title ?? "iphone",
+                      item?.title ?? 'iphone'.tr(),
                       style: AppTextStyle.rubikSemiBold16.copyWith(
                         color: AppColors.textDart,
                       ),
                     ),
                     Text(
-                      item?.condition ?? "new ",
+                      item?.condition ?? 'new'.tr(),
                       style: AppTextStyle.rubikRegular12.copyWith(
                         color: AppColors.grayHint,
                       ),
                     ),
                     Text(
-                      '${item?.price ?? 44} ر.ق',
+                      '${item?.price ?? 44} ${'currency_qr'.tr()}',
                       style: AppTextStyle.rubikMedium14.copyWith(
                         color: AppColors.primary,
                       ),

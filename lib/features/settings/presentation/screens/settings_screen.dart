@@ -32,7 +32,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
         body: authAsync.when(
           loading: () => Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(child: Text('Something went wrong')),
+          error: (e, _) => Center(child: Text('something_went_wrong'.tr())),
           data: (isAuthenticated) {
             return _buildContent(context, ref, isAuthenticated);
           },

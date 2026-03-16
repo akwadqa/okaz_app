@@ -120,7 +120,7 @@ class StepDetailsView extends ConsumerWidget {
         12.verticalSpace,
 
         /// الموقع (NO *)
-        Text('location', style: TextStyle(fontWeight: FontWeight.w600)),
+        Text('location'.tr(), style: TextStyle(fontWeight: FontWeight.w600)),
         8.verticalSpace,
         LocationWidget(
           latlng: state.latLng ??
@@ -151,9 +151,9 @@ class StepDetailsView extends ConsumerWidget {
   static String _adTypeLabel(String? value) {
     switch (value) {
       case 'Sale':
-        return 'Sale';
+        return 'for_sale'.tr();
       case 'wanted':
-        return 'wanted';
+        return 'wanted'.tr();
       default:
         return '';
     }
@@ -162,9 +162,9 @@ class StepDetailsView extends ConsumerWidget {
   static String _conditionLabel(String? value) {
     switch (value) {
       case 'Used':
-        return 'Used';
+        return 'used'.tr();
       case 'New':
-        return 'New';
+        return 'new'.tr();
       default:
         return '';
     }

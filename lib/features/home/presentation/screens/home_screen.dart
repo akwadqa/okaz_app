@@ -65,8 +65,8 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
     );
     return controller.when(
       data: (homeModel) => _buildBody(context, homeModel),
-      error: (e, st) =>
-          AppErrorWidget(onTap: () => context.push(AppRoutes.productsScreen)),
+      error: (e, st) => AppErrorWidget(
+          onTap: () => ref.read(homeControllerProvider.notifier).getHomeData()),
       loading: () => AppLoader(),
     );
   }

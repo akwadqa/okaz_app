@@ -16,9 +16,13 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
-    Future(() => ref
-        .read(currentLanguageProvider.notifier)
-        .changeLanguage(context, context.locale.languageCode));
+    Future(() {
+      ref.read(currentLanguageProvider.notifier).getLanguage(context);
+
+      // ref
+      // .read(currentLanguageProvider.notifier)
+      // .changeLanguage(context, context.locale.languageCode);
+    });
     super.initState();
   }
 
@@ -27,20 +31,21 @@ class _MyAppState extends ConsumerState<MyApp> {
     final appRouter = ref.watch(appRouterProvider);
     final currentLanguage = ref.watch(currentLanguageProvider);
     return MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        // routerDelegate: appRouter.delegate(
-        //     deepLinkBuilder: (deepLink) => DeepLink.defaultPath),
-        routerConfig: appRouter.goRouter,
-        builder: BotToastInit(),
-        
-        theme: ref.watch(appThemeProvider),
-        onGenerateTitle: (context) => context.tr('appTitle'),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        // supportedLocales: [Locale('en')],
-        locale: Locale(currentLanguage),
-        // locale: Locale('en'),
-      );
-   
+      debugShowCheckedModeBanner: false,
+      // routerDelegate: appRouter.delegate(
+      //     deepLinkBuilder: (deepLink) => DeepLink.defaultPath),
+      routerConfig: appRouter.goRouter,
+      builder: BotToastInit(),
+
+      theme: ref.watch(appThemeProvider),
+      onGenerateTitle: (context) => context.tr('appTitle'),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      // supportedLocales: [Locale('en')],
+      // locale: Locale(currentLanguage),
+      locale: context.locale,
+
+      // locale: Locale('en'),
+    );
   }
 }

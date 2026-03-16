@@ -49,7 +49,7 @@ class _LocationSearchBoxState extends ConsumerState<LocationSearchBox> {
       children: [
         _SearchField(
           controller: _controller,
-          hint: context.tr('search'),
+          hint: context.tr('search_here'),
           onChanged: _onSearchChanged,
           onClear: () {
             _controller.clear();
@@ -113,7 +113,7 @@ class _SearchField extends StatelessWidget {
         suffixIcon: controller.text.isNotEmpty
             ? IconButton(icon: const Icon(Icons.close), onPressed: onClear)
             : null,
-        hintText: " ابحث هنا",
+        hintText: hint,
         hintStyle: AppTextStyle.interRegular16.copyWith(
           color: AppColors.grayHint,
         ),

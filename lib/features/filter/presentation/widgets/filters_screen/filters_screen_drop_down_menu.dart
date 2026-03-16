@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -40,7 +41,7 @@ class FiltersScreenDropDownMenu extends StatelessWidget {
                 .toList(),
             onChanged: onChanged,
             hint: Text(
-              'الكل',
+              'all'.tr(),
               style: AppTextStyle.rubikRegular16.copyWith(
                 color: AppColors.grayHint,
               ),

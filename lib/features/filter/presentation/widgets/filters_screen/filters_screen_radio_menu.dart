@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_radio_item.dart';
@@ -17,7 +18,7 @@ class FiltersScreenRadioMenu extends ConsumerWidget {
       spacing: 12,
       children: [
         Text(
-          'نوع الشبكة',
+          'network_type'.tr(),
           style: AppTextStyle.rubikMedium16.copyWith(color: AppColors.textDart),
         ),
         Wrap(

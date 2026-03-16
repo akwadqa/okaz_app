@@ -54,7 +54,8 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
   @override
   Widget build(BuildContext context) {
     final controller = ref.watch(
-      productControllerProvider.select((val) => val.value?.productDetailsModel),
+      productControllerProvider
+          .select((val) => val.value?.productDetailsModel ?? AsyncLoading()),
     );
 
     ref.listen(
@@ -122,15 +123,15 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'product_details.description_label'.tr(),
+                  'product_details_description_label'.tr(),
                   style: AppTextStyle.rubikSemiBold16.copyWith(
                     color: AppColors.primary,
                   ),
                 ),
                 Text(
                   translate(
-                    productDetailsModel.descriptionAr ?? '',
-                    productDetailsModel.description ?? '',
+                    productDetailsModel.descriptionAr ?? 'وصف',
+                    productDetailsModel.description ?? 'description',
                     context,
                   ),
                   // 'product_details.description_text'.tr(),

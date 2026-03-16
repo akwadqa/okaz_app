@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -31,7 +32,7 @@ class CommentActionsMenu extends StatelessWidget {
             DropdownMenuItem(
               value: CommentAction.edit,
               child: Text(
-                'تعديل',
+                'edit'.tr(),
                 style: AppTextStyle.rubikRegular14.copyWith(
                   color: AppColors.grayHint,
                 ),
@@ -41,7 +42,7 @@ class CommentActionsMenu extends StatelessWidget {
             DropdownMenuItem(
               value: CommentAction.delete,
               child: Text(
-                'حذف',
+                'delete'.tr(),
                 style:
                     AppTextStyle.rubikRegular14.copyWith(color: AppColors.red),
               ),
@@ -50,7 +51,7 @@ class CommentActionsMenu extends StatelessWidget {
             DropdownMenuItem(
               value: CommentAction.reply,
               child: Text(
-                'رد',
+                'reply'.tr(),
                 style: AppTextStyle.rubikRegular14
                     .copyWith(color: AppColors.black),
               ),

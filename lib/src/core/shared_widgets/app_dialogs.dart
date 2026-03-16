@@ -44,7 +44,7 @@ class AppDialogs {
     required String title,
     String? message,
     Widget? child,
-    String okText = 'OK',
+    String okText = 'ok',
     bool dismissible = true,
   }) {
     return showDialog<void>(
@@ -65,7 +65,7 @@ class AppDialogs {
     required String title,
     String? message,
     Widget? child,
-    String okText = 'OK',
+    String okText = 'ok',
     bool dismissible = true,
   }) {
     return showDialog<void>(
@@ -86,8 +86,8 @@ class AppDialogs {
     required String title,
     String? message,
     Widget? child,
-    String cancelText = 'Cancel',
-    String confirmText = 'Confirm',
+    String cancelText = 'cancel',
+    String confirmText = 'confirm',
     bool destructive = false,
     bool dismissible = true,
   }) async {
@@ -173,7 +173,7 @@ class _ResultDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(okText),
+          child: Text(okText.tr()),
         ),
       ],
     );
@@ -220,14 +220,14 @@ class _ConfirmDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context, false),
-          child: Text(cancelText),
+          child: Text(cancelText.tr()),
         ),
         FilledButton(
           style: destructive
               ? FilledButton.styleFrom(backgroundColor: Colors.red)
               : null,
           onPressed: () => Navigator.pop(context, true),
-          child: Text(confirmText),
+          child: Text(confirmText.tr()),
         ),
       ],
     );
@@ -304,7 +304,7 @@ Future<void> showAutoClosingDialog(BuildContext context, String message) async {
             Navigator.of(context).pop(); // User manually closes
           },
           child: Text(
-            "OK".tr(),
+            'ok'.tr(),
             style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: 16,
                   color: Colors.black,
@@ -454,7 +454,7 @@ Future<void> showConfirmationDialog({
                       Flexible(
                         flex: 2,
                         child: CustomButtonWidget(
-                          text: cancelText,
+                          text: cancelText.tr(),
                           isFiled: false,
                           backgroundColor: AppColors.white,
                           color: AppColors.primary,
@@ -502,7 +502,7 @@ Future<void> showConfirmationDialog({
                           return Flexible(
                             flex: 2,
                             child: CustomButtonWidget(
-                              text: confirmText,
+                              text: confirmText.tr(),
                               isFiled: true,
                               backgroundColor: confirmColor,
                               radius: 24,
@@ -558,7 +558,7 @@ void showReportDialog(
         elevation: 0,
         child: Container(
           width: 345,
-          height: 500,
+          height: 515,
           decoration: BoxDecoration(
             color: const Color(0xFFF5F5F5),
             borderRadius: BorderRadius.circular(12),
@@ -597,17 +597,17 @@ void showReportDialog(
                       child: Center(child: Assets.icons.sendReportIc.svg()),
                     ),
                     const SizedBox(height: 20),
-                    Text("الإبلاغ عن إعلان",
+                    Text('product_details_report_ad'.tr(),
                         style: AppTextStyle.rubikSemiBold18
                             .copyWith(color: AppColors.primary)),
                     const SizedBox(height: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("يرجى كتابة سبب الإبلاغ",
+                        Text('report_reason_title'.tr(),
                             style: AppTextStyle.rubikSemiBold16),
                         const SizedBox(height: 4),
-                        Text("ساعدنا في فهم المشكلة المتعلقة بهذا الإعلان",
+                        Text('report_reason_description'.tr(),
                             style: AppTextStyle.rubikRegular14
                                 .copyWith(color: AppColors.grey600)),
                       ],
@@ -630,9 +630,9 @@ void showReportDialog(
                           controller: controller,
                           validator: nameValidation(context),
                           maxLines: 4,
-                          textAlign: TextAlign.right,
+                          textAlign: TextAlign.start,
                           decoration: InputDecoration(
-                            hintText: "اكتب تفاصيل البلاغ هنا ..",
+                            hintText: 'report_details_hint'.tr(),
                             hintStyle: AppTextStyle.rubikRegular14
                                 .copyWith(color: AppColors.grayHint),
                             border: InputBorder.none,
@@ -680,7 +680,7 @@ void showReportDialog(
                           elevation: 0,
                         ),
                         child: Text(
-                          "إرسال البلاغ",
+                          'send_report'.tr(),
                           style: AppTextStyle.rubikBold20
                               .copyWith(color: AppColors.white),
                         ),
@@ -697,7 +697,7 @@ void showReportDialog(
                         ),
                       ),
                       child: Text(
-                        "إلغاء",
+                        'cancel'.tr(),
                         style: AppTextStyle.rubikBold20
                             .copyWith(color: AppColors.primary),
                       ),
@@ -771,7 +771,7 @@ void showDeleteCommentDialog(
 
                     const SizedBox(height: 20),
 
-                    Text("هل تريد حذف التعليق",
+                    Text('delete_comment_title'.tr(),
                         textAlign: TextAlign.center,
                         style: AppTextStyle.rubikSemiBold18
                             .copyWith(color: AppColors.primary)),
@@ -779,7 +779,7 @@ void showDeleteCommentDialog(
                     const SizedBox(height: 20), // المسافة للوصف (top: 130px)
 
                     // النص الفرعي
-                    Text("هل أنت متأكد من رغبتك في حذف التعليق؟",
+                    Text('delete_comment_description'.tr(),
                         textAlign: TextAlign.center,
                         style: AppTextStyle.rubikRegular16),
 
@@ -800,8 +800,8 @@ void showDeleteCommentDialog(
                                 borderRadius: BorderRadius.circular(24),
                               ),
                             ),
-                            child: const Text(
-                              "إلغاء",
+                            child: Text(
+                              'cancel'.tr(),
                               style: TextStyle(
                                 color: Color(0xFFB8502E),
                                 fontSize: 20,
@@ -829,10 +829,10 @@ void showDeleteCommentDialog(
                                     .getProductDetails(postId);
                               }
                             });
-                            final reportController = ref.watch(
+                            final commentController = ref.watch(
                                 commentControllerProvider
                                     .select((val) => val.value!.deleteComment));
-                            if (reportController is AsyncLoading) {
+                            if (commentController is AsyncLoading) {
                               return AppLoader();
                             }
                             return ElevatedButton(
@@ -853,7 +853,7 @@ void showDeleteCommentDialog(
                                 ),
                               ),
                               child: Text(
-                                "حذف",
+                                'delete'.tr(),
                               ),
                             );
                           }),
