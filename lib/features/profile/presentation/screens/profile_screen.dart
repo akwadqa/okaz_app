@@ -40,7 +40,7 @@ class ProfileScreen extends ConsumerWidget {
               const ProfileHeader(),
               12.verticalSpace,
               ProfileTabBar(
-                selectedTab: profileAsync.value!.selectedTab,
+                selectedTab: profileAsync.value?.selectedTab??ProfileTab.myAds,
                 onTabChanged: (tab) =>
                     ref.read(profileControllerProvider.notifier).changeTab(tab),
               ),

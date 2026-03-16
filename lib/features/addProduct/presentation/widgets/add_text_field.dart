@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -59,7 +60,7 @@ class AddTextField extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
-            hintText: hint,
+            hintText: hint.tr(),
             hintStyle: AppTextStyle.cairoRegular12,
             suffixText: suffixText,
             enabledBorder: _border(AppColors.grayBorder),

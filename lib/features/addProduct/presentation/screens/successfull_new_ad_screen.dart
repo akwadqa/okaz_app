@@ -44,35 +44,35 @@ class _SuccessfullNewAdScreenContent extends StatelessWidget {
 
             style: AppTextStyle.rubikMedium14
           ),
-CustomButtonWidget(
-                text: "",
-                onTap: () {
-                  // controller.previousStep();
-                },
-                isFiled: false,
-                height: 55,
-                width: double.infinity,
-                color: AppColors.primary,
-                backgroundColor: AppColors.primary,
-                radius: 24,
-                 child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      spacing: 12,
-                      children: [
-                        Text(
-                          context.tr("view_ad"),
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.displaySmall!
-                              .copyWith(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                              ),
-                        ),
-                        Icon(Icons.remove_red_eye_outlined,color: Colors.white,size: 24,),
-                      ],
-                    )
-              ),
+// CustomButtonWidget(
+//                 text: "",
+//                 onTap: () {
+//                   // controller.previousStep();
+//                 },
+//                 isFiled: false,
+//                 height: 55,
+//                 width: double.infinity,
+//                 color: AppColors.primary,
+//                 backgroundColor: AppColors.primary,
+//                 radius: 24,
+//                  child: Row(
+//                       mainAxisAlignment: MainAxisAlignment.center,
+//                       spacing: 12,
+//                       children: [
+//                         Text(
+//                           context.tr("view_ad"),
+//                           textAlign: TextAlign.center,
+//                           style: Theme.of(context).textTheme.displaySmall!
+//                               .copyWith(
+//                                 fontSize: 18,
+//                                 color: Colors.white,
+//                                 fontWeight: FontWeight.w600,
+//                               ),
+//                         ),
+//                         Icon(Icons.remove_red_eye_outlined,color: Colors.white,size: 24,),
+//                       ],
+//                     )
+//               ),
               CustomButtonWidget(
               text:"",
               onTap: () {

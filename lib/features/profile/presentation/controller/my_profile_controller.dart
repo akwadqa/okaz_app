@@ -20,15 +20,16 @@ class ProfileController extends _$ProfileController {
   int _favoritePostsTotalPages = 1;
   @override
   FutureOr<ProfileState> build() async {
+   final posts= await fetchMyPosts(page: 1);
+
   final initial = ProfileState(
       selectedTab: ProfileTab.myAds,
-      myAds: [],
-      favorites: [],
+  myAds: posts
     );
+
 
     state = AsyncData(initial);
 
-    await fetchMyPosts(page: 1);
 
     return initial;
   }
@@ -44,12 +45,12 @@ class ProfileController extends _$ProfileController {
 
     state = AsyncData(current.copyWith(selectedTab: tab));
 
-    if (tab == ProfileTab.myAds && _myPosts.isEmpty) {
+    if (tab == ProfileTab.myAds ) {
       await fetchMyPosts(page: 1);
     }
 
-    if (tab == ProfileTab.favorites && _favoritePosts.isEmpty) {
-      await fetchMyPosts(page: 1);
+    if (tab == ProfileTab.favorites ) {
+      await fetchFavorites(page: 1);
     }
   }
 
@@ -176,7 +177,12 @@ Future<List<PostModel>> fetchMyPosts({
 
   Future<List<PostModel>> fetchFavorites({required int page, bool showLoading = true}) async {
     try {
-      if (showLoading) state = const AsyncLoading();
+   final current = state.value;
+
+    /// show loading only first time
+    if (showLoading && (current?.favorites.isEmpty ?? true)) {
+      state = const AsyncLoading();
+    }
 
       final repo = ref.read(profileRepositoryProvider);
       final response = await repo.getFavoritePosts( page);
@@ -191,13 +197,13 @@ Future<List<PostModel>> fetchMyPosts({
       } else {
         _favoritePosts.addAll(response.data ?? []);
       }
+    final previous = state.value ?? const ProfileState();
 
-  final current = state.value!;
-      state = AsyncData(
-        current.copyWith(
-          myAds: List.from(_favoritePosts),
-        ),
-      );
+     state = AsyncData(
+  previous.copyWith(
+    favorites: List.from(_favoritePosts),
+  ),
+);
       return _favoritePosts; 
     } catch (e, st) {
       state = AsyncError(e, st);
@@ -216,7 +222,7 @@ Future<List<PostModel>> fetchMyPosts({
     _favoritePosts.clear();
     _favoritePostsCurrentPage = 1;
     _favoritePostsTotalPages = 1;
-    await fetchMyPosts(page: 1);
+    await fetchFavorites(page: 1);
   }
 
     // ───────────── Refresh ─────────────
