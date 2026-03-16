@@ -52,16 +52,16 @@ class ProfileScreen extends ConsumerWidget {
                 error: (e, _) => Center(child: Text(e.toString())),
                 data: (state) {
                   final items = state.selectedTab == ProfileTab.myAds
-                      ? state.myAds.toProductDetailsList()
-                      : state.favorites.toProductDetailsList();
-                      Dev.logLine("state.myAds");
-                      Dev.logList(state.myAds);
-                      Dev.logLine("state.myAfavoritesds");
+                      ? state.myAds.toProductDetailsList(false)
+                      : state.favorites.toProductDetailsList(true);
+                      // Dev.logLine("state.myAds");
+                      // Dev.logList(state.myAds);
+                      // Dev.logLine("state.myAfavoritesds");
 
-                      Dev.logList(state.favorites);
-                      Dev.logLine("state.items");
+                      // Dev.logList(state.favorites);
+                      // Dev.logLine("state.items");
 
-                      Dev.logList(items);
+                      // Dev.logList(items);
                   if (items.isEmpty) {
                     return AppEmptyDataWidget(text: "no_items", height: 150);
                   }
@@ -74,7 +74,7 @@ class ProfileScreen extends ConsumerWidget {
                         crossAxisCount: 2,
                         crossAxisSpacing: 16,
                         mainAxisSpacing: 16,
-                        childAspectRatio: 0.55,
+                        childAspectRatio: 0.5,
                       ),
                       itemBuilder: (_, index) =>
                           ProductsScreenProductItem(item: items[index]),

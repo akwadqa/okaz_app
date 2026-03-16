@@ -2,7 +2,7 @@ import 'package:okaz/features/product/domain/model/product_details_model/product
 import 'package:okaz/features/profile/domain/model/post_model.dart';
 
 extension PostModelMapper on PostModel {
-  ProductDetailsModel toProductDetails() {
+  ProductDetailsModel toProductDetails(bool isFavorite) {
     return ProductDetailsModel(
       name: name,
       title: title,
@@ -13,13 +13,14 @@ extension PostModelMapper on PostModel {
       currency: currency,
       condition: condition,
       image: image,
-      likes: 0,
-      comments: 0,
+      likes: likes,
+      comments: comments,
+      isFavorited: isFavorite
     );
   }
 }
 extension PostModelListMapper on List<PostModel> {
-  List<ProductDetailsModel> toProductDetailsList() {
-    return map((e) => e.toProductDetails()).toList();
+  List<ProductDetailsModel> toProductDetailsList(bool isFavorite) {
+    return map((e) => e.toProductDetails(isFavorite)).toList();
   }
 }

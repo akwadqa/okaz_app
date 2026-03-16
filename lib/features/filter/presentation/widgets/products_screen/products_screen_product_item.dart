@@ -29,7 +29,7 @@ class ProductsScreenProductItem extends StatelessWidget {
         child: Column(
           children: [
             Flexible(
-              flex: 3,
+              flex: 1,
               child: Container(
                 width: double.infinity,
                 color: AppColors.white,
@@ -58,7 +58,7 @@ class ProductsScreenProductItem extends StatelessWidget {
               ),
             ),
             Flexible(
-              flex: 2,
+              // flex: 2,
               child: Container(
                 padding: EdgeInsets.all(12),
                 width: double.infinity,
