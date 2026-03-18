@@ -35,37 +35,35 @@ class _SelectLocationPageState extends ConsumerState<SelectLocationPage> {
     _controller = Completer<GoogleMapController>();
   }
 
- @override
-Widget build(BuildContext context) {
-  ref.listen(
-    mapControllerProvider.select((v) => v.value!.selectedPlace),
-    (prev, next) async{
-      if (next is AsyncLoading) {
-        AppAlert.showLoadingDialog(context);
+  @override
+  Widget build(BuildContext context) {
+    ref.listen(
+      mapControllerProvider.select((v) => v.value!.selectedPlace),
+      (prev, next) async {
+        if (next is AsyncLoading) {
+          AppAlert.showLoadingDialog(context);
+        }
 
-      } 
+        if (next is AsyncData) {
+          if (context.canPop()) {
+            context.pop();
+          }
+          context.pop(); // close page
+        }
 
-      if (next is AsyncData) {
-  if (context.canPop()) {
-    context.pop();
+        if (next is AsyncError) {
+          context.pop(); // close page
+
+          BotToast.showText(
+            text: next.error.toString(),
+            contentColor: AppColors.red,
+          );
+        }
+      },
+    );
+
+    return Scaffold(body: _buildMap(context));
   }
-        context.pop(); // close page
-      }
-
-      if (next is AsyncError) {
-        context.pop(); // close page
-
-        BotToast.showText(
-          text: next.error.toString(),
-          contentColor: AppColors.red,
-        );
-      }
-    },
-  );
-
-  return Scaffold(body: _buildMap(context));
-}
-
 
   SizedBox _buildConfirmButton(BuildContext context) {
     return SizedBox(
@@ -84,23 +82,23 @@ Widget build(BuildContext context) {
                 //       .getPlaceInfoFromLatLng();
                 // } else {
 
-                  // await ref
-                  //     .read(mapControllerProvider.notifier)
-                  //     .getPlaceInfoFromLatLng();
-                  await ref
-                      .read(mapControllerProvider.notifier)
-                      .confirmLocation();
-                      // Navigator.of(context).pop();
+                // await ref
+                //     .read(mapControllerProvider.notifier)
+                //     .getPlaceInfoFromLatLng();
+                await ref
+                    .read(mapControllerProvider.notifier)
+                    .confirmLocation();
+                // Navigator.of(context).pop();
                 // }
               },
               isFiled: true,
-            
               height: 55,
               width: 260,
               backgroundColor: AppColors.primary,
-                child: Text(
+              child: Text(
                 context.tr('confirm'),
-                style: AppTextStyle.nunitoBold16.copyWith(color: AppColors.white),
+                style:
+                    AppTextStyle.nunitoBold16.copyWith(color: AppColors.white),
               ),
             ),
           ),
@@ -108,17 +106,14 @@ Widget build(BuildContext context) {
           Spacer(),
           Flexible(
             flex: 1,
-
             child: IconButton(
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(AppColors.white),
               ),
               onPressed: () {
-                final location = ref
-                    .watch(mapControllerProvider)
-                    .value!
-                    .initialLatLng;
-            
+                final location =
+                    ref.watch(mapControllerProvider).value!.initialLatLng;
+
                 ref
                     .read(mapControllerProvider.notifier)
                     .changeLatLng(location!.longitude, location.longitude);
@@ -136,7 +131,6 @@ Widget build(BuildContext context) {
     final local = context.locale.languageCode;
     return Stack(
       children: [
-      
         SelectLocationGoogleMap(_controller),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 22, vertical: 64),
@@ -146,45 +140,43 @@ Widget build(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 12,
                 children: [
-                
                   Padding(
                     padding: EdgeInsets.only(top: 10),
                     child: GestureDetector(
-                      onTap: () => context.pop(),
-                      child: CircleAvatar(
-                        backgroundColor: AppColors.primary,
-
-                        child: Center(child: Icon(Icons.arrow_back_ios,color: Colors.white,).onlyPadding(start: 6)))
-                    ),
+                        onTap: () => context.pop(),
+                        child: CircleAvatar(
+                            backgroundColor: AppColors.primary,
+                            child: Center(
+                                child: Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.white,
+                            ).onlyPadding(start: 6)))),
                   ),
-                
-                
                   Expanded(
-                    child: 
-                    LocationSearchBox(
-                onSelect: (latLng) async {
-                  final controller = await _controller.future;
-                  controller.animateCamera(
-                    CameraUpdate.newLatLng(
-                      LatLng(latLng.latitude, latLng.longitude),
+                    child: LocationSearchBox(
+                      onSelect: (latLng) async {
+                        final controller = await _controller.future;
+                        controller.animateCamera(
+                          CameraUpdate.newLatLng(
+                            LatLng(latLng.latitude, latLng.longitude),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-              
+
                     // LocationSearchBox(
                     //   onSelect: (id, des) async {
                     //     if (widget.id == null) {
                     //       final notifier = ref.read(
                     //         mapControllerProvider.notifier,
                     //       );
-              
+
                     //       final latLng = await notifier.getPlaceLocation(id);
-              
+
                     //       if (latLng != null) {
                     //         final GoogleMapController mapController =
                     //             await _controller.future;
-              
+
                     //         mapController.animateCamera(
                     //           CameraUpdate.newLatLng(
                     //             LatLng(latLng.latitude , latLng.longitude),
@@ -195,13 +187,13 @@ Widget build(BuildContext context) {
                     //       final notifier = ref.read(
                     //         mapControllerProvider.notifier,
                     //       );
-              
+
                     //       final latLng = await notifier.getPlaceLocation(id);
-              
+
                     //       if (latLng != null) {
                     //         final GoogleMapController mapController =
                     //             await _controller.future;
-              
+
                     //         mapController.animateCamera(
                     //           CameraUpdate.newLatLng(
                     //             LatLng(latLng.latitude, latLng.longitude),
@@ -211,18 +203,14 @@ Widget build(BuildContext context) {
                     //     }
                     //   },
                     // ),
-               
                   ),
-                
                 ],
               ),
-
               Spacer(),
               _buildConfirmButton(context),
             ],
           ),
         ),
-      
       ],
     );
   }

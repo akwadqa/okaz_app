@@ -11,10 +11,10 @@ class ProductState {
   final bool? likePost;
 
   factory ProductState.init() => ProductState(
-    productDetailsModel: AsyncLoading(),
-    deletePost: AsyncLoading(),
-    likePost: false,
-  );
+        productDetailsModel: AsyncLoading(),
+        deletePost: null,
+        likePost: false,
+      );
 
   ProductState({
     this.productDetailsModel,

@@ -143,8 +143,9 @@ class _ProductDetailsScreenIconCircleButtonState
         widget.productDetailsModel.name.toString(),
         widget.productDetailsModel.isFavorited ?? false));
 
-    final isSelected =
-        favoriteAsync.value ?? (widget.productDetailsModel.isFavorited ?? false);
+ 
+    final isSelected = favoriteAsync.value ??
+        (widget.productDetailsModel.isFavorited ?? false);
 
     return CircleAvatar(
       backgroundColor: Colors.white,

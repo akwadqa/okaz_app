@@ -9,12 +9,15 @@ class SettingsItemCard extends StatelessWidget {
   final Widget? trailing;
   final VoidCallback? onTap;
   final SvgGenImage icon;
+  // final bool showLeading;
 
   const SettingsItemCard({
     super.key,
     required this.title,
     this.trailing,
-    this.onTap, required this.icon,
+    // this.showLeading = true,
+    this.onTap,
+    required this.icon,
   });
 
   @override
@@ -23,37 +26,38 @@ class SettingsItemCard extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        // height: 50,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        // margin: EdgeInsets.symmetric(horizontal: 20,vertical: 4),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          // boxShadow: const [
-          //   BoxShadow(
-          //     color: AppColors.shadow,
-          //     blurRadius: 4,
-          //   ),
-          // ],
-        ),
-        child: 
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: CircleAvatar
-          (
-            radius: 16,
-            backgroundColor:  AppColors.primaryOpacity.withAlpha(100),
-            child: icon.svg(color: AppColors.primary)),
-          title: Text(
-            title.tr(),
-            style: Theme.of(
-              context,
-            ).textTheme.labelMedium!.copyWith(color: AppColors.dark,fontSize: 16,fontWeight: FontWeight.w400),
+          // height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          // margin: EdgeInsets.symmetric(horizontal: 20,vertical: 4),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            // boxShadow: const [
+            //   BoxShadow(
+            //     color: AppColors.shadow,
+            //     blurRadius: 4,
+            //   ),
+            // ],
           ),
-          trailing: trailing?? Icon(Icons.arrow_forward_ios, size: 20,color: AppColors.primary),        )
-        
-     
-      ),
+          child: ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: CircleAvatar(
+                radius: 16,
+                backgroundColor: AppColors.primaryOpacity.withAlpha(100),
+                child: icon.svg(color: AppColors.primary)),
+            title: Text(
+              title.tr(),
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium!.copyWith(
+                  color: AppColors.dark,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
+            ),
+            trailing: trailing ??
+                Icon(Icons.arrow_forward_ios,
+                    size: 20, color: AppColors.primary),
+          )),
     );
   }
 }

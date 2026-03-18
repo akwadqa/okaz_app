@@ -197,5 +197,11 @@
     "edit": "Edit",
     "reply": "Reply",
     "back" : "Back",
-    "retry" : "Retry"
+    "retry" : "Retry",
+    "post_details" : "Post Details",
+    "edit_post" : "Edit Post",
+    "delete_post" : "Delete Post",
+    "share_post" : "Share Post",
+    "delete_post_title" : "Delete this post?",
+    "delete_post_description": "Are you sure you want to delete the post?"
 }

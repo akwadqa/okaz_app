@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
@@ -50,7 +51,7 @@ class AppErrorWidget extends StatelessWidget {
             CustomButtonWidget(
               text: "back".tr(),
               // style: AppTextS,
-              onTap: onTap!,
+              onTap: () => context.pop(),
               isFiled: false,
               backgroundColor: AppColors.white,
               radius: 8,

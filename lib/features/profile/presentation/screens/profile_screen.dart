@@ -2,8 +2,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_product_item.dart';
 import 'package:okaz/features/profile/domain/model/post_model_mapper.dart';
+import 'package:okaz/features/settings/presentation/widgets/settings_item_card.dart';
+import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_empty_data_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
@@ -40,28 +44,29 @@ class ProfileScreen extends ConsumerWidget {
               const ProfileHeader(),
               12.verticalSpace,
               ProfileTabBar(
-                selectedTab: profileAsync.value?.selectedTab??ProfileTab.myAds,
+                selectedTab:
+                    profileAsync.value?.selectedTab ?? ProfileTab.myAds,
                 onTabChanged: (tab) =>
                     ref.read(profileControllerProvider.notifier).changeTab(tab),
               ),
               const SizedBox(height: 12),
               profileAsync.when(
                 loading: () => const Padding(
-                  padding: EdgeInsetsGeometry.only(top: 180),
-                  child: AppLoader()),
+                    padding: EdgeInsetsGeometry.only(top: 180),
+                    child: AppLoader()),
                 error: (e, _) => Center(child: Text(e.toString())),
                 data: (state) {
                   final items = state.selectedTab == ProfileTab.myAds
                       ? state.myAds.toProductDetailsList(false)
                       : state.favorites.toProductDetailsList(true);
-                      // Dev.logLine("state.myAds");
-                      // Dev.logList(state.myAds);
-                      // Dev.logLine("state.myAfavoritesds");
+                  // Dev.logLine("state.myAds");
+                  // Dev.logList(state.myAds);
+                  // Dev.logLine("state.myAfavoritesds");
 
-                      // Dev.logList(state.favorites);
-                      // Dev.logLine("state.items");
+                  // Dev.logList(state.favorites);
+                  // Dev.logLine("state.items");
 
-                      // Dev.logList(items);
+                  // Dev.logList(items);
                   if (items.isEmpty) {
                     return AppEmptyDataWidget(text: "no_items", height: 150);
                   }
@@ -76,8 +81,15 @@ class ProfileScreen extends ConsumerWidget {
                         mainAxisSpacing: 16,
                         childAspectRatio: 0.5,
                       ),
-                      itemBuilder: (_, index) =>
-                          ProductsScreenProductItem(item: items[index]),
+                      itemBuilder: (_, index) => ProductsScreenProductItem(
+                        item: items[index],
+                        onLongPress: state.selectedTab == ProfileTab.myAds
+                            ? () {
+                                _showPostActionsSheet(
+                                    context, items[index].name ?? 'id');
+                              }
+                            : null,
+                      ),
                       // ProfileItemCard(item: items[index]),
                     ),
                   );
@@ -125,6 +137,43 @@ class ProfileScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Future<dynamic> _showPostActionsSheet(BuildContext context, String postId) {
+    return showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.bottomSheetBackground,
+      builder: (context) => Column(
+        spacing: 20,
+        children: [
+          SizedBox(),
+          SettingsItemCard(
+            title: 'post_details'.tr(),
+            icon: Assets.icons.eyeRedIs,
+            trailing: SizedBox(),
+          ),
+          SettingsItemCard(
+            title: 'edit_post'.tr(),
+            icon: Assets.icons.editPostIc,
+            trailing: SizedBox(),
+          ),
+          SettingsItemCard(
+            title: 'share_post'.tr(),
+            icon: Assets.icons.sharePostIc,
+            trailing: SizedBox(),
+          ),
+          SettingsItemCard(
+            title: 'delete_post'.tr(),
+            onTap: () {
+              context.pop();
+              showDeletePosttDialog(context, postId);
+            },
+            icon: Assets.icons.deletePostIc,
+            trailing: SizedBox(),
+          ),
+        ],
       ),
     );
   }

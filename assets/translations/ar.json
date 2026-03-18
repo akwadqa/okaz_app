@@ -197,5 +197,11 @@
     "search_here": "ابحث هنا",
     "not_found_screen": "شاشة غير موجودة",
     "edit": "تعديل",
-    "reply": "رد"
+    "reply": "رد",
+    "post_details" : "تفاصيل الإعلان",
+    "edit_post" : "تعديل الإعلان",
+    "delete_post" : "حذف الإعلان",
+    "share_post" : "شارك الإعلان",
+    "delete_post_title" : "حذف الإعلان",
+    "delete_post_description" : "هل أنت متأكد أنك تريد حذف هذا الإعلان؟"
 }

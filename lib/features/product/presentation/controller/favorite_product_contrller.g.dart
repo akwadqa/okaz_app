@@ -56,7 +56,7 @@ final class FavoriteProductContrllerProvider
 }
 
 String _$favoriteProductContrllerHash() =>
-    r'2368f6dbbd1a94c61db895ba72b85931d48f9341';
+    r'49f6513fbf455ca7e2a7f843e3a80f44f995c9b3';
 
 final class FavoriteProductContrllerFamily extends $Family
     with

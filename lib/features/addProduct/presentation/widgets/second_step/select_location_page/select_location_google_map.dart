@@ -6,8 +6,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 
 import '../../../controller/map_controller/map_controller.dart';
+
 class SelectLocationGoogleMap extends ConsumerWidget {
-  const   SelectLocationGoogleMap(this.mapController, {super.key});
+  const SelectLocationGoogleMap(this.mapController, {super.key});
 
   final Completer<GoogleMapController> mapController;
 
@@ -22,6 +23,7 @@ class SelectLocationGoogleMap extends ConsumerWidget {
         return GoogleMap(
           zoomControlsEnabled: false,
           myLocationButtonEnabled: false,
+          // scrollGesturesEnabled: false,
           onTap: (pos) {
             ref
                 .read(mapControllerProvider.notifier)
@@ -31,15 +33,15 @@ class SelectLocationGoogleMap extends ConsumerWidget {
             Marker(
               markerId: const MarkerId('selected'),
               position: LatLng(
-              state.latLng?.latitude??state.initialLatLng!.latitude,
-              state.latLng?.longitude??state.initialLatLng!.longitude,
+                state.latLng?.latitude ?? state.initialLatLng!.latitude,
+                state.latLng?.longitude ?? state.initialLatLng!.longitude,
               ),
             ),
           },
           initialCameraPosition: CameraPosition(
             target: LatLng(
-              state.latLng?.latitude??state.initialLatLng!.latitude,
-              state.latLng?.longitude??state.initialLatLng!.longitude,
+              state.latLng?.latitude ?? state.initialLatLng!.latitude,
+              state.latLng?.longitude ?? state.initialLatLng!.longitude,
             ),
             zoom: 12.5,
           ),

@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/comment/presentation/controller/comment_controller.dart';
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
+import 'package:okaz/features/profile/presentation/controller/my_profile_controller.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
@@ -556,157 +557,160 @@ void showReportDialog(
       return Dialog(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        child: Container(
-          width: 345,
-          height: 515,
-          decoration: BoxDecoration(
-            color: const Color(0xFFF5F5F5),
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: const Color(
-                  0xFF94A3B2,
-                ).withOpacity(0.15),
-                blurRadius: 12,
-                offset: const Offset(0, 6), // 0px 6px 12px
-              ),
-            ],
-          ),
-          child: Stack(
-            children: [
-              Positioned(
-                top: 10,
-                right: 10,
-                child: IconButton(
-                  icon: const Icon(Icons.close, size: 24, color: Colors.black),
-                  onPressed: () => Navigator.pop(context),
+        child: SingleChildScrollView(
+          child: Container(
+            width: 345,
+            height: 515,
+            decoration: BoxDecoration(
+              color: const Color(0xFFF5F5F5),
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(
+                    0xFF94A3B2,
+                  ).withOpacity(0.15),
+                  blurRadius: 12,
+                  offset: const Offset(0, 6), // 0px 6px 12px
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 25),
-                    Container(
-                      width: 47,
-                      height: 47,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFF6EAE5),
-                        shape: BoxShape.circle,
+              ],
+            ),
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: IconButton(
+                    icon:
+                        const Icon(Icons.close, size: 24, color: Colors.black),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 25),
+                      Container(
+                        width: 47,
+                        height: 47,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF6EAE5),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(child: Assets.icons.sendReportIc.svg()),
                       ),
-                      child: Center(child: Assets.icons.sendReportIc.svg()),
-                    ),
-                    const SizedBox(height: 20),
-                    Text('product_details_report_ad'.tr(),
-                        style: AppTextStyle.rubikSemiBold18
-                            .copyWith(color: AppColors.primary)),
-                    const SizedBox(height: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('report_reason_title'.tr(),
-                            style: AppTextStyle.rubikSemiBold16),
-                        const SizedBox(height: 4),
-                        Text('report_reason_description'.tr(),
-                            style: AppTextStyle.rubikRegular14
-                                .copyWith(color: AppColors.grey600)),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Form(
-                      key: key,
-                      child: Container(
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(24),
-                          border: Border.all(color: const Color(0xFFE8E8E8)),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 12,
-                        ),
-                        child: TextFormField(
-                          controller: controller,
-                          validator: nameValidation(context),
-                          maxLines: 4,
-                          textAlign: TextAlign.start,
-                          decoration: InputDecoration(
-                            hintText: 'report_details_hint'.tr(),
-                            hintStyle: AppTextStyle.rubikRegular14
-                                .copyWith(color: AppColors.grayHint),
-                            border: InputBorder.none,
-                            errorBorder: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            disabledBorder: InputBorder.none,
+                      const SizedBox(height: 20),
+                      Text('product_details_report_ad'.tr(),
+                          style: AppTextStyle.rubikSemiBold18
+                              .copyWith(color: AppColors.primary)),
+                      const SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('report_reason_title'.tr(),
+                              style: AppTextStyle.rubikSemiBold16),
+                          const SizedBox(height: 4),
+                          Text('report_reason_description'.tr(),
+                              style: AppTextStyle.rubikRegular14
+                                  .copyWith(color: AppColors.grey600)),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Form(
+                        key: key,
+                        child: Container(
+                          height: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(color: const Color(0xFFE8E8E8)),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                          child: TextFormField(
+                            controller: controller,
+                            validator: nameValidation(context),
+                            maxLines: 4,
+                            textAlign: TextAlign.start,
+                            decoration: InputDecoration(
+                              hintText: 'report_details_hint'.tr(),
+                              hintStyle: AppTextStyle.rubikRegular14
+                                  .copyWith(color: AppColors.grayHint),
+                              border: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const Spacer(),
-                    Consumer(builder: (context, ref, _) {
-                      ref.listen(
-                          productControllerProvider
-                              .select((val) => val.value!.sendReport),
-                          (previous, next) {
-                        if (next is AsyncError) {
-                          showErrorDialog(context, next.error.toString());
-                        }
-                        if (next is AsyncData) {
-                          context.pop();
-                        }
-                      });
-                      final reportController = ref.watch(
-                          productControllerProvider
-                              .select((val) => val.value!.sendReport));
-                      if (reportController is AsyncLoading) {
-                        return AppLoader();
-                      }
-                      return ElevatedButton(
-                        onPressed: () {
-                          if (key.currentState!.validate()) {
-                            ref
-                                .read(productControllerProvider.notifier)
-                                .sendReport(postId, controller.text);
+                      const Spacer(),
+                      Consumer(builder: (context, ref, _) {
+                        ref.listen(
+                            productControllerProvider
+                                .select((val) => val.value!.sendReport),
+                            (previous, next) {
+                          if (next is AsyncError) {
+                            showErrorDialog(context, next.error.toString());
                           }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          minimumSize: const Size(301, 45),
+                          if (next is AsyncData) {
+                            context.pop();
+                          }
+                        });
+                        final reportController = ref.watch(
+                            productControllerProvider
+                                .select((val) => val.value!.sendReport));
+                        if (reportController is AsyncLoading) {
+                          return AppLoader();
+                        }
+                        return ElevatedButton(
+                          onPressed: () {
+                            if (key.currentState!.validate()) {
+                              ref
+                                  .read(productControllerProvider.notifier)
+                                  .sendReport(postId, controller.text);
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            minimumSize: const Size(301, 45),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            elevation: 0,
+                          ),
+                          child: Text(
+                            'send_report'.tr(),
+                            style: AppTextStyle.rubikBold20
+                                .copyWith(color: AppColors.white),
+                          ),
+                        );
+                      }),
+                      const SizedBox(height: 12),
+                      OutlinedButton(
+                        onPressed: () => context.pop(),
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size(301, 51),
+                          side: const BorderSide(color: Color(0xFFB8502E)),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),
                           ),
-                          elevation: 0,
                         ),
                         child: Text(
-                          'send_report'.tr(),
+                          'cancel'.tr(),
                           style: AppTextStyle.rubikBold20
-                              .copyWith(color: AppColors.white),
-                        ),
-                      );
-                    }),
-                    const SizedBox(height: 12),
-                    OutlinedButton(
-                      onPressed: () => context.pop(),
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size(301, 51),
-                        side: const BorderSide(color: Color(0xFFB8502E)),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
+                              .copyWith(color: AppColors.primary),
                         ),
                       ),
-                      child: Text(
-                        'cancel'.tr(),
-                        style: AppTextStyle.rubikBold20
-                            .copyWith(color: AppColors.primary),
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                  ],
+                      const SizedBox(height: 25),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );
@@ -760,12 +764,13 @@ void showDeleteCommentDialog(
                         color: const Color(0xFFF6EAE5),
                         borderRadius: BorderRadius.circular(22),
                       ),
-                      child: const Center(
-                        child: Icon(
-                          Icons.delete_outline_rounded,
-                          color: Color(0xFFB8502E),
-                          size: 24,
-                        ),
+                      child: Center(
+                        child: Assets.icons.deletePostIc.svg(),
+                        // child: Icon(
+                        //   Icons.delete_outline_rounded,
+                        //   color: Color(0xFFB8502E),
+                        //   size: 24,
+                        // ),
                       ),
                     ),
 
@@ -840,6 +845,165 @@ void showDeleteCommentDialog(
                                 ref
                                     .read(commentControllerProvider.notifier)
                                     .deleteComment(commentId);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFB8502E),
+                                fixedSize: const Size(138.14, 45.45),
+                                elevation: 0,
+                                padding: EdgeInsets.zero,
+                                shadowColor:
+                                    const Color(0xFFB8502E).withOpacity(0.2),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                              ),
+                              child: Text(
+                                'delete'.tr(),
+                              ),
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 25), // التوازن السفلي
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+void showDeletePosttDialog(BuildContext context, String postId) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        child: Container(
+          // الأبعاد حسب CSS
+          width: 345,
+          height: 260,
+          decoration: BoxDecoration(
+            color: const Color(0xFFF5F5F5), // background: #F5F5F5
+            borderRadius: BorderRadius.circular(12), // border-radius: 12px
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF94A3B2).withOpacity(0.15),
+                blurRadius: 12,
+                offset: const Offset(0, 6), // 0px 6px 12px
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 15,
+                left: 15,
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(Icons.close, size: 16, color: Colors.black),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 25),
+
+                    Container(
+                      width: 47,
+                      height: 47,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF6EAE5),
+                        borderRadius: BorderRadius.circular(22),
+                      ),
+                      child: Center(
+                        child: Assets.icons.deletePostIc.svg(),
+                        // child: Icon(
+                        //   Icons.delete_outline_rounded,
+                        //   color: Color(0xFFB8502E),
+                        //   size: 24,
+                        // ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Text('delete_post_title'.tr(),
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.rubikSemiBold18
+                            .copyWith(color: AppColors.primary)),
+
+                    const SizedBox(height: 20), // المسافة للوصف (top: 130px)
+
+                    // النص الفرعي
+                    Text('delete_post_description'.tr(),
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.rubikRegular16),
+
+                    const Spacer(),
+
+                    // مجموعة الأزرار (Group 1000006978)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // زر إلغاء (الأبيض بحدود برتقالية)
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: OutlinedButton.styleFrom(
+                              fixedSize: const Size(138.14, 45.45),
+                              side: const BorderSide(color: Color(0xFFB8502E)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                            child: Text(
+                              'cancel'.tr(),
+                              style: TextStyle(
+                                color: Color(0xFFB8502E),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(width: 15),
+
+                        Expanded(
+                          child: Consumer(builder: (context, ref, _) {
+                            ref.listen(
+                                productControllerProvider
+                                    .select((val) => val.value?.deletePost),
+                                (previous, next) {
+                              if (next is AsyncError) {
+                                showErrorDialog(
+                                    context, next!.error.toString());
+                              }
+                              if (next is AsyncData) {
+                                context.pop();
+                                ref
+                                    .read(profileControllerProvider.notifier)
+                                    .fetchMyPosts(page: 1);
+                              }
+                            });
+                            final productController = ref.watch(
+                                productControllerProvider
+                                    .select((val) => val.value?.deletePost));
+                            if (productController is AsyncLoading) {
+                              return AppLoader();
+                            }
+                            return ElevatedButton(
+                              onPressed: () {
+                                ref
+                                    .read(productControllerProvider.notifier)
+                                    .deletePost(postId);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFB8502E),

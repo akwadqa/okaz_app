@@ -17,7 +17,7 @@ abstract class AppColors {
   
   static const Color grey97 = Color(0xFF979797);
 
-  // static const Color background = Color(0xffFAFAF9);
+  static const Color bottomSheetBackground = Color(0xffFAFAF9);
 
   
   static const Color fieldBackground = Color(0xFFEFF0F6);

@@ -34,6 +34,7 @@ class ProductDetailsScreenContactBar extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     productDetailsModel.userInfo?.mobileNo ?? '000000000',
+                    maxLines: 1,
                     // AppTextStyle.rubikRegular16.copyWith(color: AppColors.text),
                     style: const TextStyle(fontSize: 16, color: Colors.black),
                   ),

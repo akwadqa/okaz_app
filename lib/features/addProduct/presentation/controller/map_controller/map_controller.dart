@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter_google_places_hoc081098/google_maps_webservice_places.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/features/addProduct/presentation/controller/add_product_controller.dart';
@@ -10,23 +11,21 @@ import 'package:geocoding/geocoding.dart';
 import 'map_state.dart';
 
 part 'map_controller.g.dart';
-@Riverpod(keepAlive: true)
 
+@Riverpod(keepAlive: true)
 class MapController extends _$MapController {
   late final GoogleMapsPlaces _places;
 
   @override
   FutureOr<MapState> build() async {
-    _places = GoogleMapsPlaces(apiKey:  ServicesUrls.mapApiKey,
+    _places = GoogleMapsPlaces(
+      apiKey: ServicesUrls.mapApiKey,
       apiHeaders: await const GoogleApiHeaders().getHeaders(),
-    
     );
 
-  final addState =
-      ref.read(addProductControllerProvider).value;
+    final addState = ref.read(addProductControllerProvider).value;
 
-  final initial =
-      addState?.latLng ?? const LatLng(25.2854, 51.5310);
+    final initial = addState?.latLng ?? const LatLng(25.2854, 51.5310);
     return MapState(
       latLng: null,
       initialLatLng: initial,
@@ -42,47 +41,45 @@ class MapController extends _$MapController {
 
   /// Search
   Future<void> searchLocation(String value) async {
-  if (value.isEmpty) {
-    clearPredictions();
-    return;
+    if (value.isEmpty) {
+      clearPredictions();
+      return;
+    }
+
+    try {
+      final res = await _places.autocomplete(
+        value,
+        language: 'ar',
+        region: "QA",
+        components: [Component(Component.country, "QA")],
+      );
+
+      state = AsyncData(
+        state.value!.copyWith(predictions: res.predictions),
+      );
+    } catch (e) {
+      Dev.logError('Places error: $e');
+    }
   }
-
-  try {
-    final res = await _places.autocomplete(
-      value,
-      language: 'ar',
-    region: "QA",
-        components: [Component(Component.country, "QA")], 
-    );
-
-    state = AsyncData(
-      state.value!.copyWith(predictions: res.predictions),
-    );
-  } catch (e) {
-    Dev.logError('Places error: $e');
-  }
-}
-
 
   /// Select from search
- Future<LatLng?> selectPlace(String placeId) async {
-  final res = await _places.getDetailsByPlaceId(placeId);
+  Future<LatLng?> selectPlace(String placeId) async {
+    final res = await _places.getDetailsByPlaceId(placeId);
 
-  final loc = res.result.geometry?.location;
-  if (loc == null) return null;
+    final loc = res.result.geometry?.location;
+    if (loc == null) return null;
 
-  final latLng = LatLng(loc.lat, loc.lng);
+    final latLng = LatLng(loc.lat, loc.lng);
 
-  state = AsyncData(
-    state.value!.copyWith(
-      latLng: latLng,
-      predictions: [],
-    ),
-  );
+    state = AsyncData(
+      state.value!.copyWith(
+        latLng: latLng,
+        predictions: [],
+      ),
+    );
 
-  return latLng;
-}
-
+    return latLng;
+  }
 
   void clearPredictions() {
     state = AsyncData(
@@ -108,58 +105,57 @@ class MapController extends _$MapController {
   //     );
   //   }
   // }
-Future<String?> _getCityFromLatLng(LatLng latLng) async {
-  try {
-    final placemarks = await placemarkFromCoordinates(
-      latLng.latitude,
-      latLng.longitude,
-    );
+  Future<String?> _getCityFromLatLng(LatLng latLng) async {
+    try {
+      final placemarks = await placemarkFromCoordinates(
+        latLng.latitude,
+        latLng.longitude,
+      );
 
-    if (placemarks.isEmpty) return null;
+      if (placemarks.isEmpty) return null;
 
-    final place = placemarks.first;
+      final place = placemarks.first;
 
-    return place.locality ?? place.subAdministrativeArea;
-  } catch (e) {
-    Dev.logError("Geocoding error: $e");
-    return null;
-  }
-}
-Future<void> confirmLocation() async {
-  state = AsyncData(
-    state.value!.copyWith(selectedPlace: const AsyncLoading()),
-  );
-
-  try {
-    final latLng =
-        state.value?.latLng ?? state.value!.initialLatLng!;
-
-    /// 🔹 get city
-    final city = await _getCityFromLatLng(latLng);
-
-    /// 🔹 send location to AddPostController
-    final addCtrl =
-        ref.read(addProductControllerProvider.notifier);
-
-    addCtrl.setLatLng(latLng);
-
-    if (city != null) {
-      addCtrl.setCity(city);
+      return place.locality ?? place.subAdministrativeArea;
+    } catch (e) {
+      Dev.logError("Geocoding error: $e");
+      return null;
     }
-
-    state = AsyncData(
-      state.value!.copyWith(
-        selectedPlace: const AsyncData(null),
-      ),
-    );
-  } catch (e, st) {
-    state = AsyncData(
-      state.value!.copyWith(
-        selectedPlace: AsyncError(e, st),
-      ),
-    );
   }
-}
+
+  Future<void> confirmLocation() async {
+    state = AsyncData(
+      state.value!.copyWith(selectedPlace: const AsyncLoading()),
+    );
+
+    try {
+      final latLng = state.value?.latLng ?? state.value!.initialLatLng!;
+
+      /// 🔹 get city
+      final city = await _getCityFromLatLng(latLng);
+
+      /// 🔹 send location to AddPostController
+      final addCtrl = ref.read(addProductControllerProvider.notifier);
+
+      addCtrl.setLatLng(latLng);
+
+      if (city != null) {
+        addCtrl.setCity(city);
+      }
+
+      state = AsyncData(
+        state.value!
+            .copyWith(selectedPlace: const AsyncData(null), latLng: latLng),
+      );
+    } catch (e, st) {
+      state = AsyncData(
+        state.value!.copyWith(
+          selectedPlace: AsyncError(e, st),
+        ),
+      );
+    }
+  }
+
   /// 🔹 Get LatLng from placeId (search box)
   // Future<LatLng?> getPlaceLocation(String placeId) async {
   //   try {

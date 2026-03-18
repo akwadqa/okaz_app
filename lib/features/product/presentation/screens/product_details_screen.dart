@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/features/product/presentation/controller/favorite_product_contrller.dart';
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_comment_section/product_details_screen_comments_section.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_header_info.dart';
@@ -9,6 +10,7 @@ import 'package:okaz/features/product/presentation/widgets/product_details_scree
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_message_composer.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_tabs.dart';
 import 'package:okaz/features/product/presentation/widgets/product_details_screen_tabs_switcher.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/utils/functions/helper_methods.dart';
@@ -70,20 +72,25 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
     return Scaffold(
       backgroundColor: AppColors.background,
 
-      body: SafeArea(
-        top: false,
-        child: controller!.when(
-          data: (data) {
-            return _buildProductDetailsBody(data);
-          },
-          error: (e, st) => AppErrorWidget(),
-          loading: () => AppLoader(),
+      body: controller!.when(
+        data: (data) {
+          return _buildProductDetailsBody(data);
+        },
+        error: (e, st) => AppErrorWidget(
+          withBackButton: true,
+          onTap: () => ref
+              .read(productControllerProvider.notifier)
+              .getProductDetails(widget.postId),
         ),
+        loading: () => AppLoader(),
       ),
 
       bottomNavigationBar: controller.whenOrNull(
-        data: (data) => ProductDetailsScreenMessageComposer(
-          postId: data.name ?? 'id',
+        data: (data) => Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: ProductDetailsScreenMessageComposer(
+            postId: data.name ?? 'id',
+          ),
         ),
       ),
       // bottomNavigationBar:  ProductDetailsScreenMessageComposer(),
@@ -91,6 +98,14 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
   }
 
   Widget _buildProductDetailsBody(ProductDetailsModel productDetailsModel) {
+    ref.listen(
+        favoriteProductContrllerProvider(productDetailsModel.name.toString(),
+            productDetailsModel?.isFavorited ?? false), (prev, next) {
+      if (next is AsyncError) {
+        showErrorDialog(context, next.error.toString());
+      }
+    });
+
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(

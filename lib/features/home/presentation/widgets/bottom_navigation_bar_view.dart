@@ -17,15 +17,17 @@ class BottomNavigationBarView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentIndex = ref.watch(bottomNavIndexProvider);
     return CurvedNavigationBar(
+
       index: currentIndex,
       backgroundColor: Colors.transparent,
       onTap: (index) {
-        if(index==1){
+        if (index == 1) {
           context.go(AppRoutes.addNewProduct);
           return;
         }
-        ref.read(bottomNavIndexProvider.notifier).state = index;}
-        // print(currentIndex);
+        ref.read(bottomNavIndexProvider.notifier).state = index;
+      }
+      // print(currentIndex);
       ,
       height: 70,
       items: [
@@ -41,7 +43,6 @@ class BottomNavigationBarView extends ConsumerWidget {
             color: currentIndex == 0 ? AppColors.primary : AppColors.grey600,
           ),
         ),
-
         CurvedNavigationBarItem(
           child: Assets.icons.bnbAddIc.svg(
             colorFilter: ColorFilter.mode(

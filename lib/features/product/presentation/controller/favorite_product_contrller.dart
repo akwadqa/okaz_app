@@ -21,12 +21,16 @@ class FavoriteProductContrller extends _$FavoriteProductContrller {
       final response = await repo.addPostToFavorite(productId);
 
       if (response.hasFailed) {
+        state = AsyncError(response.error, StackTrace.current);
+
         state = AsyncData(currentState);
         return currentState;
       }
       return !currentState;
-    } catch (e) {
+    } catch (e, st) {
+      state = AsyncError(e, st);
       state = AsyncData(currentState);
+
       return currentState;
     }
   }

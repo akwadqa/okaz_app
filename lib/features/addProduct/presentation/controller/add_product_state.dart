@@ -51,11 +51,12 @@ final List<SubcategoryAttributeModel> attributes;
 
   /// Initial state
   factory AddProductState.init() {
-    return const AddProductState(
+    return  AddProductState(
       step: 1,
       specs: {},
       images: [],
       attributes: [],
+      // latLng:LatLng(25.2854, 51.5310),
       isFeatured: false,
     );
   }

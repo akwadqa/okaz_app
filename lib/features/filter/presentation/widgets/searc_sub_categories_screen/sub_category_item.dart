@@ -25,7 +25,7 @@ class SubCategoryItem extends ConsumerWidget {
         height: 40,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color:title == category ? AppColors.primary: AppColors.white,
+          color: title == category ? AppColors.primary : AppColors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -37,6 +37,7 @@ class SubCategoryItem extends ConsumerWidget {
         ),
         child: Text(
           title,
+          textAlign: TextAlign.center,
           style: AppTextStyle.rubikMedium14.copyWith(
             color: title == category ? AppColors.white : AppColors.textDart,
           ),

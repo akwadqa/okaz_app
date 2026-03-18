@@ -40,10 +40,10 @@ class DynamicAttributeField extends ConsumerWidget {
         return _buildTextField(context, currentValue, controller, true);
 
       case AttributeFieldType.checkbox:
-        return _buildToggle(attribute, currentValue, controller,state);
+        return _buildToggle(attribute, currentValue, controller, state);
 
       case AttributeFieldType.toggle:
-        return _buildToggle(attribute, currentValue, controller,state);
+        return _buildToggle(attribute, currentValue, controller, state);
     }
   }
 
@@ -59,6 +59,8 @@ class DynamicAttributeField extends ConsumerWidget {
       hint: 'select_sub_category',
       value: value,
       onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+
         showAddSelectSheet<String>(
           context: context,
           title: attribute.title.tr(),
@@ -170,12 +172,8 @@ class DynamicAttributeField extends ConsumerWidget {
     );
   }
 
-  Widget _buildToggle(
-    SubcategoryAttributeModel attribute,
-    dynamic value,
-    AddProductController controller,
-    AddProductState state
-  ) {
+  Widget _buildToggle(SubcategoryAttributeModel attribute, dynamic value,
+      AddProductController controller, AddProductState state) {
     return Container(
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -191,11 +189,14 @@ class DynamicAttributeField extends ConsumerWidget {
         value: (value as bool?) ?? false,
         title: Text(attribute.title),
         subtitle: Text(attribute.dataType),
-        onChanged: (v) { 
-           Dev.logMap(state.specs);
-           Dev.logLine(           controller.canGoNextForSpecs(state.attributes));
+        onChanged: (v) {
+          FocusManager.instance.primaryFocus?.unfocus();
 
-          controller.updateSpec(attribute.title, v);},
+          Dev.logMap(state.specs);
+          Dev.logLine(controller.canGoNextForSpecs(state.attributes));
+
+          controller.updateSpec(attribute.title, v);
+        },
       ),
     );
     // SwitchListTile(
