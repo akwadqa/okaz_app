@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../notifications/services/notification_service.dart';
+
 part 'current_language.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -21,8 +23,19 @@ class CurrentLanguage extends _$CurrentLanguage {
     }
   }
 
-  void changeLanguage(BuildContext context, String languageCode) {
-    EasyLocalization.of(context)!.setLocale(Locale(languageCode));
-    state = languageCode;
-  }
+  void changeLanguage(BuildContext context, String languageCode) async {
+  final oldLang = state;
+
+  // Change app language
+  context.setLocale(Locale(languageCode));
+  state = languageCode;
+
+  // Notify FCM service
+  final notificationService = ref.read(notificationsServiceProvider);
+
+  await notificationService.updateLanguageTopic(
+    oldLang: oldLang,
+    newLang: languageCode,
+  );
+}
 }
