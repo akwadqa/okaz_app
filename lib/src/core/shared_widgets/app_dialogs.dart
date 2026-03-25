@@ -547,6 +547,128 @@ Future<void> showErrorDialog(BuildContext context, String message) {
   );
 }
 
+Future<void> showUpdatePostSuccessDialog({
+  required BuildContext context,
+  VoidCallback? onViewAd,
+  VoidCallback? onCancel,
+  bool barrierDismissible = true,
+}) {
+  return showDialog(
+    context: context,
+    barrierDismissible: barrierDismissible,
+    builder: (_) {
+      return _UpdatePostSuccessDialog(
+        onViewAd: onViewAd,
+        onCancel: onCancel,
+      );
+    },
+  );
+}
+
+class _UpdatePostSuccessDialog extends StatelessWidget {
+  final VoidCallback? onViewAd;
+  final VoidCallback? onCancel;
+
+  const _UpdatePostSuccessDialog({
+    this.onViewAd,
+    this.onCancel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: AppColors.background,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SizedBox(
+        width: 345,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(22, 30, 22, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 107,
+                height: 107,
+                decoration: const BoxDecoration(
+                  color: AppColors.primary,
+                  shape: BoxShape.circle,
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.check_rounded,
+                    color: AppColors.white,
+                    size: 54,
+                  ),
+                ),
+              ),
+              22.verticalSpace,
+              Text(
+                'post_updated_successfully'.tr(),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.rubikBold20.copyWith(
+                  color: AppColors.textDart,
+                ),
+              ),
+              12.verticalSpace,
+              Text(
+                'updates_saved'.tr(),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.rubikRegular18.copyWith(
+                  color: AppColors.textDart,
+                ),
+              ),
+              28.verticalSpace,
+              SizedBox(
+                width: 301,
+                height: 51,
+                child: ElevatedButton.icon(
+                  onPressed: onViewAd ?? () => context.pop(),
+                  icon: const Icon(Icons.remove_red_eye_outlined, size: 20),
+                  label: Text(
+                    'view_ad'.tr(),
+                    style: AppTextStyle.rubikBold20
+                        .copyWith(color: AppColors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: AppColors.white,
+                    elevation: 2,
+                    shadowColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                ),
+              ),
+              12.verticalSpace,
+              SizedBox(
+                width: 301,
+                height: 51,
+                child: OutlinedButton(
+                  onPressed: onCancel ?? () => Navigator.pop(context),
+                  style: OutlinedButton.styleFrom(
+                    side: const BorderSide(color: AppColors.primary),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                  child: Text(
+                    'cancel'.tr(),
+                    style: AppTextStyle.rubikBold20
+                        .copyWith(color: AppColors.primary),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 void showReportDialog(
     BuildContext context, TextEditingController controller, String postId) {
   final key = GlobalKey<FormState>();
@@ -675,12 +797,13 @@ void showReportDialog(
                             }
                           },
                           style: ElevatedButton.styleFrom(
+                            shadowColor: AppColors.primary,
                             backgroundColor: AppColors.primary,
                             minimumSize: const Size(301, 45),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(24),
                             ),
-                            elevation: 0,
+                            elevation: 2,
                           ),
                           child: Text(
                             'send_report'.tr(),
@@ -849,10 +972,9 @@ void showDeleteCommentDialog(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFB8502E),
                                 fixedSize: const Size(138.14, 45.45),
-                                elevation: 0,
+                                elevation: 2,
                                 padding: EdgeInsets.zero,
-                                shadowColor:
-                                    const Color(0xFFB8502E).withOpacity(0.2),
+                                shadowColor: AppColors.primary,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24),
                                 ),
@@ -1008,10 +1130,9 @@ void showDeletePosttDialog(BuildContext context, String postId) {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFFB8502E),
                                 fixedSize: const Size(138.14, 45.45),
-                                elevation: 0,
+                                elevation: 2,
                                 padding: EdgeInsets.zero,
-                                shadowColor:
-                                    const Color(0xFFB8502E).withOpacity(0.2),
+                                shadowColor: AppColors.primary,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(24),
                                 ),

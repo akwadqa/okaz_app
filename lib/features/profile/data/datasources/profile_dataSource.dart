@@ -101,15 +101,15 @@ class ProfileDatasource {
     UpdateUserRequest user,
   ) async {
     try {
-      final data = {
+      final data = FormData.fromMap({
         ...user.toJson(),
         ...{
           if (user.filePath != null)
             'filedata': await MultipartFile.fromFile(user.filePath!.path),
         },
-      };
+      });
       final response = await _networkService.put(
-        ApiEndPoints.getProfileData,
+        ApiEndPoints.updateProfileData,
         data: data,
         queryParameters: {},
       );
@@ -135,7 +135,7 @@ class ProfileDatasource {
       final data = {'page_no': page, 'limit': 10};
       final response = await _networkService.get(
         ApiEndPoints.userPosts,
-         data: data,
+        data: data,
         queryParameters: {},
       );
 

@@ -203,5 +203,8 @@
     "delete_post" : "حذف الإعلان",
     "share_post" : "شارك الإعلان",
     "delete_post_title" : "حذف الإعلان",
-    "delete_post_description" : "هل أنت متأكد أنك تريد حذف هذا الإعلان؟"
+    "delete_post_description" : "هل أنت متأكد أنك تريد حذف هذا الإعلان؟",
+    "update" : "تحديث",
+    "post_updated_successfully" : "تم تحديث إعلانك بنجاح!",
+    "updates_saved" : "تم حفظ التعديلات على الإعلان"
 }

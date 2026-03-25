@@ -81,6 +81,7 @@ Map<String, dynamic> _$ProductDetailsModelToJson(
 
 _PostImage _$PostImageFromJson(Map<String, dynamic> json) => _PostImage(
       image: json['image'] as String?,
+      isFromDevice: json['isFromDevice'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$PostImageToJson(_PostImage instance) =>

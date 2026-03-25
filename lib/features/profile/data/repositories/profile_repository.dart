@@ -64,7 +64,7 @@ class ProfileRepository {
   Future<ApiResponse<UserResponseModel>> updateProfileData(
     UpdateUserRequest user,
   ) async {
-    final response = await _remoteDataSource.getProfileData();
+    final response = await _remoteDataSource.updateProfileData(user);
 
     if (response.status == 200) {
       return response;
@@ -73,10 +73,10 @@ class ProfileRepository {
     throw AppException(message: response.message);
   }
 
-  Future<ApiResponse<List<PostModel>>> getProfilePost(
-    {int? page,}
-  ) async {
-    final response = await _remoteDataSource.getProfilePosts(page:page);
+  Future<ApiResponse<List<PostModel>>> getProfilePost({
+    int? page,
+  }) async {
+    final response = await _remoteDataSource.getProfilePosts(page: page);
 
     if (response.hasSucceeded) {
       return response;
@@ -84,6 +84,7 @@ class ProfileRepository {
 
     throw AppException(message: response.message);
   }
+
   Future<ApiResponse<List<PostModel>>> getFavoritePosts(
     int page,
   ) async {
@@ -95,7 +96,4 @@ class ProfileRepository {
 
     throw AppException(message: response.message);
   }
-
-
-
 }

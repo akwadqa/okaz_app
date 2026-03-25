@@ -1151,6 +1151,8 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
 /// @nodoc
 mixin _$PostImage {
   String? get image;
+  @JsonKey(defaultValue: false, includeToJson: false)
+  bool? get isFromDevice;
 
   /// Create a copy of PostImage
   /// with the given fields replaced by the non-null parameter values.
@@ -1167,16 +1169,18 @@ mixin _$PostImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is PostImage &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.isFromDevice, isFromDevice) ||
+                other.isFromDevice == isFromDevice));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode => Object.hash(runtimeType, image, isFromDevice);
 
   @override
   String toString() {
-    return 'PostImage(image: $image)';
+    return 'PostImage(image: $image, isFromDevice: $isFromDevice)';
   }
 }
 
@@ -1185,7 +1189,9 @@ abstract mixin class $PostImageCopyWith<$Res> {
   factory $PostImageCopyWith(PostImage value, $Res Function(PostImage) _then) =
       _$PostImageCopyWithImpl;
   @useResult
-  $Res call({String? image});
+  $Res call(
+      {String? image,
+      @JsonKey(defaultValue: false, includeToJson: false) bool? isFromDevice});
 }
 
 /// @nodoc
@@ -1201,12 +1207,17 @@ class _$PostImageCopyWithImpl<$Res> implements $PostImageCopyWith<$Res> {
   @override
   $Res call({
     Object? image = freezed,
+    Object? isFromDevice = freezed,
   }) {
     return _then(_self.copyWith(
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFromDevice: freezed == isFromDevice
+          ? _self.isFromDevice
+          : isFromDevice // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -1304,13 +1315,17 @@ extension PostImagePatterns on PostImage {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String? image)? $default, {
+    TResult Function(
+            String? image,
+            @JsonKey(defaultValue: false, includeToJson: false)
+            bool? isFromDevice)?
+        $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _PostImage() when $default != null:
-        return $default(_that.image);
+        return $default(_that.image, _that.isFromDevice);
       case _:
         return orElse();
     }
@@ -1331,12 +1346,16 @@ extension PostImagePatterns on PostImage {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String? image) $default,
+    TResult Function(
+            String? image,
+            @JsonKey(defaultValue: false, includeToJson: false)
+            bool? isFromDevice)
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PostImage():
-        return $default(_that.image);
+        return $default(_that.image, _that.isFromDevice);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -1356,12 +1375,16 @@ extension PostImagePatterns on PostImage {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String? image)? $default,
+    TResult? Function(
+            String? image,
+            @JsonKey(defaultValue: false, includeToJson: false)
+            bool? isFromDevice)?
+        $default,
   ) {
     final _that = this;
     switch (_that) {
       case _PostImage() when $default != null:
-        return $default(_that.image);
+        return $default(_that.image, _that.isFromDevice);
       case _:
         return null;
     }
@@ -1371,12 +1394,17 @@ extension PostImagePatterns on PostImage {
 /// @nodoc
 @JsonSerializable()
 class _PostImage implements PostImage {
-  const _PostImage({this.image});
+  const _PostImage(
+      {this.image,
+      @JsonKey(defaultValue: false, includeToJson: false) this.isFromDevice});
   factory _PostImage.fromJson(Map<String, dynamic> json) =>
       _$PostImageFromJson(json);
 
   @override
   final String? image;
+  @override
+  @JsonKey(defaultValue: false, includeToJson: false)
+  final bool? isFromDevice;
 
   /// Create a copy of PostImage
   /// with the given fields replaced by the non-null parameter values.
@@ -1398,16 +1426,18 @@ class _PostImage implements PostImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PostImage &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.isFromDevice, isFromDevice) ||
+                other.isFromDevice == isFromDevice));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode => Object.hash(runtimeType, image, isFromDevice);
 
   @override
   String toString() {
-    return 'PostImage(image: $image)';
+    return 'PostImage(image: $image, isFromDevice: $isFromDevice)';
   }
 }
 
@@ -1419,7 +1449,9 @@ abstract mixin class _$PostImageCopyWith<$Res>
       __$PostImageCopyWithImpl;
   @override
   @useResult
-  $Res call({String? image});
+  $Res call(
+      {String? image,
+      @JsonKey(defaultValue: false, includeToJson: false) bool? isFromDevice});
 }
 
 /// @nodoc
@@ -1435,12 +1467,17 @@ class __$PostImageCopyWithImpl<$Res> implements _$PostImageCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? image = freezed,
+    Object? isFromDevice = freezed,
   }) {
     return _then(_PostImage(
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      isFromDevice: freezed == isFromDevice
+          ? _self.isFromDevice
+          : isFromDevice // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }

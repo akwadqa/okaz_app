@@ -27,7 +27,7 @@ class ProductDetailsScreenContactBar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${productDetailsModel.userInfo?.firstName} ${productDetailsModel.userInfo?.lastName}',
+                    '${productDetailsModel.userInfo?.firstName ?? ''} ${productDetailsModel.userInfo?.lastName ?? ''}',
                     // 'product_details.contact_label'.tr(),
                     style: AppTextStyle.rubikSemiBold16,
                   ),

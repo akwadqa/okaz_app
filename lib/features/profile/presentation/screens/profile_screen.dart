@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_product_item.dart';
+import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/domain/model/post_model_mapper.dart';
 import 'package:okaz/features/settings/presentation/widgets/settings_item_card.dart';
+import 'package:okaz/features/update_post/presentaion/controller/update_post_controller.dart';
 import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_empty_data_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
@@ -27,6 +30,7 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profileAsync = ref.watch(profileControllerProvider);
+    ref.watch(updatePostControllerProvider);
     final widthS = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -86,7 +90,7 @@ class ProfileScreen extends ConsumerWidget {
                         onLongPress: state.selectedTab == ProfileTab.myAds
                             ? () {
                                 _showPostActionsSheet(
-                                    context, items[index].name ?? 'id');
+                                    context, items[index], ref);
                               }
                             : null,
                       ),
@@ -141,7 +145,8 @@ class ProfileScreen extends ConsumerWidget {
     );
   }
 
-  Future<dynamic> _showPostActionsSheet(BuildContext context, String postId) {
+  Future<dynamic> _showPostActionsSheet(
+      BuildContext context, ProductDetailsModel post, WidgetRef ref) {
     return showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.bottomSheetBackground,
@@ -150,11 +155,22 @@ class ProfileScreen extends ConsumerWidget {
         children: [
           SizedBox(),
           SettingsItemCard(
+            onTap: () {
+              context.pop();
+              context.push(AppRoutes.productDetailsScreen, extra: post.name);
+            },
             title: 'post_details'.tr(),
             icon: Assets.icons.eyeRedIs,
             trailing: SizedBox(),
           ),
           SettingsItemCard(
+            onTap: () {
+              context.pop();
+              ref.read(updatePostControllerProvider.notifier).setPostData(post);
+              context.push(
+                AppRoutes.updatePost,
+              );
+            },
             title: 'edit_post'.tr(),
             icon: Assets.icons.editPostIc,
             trailing: SizedBox(),
@@ -168,7 +184,7 @@ class ProfileScreen extends ConsumerWidget {
             title: 'delete_post'.tr(),
             onTap: () {
               context.pop();
-              showDeletePosttDialog(context, postId);
+              showDeletePosttDialog(context, post.name ?? 'id');
             },
             icon: Assets.icons.deletePostIc,
             trailing: SizedBox(),

@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -103,8 +104,11 @@ class ProductScreenFilterItem extends ConsumerWidget {
             spacing: 5,
             children: [
               Text(
-                filters[subcategoryAttributeModel.title] ??
-                    subcategoryAttributeModel.title,
+                (subcategoryAttributeModel.isMainFilter == 1 &&
+                        filters[subcategoryAttributeModel.title] == null)
+                    ? 'all'.tr()
+                    : filters[subcategoryAttributeModel.title] ??
+                        subcategoryAttributeModel.title,
                 style: AppTextStyle.rubikRegular14.copyWith(
                   // color: index == 1 ? AppColors.primary : AppColors.grayHint,
                   color: filters[subcategoryAttributeModel.title] != null

@@ -21,7 +21,8 @@ class ProductsScreenProductItem extends ConsumerWidget {
   final ProductDetailsModel item;
   final void Function()? onLongPress;
 
-  const ProductsScreenProductItem({super.key, required this.item,  this.onLongPress});
+  const ProductsScreenProductItem(
+      {super.key, required this.item, this.onLongPress});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,7 +34,7 @@ class ProductsScreenProductItem extends ConsumerWidget {
       }
     });
     return GestureDetector(
-      onLongPress: onLongPress ,
+      onLongPress: onLongPress,
       onTap: () =>
           context.push(AppRoutes.productDetailsScreen, extra: item.name),
       child: ClipRRect(
@@ -55,7 +56,8 @@ class ProductsScreenProductItem extends ConsumerWidget {
                       bottom: 0,
                       // child: Assets.images.iponeImage.image(fit: BoxFit.cover),
                       child: CachedNetworkImage(
-                        imageUrl: ServicesUrls.imageUrl + (item.image ?? ''),
+                        imageUrl: ServicesUrls.imageUrl +
+                            (item.image ?? item.images!.first.image!),
                         fit: BoxFit.cover,
                       ),
                     ),

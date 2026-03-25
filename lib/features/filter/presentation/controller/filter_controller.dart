@@ -24,7 +24,8 @@ class FilterController extends _$FilterController {
       SubcategoryAttributeModel subcategoryAttributeModel, dynamic filter) {
     final currentFilters = state.value!.selectedAttributes;
     if (currentFilters[subcategoryAttributeModel.title] == filter) {
-      if (subcategoryAttributeModel.isMainFilter != 0) return;
+      if (subcategoryAttributeModel.isMainFilter != 0)
+        ref.read(selectedSubCategoryProvider.notifier).state = ' ';
       state = AsyncData(
         state.value!.copyWith(
             selectedAttributes: Map.from(
@@ -150,13 +151,14 @@ class FilterController extends _$FilterController {
     if (currentState == null) return;
 
     final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
+    ref.read(selectedSubCategoryProvider.notifier).state = '';
 
     final mainFilterValue = currentState.tempAttributes[mainFilter];
     final Map<String, dynamic> newTempAttributes = {};
 
-    if (mainFilterValue != null) {
-      newTempAttributes[mainFilter!] = mainFilterValue;
-    }
+    // if (mainFilterValue != null) {
+    //   newTempAttributes[mainFilter!] = mainFilterValue;
+    // }
 
     // 4. تحديث الحالة
     state = AsyncData(

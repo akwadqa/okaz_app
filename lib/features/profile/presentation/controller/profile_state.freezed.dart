@@ -16,6 +16,9 @@ T _$identity<T>(T value) => value;
 mixin _$ProfileState {
   ProfileTab get selectedTab;
   List<PostModel> get myAds;
+  String get firstName;
+  String get lastName;
+  File? get profileImage;
   AsyncValue<UserResponseModel>? get profileData;
   AsyncValue<UserResponseModel>? get updateprofileData;
   List<PostModel> get favorites;
@@ -36,6 +39,12 @@ mixin _$ProfileState {
             (identical(other.selectedTab, selectedTab) ||
                 other.selectedTab == selectedTab) &&
             const DeepCollectionEquality().equals(other.myAds, myAds) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.profileImage, profileImage) ||
+                other.profileImage == profileImage) &&
             (identical(other.profileData, profileData) ||
                 other.profileData == profileData) &&
             (identical(other.updateprofileData, updateprofileData) ||
@@ -48,13 +57,16 @@ mixin _$ProfileState {
       runtimeType,
       selectedTab,
       const DeepCollectionEquality().hash(myAds),
+      firstName,
+      lastName,
+      profileImage,
       profileData,
       updateprofileData,
       const DeepCollectionEquality().hash(favorites));
 
   @override
   String toString() {
-    return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, profileData: $profileData, updateprofileData: $updateprofileData, favorites: $favorites)';
+    return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, firstName: $firstName, lastName: $lastName, profileImage: $profileImage, profileData: $profileData, updateprofileData: $updateprofileData, favorites: $favorites)';
   }
 }
 
@@ -67,6 +79,9 @@ abstract mixin class $ProfileStateCopyWith<$Res> {
   $Res call(
       {ProfileTab selectedTab,
       List<PostModel> myAds,
+      String firstName,
+      String lastName,
+      File? profileImage,
       AsyncValue<UserResponseModel>? profileData,
       AsyncValue<UserResponseModel>? updateprofileData,
       List<PostModel> favorites});
@@ -86,6 +101,9 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
   $Res call({
     Object? selectedTab = null,
     Object? myAds = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? profileImage = freezed,
     Object? profileData = freezed,
     Object? updateprofileData = freezed,
     Object? favorites = null,
@@ -99,6 +117,18 @@ class _$ProfileStateCopyWithImpl<$Res> implements $ProfileStateCopyWith<$Res> {
           ? _self.myAds
           : myAds // ignore: cast_nullable_to_non_nullable
               as List<PostModel>,
+      firstName: null == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      profileImage: freezed == profileImage
+          ? _self.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as File?,
       profileData: freezed == profileData
           ? _self.profileData
           : profileData // ignore: cast_nullable_to_non_nullable
@@ -211,6 +241,9 @@ extension ProfileStatePatterns on ProfileState {
     TResult Function(
             ProfileTab selectedTab,
             List<PostModel> myAds,
+            String firstName,
+            String lastName,
+            File? profileImage,
             AsyncValue<UserResponseModel>? profileData,
             AsyncValue<UserResponseModel>? updateprofileData,
             List<PostModel> favorites)?
@@ -220,8 +253,15 @@ extension ProfileStatePatterns on ProfileState {
     final _that = this;
     switch (_that) {
       case _ProfileState() when $default != null:
-        return $default(_that.selectedTab, _that.myAds, _that.profileData,
-            _that.updateprofileData, _that.favorites);
+        return $default(
+            _that.selectedTab,
+            _that.myAds,
+            _that.firstName,
+            _that.lastName,
+            _that.profileImage,
+            _that.profileData,
+            _that.updateprofileData,
+            _that.favorites);
       case _:
         return orElse();
     }
@@ -245,6 +285,9 @@ extension ProfileStatePatterns on ProfileState {
     TResult Function(
             ProfileTab selectedTab,
             List<PostModel> myAds,
+            String firstName,
+            String lastName,
+            File? profileImage,
             AsyncValue<UserResponseModel>? profileData,
             AsyncValue<UserResponseModel>? updateprofileData,
             List<PostModel> favorites)
@@ -253,8 +296,15 @@ extension ProfileStatePatterns on ProfileState {
     final _that = this;
     switch (_that) {
       case _ProfileState():
-        return $default(_that.selectedTab, _that.myAds, _that.profileData,
-            _that.updateprofileData, _that.favorites);
+        return $default(
+            _that.selectedTab,
+            _that.myAds,
+            _that.firstName,
+            _that.lastName,
+            _that.profileImage,
+            _that.profileData,
+            _that.updateprofileData,
+            _that.favorites);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -277,6 +327,9 @@ extension ProfileStatePatterns on ProfileState {
     TResult? Function(
             ProfileTab selectedTab,
             List<PostModel> myAds,
+            String firstName,
+            String lastName,
+            File? profileImage,
             AsyncValue<UserResponseModel>? profileData,
             AsyncValue<UserResponseModel>? updateprofileData,
             List<PostModel> favorites)?
@@ -285,8 +338,15 @@ extension ProfileStatePatterns on ProfileState {
     final _that = this;
     switch (_that) {
       case _ProfileState() when $default != null:
-        return $default(_that.selectedTab, _that.myAds, _that.profileData,
-            _that.updateprofileData, _that.favorites);
+        return $default(
+            _that.selectedTab,
+            _that.myAds,
+            _that.firstName,
+            _that.lastName,
+            _that.profileImage,
+            _that.profileData,
+            _that.updateprofileData,
+            _that.favorites);
       case _:
         return null;
     }
@@ -299,6 +359,9 @@ class _ProfileState implements ProfileState {
   const _ProfileState(
       {this.selectedTab = ProfileTab.myAds,
       final List<PostModel> myAds = const [],
+      this.firstName = '',
+      this.lastName = '',
+      this.profileImage,
       this.profileData,
       this.updateprofileData,
       final List<PostModel> favorites = const []})
@@ -317,6 +380,14 @@ class _ProfileState implements ProfileState {
     return EqualUnmodifiableListView(_myAds);
   }
 
+  @override
+  @JsonKey()
+  final String firstName;
+  @override
+  @JsonKey()
+  final String lastName;
+  @override
+  final File? profileImage;
   @override
   final AsyncValue<UserResponseModel>? profileData;
   @override
@@ -346,6 +417,12 @@ class _ProfileState implements ProfileState {
             (identical(other.selectedTab, selectedTab) ||
                 other.selectedTab == selectedTab) &&
             const DeepCollectionEquality().equals(other._myAds, _myAds) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.profileImage, profileImage) ||
+                other.profileImage == profileImage) &&
             (identical(other.profileData, profileData) ||
                 other.profileData == profileData) &&
             (identical(other.updateprofileData, updateprofileData) ||
@@ -359,13 +436,16 @@ class _ProfileState implements ProfileState {
       runtimeType,
       selectedTab,
       const DeepCollectionEquality().hash(_myAds),
+      firstName,
+      lastName,
+      profileImage,
       profileData,
       updateprofileData,
       const DeepCollectionEquality().hash(_favorites));
 
   @override
   String toString() {
-    return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, profileData: $profileData, updateprofileData: $updateprofileData, favorites: $favorites)';
+    return 'ProfileState(selectedTab: $selectedTab, myAds: $myAds, firstName: $firstName, lastName: $lastName, profileImage: $profileImage, profileData: $profileData, updateprofileData: $updateprofileData, favorites: $favorites)';
   }
 }
 
@@ -380,6 +460,9 @@ abstract mixin class _$ProfileStateCopyWith<$Res>
   $Res call(
       {ProfileTab selectedTab,
       List<PostModel> myAds,
+      String firstName,
+      String lastName,
+      File? profileImage,
       AsyncValue<UserResponseModel>? profileData,
       AsyncValue<UserResponseModel>? updateprofileData,
       List<PostModel> favorites});
@@ -400,6 +483,9 @@ class __$ProfileStateCopyWithImpl<$Res>
   $Res call({
     Object? selectedTab = null,
     Object? myAds = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? profileImage = freezed,
     Object? profileData = freezed,
     Object? updateprofileData = freezed,
     Object? favorites = null,
@@ -413,6 +499,18 @@ class __$ProfileStateCopyWithImpl<$Res>
           ? _self._myAds
           : myAds // ignore: cast_nullable_to_non_nullable
               as List<PostModel>,
+      firstName: null == firstName
+          ? _self.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: null == lastName
+          ? _self.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      profileImage: freezed == profileImage
+          ? _self.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as File?,
       profileData: freezed == profileData
           ? _self.profileData
           : profileData // ignore: cast_nullable_to_non_nullable

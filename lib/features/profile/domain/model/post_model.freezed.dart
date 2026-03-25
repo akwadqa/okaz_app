@@ -27,6 +27,7 @@ mixin _$PostModel {
   int get likes;
   int get comments;
   String? get image;
+  List<PostImage>? get images;
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.
@@ -58,7 +59,8 @@ mixin _$PostModel {
             (identical(other.likes, likes) || other.likes == likes) &&
             (identical(other.comments, comments) ||
                 other.comments == comments) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            const DeepCollectionEquality().equals(other.images, images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -75,11 +77,12 @@ mixin _$PostModel {
       condition,
       likes,
       comments,
-      image);
+      image,
+      const DeepCollectionEquality().hash(images));
 
   @override
   String toString() {
-    return 'PostModel(name: $name, title: $title, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, condition: $condition, likes: $likes, comments: $comments, image: $image)';
+    return 'PostModel(name: $name, title: $title, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, condition: $condition, likes: $likes, comments: $comments, image: $image, images: $images)';
   }
 }
 
@@ -99,7 +102,8 @@ abstract mixin class $PostModelCopyWith<$Res> {
       String condition,
       int likes,
       int comments,
-      String? image});
+      String? image,
+      List<PostImage>? images});
 }
 
 /// @nodoc
@@ -125,6 +129,7 @@ class _$PostModelCopyWithImpl<$Res> implements $PostModelCopyWith<$Res> {
     Object? likes = null,
     Object? comments = null,
     Object? image = freezed,
+    Object? images = freezed,
   }) {
     return _then(_self.copyWith(
       name: null == name
@@ -171,6 +176,10 @@ class _$PostModelCopyWithImpl<$Res> implements $PostModelCopyWith<$Res> {
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      images: freezed == images
+          ? _self.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<PostImage>?,
     ));
   }
 }
@@ -279,7 +288,8 @@ extension PostModelPatterns on PostModel {
             String condition,
             int likes,
             int comments,
-            String? image)?
+            String? image,
+            List<PostImage>? images)?
         $default, {
     required TResult orElse(),
   }) {
@@ -297,7 +307,8 @@ extension PostModelPatterns on PostModel {
             _that.condition,
             _that.likes,
             _that.comments,
-            _that.image);
+            _that.image,
+            _that.images);
       case _:
         return orElse();
     }
@@ -329,7 +340,8 @@ extension PostModelPatterns on PostModel {
             String condition,
             int likes,
             int comments,
-            String? image)
+            String? image,
+            List<PostImage>? images)
         $default,
   ) {
     final _that = this;
@@ -346,7 +358,8 @@ extension PostModelPatterns on PostModel {
             _that.condition,
             _that.likes,
             _that.comments,
-            _that.image);
+            _that.image,
+            _that.images);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -377,7 +390,8 @@ extension PostModelPatterns on PostModel {
             String condition,
             int likes,
             int comments,
-            String? image)?
+            String? image,
+            List<PostImage>? images)?
         $default,
   ) {
     final _that = this;
@@ -394,7 +408,8 @@ extension PostModelPatterns on PostModel {
             _that.condition,
             _that.likes,
             _that.comments,
-            _that.image);
+            _that.image,
+            _that.images);
       case _:
         return null;
     }
@@ -415,7 +430,9 @@ class _PostModel implements PostModel {
       required this.condition,
       required this.likes,
       required this.comments,
-      required this.image});
+      required this.image,
+      final List<PostImage>? images})
+      : _images = images;
   factory _PostModel.fromJson(Map<String, dynamic> json) =>
       _$PostModelFromJson(json);
 
@@ -443,6 +460,15 @@ class _PostModel implements PostModel {
   final int comments;
   @override
   final String? image;
+  final List<PostImage>? _images;
+  @override
+  List<PostImage>? get images {
+    final value = _images;
+    if (value == null) return null;
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   /// Create a copy of PostModel
   /// with the given fields replaced by the non-null parameter values.
@@ -479,7 +505,8 @@ class _PostModel implements PostModel {
             (identical(other.likes, likes) || other.likes == likes) &&
             (identical(other.comments, comments) ||
                 other.comments == comments) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -496,11 +523,12 @@ class _PostModel implements PostModel {
       condition,
       likes,
       comments,
-      image);
+      image,
+      const DeepCollectionEquality().hash(_images));
 
   @override
   String toString() {
-    return 'PostModel(name: $name, title: $title, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, condition: $condition, likes: $likes, comments: $comments, image: $image)';
+    return 'PostModel(name: $name, title: $title, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, condition: $condition, likes: $likes, comments: $comments, image: $image, images: $images)';
   }
 }
 
@@ -523,7 +551,8 @@ abstract mixin class _$PostModelCopyWith<$Res>
       String condition,
       int likes,
       int comments,
-      String? image});
+      String? image,
+      List<PostImage>? images});
 }
 
 /// @nodoc
@@ -549,6 +578,7 @@ class __$PostModelCopyWithImpl<$Res> implements _$PostModelCopyWith<$Res> {
     Object? likes = null,
     Object? comments = null,
     Object? image = freezed,
+    Object? images = freezed,
   }) {
     return _then(_PostModel(
       name: null == name
@@ -595,6 +625,10 @@ class __$PostModelCopyWithImpl<$Res> implements _$PostModelCopyWith<$Res> {
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
+      images: freezed == images
+          ? _self._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<PostImage>?,
     ));
   }
 }

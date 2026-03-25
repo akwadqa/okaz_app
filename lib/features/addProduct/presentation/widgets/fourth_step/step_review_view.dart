@@ -20,12 +20,11 @@ class StepReviewView extends ConsumerWidget {
 
     return ListView(
       padding: const EdgeInsets.all(16),
-
       children: [
         /// -----------------------------
         /// Product Images
         /// -----------------------------
-        const _SectionTitle(
+        const SectionTitle(
           title: 'product_images',
           subtitle: "max_5_images",
           required: true,
@@ -43,7 +42,7 @@ class StepReviewView extends ConsumerWidget {
         /// -----------------------------
         /// Arabic Details
         /// -----------------------------
-        _SectionTitle(title: context.tr('details_ar'), required: true),
+        SectionTitle(title: context.tr('details_ar'), required: true),
         // const SizedBox(height: 12),
 
         AddTextField(
@@ -65,7 +64,7 @@ class StepReviewView extends ConsumerWidget {
         /// -----------------------------
         /// English Details
         /// -----------------------------
-        _SectionTitle(title: context.tr('details_en'), required: true),
+        SectionTitle(title: context.tr('details_en'), required: true),
         // const SizedBox(height: 12),
 
         AddTextField(
@@ -87,7 +86,7 @@ class StepReviewView extends ConsumerWidget {
         /// -----------------------------
         /// Price
         /// -----------------------------
-        _SectionTitle(title: context.tr('price'), required: true),
+        SectionTitle(title: context.tr('price'), required: true),
         // const SizedBox(height: 12),
 
         AddTextField(
@@ -112,16 +111,12 @@ class StepReviewView extends ConsumerWidget {
           ),
           child: SwitchListTile(
             contentPadding: EdgeInsets.zero,
-
             thumbColor: WidgetStatePropertyAll(AppColors.white),
-
             inactiveTrackColor: AppColors.stoneGray,
             activeTrackColor: AppColors.primary,
-
             value: state.isFeatured,
             title: Text(context.tr('featured_ad')),
             subtitle: Text(context.tr('featured_ad_desc')),
-
             onChanged: controller.setFeatured,
           ),
         ),
@@ -130,8 +125,9 @@ class StepReviewView extends ConsumerWidget {
   }
 }
 
-class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({
+class SectionTitle extends StatelessWidget {
+  const SectionTitle({
+    super.key,
     required this.title,
     this.subtitle,
     this.required = false,
@@ -151,7 +147,7 @@ class _SectionTitle extends StatelessWidget {
           children: [
             Text(
               title.tr(),
-              style:AppTextStyle.nunitoSemibold16,
+              style: AppTextStyle.nunitoSemibold16,
             ),
             if (required) const Text(' *', style: TextStyle(color: Colors.red)),
           ],

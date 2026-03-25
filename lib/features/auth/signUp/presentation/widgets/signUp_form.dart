@@ -48,16 +48,16 @@ class _SignUpFormState extends State<SignUpForm> {
             isRequired: true,
             withIcon: false,
           ),
-             1.verticalSpace,
+          1.verticalSpace,
           AppTextFormField(
             // hint: 'firstName'.tr(),
             hint: 'kilani',
             label: 'last_name'.tr(),
             controller: lastNameController,
-            isRequired: false,
+            isRequired: true,
             withIcon: false,
           ),
-         
+
           // Consumer(
           //   builder: (context, ref, _) {
           //     final controller = ref.read(signUpControllerProvider.notifier);
@@ -78,41 +78,37 @@ class _SignUpFormState extends State<SignUpForm> {
           LoginPageNumberField(
             phoneController,
             onChange: (phone) {
-              phoneController.setText(phone?.number??"");
-               setState(() {
-                    
-                  });
+              phoneController.setText(phone?.number ?? "");
+              setState(() {});
             },
           ),
-          Row(spacing: 10,
+          Row(
+            spacing: 10,
             children: [
-              Consumer(
-                builder: (context,ref,wiidget) {
-                  final provider=ref.read(signUpControllerProvider.notifier);
-                  return Checkbox.adaptive(
+              Consumer(builder: (context, ref, wiidget) {
+                final provider = ref.read(signUpControllerProvider.notifier);
+                return Checkbox.adaptive(
                     activeColor: Colors.white,
                     checkColor: AppColors.primary,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    value:provider.acceptPrivacyPolicy , onChanged: (v){
-                  provider.toggleAcceptedPrivacyPolicy();
-                  setState(() {
-                    
-                  });
-                  });
-                }
+                    value: provider.acceptPrivacyPolicy,
+                    onChanged: (v) {
+                      provider.toggleAcceptedPrivacyPolicy();
+                      setState(() {});
+                    });
+              }),
+              Text(
+                'agree_terms'.tr(),
+                textAlign: TextAlign.start,
+                style: AppTextStyle.rubikMedium14,
+                // style: textTheme.displaySmall!.copyWith(
+                //   color: AppColors.black,
+                //   fontWeight: FontWeight.w800,
+                // ),
               ),
-               Text(
-          'agree_terms'.tr(),
-          textAlign: TextAlign.start,
-          style: AppTextStyle.rubikMedium14,
-          // style: textTheme.displaySmall!.copyWith(
-          //   color: AppColors.black,
-          //   fontWeight: FontWeight.w800,
-          // ),
-        ),
             ],
           ),
-         
+
           Consumer(builder: (context, ref, child) {
             ref.listen(signUpControllerProvider, (prev, next) {
               if (next is AsyncData) {
@@ -129,28 +125,27 @@ class _SignUpFormState extends State<SignUpForm> {
               }
             });
 
-            final signUpState= ref.watch(signUpControllerProvider);
+            final signUpState = ref.watch(signUpControllerProvider);
             final signUpProvider = ref.read(signUpControllerProvider.notifier);
             if (signUpState is AsyncLoading) {
               return AppLoader();
               // const FadeCircleLoadingIndicator();
             }
-            final active=
-            signUpProvider.acceptPrivacyPolicy
-            // &&
-            // phoneController.text.isNotEmpty
-            ;
+            final active = signUpProvider.acceptPrivacyPolicy
+                // &&
+                // phoneController.text.isNotEmpty
+                ;
             // signUpProvider.isLoading
             //     ?
 
             // :
             return CustomButtonWidget(
               text: 'create_account'.tr(),
-              onTap: () =>active? _submit(ref):null,
+              onTap: () => active ? _submit(ref) : null,
               isFiled: true,
               height: 55,
               width: double.infinity,
-              backgroundColor:active? AppColors.primary:AppColors.gray,
+              backgroundColor: active ? AppColors.primary : AppColors.gray,
               radius: 24,
             );
             // return Container();
@@ -171,7 +166,6 @@ class _SignUpFormState extends State<SignUpForm> {
           SignupParams(
             firstName: firstNameController.text,
             lastName: lastNameController.text,
-
             mobileNumber: phoneController.text,
           ),
         ); // }
