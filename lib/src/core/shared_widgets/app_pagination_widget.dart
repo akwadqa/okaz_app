@@ -63,16 +63,15 @@ class _AppPaginationWidgetState extends State<AppPaginationWidget> {
       child: SmartRefresher(
         enablePullDown: widget.enablePullDown,
         enablePullUp: true,
-        footer: CustomFooter(
-          builder: (BuildContext context, LoadStatus? mode) {
-            return SizedBox(
-              height: 55.0,
-              child: Center(
-                child: mode == LoadStatus.loading
-                    ? const FadeCircleLoadingIndicator()
-                    : const SizedBox.shrink(),
-              ),
-            );
+        footer:  CustomFooter(
+          builder: (context, mode) {
+            if (mode == LoadStatus.loading || mode == LoadStatus.canLoading|| mode == LoadStatus.idle) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: FadeCircleLoadingIndicator(),
+              );
+            }
+            return const SizedBox.shrink();
           },
         ),
         header: CustomHeader(
@@ -80,7 +79,9 @@ class _AppPaginationWidgetState extends State<AppPaginationWidget> {
             return SizedBox(
               height: 55.0,
               child: Center(
-                child: mode == RefreshStatus.refreshing
+                child:(mode == RefreshStatus.refreshing ||
+      mode == RefreshStatus.canRefresh ||
+      mode == RefreshStatus.idle)
                     ? const CircularProgressIndicator.adaptive()
                     : const SizedBox.shrink(),
               ),

@@ -1,4 +1,6 @@
 // controller/profile_state.dart
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/domain/model/post_model.dart';
@@ -14,8 +16,11 @@ abstract class ProfileState with _$ProfileState {
   const factory ProfileState({
     @Default(ProfileTab.myAds) ProfileTab selectedTab,
     @Default([]) List<PostModel> myAds,
-     AsyncValue<UserResponseModel>? profileData,
-     AsyncValue<UserResponseModel>? updateprofileData,
+    @Default('') String firstName,
+    @Default('') String lastName,
+    File? profileImage,
+    AsyncValue<UserResponseModel>? profileData,
+    AsyncValue<UserResponseModel>? updateprofileData,
     @Default([]) List<PostModel> favorites,
   }) = _ProfileState;
 }

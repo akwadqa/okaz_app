@@ -16,7 +16,8 @@ Future<void> main() async {
 
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      // enabled: false,
+      enabled: kReleaseMode,
       builder: (context) {
         return UncontrolledProviderScope(
           container: container,

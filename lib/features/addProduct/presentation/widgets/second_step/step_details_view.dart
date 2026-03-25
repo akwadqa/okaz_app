@@ -33,6 +33,8 @@ class StepDetailsView extends ConsumerWidget {
           hint: 'select_ad_type',
           value: _adTypeLabel(state.adType),
           onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+
             showAddSelectSheet<String>(
               context: context,
               title: 'select_ad_type',
@@ -43,22 +45,25 @@ class StepDetailsView extends ConsumerWidget {
             );
           },
         ),
- AddSelectField(
+        AddSelectField(
           label: 'condition',
           isRequired: true,
           hint: 'condition_of_product',
           value: _conditionLabel(state.condition),
           onTap: () {
-               showAddSelectSheet<String>(
+            FocusManager.instance.primaryFocus?.unfocus();
+
+            showAddSelectSheet<String>(
               context: context,
               title: 'select_condition',
-    items: const ['New', 'Used'],
+              items: const ['New', 'Used'],
               selected: state.condition,
               labelBuilder: _conditionLabel,
               onConfirm: controller.setConditionOfProduct,
             );
           },
         ),
+
         /// الفئات الفرعية *
         AddSelectField(
           label: 'sub_categories',
@@ -66,6 +71,7 @@ class StepDetailsView extends ConsumerWidget {
           hint: 'select_sub_category',
           value: state.mainSubCategoryType,
           onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
             showAddSelectSheet<String>(
               context: context,
               title: mainFilters.title,
@@ -80,13 +86,12 @@ class StepDetailsView extends ConsumerWidget {
           },
         ),
 
-       
         AddTextField(
           label: 'city',
           isRequired: true,
           hint: 'select_city',
           value: state.city,
-          onChanged: controller.setCity ,
+          onChanged: controller.setCity,
           // onTap: () {
           //   // showAddSelectSheet<String>(
           //   //   context: context,
@@ -170,6 +175,5 @@ class StepDetailsView extends ConsumerWidget {
       default:
         return '';
     }
-  
-}
+  }
 }

@@ -155,7 +155,7 @@ class _AddSelectBottomSheetState<T> extends State<AddSelectBottomSheet<T>> {
 
   @override
   Widget build(BuildContext context) {
-         final maxHeight = MediaQuery.of(context).size.height * 0.6;
+    final maxHeight = MediaQuery.of(context).size.height * 0.6;
 
     return SafeArea(
       child: Padding(
@@ -189,17 +189,15 @@ class _AddSelectBottomSheetState<T> extends State<AddSelectBottomSheet<T>> {
 
             /// Options
 
-ConstrainedBox(
-  constraints: BoxConstraints(maxHeight: maxHeight),
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: maxHeight),
               child: ListView.builder(
                 shrinkWrap: true,
-
-              
                 itemCount: widget.items.length,
                 itemBuilder: (_, index) {
                   final item = widget.items[index];
                   final selected = item == _selected;
-              
+
                   return ListTile(
                     title: Text(widget.labelBuilder(item)),
                     trailing: AppScaledRadio<T>(
@@ -219,18 +217,18 @@ ConstrainedBox(
             CustomButtonWidget(
               text: 'confirm'.tr(),
               onTap: _selected == null
-                    ? null
-                    : () {
-                        widget.onConfirm(_selected as T);
-                        Navigator.pop(context);
-                      },
+                  ? null
+                  : () {
+                      widget.onConfirm(_selected as T);
+                      Navigator.pop(context);
+                    },
               isFiled: true,
               height: 55,
               width: double.infinity,
-              backgroundColor:_selected!=null? AppColors.primary:AppColors.gray,
+              backgroundColor:
+                  _selected != null ? AppColors.primary : AppColors.gray,
               radius: 24,
             ),
-           
           ],
         ),
       ),

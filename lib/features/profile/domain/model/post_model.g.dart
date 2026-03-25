@@ -18,6 +18,9 @@ _PostModel _$PostModelFromJson(Map<String, dynamic> json) => _PostModel(
       likes: (json['likes'] as num).toInt(),
       comments: (json['comments'] as num).toInt(),
       image: json['image'] as String?,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => PostImage.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$PostModelToJson(_PostModel instance) =>
@@ -33,4 +36,5 @@ Map<String, dynamic> _$PostModelToJson(_PostModel instance) =>
       'likes': instance.likes,
       'comments': instance.comments,
       'image': instance.image,
+      'images': instance.images,
     };

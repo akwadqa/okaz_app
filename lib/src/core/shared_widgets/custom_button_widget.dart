@@ -8,12 +8,14 @@ class CustomButtonWidget extends StatelessWidget {
   final String text;
   final Color? backgroundColor;
   final Color? color;
+  final Color? shadowColor;
   final VoidCallback? onTap;
   final bool isFiled;
   final double height;
   final TextStyle? style;
   final double width;
   final double? radius;
+  final double? elevation;
   final double? topPading;
   final double? fontSize;
   final Widget? child;
@@ -23,6 +25,8 @@ class CustomButtonWidget extends StatelessWidget {
     this.backgroundColor,
     this.color,
     required this.onTap,
+     this.shadowColor,
+     this.elevation,
     required this.isFiled,
     required this.height,
     required this.width,
@@ -37,7 +41,8 @@ class CustomButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        elevation: 1,
+          shadowColor: shadowColor,
+          elevation: elevation ?? 1,
           padding: EdgeInsets.zero,
           backgroundColor: backgroundColor ?? Colors.transparent,
           foregroundColor: AppColors.black900,
@@ -49,19 +54,21 @@ class CustomButtonWidget extends StatelessWidget {
               side: BorderSide(
                   color: color ?? backgroundColor ?? Colors.transparent),
               borderRadius: BorderRadius.circular(radius ?? 25))),
-      onPressed: onTap!=null?() {
-        onTap!();
-      }:null,
-      child:
-      
-      child?? Text(context.tr(text),
-      textAlign: TextAlign.center,
-              style: style ??
-                  Theme.of(context).textTheme.displaySmall!.copyWith(
-                      fontSize: fontSize ?? 16,
-                      color:color?? (isFiled ? Colors.white :color?? Colors.black),
-                      fontWeight: FontWeight.w500))
-          .centered(),
+      onPressed: onTap != null
+          ? () {
+              onTap!();
+            }
+          : null,
+      child: child ??
+          Text(context.tr(text),
+                  textAlign: TextAlign.center,
+                  style: style ??
+                      Theme.of(context).textTheme.displaySmall!.copyWith(
+                          fontSize: fontSize ?? 16,
+                          color: color ??
+                              (isFiled ? Colors.white : color ?? Colors.black),
+                          fontWeight: FontWeight.w500))
+              .centered(),
     ).onlyPadding(top: topPading ?? 0);
   }
 }

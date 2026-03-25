@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/product/presentation/controller/favorite_product_contrller.dart';
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
+import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
@@ -70,7 +71,13 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             start: 16,
             top: 28,
             child: IconButton(
-              onPressed: () => context.pop(),
+              onPressed: () {
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.goNamed(AppRoutes.mainScreen);
+                }
+              },
               icon: Icon(Icons.arrow_back_ios_rounded, color: AppColors.white),
             ),
           ),
@@ -121,7 +128,7 @@ class _ProductDetailsScreenIconCircleButtonState
     ref
         .read(favoriteProductContrllerProvider(
                 widget.productDetailsModel.name.toString(),
-                widget.productDetailsModel?.isFavorited ?? false)
+                widget.productDetailsModel.isFavorited ?? false)
             .notifier)
         .addPostToFavorite(widget.productDetailsModel.name ?? 'id');
     setState(() {
@@ -143,8 +150,8 @@ class _ProductDetailsScreenIconCircleButtonState
         widget.productDetailsModel.name.toString(),
         widget.productDetailsModel.isFavorited ?? false));
 
-    final isSelected =
-        favoriteAsync.value ?? (widget.productDetailsModel.isFavorited ?? false);
+    final isSelected = favoriteAsync.value ??
+        (widget.productDetailsModel.isFavorited ?? false);
 
     return CircleAvatar(
       backgroundColor: Colors.white,

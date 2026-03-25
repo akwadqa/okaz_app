@@ -23,7 +23,7 @@ class NotificationsScreen extends ConsumerWidget {
     final ordersNotificationsAsync =
         ref.watch(appNotificationsControllerProvider);
     final controller = ref.read(
-      appNotificationsControllerProvider.notifier,
+      appNotificationsControllerProvider.notifier
     );
 
     return Scaffold(

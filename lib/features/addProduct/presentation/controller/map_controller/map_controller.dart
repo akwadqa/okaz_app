@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_google_places_hoc081098/google_maps_webservice_places.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:okaz/features/addProduct/presentation/controller/add_product_controller.dart';
@@ -134,7 +135,7 @@ Future<String?> _getCityFromLatLng(LatLng latLng) async {
     return null;
   }
 }
- 
+
   Future <void> confirmLocation() async {
     state = AsyncData(
       state.value!.copyWith(selectedPlace: const AsyncLoading()),
@@ -151,16 +152,15 @@ Future<String?> _getCityFromLatLng(LatLng latLng) async {
       /// 🔹 send location to AddPostController
       final addCtrl = ref.read(addProductControllerProvider.notifier);
 
-      addCtrl.setLatLng(latLng);
-      debugPrint("city|||$city");
-      if (city != null) {
-        addCtrl.setCity(city);
-      }
+    addCtrl.setLatLng(latLng);
+
+    if (city != null) {
+      addCtrl.setCity(city);
+    }
 
       state = AsyncData(
-        state.value!.copyWith(
-          selectedPlace: const AsyncData(null),
-        ),
+        state.value!
+            .copyWith(selectedPlace: const AsyncData(null), latLng: latLng),
       );
     } catch (e, st) {
       state = AsyncData(

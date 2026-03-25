@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/data/repositories/profile_repository.dart';
 import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
@@ -12,24 +15,19 @@ part 'my_profile_controller.g.dart';
 
 @Riverpod(keepAlive: true)
 class ProfileController extends _$ProfileController {
-    List<PostModel> _myPosts = [];
+  List<PostModel> _myPosts = [];
   int _myPostsCurrentPage = 1;
   int _myPostsTotalPages = 1;
-    List<PostModel> _favoritePosts = [];
+  List<PostModel> _favoritePosts = [];
   int _favoritePostsCurrentPage = 1;
   int _favoritePostsTotalPages = 1;
   @override
   FutureOr<ProfileState> build() async {
-   final posts= await fetchMyPosts(page: 1);
+    final posts = await fetchMyPosts(page: 1);
 
-  final initial = ProfileState(
-      selectedTab: ProfileTab.myAds,
-  myAds: posts
-    );
-
+    final initial = ProfileState(selectedTab: ProfileTab.myAds, myAds: posts);
 
     state = AsyncData(initial);
-
 
     return initial;
   }
@@ -40,16 +38,16 @@ class ProfileController extends _$ProfileController {
     // if (current == null) return;
 
     // state = AsyncValue.data(current.copyWith(selectedTab: tab));
-        final current = state.value;
+    final current = state.value;
     if (current == null) return;
 
     state = AsyncData(current.copyWith(selectedTab: tab));
 
-    if (tab == ProfileTab.myAds ) {
+    if (tab == ProfileTab.myAds) {
       await fetchMyPosts(page: 1);
     }
 
-    if (tab == ProfileTab.favorites ) {
+    if (tab == ProfileTab.favorites) {
       await fetchFavorites(page: 1);
     }
   }
@@ -103,7 +101,9 @@ class ProfileController extends _$ProfileController {
       }
 
       state = AsyncData(
-        state.value!.copyWith(updateprofileData: AsyncData(response.data!)),
+        state.value!.copyWith(
+            updateprofileData: AsyncData(response.data!),
+            profileData: AsyncData(response.data!)),
       );
       return response.data;
     } catch (e, st) {
@@ -114,50 +114,69 @@ class ProfileController extends _$ProfileController {
     }
   }
 
+  final _picker = ImagePicker();
+
+  Future<void> pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image == null) return;
+
+    state = AsyncData(state.value!.copyWith(
+      profileImage: File(image.path),
+    ));
+  }
+
+  void removeImage() {
+    state = AsyncData(state.value!.copyWith(
+      profileImage: null,
+    ));
+  }
 
   // ───────────── My Posts Data ─────────────
 
+  Future<List<PostModel>> fetchMyPosts({
+    required int page,
+    bool showLoading = true,
+  }) async {
+    try {
+      final current = state.value;
 
-Future<List<PostModel>> fetchMyPosts({
-  required int page,
-  bool showLoading = true,
-}) async {
-  try {
-    final current = state.value;
+      /// show loading only first time
+      if (showLoading 
+      // && (current?.favorites.isEmpty ?? true)
+      ){
+        state = const AsyncLoading();
+      }
 
-    /// show loading only first time
-    if (showLoading && (current?.myAds.isEmpty ?? true)) {
-      state = const AsyncLoading();
+      final repo = ref.read(profileRepositoryProvider);
+      final response = await repo.getProfilePost(page: page);
+
+      final pagination = response.pagination;
+
+      _myPostsCurrentPage = pagination?.currentPage ?? 1;
+      _myPostsTotalPages = pagination?.totalPages ?? 1;
+
+      if (page == 1) {
+        _myPosts = List.from(response.data ?? []);
+      } else {
+        _myPosts.addAll(response.data ?? []);
+      }
+
+      final previous = state.value ?? const ProfileState();
+
+      state = AsyncData(
+        previous.copyWith(
+          myAds: List.from(_myPosts),
+        ),
+      );
+
+      return _myPosts;
+    } catch (e, st) {
+      state = AsyncError(e, st);
+      return [];
     }
-
-    final repo = ref.read(profileRepositoryProvider);
-    final response = await repo.getProfilePost(page: page);
-
-    final pagination = response.pagination;
-
-    _myPostsCurrentPage = pagination?.currentPage ?? 1;
-    _myPostsTotalPages = pagination?.totalPages ?? 1;
-
-    if (page == 1) {
-      _myPosts = List.from(response.data ?? []);
-    } else {
-      _myPosts.addAll(response.data ?? []);
-    }
-
-    final previous = state.value ?? const ProfileState();
-
-    state = AsyncData(
-      previous.copyWith(
-        myAds: List.from(_myPosts),
-      ),
-    );
-
-    return _myPosts;
-  } catch (e, st) {
-    state = AsyncError(e, st);
-    return [];
   }
-}
+
   Future<bool> loadNextMyPostsPage() async {
     if (_myPostsCurrentPage >= _myPostsTotalPages) return false;
     final nextPage = _myPostsCurrentPage + 1;
@@ -174,20 +193,22 @@ Future<List<PostModel>> fetchMyPosts({
 
   // ───────────── Favorite Posts Data ─────────────
 
-
-  Future<List<PostModel>> fetchFavorites({required int page, bool showLoading = true}) async {
+  Future<List<PostModel>> fetchFavorites(
+      {required int page, bool showLoading = true}) async {
     try {
-   final current = state.value;
+      final current = state.value;
 
-    /// show loading only first time
-    if (showLoading && (current?.favorites.isEmpty ?? true)) {
-      state = const AsyncLoading();
-    }
+      /// show loading only first time
+      if (showLoading 
+      // && (current?.favorites.isEmpty ?? true)
+      ) {
+        state = const AsyncLoading();
+      }
 
       final repo = ref.read(profileRepositoryProvider);
-      final response = await repo.getFavoritePosts( page);
+      final response = await repo.getFavoritePosts(page);
 
- final pagination = response.pagination;
+      final pagination = response.pagination;
 
       _favoritePostsCurrentPage = pagination?.currentPage ?? 1;
       _favoritePostsTotalPages = pagination?.totalPages ?? 1;
@@ -197,14 +218,14 @@ Future<List<PostModel>> fetchMyPosts({
       } else {
         _favoritePosts.addAll(response.data ?? []);
       }
-    final previous = state.value ?? const ProfileState();
+      final previous = state.value ?? const ProfileState();
 
-     state = AsyncData(
-  previous.copyWith(
-    favorites: List.from(_favoritePosts),
-  ),
-);
-      return _favoritePosts; 
+      state = AsyncData(
+        previous.copyWith(
+          favorites: List.from(_favoritePosts),
+        ),
+      );
+      return _favoritePosts;
     } catch (e, st) {
       state = AsyncError(e, st);
       return [];
@@ -225,39 +246,51 @@ Future<List<PostModel>> fetchMyPosts({
     await fetchFavorites(page: 1);
   }
 
-    // ───────────── Refresh ─────────────
-  Future<void> refreshCurrentTab() async {
+  // ───────────── Refresh ─────────────
+  Future<bool> refreshCurrentTab() async {
     if (state.value!.selectedTab == ProfileTab.myAds) {
       _myPosts.clear();
       _myPostsCurrentPage = 1;
       await fetchMyPosts(page: 1);
+      return true;
     } else {
       _favoritePosts.clear();
       _favoritePostsCurrentPage = 1;
       await fetchFavorites(page: 1);
+      return true;
+
     }
   }
+
+  void changeFirstName(String firstName) {
+    state = AsyncData(state.value!.copyWith(firstName: firstName));
+  }
+
+  void changeLastName(String lastName) {
+    state = AsyncData(state.value!.copyWith(lastName: lastName));
+  }
+
   // ───────────── Mock Data ─────────────
   List<ProfileItem> _mockMyAds() => [
-    ProfileItem(
-      id: '1',
-      title: 'ساعة ذهبية',
-      image: 'https://via.placeholder.com/300',
-      condition: 'مستعمل - بحالة ممتازة',
-      price: 1400,
-      likes: 0,
-      comments: 0,
-    ),
-    ProfileItem(
-      id: '2',
-      title: 'آيفون 16 برو',
-      image: 'https://via.placeholder.com/300',
-      condition: 'جديد',
-      price: 1900,
-      likes: 15,
-      comments: 5,
-    ),
-  ];
+        ProfileItem(
+          id: '1',
+          title: 'ساعة ذهبية',
+          image: 'https://via.placeholder.com/300',
+          condition: 'مستعمل - بحالة ممتازة',
+          price: 1400,
+          likes: 0,
+          comments: 0,
+        ),
+        ProfileItem(
+          id: '2',
+          title: 'آيفون 16 برو',
+          image: 'https://via.placeholder.com/300',
+          condition: 'جديد',
+          price: 1900,
+          likes: 15,
+          comments: 5,
+        ),
+      ];
 
   List<ProfileItem> _mockFavorites() => [];
 }

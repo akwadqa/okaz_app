@@ -78,9 +78,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/delete_ic.svg
   SvgGenImage get deleteIc => const SvgGenImage('assets/icons/delete_ic.svg');
 
+  /// File path: assets/icons/delete_post_ic.svg
+  SvgGenImage get deletePostIc =>
+      const SvgGenImage('assets/icons/delete_post_ic.svg');
+
   /// File path: assets/icons/delete_with_corner_ic.svg
   SvgGenImage get deleteWithCornerIc =>
       const SvgGenImage('assets/icons/delete_with_corner_ic.svg');
+
+  /// File path: assets/icons/edit_post_ic.svg
+  SvgGenImage get editPostIc =>
+      const SvgGenImage('assets/icons/edit_post_ic.svg');
 
   /// File path: assets/icons/edit_profile_ic.svg
   SvgGenImage get editProfileIc =>
@@ -100,6 +108,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/eye_ic.svg
   SvgGenImage get eyeIc => const SvgGenImage('assets/icons/eye_ic.svg');
+
+  /// File path: assets/icons/eye_red_is.svg
+  SvgGenImage get eyeRedIs => const SvgGenImage('assets/icons/eye_red_is.svg');
 
   /// File path: assets/icons/failed_guest_ic.svg
   SvgGenImage get failedGuestIc =>
@@ -214,6 +225,10 @@ class $AssetsIconsGen {
   SvgGenImage get settingsIc =>
       const SvgGenImage('assets/icons/settings_ic.svg');
 
+  /// File path: assets/icons/share_post_ic.svg
+  SvgGenImage get sharePostIc =>
+      const SvgGenImage('assets/icons/share_post_ic.svg');
+
   /// File path: assets/icons/star_ic.svg
   SvgGenImage get starIc => const SvgGenImage('assets/icons/star_ic.svg');
 
@@ -255,12 +270,15 @@ class $AssetsIconsGen {
         deleteContactAlertIc,
         deleteContactIc,
         deleteIc,
+        deletePostIc,
         deleteWithCornerIc,
+        editPostIc,
         editProfileIc,
         electronicIc,
         eventDateIc,
         eventTimeIc,
         eyeIc,
+        eyeRedIs,
         failedGuestIc,
         familyStuffsIc,
         filterIc,
@@ -292,6 +310,7 @@ class $AssetsIconsGen {
         sendCommentIc,
         sendReportIc,
         settingsIc,
+        sharePostIc,
         starIc,
         titleIc,
         uploadImageIc,

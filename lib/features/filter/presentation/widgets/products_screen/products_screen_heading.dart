@@ -25,44 +25,47 @@ class ProductsScreenHeading extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         30.verticalSpace,
-        Row(
-          spacing: 7,
-          children: [
-            GestureDetector(
-              onTap: () {
-                context.pop();
-                context.pop();
-              },
-              child: Text(
-                'nav_home'.tr(),
-                style: AppTextStyle.rubikSemiBold18.copyWith(
-                  color: AppColors.grayHint,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            spacing: 7,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.pop();
+                  context.pop();
+                },
+                child: Text(
+                  'nav_home'.tr(),
+                  style: AppTextStyle.rubikSemiBold18.copyWith(
+                    color: AppColors.grayHint,
+                  ),
                 ),
               ),
-            ),
-            Icon(Icons.arrow_forward_ios_rounded, color: AppColors.grayHint),
-            GestureDetector(
-              onTap: () => context.pop(),
-              child: Text(
-                translate(
-                  subCategory.categoryNameAr ?? '',
-                  subCategory.categoryName ?? '',
-                  context,
-                ),
-                style: AppTextStyle.rubikSemiBold18.copyWith(
-                  color: AppColors.grayHint,
+              Icon(Icons.arrow_forward_ios_rounded, color: AppColors.grayHint),
+              GestureDetector(
+                onTap: () => context.pop(),
+                child: Text(
+                  translate(
+                    subCategory.categoryNameAr ?? '',
+                    subCategory.categoryName ?? '',
+                    context,
+                  ),
+                  style: AppTextStyle.rubikSemiBold18.copyWith(
+                    color: AppColors.grayHint,
+                  ),
                 ),
               ),
-            ),
-            Icon(Icons.arrow_forward_ios_rounded, color: AppColors.grayHint),
-            Text(
-              title,
-              style: AppTextStyle.rubikBold18.copyWith(
-                color: AppColors.primary,
+              Icon(Icons.arrow_forward_ios_rounded, color: AppColors.grayHint),
+              Text(
+                title,
+                style: AppTextStyle.rubikBold18.copyWith(
+                  color: AppColors.primary,
+                ),
               ),
-            ),
-          ],
-        ).symmetricPadding(horizontal: 22, vertical: 20),
+            ],
+          ).symmetricPadding(horizontal: 22, vertical: 20),
+        ),
         HomeScreenSearchFiled(
           title: 'search_in_section'.tr(),
           onChanged: (value) {

@@ -20,7 +20,7 @@ class ProfileDatasource {
     try {
       final response = await _networkService.get(
         ApiEndPoints.homeServices,
-        data: {"page_no": page},
+        data: {"page": page},
       );
 
       if (response.data == null || response.statusCode != 200) {
@@ -101,15 +101,15 @@ class ProfileDatasource {
     UpdateUserRequest user,
   ) async {
     try {
-      final data = {
+      final data = FormData.fromMap({
         ...user.toJson(),
         ...{
           if (user.filePath != null)
             'filedata': await MultipartFile.fromFile(user.filePath!.path),
         },
-      };
+      });
       final response = await _networkService.put(
-        ApiEndPoints.getProfileData,
+        ApiEndPoints.updateProfileData,
         data: data,
         queryParameters: {},
       );
@@ -132,11 +132,11 @@ class ProfileDatasource {
     int? page,
   }) async {
     try {
-      final data = {'page_no': page, 'limit': 10};
+      final data = {'page': page, 'limit': 10};
       final response = await _networkService.get(
         ApiEndPoints.userPosts,
-         data: data,
-        queryParameters: {},
+        data: data,
+        // queryParameters: {},
       );
 
       if (response.data == null || response.statusCode != 200) {
@@ -159,7 +159,7 @@ class ProfileDatasource {
     int page,
   ) async {
     try {
-      final data = {'page_no': page, 'limit': 10};
+      final data = {'page': page, 'limit': 10};
 
       final response = await _networkService.get(
         ApiEndPoints.favoritePosts,

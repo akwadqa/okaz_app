@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_details_model.freezed.dart';
 part 'product_details_model.g.dart';
 
-
 @freezed
 abstract class ProductDetailsModel with _$ProductDetailsModel {
   const factory ProductDetailsModel({
@@ -43,9 +42,11 @@ abstract class ProductDetailsModel with _$ProductDetailsModel {
 
 @freezed
 abstract class PostImage with _$PostImage {
-  const factory PostImage({
-    String? image,
-  }) = _PostImage;
+  const factory PostImage(
+      {String? image,
+      @JsonKey(defaultValue: false, includeToJson: false)
+      bool? isFromDevice 
+      }) = _PostImage;
 
   factory PostImage.fromJson(Map<String, dynamic> json) =>
       _$PostImageFromJson(json);

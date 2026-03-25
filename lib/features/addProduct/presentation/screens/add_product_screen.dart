@@ -27,25 +27,40 @@ class AddProductScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(addProductControllerProvider).value!;
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        // if (didPop) {
+        //   context.goNamed(AppRoutes.mainScreen);
+        // }
+        if (didPop) return;
+
+        if (context.canPop()) {
+          context.pop();
+        } else {
+          context.goNamed(AppRoutes.mainScreen);
+        }
+      },
+      child: Scaffold(
         backgroundColor: AppColors.background,
-        elevation: 0,
-        title: Text(context.tr('add_ad_title')),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => context.goNamed(AppRoutes.mainScreen),
+        appBar: AppBar(
+          backgroundColor: AppColors.background,
+          elevation: 0,
+          title: Text(context.tr('add_ad_title')),
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () => context.goNamed(AppRoutes.mainScreen),
+          ),
         ),
-      ),
-      body: AuthGuard(
-        child: Column(
-          children: [
-            _ProgressBar(step: state.step),
-            Expanded(child: _StepContent(step: state.step)),
-            _BottomButtons(step: state.step),
-          ],
+        body: AuthGuard(
+          child: Column(
+            children: [
+              _ProgressBar(step: state.step),
+              Expanded(child: _StepContent(step: state.step)),
+              _BottomButtons(step: state.step),
+            ],
+          ),
         ),
       ),
     );
@@ -152,7 +167,7 @@ class _BottomButtons extends ConsumerWidget {
               final wasLoading = prev is AsyncLoading;
               final isSuccess = next is AsyncData;
 
-              if (wasLoading && isSuccess && next.value?.step==4) {
+              if (wasLoading && isSuccess && next.value?.step == 4) {
                 debugPrint("Success newAdSuccsessScreen");
                 context.push(AppRoutes.newAdSuccsessScreen);
               }
@@ -169,49 +184,51 @@ class _BottomButtons extends ConsumerWidget {
             // }
             return Flexible(
               flex: 3,
-              child:state is AsyncLoading?AppLoader(): CustomButtonWidget(
-                text: step != 4 ? 'next' : "",
-                onTap: canProceed
-                    ? () {
-                      Dev.logMap(state.value!.specs);
-                        {
-                          if (step == 4) {
-                            // submitProduct();
-                            provider.submitPost();
-                          } else {
-                            controller.nextStep();
-                          }
-                        }
-                      }
-                    : null,
-                isFiled: true,
-                height: 55,
-                width: double.infinity,
-                backgroundColor:
-                    canProceed ? AppColors.primary : AppColors.gray,
-                radius: 24,
-                child: step == 4
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        spacing: 12,
-                        children: [
-                          Text(
-                            context.tr("add_ad"),
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
+              child: state is AsyncLoading
+                  ? AppLoader()
+                  : CustomButtonWidget(
+                      text: step != 4 ? 'next' : "",
+                      onTap: canProceed
+                          ? () {
+                              Dev.logMap(state.value!.specs);
+                              {
+                                if (step == 4) {
+                                  // submitProduct();
+                                  provider.submitPost();
+                                } else {
+                                  controller.nextStep();
+                                }
+                              }
+                            }
+                          : null,
+                      isFiled: true,
+                      height: 55,
+                      width: double.infinity,
+                      backgroundColor:
+                          canProceed ? AppColors.primary : AppColors.gray,
+                      radius: 24,
+                      child: step == 4
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              spacing: 12,
+                              children: [
+                                Text(
+                                  context.tr("add_ad"),
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall!
+                                      .copyWith(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                 ),
-                          ),
-                          Assets.icons.rocketIc.svg(),
-                        ],
-                      )
-                    : null,
-              ).centered(),
+                                Assets.icons.rocketIc.svg(),
+                              ],
+                            )
+                          : null,
+                    ).centered(),
               // ElevatedButton(
               //   onPressed:canProceed
               //       ? () {

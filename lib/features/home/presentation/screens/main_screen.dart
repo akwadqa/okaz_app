@@ -40,8 +40,12 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
     final localeKey = context.locale.languageCode;
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBarView(
-        key: ValueKey(localeKey),
+      
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+        child: BottomNavigationBarView(
+          key: ValueKey(localeKey),
+        ),
       ),
       extendBody: true,
       resizeToAvoidBottomInset: false,

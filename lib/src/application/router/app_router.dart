@@ -15,10 +15,12 @@ import 'package:okaz/features/home/presentation/screens/main_screen.dart';
 import 'package:okaz/features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:okaz/features/onBoarding/presentation/screens/on_boarding_screen.dart';
 import 'package:okaz/features/onBoarding/presentation/screens/splash_screen.dart';
+import 'package:okaz/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:okaz/features/profile/presentation/screens/profile_screen.dart';
 import 'package:okaz/features/settings/presentation/screens/settings_screen.dart';
 import 'package:okaz/features/product/presentation/screens/product_details_screen.dart';
 import 'package:okaz/features/search/presentation/screens/search_screen.dart';
+import 'package:okaz/features/update_post/presentaion/screens/update_post_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../features/addProduct/presentation/screens/successfull_new_ad_screen.dart';
@@ -348,6 +350,36 @@ class AppRouter {
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
               child: SearchScreen(),
+              key: state.pageKey,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.updatePost,
+          name: AppRoutes.updatePost,
+          parentNavigatorKey: rootKey,
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              child: UpdatePostScreen(),
+              key: state.pageKey,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.editProfile,
+          name: AppRoutes.editProfile,
+          parentNavigatorKey: rootKey,
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              child: EditProfileScreen(),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

@@ -12,27 +12,33 @@ class LocationWidget extends ConsumerWidget {
   final LatLng latlng;
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-final LatLng currentLatLng = ref.watch(mapControllerProvider
-    .select((s) => s.value?.latLng))??ref.watch(addProductControllerProvider
-    .select((s) => s.value?.latLng))??latlng; 
-       return ClipRRect(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final LatLng currentLatLng =
+        ref.watch(mapControllerProvider.select((s) => s.value?.latLng)) ??
+            ref.watch(
+                addProductControllerProvider.select((s) => s.value?.latLng)) ??
+            latlng;
+    return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: SizedBox(
         width: double.infinity,
         height: 194,
         child: GoogleMap(
-          onTap: (_) => context.push(AppRoutes.selectLocationScreen, extra: id),
+          onTap: (_) {
+            FocusManager.instance.primaryFocus?.unfocus();
+
+            context.push(AppRoutes.selectLocationScreen, extra: id);
+          },
           scrollGesturesEnabled: false,
           markers: {
             Marker(
-              markerId: MarkerId('${currentLatLng.latitude} ${currentLatLng.longitude} $id'),
-
+              markerId: MarkerId(
+                  '${currentLatLng.latitude} ${currentLatLng.longitude} $id'),
               position: currentLatLng,
             ),
           },
-          initialCameraPosition: CameraPosition(target: currentLatLng, zoom: 12),
-
+          initialCameraPosition:
+              CameraPosition(target: currentLatLng, zoom: 12),
         ),
       ),
     );
