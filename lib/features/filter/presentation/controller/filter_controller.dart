@@ -9,6 +9,7 @@ import 'package:okaz/features/filter/presentation/controller/sub_category_contro
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_request.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'filter_controller.g.dart';
@@ -19,6 +20,10 @@ class FilterController extends _$FilterController {
   FutureOr<FilterState> build() {
     return FilterState.init();
   }
+
+  int currentPage = 1;
+  int totalPages = 1;
+  List<ProductDetailsModel> _productsList = [];
 
   void selectFilter(
       SubcategoryAttributeModel subcategoryAttributeModel, dynamic filter) {
@@ -62,7 +67,7 @@ class FilterController extends _$FilterController {
       final title = ref.read(selectedSubCategoryProvider);
 
       selectFilter(attribute, title);
-      getPosts();
+      getPosts(page: 1);
       return response;
     } catch (e, st) {
       state = AsyncData(
@@ -74,8 +79,10 @@ class FilterController extends _$FilterController {
 
   String search = '';
 
-  Future<List<ProductDetailsModel>?> getPosts() async {
+  Future<List<ProductDetailsModel>?> getPosts(
+      {bool showLoading = true, required int page}) async {
     try {
+      Dev.logLine(currentPage);
       final attributes = <RequestAttribute>[];
 
       state.value!.selectedAttributes.forEach((k, v) {
@@ -92,24 +99,45 @@ class FilterController extends _$FilterController {
           attributes: attributes,
           subcategories: [subCategory.name ?? '']);
 
-      state = AsyncData(
-        state.value!.copyWith(posts: AsyncLoading()),
-      );
+      if (showLoading) {
+        _productsList.clear();
+        currentPage = 1;
+        totalPages = 1;
+        state = AsyncData(
+          state.value!.copyWith(posts: AsyncLoading()),
+        );
+      }
       final repo = ref.read(filterRepositoryProvider);
-      final response = await repo.getProductsByFilter(request);
+      final response = await repo.getProductsByFilter(request, page);
+
+      currentPage = response.pagination?.currentPage ?? currentPage;
+      totalPages = response.pagination?.totalPages ?? totalPages;
+
+      if (page == 1) {
+        _productsList = List.from(response.data!);
+      } else {
+        _productsList = [..._productsList, ...List.from(response.data!)];
+      }
 
       state = AsyncData(
         state.value!.copyWith(
-          posts: AsyncData(response),
+          posts: AsyncData(_productsList),
         ),
       );
-      return response;
+      return response.data;
     } catch (e, st) {
       state = AsyncData(
         state.value!.copyWith(posts: AsyncError(e, st)),
       );
       return null;
     }
+  }
+
+  Future<bool> onLoadMoreProducts() async {
+    if (currentPage >= totalPages) return false;
+    final nextPage = currentPage + 1;
+    final result = await getPosts(showLoading: false, page: nextPage);
+    return result?.isNotEmpty ?? false;
   }
 
   void getAttributesIntoTemp() {
@@ -124,8 +152,16 @@ class FilterController extends _$FilterController {
   void applyTempAttributes() {
     final currentAttr = state.value!.tempAttributes;
     final currentTitle = ref.read(selectedSubCategoryProvider);
-    ref.read(selectedSubCategoryProvider.notifier).state =
-        tempAttribute ?? currentTitle;
+
+    final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
+    final mainFilterValue = state.value!.tempAttributes[mainFilter];
+
+    if (mainFilterValue == null || mainFilterValue.toString().isEmpty) {
+      ref.read(selectedSubCategoryProvider.notifier).state = ' ';
+    } else {
+      ref.read(selectedSubCategoryProvider.notifier).state =
+          tempAttribute ?? ' ';
+    }
     state = AsyncData(
       state.value!.copyWith(
         selectedAttributes: Map.from(currentAttr),
@@ -133,34 +169,46 @@ class FilterController extends _$FilterController {
     );
   }
 
-  // void clearTempAttributes() {
-  //   final mainFilter = ref.read(selectedSubCategoryProvider.notifier).state;
-  //   final tempWithMainFilter = state.value!.tempAttributes
-  //     ..removeWhere((k, v) {
-  //       return k == mainFilter;
-  //     });
-  //   state = AsyncData(
-  //     state.value!.copyWith(
-  //       tempAttributes: Map.from(tempWithMainFilter),
-  //     ),
-  //   );
-  // }
+  void closeFilterScreen() {
+    final currentState = state.value;
+    if (currentState == null) return;
+    final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
+    final mainFilterValue = currentState.tempAttributes[mainFilter];
+    final currentTitle = ref.read(selectedSubCategoryProvider.notifier).state;
+
+    if (mainFilterValue == currentTitle) {
+    } else if (mainFilterValue == ' ') {
+      ref.read(selectedSubCategoryProvider.notifier).state = currentTitle;
+    } else {
+      ref.read(selectedSubCategoryProvider.notifier).state = currentTitle;
+    }
+    final Map<String, dynamic> newTempAttributes = {};
+
+    if (mainFilterValue != null) {
+      newTempAttributes[mainFilter!] = mainFilterValue;
+    }
+    state = AsyncData(
+      currentState.copyWith(tempAttributes: newTempAttributes),
+    );
+  }
 
   void clearTempAttributes() {
+    // ref.read(selectedSubCategoryProvider.notifier).state = ' ';
+    Dev.logLine(ref.read(selectedSubCategoryProvider.notifier).state);
+
     final currentState = state.value;
     if (currentState == null) return;
 
-    final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
-    ref.read(selectedSubCategoryProvider.notifier).state = '';
+    // final mainFilter = ref.read(mainSubcategory).mainAttributes?.first.title;
+    // ref.read(selectedSubCategoryProvider.notifier).state = ' ';
 
-    final mainFilterValue = currentState.tempAttributes[mainFilter];
+    // final mainFilterValue = currentState.tempAttributes[mainFilter];
     final Map<String, dynamic> newTempAttributes = {};
 
     // if (mainFilterValue != null) {
     //   newTempAttributes[mainFilter!] = mainFilterValue;
     // }
 
-    // 4. تحديث الحالة
     state = AsyncData(
       currentState.copyWith(tempAttributes: newTempAttributes),
     );
@@ -171,7 +219,8 @@ class FilterController extends _$FilterController {
   void selectFilterIntoTemp(
       SubcategoryAttributeModel subcategoryAttributeModel, dynamic filter) {
     final currentFilters = state.value!.tempAttributes;
-    if (currentFilters[subcategoryAttributeModel.title] == filter) {
+    if (currentFilters[subcategoryAttributeModel.title] == filter ||
+        filter.toString().isEmpty) {
       if (subcategoryAttributeModel.isMainFilter != 0) {
         tempAttribute = filter;
         return;

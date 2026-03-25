@@ -206,5 +206,7 @@
     "delete_post_description": "Are you sure you want to delete the post?",
     "update": "Update",
     "post_updated_successfully": "Your ad has been successfully updated!",
-    "updates_saved": "The changes to the ad have been saved"
+    "updates_saved": "The changes to the ad have been saved",
+    "first_name" : "First Name",
+    "last_name" : "Last Name"
 }

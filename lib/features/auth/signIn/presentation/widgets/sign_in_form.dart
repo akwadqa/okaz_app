@@ -21,21 +21,28 @@ class _SignInFormState extends ConsumerState<SignInForm> {
   // String? _phoneNumber;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.listen(signInControllerProvider, (prev, next) {
       if (next is AsyncData && prev is AsyncLoading) {
         // context.maybePop().then((_) {
         debugPrint("Success check");
-if(next.value!.signinResponseModel!.userExist) {
-  context.push(AppRoutes.verificationScreen, extra: phoneController.text);
-}else{
-  context.go(AppRoutes.signUpScreen);
-}
+        if (next.value!.signinResponseModel!.userExist) {
+          context.push(AppRoutes.verificationScreen,
+              extra: phoneController.text);
+        } else {
+          context.go(AppRoutes.signUpScreen);
+        }
         // _showDialog();
         // });
-      }
-       else if (next is AsyncError) {
+      } else if (next is AsyncError) {
         showErrorDialog(context, next.error.toString());
       }
     });
@@ -59,14 +66,13 @@ if(next.value!.signinResponseModel!.userExist) {
               setState(() {});
             },
           ),
-        
           Consumer(builder: (context, ref, child) {
             final signInProvider = ref.watch(signInControllerProvider);
 
             if (signInProvider is AsyncLoading) {
               return AppLoader();
             }
-       
+
             final isEmpty =
                 ref.watch(signInControllerProvider).value!.isPhoneFilled ??
                     false;
@@ -104,6 +110,3 @@ if(next.value!.signinResponseModel!.userExist) {
     }
   }
 }
-
-
-

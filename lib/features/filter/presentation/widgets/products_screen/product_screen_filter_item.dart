@@ -50,7 +50,7 @@ class ProductScreenFilterItem extends ConsumerWidget {
                   }
                   ref.read(filterControllerProvider.notifier)
                     ..selectFilter(subcategoryAttributeModel, item)
-                    ..getPosts();
+                    ..getPosts(page: 1);
                 },
               ),
             )

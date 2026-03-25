@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future<T> retryOperation<T>(
@@ -42,16 +44,16 @@ String translate(String ar, String en, BuildContext context) {
   return local == 'ar' ? ar : en;
 }
 
-Future<void> openWhatsApp (String phoneNumber) async {
+Future<void> openWhatsApp(String phoneNumber) async {
   final cleanNumber = phoneNumber.replaceAll(RegExp(r'[^\d]'), '');
-  
+
   final Uri whatsappUrl = Uri.parse("https://wa.me/$cleanNumber");
 
   try {
     if (await canLaunchUrl(whatsappUrl)) {
       await launchUrl(
         whatsappUrl,
-        mode: LaunchMode.externalApplication, 
+        mode: LaunchMode.externalApplication,
       );
     } else {
       throw 'Could not launch $whatsappUrl';
@@ -61,17 +63,16 @@ Future<void> openWhatsApp (String phoneNumber) async {
   }
 }
 
-
 Future<void> openPhoneDialer(String phoneNumber) async {
   final String cleanNumber = phoneNumber.replaceAll(RegExp(r'\s+\b|\b\s'), '');
-  
+
   final Uri phoneUri = Uri(scheme: 'tel', path: cleanNumber);
 
   try {
     if (await canLaunchUrl(phoneUri)) {
       await launchUrl(
         phoneUri,
-        mode: LaunchMode.externalApplication, 
+        mode: LaunchMode.externalApplication,
       );
     } else {
       print("المشغل لا يدعم فتح لوحة الاتصال");
@@ -79,4 +80,13 @@ Future<void> openPhoneDialer(String phoneNumber) async {
   } catch (e) {
     print("حدث خطأ أثناء محاولة فتح تطبيق الهاتف: $e");
   }
+}
+
+Future<void> sharePost(String link) async {
+  await Clipboard.setData(ClipboardData(text: link));
+
+  await Share.share('Check out this post on Okaz Market: $link',
+      subject:
+          'Amazing Deal!' 
+      );
 }

@@ -25,11 +25,13 @@ class VerifyOtpController extends _$VerifyOtpController {
           fullName: response.data!.fullName,
           email: response.data!.mobileNo,
           mobileNumber: response.data!.mobileNo,
-          
-        );
+          //TODO : Image:
+          image: '');
 
-     await ref.read(localStorageServiceProvider).saveToken(response.data!.token);
-    await  ref.read(localStorageServiceProvider).saveUserInfo(info);
+      await ref
+          .read(localStorageServiceProvider)
+          .saveToken(response.data!.token);
+      await ref.read(localStorageServiceProvider).saveUserInfo(info);
       final token = await ref.read(localStorageServiceProvider).getToken();
       Dev.logLine(token);
       // await ref

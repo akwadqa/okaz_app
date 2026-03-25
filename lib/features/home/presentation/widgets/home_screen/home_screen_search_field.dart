@@ -9,9 +9,11 @@ class HomeScreenSearchFiled extends StatelessWidget {
     required this.title,
     this.withPadding = true,
     this.onTap,
-    this.onChanged, 
+    this.onChanged,
+    this.value,
   });
   final String title;
+  final String? value;
   final void Function(String)? onChanged;
   final bool withPadding;
   final VoidCallback? onTap;
@@ -30,6 +32,7 @@ class HomeScreenSearchFiled extends StatelessWidget {
       },
       readOnly: onTap != null,
       onChanged: onChanged,
+      initialValue: value,
       cursorColor: AppColors.black,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(4),
@@ -38,6 +41,7 @@ class HomeScreenSearchFiled extends StatelessWidget {
         hintStyle: AppTextStyle.rubikRegular16.copyWith(
           color: AppColors.grayHint,
         ),
+        
         filled: true,
         fillColor: AppColors.white,
         border: _border(),

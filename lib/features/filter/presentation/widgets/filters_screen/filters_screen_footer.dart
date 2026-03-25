@@ -14,9 +14,11 @@ class FiltersScreenFooter extends ConsumerWidget {
     return GestureDetector(
       onTap: () {
         context.pop();
+        ref.read(filterControllerProvider.notifier).currentPage = 1;
+        ref.read(filterControllerProvider.notifier).totalPages = 1;
         ref.read(filterControllerProvider.notifier)
           ..applyTempAttributes()
-          ..getPosts();
+          ..getPosts(page: 1);
       },
       child: Container(
         width: double.infinity,
@@ -55,9 +57,7 @@ class FiltersScreenFooter extends ConsumerWidget {
             GestureDetector(
               onTap: () {
                 context.pop();
-                ref
-                    .read(filterControllerProvider.notifier)
-                    .clearTempAttributes();
+                ref.read(filterControllerProvider.notifier).closeFilterScreen();
               },
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 29, vertical: 11),

@@ -15,6 +15,7 @@ import 'package:okaz/src/core/shared_widgets/app_empty_data_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import '../../../../src/core/shared_widgets/auht_guard.dart';
@@ -150,46 +151,63 @@ class ProfileScreen extends ConsumerWidget {
     return showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.bottomSheetBackground,
-      builder: (context) => Column(
-        spacing: 20,
-        children: [
-          SizedBox(),
-          SettingsItemCard(
-            onTap: () {
-              context.pop();
-              context.push(AppRoutes.productDetailsScreen, extra: post.name);
-            },
-            title: 'post_details'.tr(),
-            icon: Assets.icons.eyeRedIs,
-            trailing: SizedBox(),
-          ),
-          SettingsItemCard(
-            onTap: () {
-              context.pop();
-              ref.read(updatePostControllerProvider.notifier).setPostData(post);
-              context.push(
-                AppRoutes.updatePost,
-              );
-            },
-            title: 'edit_post'.tr(),
-            icon: Assets.icons.editPostIc,
-            trailing: SizedBox(),
-          ),
-          SettingsItemCard(
-            title: 'share_post'.tr(),
-            icon: Assets.icons.sharePostIc,
-            trailing: SizedBox(),
-          ),
-          SettingsItemCard(
-            title: 'delete_post'.tr(),
-            onTap: () {
-              context.pop();
-              showDeletePosttDialog(context, post.name ?? 'id');
-            },
-            icon: Assets.icons.deletePostIc,
-            trailing: SizedBox(),
-          ),
-        ],
+      isScrollControlled: true,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).padding.bottom + 20, top: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            const SizedBox(height: 20),
+            SettingsItemCard(
+              onTap: () {
+                context.pop();
+                context.push(AppRoutes.productDetailsScreen, extra: post.name);
+              },
+              title: 'post_details'.tr(),
+              icon: Assets.icons.eyeRedIs,
+              trailing: const SizedBox(),
+            ),
+            12.verticalSpace,
+            SettingsItemCard(
+              onTap: () {
+                context.pop();
+                ref
+                    .read(updatePostControllerProvider.notifier)
+                    .setPostData(post);
+                context.push(AppRoutes.updatePost);
+              },
+              title: 'edit_post'.tr(),
+              icon: Assets.icons.editPostIc,
+              trailing: const SizedBox(),
+            ),
+            12.verticalSpace,
+            SettingsItemCard(
+              title: 'share_post'.tr(),
+              onTap: () => sharePost(post.name ?? ''),
+              icon: Assets.icons.sharePostIc,
+              trailing: const SizedBox(),
+            ),
+            12.verticalSpace,
+            SettingsItemCard(
+              title: 'delete_post'.tr(),
+              onTap: () {
+                context.pop();
+                showDeletePosttDialog(context, post.name ?? 'id');
+              },
+              icon: Assets.icons.deletePostIc,
+              trailing: const SizedBox(),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -19,7 +19,7 @@ class ProductsScreenSearchType extends ConsumerWidget {
           child: GestureDetector(
             onTap: () {
               ref.read(searchTypeProvider.notifier).state = 0;
-              ref.read(filterControllerProvider.notifier).getPosts();
+              ref.read(filterControllerProvider.notifier).getPosts(page: 1);
             },
             child: Container(
               alignment: Alignment.center,
@@ -49,7 +49,7 @@ class ProductsScreenSearchType extends ConsumerWidget {
           child: GestureDetector(
             onTap: () {
               ref.read(searchTypeProvider.notifier).state = 1;
-              ref.read(filterControllerProvider.notifier).getPosts();
+              ref.read(filterControllerProvider.notifier).getPosts(page: 1);
             },
             child: Container(
               alignment: Alignment.center,

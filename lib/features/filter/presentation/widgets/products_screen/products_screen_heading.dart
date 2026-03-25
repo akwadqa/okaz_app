@@ -70,7 +70,7 @@ class ProductsScreenHeading extends ConsumerWidget {
           title: 'search_in_section'.tr(),
           onChanged: (value) {
             ref.read(filterControllerProvider.notifier).search = value;
-            ref.read(filterControllerProvider.notifier).getPosts();
+            ref.read(filterControllerProvider.notifier).getPosts(page: 1);
           },
         ),
       ],

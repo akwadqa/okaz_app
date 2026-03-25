@@ -1,6 +1,7 @@
 import 'package:okaz/features/filter/data/datasource/filter_remote_data_source.dart';
 import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_request.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/src/infrastructure/api/response/api_response.dart';
 import 'package:okaz/src/infrastructure/network/exception/dio_exceptions.dart';
 import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -19,12 +20,12 @@ class FilterRepository {
   FilterRepository(this._remoteDataSource);
 
 
-  Future<List<ProductDetailsModel>> getProductsByFilter(
-      GetPostsRequest request) async {
-    final response = await _remoteDataSource.getProductsByFilter(request);
+  Future<ApiResponse<List<ProductDetailsModel>>> getProductsByFilter(
+      GetPostsRequest request , int page) async {
+    final response = await _remoteDataSource.getProductsByFilter(request,page);
 
     if (response.status == 200) {
-      return response.data!;
+      return response;
     }
 
     throw AppException(response.message);

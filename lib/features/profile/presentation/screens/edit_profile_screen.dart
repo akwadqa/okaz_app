@@ -4,10 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:okaz/features/auth/signUp/presentation/widgets/create_account_field.dart';
 import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
 import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
 import 'package:okaz/features/profile/presentation/controller/my_profile_controller.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_app_bar.dart';
@@ -81,9 +83,12 @@ class _EditProfileScreenContentState
     ref.listen(
         profileControllerProvider.select((val) => val.value!.updateprofileData),
         (prev, next) {
-      // if(next is AsyncData){
-
-      // }
+      if (next is AsyncData) {
+        context.pop();
+      }
+      if (next is AsyncError) {
+        showErrorDialog(context, next?.error.toString() ?? '');
+      }
     });
 
     return Form(
@@ -152,8 +157,8 @@ class _EditProfileScreenContentState
       return ClipOval(
         child: Image.file(
           image,
-          // width: double.infinity,
-          // height: double.infinity,
+          width: 90,
+          height: 90,
           fit: BoxFit.cover,
         ),
       );
@@ -163,6 +168,9 @@ class _EditProfileScreenContentState
         child: Material(
           child: CachedNetworkImage(
             imageUrl: ServicesUrls.imageUrl + imageUrl,
+            width: 90,
+            height: 90,
+            fit: BoxFit.cover,
           ),
         ),
       );
