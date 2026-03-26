@@ -20,7 +20,13 @@ class SignInForm extends ConsumerStatefulWidget {
 class _SignInFormState extends ConsumerState<SignInForm> {
   // String? _phoneNumber;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController phoneController = TextEditingController();
+  late TextEditingController phoneController;
+
+  @override
+  void initState() {
+    super.initState();
+    phoneController = TextEditingController();
+  }
 
   @override
   void dispose() {

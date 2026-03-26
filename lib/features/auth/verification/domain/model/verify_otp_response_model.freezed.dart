@@ -20,6 +20,7 @@ mixin _$VerifyOtpResponseModel {
   @JsonKey(name: 'mobile_no')
   String get mobileNo;
   String get token;
+  String get image;
 
   /// Create a copy of VerifyOtpResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -41,16 +42,18 @@ mixin _$VerifyOtpResponseModel {
                 other.fullName == fullName) &&
             (identical(other.mobileNo, mobileNo) ||
                 other.mobileNo == mobileNo) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, fullName, mobileNo, token);
+  int get hashCode =>
+      Object.hash(runtimeType, fullName, mobileNo, token, image);
 
   @override
   String toString() {
-    return 'VerifyOtpResponseModel(fullName: $fullName, mobileNo: $mobileNo, token: $token)';
+    return 'VerifyOtpResponseModel(fullName: $fullName, mobileNo: $mobileNo, token: $token, image: $image)';
   }
 }
 
@@ -63,7 +66,8 @@ abstract mixin class $VerifyOtpResponseModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'full_name') String fullName,
       @JsonKey(name: 'mobile_no') String mobileNo,
-      String token});
+      String token,
+      String image});
 }
 
 /// @nodoc
@@ -82,6 +86,7 @@ class _$VerifyOtpResponseModelCopyWithImpl<$Res>
     Object? fullName = null,
     Object? mobileNo = null,
     Object? token = null,
+    Object? image = null,
   }) {
     return _then(_self.copyWith(
       fullName: null == fullName
@@ -95,6 +100,10 @@ class _$VerifyOtpResponseModelCopyWithImpl<$Res>
       token: null == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -193,15 +202,19 @@ extension VerifyOtpResponseModelPatterns on VerifyOtpResponseModel {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'full_name') String fullName,
-            @JsonKey(name: 'mobile_no') String mobileNo, String token)?
+    TResult Function(
+            @JsonKey(name: 'full_name') String fullName,
+            @JsonKey(name: 'mobile_no') String mobileNo,
+            String token,
+            String image)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _VerifyOtpResponseModel() when $default != null:
-        return $default(_that.fullName, _that.mobileNo, _that.token);
+        return $default(
+            _that.fullName, _that.mobileNo, _that.token, _that.image);
       case _:
         return orElse();
     }
@@ -222,14 +235,18 @@ extension VerifyOtpResponseModelPatterns on VerifyOtpResponseModel {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(@JsonKey(name: 'full_name') String fullName,
-            @JsonKey(name: 'mobile_no') String mobileNo, String token)
+    TResult Function(
+            @JsonKey(name: 'full_name') String fullName,
+            @JsonKey(name: 'mobile_no') String mobileNo,
+            String token,
+            String image)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _VerifyOtpResponseModel():
-        return $default(_that.fullName, _that.mobileNo, _that.token);
+        return $default(
+            _that.fullName, _that.mobileNo, _that.token, _that.image);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -249,14 +266,18 @@ extension VerifyOtpResponseModelPatterns on VerifyOtpResponseModel {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(@JsonKey(name: 'full_name') String fullName,
-            @JsonKey(name: 'mobile_no') String mobileNo, String token)?
+    TResult? Function(
+            @JsonKey(name: 'full_name') String fullName,
+            @JsonKey(name: 'mobile_no') String mobileNo,
+            String token,
+            String image)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _VerifyOtpResponseModel() when $default != null:
-        return $default(_that.fullName, _that.mobileNo, _that.token);
+        return $default(
+            _that.fullName, _that.mobileNo, _that.token, _that.image);
       case _:
         return null;
     }
@@ -269,7 +290,8 @@ class _VerifyOtpResponseModel implements VerifyOtpResponseModel {
   const _VerifyOtpResponseModel(
       {@JsonKey(name: 'full_name') required this.fullName,
       @JsonKey(name: 'mobile_no') required this.mobileNo,
-      required this.token});
+      required this.token,
+      required this.image});
   factory _VerifyOtpResponseModel.fromJson(Map<String, dynamic> json) =>
       _$VerifyOtpResponseModelFromJson(json);
 
@@ -282,6 +304,8 @@ class _VerifyOtpResponseModel implements VerifyOtpResponseModel {
   final String mobileNo;
   @override
   final String token;
+  @override
+  final String image;
 
   /// Create a copy of VerifyOtpResponseModel
   /// with the given fields replaced by the non-null parameter values.
@@ -308,16 +332,18 @@ class _VerifyOtpResponseModel implements VerifyOtpResponseModel {
                 other.fullName == fullName) &&
             (identical(other.mobileNo, mobileNo) ||
                 other.mobileNo == mobileNo) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, fullName, mobileNo, token);
+  int get hashCode =>
+      Object.hash(runtimeType, fullName, mobileNo, token, image);
 
   @override
   String toString() {
-    return 'VerifyOtpResponseModel(fullName: $fullName, mobileNo: $mobileNo, token: $token)';
+    return 'VerifyOtpResponseModel(fullName: $fullName, mobileNo: $mobileNo, token: $token, image: $image)';
   }
 }
 
@@ -332,7 +358,8 @@ abstract mixin class _$VerifyOtpResponseModelCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'full_name') String fullName,
       @JsonKey(name: 'mobile_no') String mobileNo,
-      String token});
+      String token,
+      String image});
 }
 
 /// @nodoc
@@ -351,6 +378,7 @@ class __$VerifyOtpResponseModelCopyWithImpl<$Res>
     Object? fullName = null,
     Object? mobileNo = null,
     Object? token = null,
+    Object? image = null,
   }) {
     return _then(_VerifyOtpResponseModel(
       fullName: null == fullName
@@ -364,6 +392,10 @@ class __$VerifyOtpResponseModelCopyWithImpl<$Res>
       token: null == token
           ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }

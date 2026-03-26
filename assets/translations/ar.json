@@ -208,5 +208,7 @@
     "post_updated_successfully": "تم تحديث إعلانك بنجاح!",
     "updates_saved": "تم حفظ التعديلات على الإعلان",
     "first_name": "الاسم الأول",
-    "last_name": "الاسم الاخر"
+    "last_name": "الاسم الاخر",
+    "verificationExpired": "سينتهي هذا الكود في  ",
+    "seconds": "ثواني"
 }
