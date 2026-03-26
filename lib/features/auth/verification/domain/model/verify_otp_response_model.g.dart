@@ -12,6 +12,7 @@ _VerifyOtpResponseModel _$VerifyOtpResponseModelFromJson(
       fullName: json['full_name'] as String,
       mobileNo: json['mobile_no'] as String,
       token: json['token'] as String,
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$VerifyOtpResponseModelToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$VerifyOtpResponseModelToJson(
       'full_name': instance.fullName,
       'mobile_no': instance.mobileNo,
       'token': instance.token,
+      'image': instance.image,
     };

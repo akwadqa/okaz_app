@@ -5,6 +5,8 @@ import 'package:okaz/features/product/domain/model/product_details_model/product
 import 'package:okaz/features/profile/data/repositories/profile_repository.dart';
 import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
 import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
+import 'package:okaz/src/application/data/user_information/user_information.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/model/post_model.dart';
@@ -105,6 +107,22 @@ class ProfileController extends _$ProfileController {
             updateprofileData: AsyncData(response.data!),
             profileData: AsyncData(response.data!)),
       );
+      final currentUser = ref.watch(localStorageServiceProvider).userInfo;
+
+      final info = currentUser.copyWith(
+          fullName: '${response.data!.firstName} ${response.data!.lastName}',
+          image: response.data!.image);
+
+      await ref.read(localStorageServiceProvider).saveUserInfo(info);
+
+      // final info = UserInformation(
+      //     token: '',
+      //     fullName: '${response.data!.firstName} ${response.data!.lastName}',
+      //     email: response.data!.email,
+      //     mobileNumber: response.data!.mobileNumber ?? '',
+      //     //TODO : Image:
+      //     image: '');
+
       return response.data;
     } catch (e, st) {
       state = AsyncData(

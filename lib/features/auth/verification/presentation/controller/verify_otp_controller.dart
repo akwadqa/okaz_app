@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:okaz/features/auth/signIn/data/repositories/sign_in_repository.dart';
+import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_controller.dart';
 import 'package:okaz/features/auth/verification/data/repositories/verify_otp_repository.dart';
 import 'package:okaz/features/auth/verification/presentation/controller/verify_otp_state.dart';
 import 'package:okaz/src/application/data/user_information/user_information.dart';
@@ -25,13 +26,15 @@ class VerifyOtpController extends _$VerifyOtpController {
           fullName: response.data!.fullName,
           email: response.data!.mobileNo,
           mobileNumber: response.data!.mobileNo,
-          
-        );
+          image: response.data!.image);
 
-     await ref.read(localStorageServiceProvider).saveToken(response.data!.token);
-    await  ref.read(localStorageServiceProvider).saveUserInfo(info);
+      await ref
+          .read(localStorageServiceProvider)
+          .saveToken(response.data!.token);
+      await ref.read(localStorageServiceProvider).saveUserInfo(info);
       final token = await ref.read(localStorageServiceProvider).getToken();
       Dev.logLine(token);
+      ref.read(signInControllerProvider.notifier).checkPhoneFilled(false);
       // await ref
       //     .read(notificationsServiceProvider)
       //     .sendDeviceToken(info.mobileNumber ?? "");

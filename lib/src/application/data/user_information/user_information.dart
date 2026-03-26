@@ -16,18 +16,20 @@ abstract class UserInformation with _$UserInformation {
     @HiveField(1) @JsonKey(name: "full_name") required String fullName,
     @HiveField(2) @JsonKey(name: "mobile_no") required String mobileNumber,
     @HiveField(3) required String? email,
+    @HiveField(4) required String? image,
   }) = _UserInformation;
 
   /// **Default Empty Object (If Needed)**
-  factory UserInformation.empty() =>
-      UserInformation(token: "", fullName: "", mobileNumber: "",email: "" );
+  factory UserInformation.empty() => UserInformation(
+      token: "", fullName: "", mobileNumber: "", email: "", image: '');
   static UserInformation defaultValue = UserInformation(
     fullName: '',
     email: "",
     mobileNumber: "",
-    // image: null,
+    image: null,
     token: '',
   );
+
   /// **Factory Constructor for JSON**
   factory UserInformation.fromJson(Map<String, dynamic> json) =>
       _$UserInformationFromJson(json);
@@ -45,11 +47,11 @@ class UserInformationAdapter extends TypeAdapter<UserInformation> {
     };
 
     return UserInformation(
-      token: fields[0] as String,
-      fullName: fields[1] as String,
-      mobileNumber: fields[2] as String,
-      email: fields[3] as String,
-    );
+        token: fields[0] as String,
+        fullName: fields[1] as String,
+        mobileNumber: fields[2] as String,
+        email: fields[3] as String,
+        image: fields[4] as String?);
   }
 
   @override
@@ -63,8 +65,6 @@ class UserInformationAdapter extends TypeAdapter<UserInformation> {
       ..writeByte(2)
       ..write(obj.mobileNumber)
       ..writeByte(3)
-      ..write(obj.email)
- 
-      ;
+      ..write(obj.email);
   }
 }

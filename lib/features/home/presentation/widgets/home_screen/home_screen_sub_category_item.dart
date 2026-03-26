@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -42,8 +43,11 @@ class HomeScreenSubCategoryItem extends ConsumerWidget {
             ),
             // Assets.images.phoneImage.image(height: width / 7),
             Text(
-              subCategoryModel.categoryName ?? 'subcategory_name'.tr(),
-              // 'هاتف',
+              translate(
+                subCategoryModel.categoryNameAr ?? '',
+                subCategoryModel.categoryName ?? '',
+                context,
+              ),
               textAlign: TextAlign.center,
               style: AppTextStyle.rubikMedium14.copyWith(
                 color: AppColors.textDart,

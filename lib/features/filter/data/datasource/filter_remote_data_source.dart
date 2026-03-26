@@ -11,10 +11,10 @@ class FilterRemoteDataSource {
   FilterRemoteDataSource(this._networkService);
 
   Future<ApiResponse<List<ProductDetailsModel>>> getProductsByFilter(
-      GetPostsRequest request) async {
+      GetPostsRequest request, int page) async {
     try {
       final response = await _networkService.get(ApiEndPoints.productsByFilter,
-          data: request.toJson());
+          data: {...request.toJson(), 'page': page, 'limit': 4});
 
       if (response.data == null || response.statusCode != 200) {
         throw Exception('Failed to load getProductsByFilter');

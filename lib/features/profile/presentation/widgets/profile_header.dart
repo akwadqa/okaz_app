@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
@@ -22,18 +23,15 @@ class ProfileHeader extends ConsumerWidget {
           child: Stack(
             children: [
               CircleAvatar(
-                radius: 45,
-                backgroundColor: AppColors.graduationBg,
-                child: Icon(
-                  Icons.person,
-                  size: 49,
-                ),
+                  radius: 45,
+                  backgroundColor: AppColors.graduationBg,
+                  child: _buildImageSection(storage.userInfo.image)
 
-                // backgroundImage:
-                // CachedNetworkImageProvider(
-                //   'https://randomuser.me/api/portraits/women/44.jpg',
-                // ),
-              ),
+                  // backgroundImage:
+                  // CachedNetworkImageProvider(
+                  //   'https://randomuser.me/api/portraits/women/44.jpg',
+                  // ),
+                  ),
               Positioned(
                 bottom: 0,
                 right: 0,
@@ -51,6 +49,25 @@ class ProfileHeader extends ConsumerWidget {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ],
+    );
+  }
+
+  Widget _buildImageSection(String? imageUrl) {
+    if (imageUrl != null && imageUrl.isNotEmpty) {
+      return ClipOval(
+        child: Material(
+          child: CachedNetworkImage(
+            imageUrl: ServicesUrls.imageUrl + imageUrl,
+            width: 90,
+            height: 90,
+            fit: BoxFit.cover,
+          ),
+        ),
+      );
+    }
+    return Icon(
+      Icons.person,
+      size: 49,
     );
   }
 }

@@ -10,6 +10,7 @@ abstract class VerifyOtpResponseModel with _$VerifyOtpResponseModel {
     @JsonKey(name: 'full_name') required String fullName,
     @JsonKey(name: 'mobile_no') required String mobileNo,
     required String token,
+    required String image,
   }) = _VerifyOtpResponseModel;
 
   factory VerifyOtpResponseModel.fromJson(Map<String, dynamic> json) =>

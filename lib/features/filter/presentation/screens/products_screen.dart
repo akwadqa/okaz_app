@@ -13,6 +13,7 @@ import 'package:okaz/features/filter/presentation/widgets/products_screen/produc
 import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_products_grid.dart';
 import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_special_item.dart';
 import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/core/shared_widgets/app_pagination_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
@@ -32,11 +33,11 @@ class ProductsScreen extends StatelessWidget {
   }
 }
 
-class _ProductsScreenContent extends StatelessWidget {
+class _ProductsScreenContent extends ConsumerWidget {
   const _ProductsScreenContent();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         ProductsScreenHeading(),
@@ -46,15 +47,23 @@ class _ProductsScreenContent extends StatelessWidget {
         ProductsScreenFilters(),
         Divider(height: 24, color: AppColors.dividerColor),
         Expanded(
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: ProductsScreenSpecialItem()),
-              SliverToBoxAdapter(child: 22.verticalSpace),
-              ProductsScreenProductsGrid(),
-              SliverToBoxAdapter(child: 20.verticalSpace),
-            ],
-          ),
-        ),
+            child: ProductsScreenProductsGrid())
+        // Expanded(
+        //   child: AppPaginationWidget(
+        //     enableLoadingOnScrollStart: true,
+        //     onLoading: (page) => ref
+        //         .read(filterControllerProvider.notifier)
+        //         .onLoadMoreProducts(),
+        //     child: CustomScrollView(
+        //       slivers: [
+        //         SliverToBoxAdapter(child: ProductsScreenSpecialItem()),
+        //         SliverToBoxAdapter(child: 22.verticalSpace),
+        //         ProductsScreenProductsGrid(),
+        //         SliverToBoxAdapter(child: 20.verticalSpace),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

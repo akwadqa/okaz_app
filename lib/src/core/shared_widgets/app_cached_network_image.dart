@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:okaz/src/core/shared_widgets/fade_circle_loading_indicator.dart';
 
 class AppCachedNetworkImage extends StatelessWidget {
   const AppCachedNetworkImage({
@@ -21,11 +22,13 @@ class AppCachedNetworkImage extends StatelessWidget {
       imageUrl: imageUrl,
       fit: fit,
       width: width,
+      placeholder: (context, url) =>
+          Center(child: FadeCircleLoadingIndicator()),
       height: height,
       fadeInCurve: Curves.linear,
-      fadeInDuration: Duration.zero,
-      fadeOutDuration: Duration.zero,
-      placeholderFadeInDuration: Duration.zero,
+      // fadeInDuration: Duration.zero,
+      // fadeOutDuration: Duration.zero,
+      // placeholderFadeInDuration: Duration.zero,
     );
   }
 }

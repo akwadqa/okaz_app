@@ -78,6 +78,7 @@ dependencies:
   url_launcher: ^6.3.2
   geocoding: ^4.0.0
   smartpub: ^1.0.8
+  share_plus: ^12.0.1
 
 
 

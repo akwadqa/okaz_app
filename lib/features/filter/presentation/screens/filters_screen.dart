@@ -26,7 +26,7 @@ class FiltersScreen extends ConsumerWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            ref.read(filterControllerProvider.notifier).clearTempAttributes();
+            ref.read(filterControllerProvider.notifier).closeFilterScreen();
             context.pop();
           },
           icon: Icon(Icons.close),
@@ -63,21 +63,26 @@ class _FiltersScreenContent extends ConsumerWidget {
         Divider(color: AppColors.borderGrey, height: 0),
         Expanded(
           child: ListView.separated(
-              itemCount: items.length + 1,
+              itemCount: items.length,
               separatorBuilder: (context, index) => 22.verticalSpace,
               padding: EdgeInsets.symmetric(horizontal: 22),
               itemBuilder: (context, index) {
-                if (index == 0) {
-                  return FiltersScreenSearchFiled();
-                }
+                // if (index == 0) {
+                //   return FiltersScreenSearchFiled();
+                // }
 
-                switch (items[index - 1].dataType) {
+                switch (items[index].dataType) {
                   case 'Checkbox':
-                    return FiltersScreenSwitchItem(items[index - 1]);
+                    return FiltersScreenSwitchItem(items[index]);
 
                   case 'Select':
                     return FiltersScreenWrapMenu(
-                      subcategoryAttributeModel: items[index - 1],
+                      subcategoryAttributeModel: items[index],
+                    );
+
+                  case 'Text':
+                    return FiltersScreenSearchFiled(
+                      subcategoryAttributeModel: items[index],
                     );
 
                   default:
