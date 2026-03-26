@@ -12,8 +12,8 @@ platform :android do
 
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk",
-      testers: "mouazhariry5@gmail.com,moh.allaaadeen@gmail.com,abdullahka715@gmail.com",
-      release_notes: "Fix 3 flows work correct, add cash payment methos, Edit and handle driver profile data"
+      testers: "mouazhariry5@gmail.com,moh.allaaadeen@gmail.com,abdullahka715@gmail.com,hadeelberkdar09@gmail.com",
+      release_notes: "- ُTest release."
     )
   end
 end
