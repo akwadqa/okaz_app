@@ -6,6 +6,7 @@ import 'package:okaz/features/comment/presentation/controller/comment_controller
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -57,7 +58,10 @@ class _ProductDetailsScreenMessageComposerState
         height: 43,
         child: TextFormField(
           controller: _controller,
-          maxLines: 1,
+          // maxLines: 1,
+          onChanged: (val) {
+            setState(() {});
+          },
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           decoration: InputDecoration(
             hintText: 'product_details_message_placeholder'.tr(),
@@ -84,17 +88,24 @@ class _ProductDetailsScreenMessageComposerState
             suffixIcon: controller?.maybeWhen(
                   loading: () => SizedBox(width: 40, child: const AppLoader()),
                   orElse: () => InkWell(
-                    onTap: () {
-                      ref
-                          .read(commentControllerProvider.notifier)
-                          .createComment(
-                            CreateCommentModel(
-                              content: _controller.text,
-                              postId: widget.postId,
-                              parentComment: null,
-                            ),
-                          );
-                    },
+                    onTap: _controller.text.trim().isNotEmpty
+                        ? () {
+                            checkAuth(
+                                ref: ref,
+                                context: context,
+                                action: () {
+                                  ref
+                                      .read(commentControllerProvider.notifier)
+                                      .createComment(
+                                        CreateCommentModel(
+                                          content: _controller.text,
+                                          postId: widget.postId,
+                                          parentComment: null,
+                                        ),
+                                      );
+                                });
+                          }
+                        : null,
                     borderRadius: BorderRadius.circular(12),
                     child: Padding(
                       padding: const EdgeInsets.all(6),
@@ -103,15 +114,24 @@ class _ProductDetailsScreenMessageComposerState
                   ),
                 ) ??
                 InkWell(
-                  onTap: () {
-                    ref.read(commentControllerProvider.notifier).createComment(
-                          CreateCommentModel(
-                            content: _controller.text,
-                            postId: widget.postId,
-                            parentComment: null,
-                          ),
-                        );
-                  },
+                  onTap: _controller.text.trim().isNotEmpty
+                      ? () {
+                          checkAuth(
+                              ref: ref,
+                              context: context,
+                              action: () {
+                                ref
+                                    .read(commentControllerProvider.notifier)
+                                    .createComment(
+                                      CreateCommentModel(
+                                        content: _controller.text,
+                                        postId: widget.postId,
+                                        parentComment: null,
+                                      ),
+                                    );
+                              });
+                        }
+                      : null,
                   borderRadius: BorderRadius.circular(12),
                   child: Padding(
                     padding: const EdgeInsets.all(6),

@@ -15,7 +15,7 @@ class SubCategoriesSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final items =
         ref.watch(mainSubcategory).mainAttributes?.first.values?.split(',') ??
-        [];
+            [];
     return Column(
       spacing: 20,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,11 +28,15 @@ class SubCategoriesSection extends ConsumerWidget {
           ),
         ),
         Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: items
-              .map((title) => SubCategoryItem(title: title))
-              .toList(),
+          // spacing: 10,
+          // runSpacing: 10,
+          spacing: 25,
+          runSpacing: 15,
+          alignment: WrapAlignment.start,
+          runAlignment: WrapAlignment.start,
+          crossAxisAlignment: WrapCrossAlignment.start,
+          children:
+              items.map((title) => SubCategoryItem(title: title)).toList(),
         ),
       ],
     ).symmetricPadding(horizontal: 22);

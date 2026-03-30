@@ -27,7 +27,12 @@ class UpdatePostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomDeafultAppbar(title: 'edit'.tr()),
+      backgroundColor: AppColors.background,
+      appBar: CustomDeafultAppbar(
+        title: 'edit'.tr(),
+        titleColor: AppColors.black,
+        backButtonColor: AppColors.black,
+      ),
       body: _UpdatePostScreenContent(),
     );
   }

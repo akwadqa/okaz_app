@@ -5,6 +5,7 @@ import 'package:okaz/features/product/domain/model/product_details_model/product
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -31,7 +32,7 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
         ProductDetailsScreenOutlinedChip(
           icon: Assets.icons.eyeIc,
           label: productDetailsModel.views.toString(),
-          onTap: () {},
+          // onTap: () {},
         ),
         const Spacer(),
         ProductDetailsScreenOutlinedChip(
@@ -39,13 +40,18 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
           icon: Assets.icons.likeLightIc,
           label: productDetailsModel.likes.toString(),
           onTap: () {
-            (isLike ?? false)
-                ? ref
-                    .read(productControllerProvider.notifier)
-                    .unLikePost(productDetailsModel.name ?? 'id')
-                : ref
-                    .read(productControllerProvider.notifier)
-                    .likePost(productDetailsModel.name ?? 'id');
+            checkAuth(
+                ref: ref,
+                context: context,
+                action: () {
+                  (isLike ?? false)
+                      ? ref
+                          .read(productControllerProvider.notifier)
+                          .unLikePost(productDetailsModel.name ?? 'id')
+                      : ref
+                          .read(productControllerProvider.notifier)
+                          .likePost(productDetailsModel.name ?? 'id');
+                });
           },
         ),
         const Spacer(),
@@ -53,8 +59,13 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
           icon: Assets.icons.reportIc,
           label: 'product_details_report_ad'.tr(),
           onTap: () {
-            showReportDialog(context, TextEditingController(),
-                productDetailsModel.name ?? 'id');
+            checkAuth(
+                ref: ref,
+                context: context,
+                action: () {
+                  showReportDialog(context, TextEditingController(),
+                      productDetailsModel.name ?? 'id');
+                });
           },
           minWidth: 138,
         ),

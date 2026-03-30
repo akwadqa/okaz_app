@@ -25,9 +25,9 @@ class AppScaledRadio<T> extends StatelessWidget {
         onChanged: (_) => onChanged(value),
         side: BorderSide(color: AppColors.primaryBorder),
         activeColor: AppColors.primary,
+        backgroundColor: WidgetStatePropertyAll(AppColors.white),
         materialTapTargetSize: MaterialTapTargetSize.padded,
-        fillColor:
-            WidgetStatePropertyAll(AppColors.primary),
+        fillColor: WidgetStatePropertyAll(AppColors.primary),
         overlayColor:
             WidgetStatePropertyAll(AppColors.primary.withOpacity(0.1)),
       ),

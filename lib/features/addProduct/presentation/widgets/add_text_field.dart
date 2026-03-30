@@ -40,15 +40,13 @@ class AddTextField extends StatelessWidget {
         if (label != null) ...[
           Row(
             children: [
-              Text(label!, style: AppTextStyle.rubikMedium16),
+              Text(label!.tr(), style: AppTextStyle.rubikMedium16),
               if (isRequired)
-                const Text(' *',
-                    style: TextStyle(color: AppColors.primary)),
+                const Text(' *', style: TextStyle(color: AppColors.primary)),
             ],
           ),
           const SizedBox(height: 12),
         ],
-
         TextFormField(
           // controller: TextEditingController(text: value),
           initialValue: value,
@@ -61,7 +59,7 @@ class AddTextField extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             hintText: hint.tr(),
-            hintStyle: AppTextStyle.cairoRegular12,
+            hintStyle: AppTextStyle.rubikRegular16,
             suffixText: suffixText,
             enabledBorder: _border(AppColors.grayBorder),
             focusedBorder: _border(AppColors.primary),
