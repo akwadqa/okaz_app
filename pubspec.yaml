@@ -111,9 +111,9 @@ flutter:
     - .env
 
 flutter_icons:
-  android: false
+  android: true
   ios: true
-  image_path: "assets/icons/logo.png"  
+  image_path: "assets/icons/logo.jpg"  
   remove_alpha_ios: true  
 
 flutter_gen:

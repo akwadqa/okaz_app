@@ -41,7 +41,7 @@ final class CurrentLanguageProvider
   }
 }
 
-String _$currentLanguageHash() => r'bf6802cba5766a84098d3478b8e966fb8b0509e7';
+String _$currentLanguageHash() => r'6542ffd8562f910ba2da093f6b40b0261ad39f77';
 
 abstract class _$CurrentLanguage extends $Notifier<String> {
   String build();

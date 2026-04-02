@@ -17,7 +17,7 @@ class SplashScreen extends ConsumerWidget {
     bool _navigated = false;
 
     return Lottie.asset(
-      Assets.lottie.souqOkaz,
+      Assets.lottie.splash,
       repeat: false,
       fit: BoxFit.cover,
       frameRate: FrameRate.max,

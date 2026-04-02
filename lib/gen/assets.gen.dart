@@ -152,6 +152,12 @@ class $AssetsIconsGen {
   SvgGenImage get locationIc =>
       const SvgGenImage('assets/icons/location_ic.svg');
 
+  /// File path: assets/icons/logo.jpg
+  AssetGenImage get logo => const AssetGenImage('assets/icons/logo.jpg');
+
+  /// File path: assets/icons/logo1.png
+  AssetGenImage get logo1 => const AssetGenImage('assets/icons/logo1.png');
+
   /// File path: assets/icons/logout_ic.svg
   SvgGenImage get logoutIc => const SvgGenImage('assets/icons/logout_ic.svg');
 
@@ -173,6 +179,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/oclock_ic.svg
   SvgGenImage get oclockIc => const SvgGenImage('assets/icons/oclock_ic.svg');
+
+  /// File path: assets/icons/okaz_logo.png
+  AssetGenImage get okazLogo =>
+      const AssetGenImage('assets/icons/okaz_logo.png');
 
   /// File path: assets/icons/password_ic.svg
   SvgGenImage get passwordIc =>
@@ -290,12 +300,15 @@ class $AssetsIconsGen {
         likeLightIc,
         likesDarkIc,
         locationIc,
+        logo,
+        logo1,
         logoutIc,
         logoutWithCornerIc,
         messagesIc,
         mostSearchIc,
         notificationIc,
         oclockIc,
+        okazLogo,
         passwordIc,
         persone,
         phoneNumberIc,
@@ -480,8 +493,11 @@ class $AssetsLottieGen {
   /// File path: assets/lottie/souq_okaz.json
   String get souqOkaz => 'assets/lottie/souq_okaz.json';
 
+  /// File path: assets/lottie/splash.json
+  String get splash => 'assets/lottie/splash.json';
+
   /// List of all assets
-  List<String> get values => [loader, shoppingLoader, souqOkaz];
+  List<String> get values => [loader, shoppingLoader, souqOkaz, splash];
 }
 
 class $AssetsTranslationsGen {
