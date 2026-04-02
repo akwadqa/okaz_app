@@ -21,6 +21,29 @@ class StepDetailsView extends ConsumerWidget {
     final mapController = ref.watch(mapControllerProvider);
     final attributes = state.attributes;
     final mainFilters = attributes.firstWhere((e) => e.isMainFilter == 1);
+    List<String> cities = [
+      'riyadh'.tr(),
+      'jeddah'.tr(),
+      'mecca'.tr(),
+      'medina'.tr(),
+      'dammam'.tr(),
+      'khobar'.tr(),
+      'abha'.tr(),
+      'tabuk'.tr(),
+      'hail'.tr(),
+      'jizan'.tr(),
+      'najran'.tr(),
+      'buraidah'.tr(),
+      'taif'.tr(),
+      'doha'.tr(),
+      'al_rayyan'.tr(),
+      'al_wakrah'.tr(),
+      'al_khor'.tr(),
+      'lusail'.tr(),
+      'madinat_ash_shamal'.tr(),
+      'umm_salal'.tr(),
+      'al_daayen'.tr(),
+    ];
 
     final otherFilters = attributes.where((e) => e.isMainFilter == 0).toList();
     return ListView(
@@ -85,24 +108,45 @@ class StepDetailsView extends ConsumerWidget {
             );
           },
         ),
-
-        AddTextField(
+        
+        AddSelectField(
           label: 'city',
           isRequired: true,
           hint: 'select_city',
           value: state.city,
-          onChanged: controller.setCity,
-          // onTap: () {
-          //   // showAddSelectSheet<String>(
-          //   //   context: context,
-          //   //   title: 'select_city'.tr(),
-          //   //   items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
-          //   //   selected: state.city,
-          //   //   labelBuilder: (v) => v,
-          //   //   onConfirm: controller.setCity,
-          //   // );
-          // },
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+            showAddSelectSheet<String>(
+              context: context,
+              title: 'select_city',
+              items: cities,
+              selected: state.city,
+              labelBuilder: (v) => v,
+              onConfirm: (v) {
+                controller.updateSpec(mainFilters.title, v);
+                controller.setCity(v);
+              },
+            );
+          },
         ),
+
+        // AddTextField(
+        //   label: 'city',
+        //   isRequired: true,
+        //   hint: 'select_city',
+        //   value: state.city,
+        //   onChanged: controller.setCity,
+        //   // onTap: () {
+        //   //   // showAddSelectSheet<String>(
+        //   //   //   context: context,
+        //   //   //   title: 'select_city'.tr(),
+        //   //   //   items: const ['doha', 'al rayyan', 'al wakrah', 'al khor'],
+        //   //   //   selected: state.city,
+        //   //   //   labelBuilder: (v) => v,
+        //   //   //   onConfirm: controller.setCity,
+        //   //   // );
+        //   // },
+        // ),
 
         /// الحالة *
         // AddSelectField(

@@ -5,12 +5,19 @@ import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 
 class HomeState {
   final AsyncValue<HomeModel> homeModel;
+  final List<CategoryModel> filterdCategories;
 
-  HomeState({required this.homeModel});
+  HomeState({required this.homeModel, required this.filterdCategories});
 
-  factory HomeState.init() => HomeState(homeModel: AsyncLoading());
+  factory HomeState.init() => HomeState(homeModel: AsyncLoading() , filterdCategories: []);
 
-  HomeState copyWith({AsyncValue<HomeModel>? homeModel}) {
-    return HomeState(homeModel: homeModel ?? this.homeModel);
+  HomeState copyWith({
+    AsyncValue<HomeModel>? homeModel,
+    List<CategoryModel>? filterdCategories,
+  }) {
+    return HomeState(
+      homeModel: homeModel ?? this.homeModel,
+      filterdCategories: filterdCategories ?? this.filterdCategories,
+    );
   }
 }

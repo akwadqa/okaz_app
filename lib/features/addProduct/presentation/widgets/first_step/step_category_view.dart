@@ -12,17 +12,30 @@ import '../../../../home/presentation/widgets/home_screen/home_screen_search_fie
 import '../../controller/add_product_controller.dart';
 import '../app_scaled_radio.dart';
 
-class StepCategoryView extends ConsumerWidget {
+class StepCategoryView extends ConsumerStatefulWidget {
   const StepCategoryView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<StepCategoryView> createState() => _StepCategoryViewState();
+}
+
+class _StepCategoryViewState extends ConsumerState<StepCategoryView> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(homeControllerProvider.notifier).filterCategories("");
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final addNotifier = ref.read(addProductControllerProvider.notifier);
     final addState = ref.watch(addProductControllerProvider);
 
     final homeState = ref.watch(homeControllerProvider);
 
-    final categories = homeState.value!.homeModel.value?.categories ?? [];
+    final categories = homeState.value!.filterdCategories;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,11 +45,15 @@ class StepCategoryView extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
             children: [
               /// 🔍 Search
-              // HomeScreenSearchFiled(
-              //   title: '',
-              // ),
+              HomeScreenSearchFiled(
+                title: 'search'.tr(),
+                withPadding: false,
+                onChanged: (val) => ref
+                    .read(homeControllerProvider.notifier)
+                    .filterCategories(val),
+              ),
 
-              // 12.verticalSpace,
+              12.verticalSpace,
 
               /// Title
               Text(
@@ -54,7 +71,7 @@ class StepCategoryView extends ConsumerWidget {
               24.verticalSpace,
               ...categories.map(
                 (category) => _CategorySection(
-                  category: category!,
+                  category: category,
                   selectedCategory: addState.value?.category,
                   selectedSubCategory: addState.value?.subCategory,
                   onCategorySelect: addNotifier.setCategory,
@@ -195,7 +212,7 @@ class _CategorySection extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 onCategorySelect(category.name ?? "");
-                onSubCategorySelect(sub!);
+                onSubCategorySelect(sub);
               },
               child: Row(
                 children: [
