@@ -160,7 +160,7 @@ class ProfileController extends _$ProfileController {
       final current = state.value;
 
       /// show loading only first time
-      if (showLoading 
+      if (showLoading
       // && (current?.favorites.isEmpty ?? true)
       ){
         state = const AsyncLoading();
@@ -217,7 +217,7 @@ class ProfileController extends _$ProfileController {
       final current = state.value;
 
       /// show loading only first time
-      if (showLoading 
+      if (showLoading
       // && (current?.favorites.isEmpty ?? true)
       ) {
         state = const AsyncLoading();

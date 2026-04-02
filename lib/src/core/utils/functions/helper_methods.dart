@@ -4,6 +4,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -86,7 +89,20 @@ Future<void> sharePost(String link) async {
   await Clipboard.setData(ClipboardData(text: link));
 
   await Share.share('Check out this post on Okaz Market: $link',
-      subject:
-          'Amazing Deal!' 
-      );
+      subject: 'Amazing Deal!');
+}
+
+Future<void> checkAuth({
+  required WidgetRef ref,
+  required BuildContext context,
+  required void Function() action,
+}) async {
+  // final authState = ref.read(localStorageServiceProvider).;
+  final isLoggedIn = await ref.read(isAuthenticatedProvider.future);
+
+  if (!isLoggedIn) {
+    showErrorDialog(context, 'login_required_message'.tr());
+  } else {
+    action();
+  }
 }

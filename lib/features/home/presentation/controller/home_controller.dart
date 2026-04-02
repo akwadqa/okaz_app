@@ -33,13 +33,45 @@ class HomeController extends _$HomeController {
       }
 
       state = AsyncData(
-        state.value!.copyWith(homeModel: AsyncData(response.data!)),
+        state.value!.copyWith(
+            homeModel: AsyncData(response.data!),
+            filterdCategories: response.data!.categories
+                    ?.whereType<CategoryModel>()
+                    .toList() ??
+                []),
       );
       return response.data;
     } catch (e, st) {
       state = AsyncData(state.value!.copyWith(homeModel: AsyncError(e, st)));
       return null;
     }
+  }
+void filterCategories(String query) {
+    final currentState = state.value;
+    if (currentState == null) return;
+
+    // دائماً نأخذ البيانات الأصلية من الـ homeModel لضمان عدم فقدان البيانات
+    final allCategories = currentState.homeModel.value?.categories?.whereType<CategoryModel>().toList() ?? [];
+
+    if (query.isEmpty) {
+      state = AsyncData(currentState.copyWith(filterdCategories: allCategories));
+      return;
+    }
+
+    final lowerQuery = query.toLowerCase();
+
+    final results = allCategories.where((category) {
+      // فحص الـ subcategories
+      return category.subcategories?.any((sub) {
+        if (sub == null) return false;
+        final nameEn = (sub.categoryName ?? '').toLowerCase();
+        final nameAr = (sub.categoryNameAr ?? '').toLowerCase();
+        return nameEn.contains(lowerQuery) || nameAr.contains(lowerQuery);
+      }) ?? false;
+    }).toList();
+
+    // تحديث القائمة المفلترة فقط دون المساس بالـ homeModel الأصلي
+    state = AsyncData(currentState.copyWith(filterdCategories: results));
   }
 }
 

@@ -10,6 +10,8 @@ import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 class CustomDeafultAppbar extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
+  final Color? titleColor;
+  final Color? backButtonColor;
   final bool? withBackButton;
   final Widget? actionButton;
   const CustomDeafultAppbar({
@@ -17,6 +19,8 @@ class CustomDeafultAppbar extends StatelessWidget
     required this.title,
     this.withBackButton = true,
     this.actionButton,
+    this.titleColor,
+    this.backButtonColor,
   });
 
   @override
@@ -56,7 +60,7 @@ class CustomDeafultAppbar extends StatelessWidget
                       // ]),
                       child: Icon(
                         Icons.arrow_back_rounded,
-                        color: AppColors.primary,
+                        color: backButtonColor ?? AppColors.primary,
                       ),
                     ),
                     // child: Assets.icons.verificationArrowBackIc.svg(
@@ -68,7 +72,7 @@ class CustomDeafultAppbar extends StatelessWidget
               child: Text(
                 title,
                 style: AppTextStyle.rubikSemiBold20.copyWith(
-                  color: AppColors.primary,
+                  color: titleColor ?? AppColors.primary,
                 ),
               ),
             ),

@@ -261,10 +261,8 @@ class AddProductController extends _$AddProductController {
       case 1:
         return s.subCategory != null;
       case 2:
-        return s.adType != null &&
-            s.condition != null &&
-            s.city != null &&
-            mapCtrl != null;
+        return s.adType != null && s.condition != null && s.city != null;
+      // && mapCtrl != null;
       case 3:
         return true; // specs later
       case 4:
@@ -364,7 +362,7 @@ class AddProductController extends _$AddProductController {
 
       // 🔹 Build params
       final params = AddPostParams(
-        title: current.titleEn!, 
+        title: current.titleEn!,
         titleAr: current.titleAr!,
         description: current.descEn!,
         descriptionAr: current.descAr!,
@@ -376,7 +374,6 @@ class AddProductController extends _$AddProductController {
         images: imageFiles,
         condition: current.condition!,
         isFeatured: current.isFeatured ? 1 : 0,
-
         latLng: current.latLng!,
       );
       log("===== ADD POST DEBUG =====");
@@ -405,7 +402,7 @@ class AddProductController extends _$AddProductController {
       final result =
           await ref.read(addPostRepositoriesProvider).createPost(params);
       // if (result.hasSucceeded) {
-        state = AsyncData(current); // success
+      state = AsyncData(current); // success
       // } else {
       //   throw AsyncError(
       //       result.message ?? "Something went wrong", StackTrace.current);

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_category_title.dart';
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_sub_category_item.dart';
+import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 
 class HomeScreenCategorySection extends StatelessWidget {
@@ -34,13 +35,8 @@ class HomeScreenCategorySection extends StatelessWidget {
                 (cat) => HomeScreenSubCategoryItem(subCategoryModel: cat!),
               )
               .toList(),
-          // [
-          //   HomeScreenSubCategoryItem(),
-          //   HomeScreenSubCategoryItem(),
-          //   HomeScreenSubCategoryItem(),
-          //   HomeScreenSubCategoryItem(),
-          // ],
         ),
+        SizedBox()
       ],
     ).symmetricPadding(horizontal: 22);
   }

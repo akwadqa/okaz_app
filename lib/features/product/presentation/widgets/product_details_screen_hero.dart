@@ -7,6 +7,7 @@ import 'package:okaz/features/product/presentation/controller/favorite_product_c
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
@@ -124,24 +125,29 @@ class _ProductDetailsScreenIconCircleButtonState
   double _scale = 1.0;
 
   void _handleTap() {
-    _scale = 1.0;
-    ref
-        .read(favoriteProductContrllerProvider(
-                widget.productDetailsModel.name.toString(),
-                widget.productDetailsModel.isFavorited ?? false)
-            .notifier)
-        .addPostToFavorite(widget.productDetailsModel.name ?? 'id');
-    setState(() {
-      _scale = 1.3;
-    });
+    checkAuth(
+        ref: ref,
+        context: context,
+        action: () {
+          _scale = 1.0;
+          ref
+              .read(favoriteProductContrllerProvider(
+                      widget.productDetailsModel.name.toString(),
+                      widget.productDetailsModel.isFavorited ?? false)
+                  .notifier)
+              .addPostToFavorite(widget.productDetailsModel.name ?? 'id');
+          setState(() {
+            _scale = 1.3;
+          });
 
-    if (widget.onTap != null) widget.onTap!();
+          if (widget.onTap != null) widget.onTap!();
 
-    Future.delayed(const Duration(milliseconds: 100), () {
-      if (mounted) {
-        setState(() => _scale = 1.0);
-      }
-    });
+          Future.delayed(const Duration(milliseconds: 100), () {
+            if (mounted) {
+              setState(() => _scale = 1.0);
+            }
+          });
+        });
   }
 
   @override

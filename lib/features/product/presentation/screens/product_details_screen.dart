@@ -115,13 +115,6 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
   }
 
   Widget _buildProductDetailsBody(ProductDetailsModel productDetailsModel) {
-    ref.listen(
-        favoriteProductContrllerProvider(productDetailsModel.name.toString(),
-            productDetailsModel.isFavorited ?? false), (prev, next) {
-      if (next is AsyncError) {
-        showErrorDialog(context, next.error.toString());
-      }
-    });
 
     return CustomScrollView(
       slivers: [

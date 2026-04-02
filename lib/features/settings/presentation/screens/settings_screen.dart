@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/profile/presentation/controller/my_profile_controller.dart';
 import 'package:okaz/features/settings/presentation/controller/settings_controller.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
@@ -88,6 +89,7 @@ class SettingsScreen extends ConsumerWidget {
                         .read(settingsControllerProvider.notifier)
                         .logout();
                     context.pushReplacement(AppRoutes.signInScreen);
+                    ref.invalidate(profileControllerProvider);
                     // delete user logic
                   },
                   deleteAcc: false,

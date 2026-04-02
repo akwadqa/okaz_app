@@ -17,11 +17,24 @@ import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-class HomeScreenDrawer extends ConsumerWidget {
+class HomeScreenDrawer extends ConsumerStatefulWidget {
   const HomeScreenDrawer({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeScreenDrawer> createState() => _HomeScreenDrawerState();
+}
+
+class _HomeScreenDrawerState extends ConsumerState<HomeScreenDrawer> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(homeControllerProvider.notifier).filterCategories("");
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final controller = ref.watch(
       homeControllerProvider.select((val) => val.value!.homeModel),
     );
@@ -46,11 +59,18 @@ class HomeScreenDrawer extends ConsumerWidget {
               ),
             ],
           ).symmetricPadding(horizontal: 22),
-          HomeScreenSearchFiled(title: 'search_by_section'.tr()),
+          HomeScreenSearchFiled(
+            title: 'search_by_section'.tr(),
+            onChanged: (val) =>
+                ref.read(homeControllerProvider.notifier).filterCategories(val),
+          ),
           // _buildDrawerBody(),
           controller.when(
-            data: (homeModel) =>
-                _DrawerCategoryList(categories: homeModel.categories ?? []),
+            data: (homeModel) => _DrawerCategoryList(
+                // categories: homeModel.categories ?? [],
+                // ),
+                categories:
+                    ref.watch(homeControllerProvider).value!.filterdCategories),
             error: (e, st) => AppErrorWidget(),
             loading: () => AppLoader(),
           ),

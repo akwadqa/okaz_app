@@ -28,7 +28,8 @@ class HomeScreenSubCategoryItem extends ConsumerWidget {
       },
       child: Container(
         width: width / 4.5,
-        height: width / 3.5,
+        // height: width / 3.5,
+        height: width / 4.5,
         decoration: BoxDecoration(
           color: AppColors.lightRedBackground,
           borderRadius: BorderRadius.circular(20),
@@ -42,15 +43,17 @@ class HomeScreenSubCategoryItem extends ConsumerWidget {
               height: width / 7,
             ),
             // Assets.images.phoneImage.image(height: width / 7),
-            Text(
-              translate(
-                subCategoryModel.categoryNameAr ?? '',
-                subCategoryModel.categoryName ?? '',
-                context,
-              ),
-              textAlign: TextAlign.center,
-              style: AppTextStyle.rubikMedium14.copyWith(
-                color: AppColors.textDart,
+            FittedBox(
+              child: Text(
+                translate(
+                  subCategoryModel.categoryNameAr ?? '',
+                  subCategoryModel.categoryName ?? '',
+                  context,
+                ),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.rubikMedium14.copyWith(
+                  color: AppColors.textDart,
+                ),
               ),
             ),
           ],

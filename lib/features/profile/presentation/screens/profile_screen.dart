@@ -36,6 +36,7 @@ class ProfileScreen extends ConsumerWidget {
     ref.watch(updatePostControllerProvider);
     final widthS = MediaQuery.of(context).size.width;
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.background,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 65),
@@ -46,6 +47,7 @@ class ProfileScreen extends ConsumerWidget {
       ),
       body: AuthGuard(
         child: SafeArea(
+          bottom: false,
           child: Column(
             children: [
               const ProfileHeader(),

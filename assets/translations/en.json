@@ -210,6 +210,27 @@
     "first_name" : "First Name",
     "last_name" : "Last Name",
     "verificationExpired": "This code will expire in ",
-    "seconds": "seconds"
+    "seconds": "seconds",
+    "riyadh": "Riyadh",
+    "jeddah": "Jeddah",
+    "mecca": "Mecca",
+    "medina": "Medina",
+    "dammam": "Dammam",
+    "khobar": "Khobar",
+    "abha": "Abha",
+    "tabuk": "Tabuk",
+    "hail": "Hail",
+    "jizan": "Jizan",
+    "najran": "Najran",
+    "buraidah": "Buraidah",
+    "taif": "Taif",
+    "doha": "Doha",
+    "al_rayyan": "Al Rayyan",
+    "al_wakrah": "Al Wakrah",
+    "al_khor": "Al Khor",
+    "lusail": "Lusail",
+    "madinat_ash_shamal": "Madinat ash Shamal",
+    "umm_salal": "Umm Salal",
+    "al_daayen": "Al Daayen"
 
 }

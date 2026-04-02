@@ -82,7 +82,8 @@ class AddSelectField extends StatelessWidget {
                 fillColor: Colors.white,
                 hintText: value?.isNotEmpty == true ? value : hint.tr(),
                 hintStyle: AppTextStyle.rubikRegular16.copyWith(
-                  color: value == null ? AppColors.grayHint : AppColors.black,
+                  // color: value == null ? AppColors.grayHint : AppColors.black,
+                  color: AppColors.black,
                 ),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
