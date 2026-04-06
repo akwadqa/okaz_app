@@ -13,7 +13,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk",
       testers: "mouazhariry5@gmail.com,moh.allaaadeen@gmail.com,abdullahka715@gmail.com,hadeelberkdar09@gmail.com",
-      release_notes: "-  Fix the notes. - Change app logo and splash screen"
+      release_notes: "-  Fix app notes. - Handle backend chnages. "
     )
   end
 end

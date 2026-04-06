@@ -1,6 +1,8 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -11,10 +13,11 @@ class HomeScreenCategoryTitle extends StatelessWidget {
     required this.icon,
   });
   final String title;
-  final SvgPicture icon;
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
+    Dev.logLine(icon);
     return Row(
       spacing: 10,
       children: [
@@ -26,7 +29,9 @@ class HomeScreenCategoryTitle extends StatelessWidget {
             shape: BoxShape.circle,
             color: AppColors.lightRedBackground,
           ),
-          child: icon,
+          child: CachedNetworkImage(
+            imageUrl: ServicesUrls.imageUrl + icon,
+          ),
         ),
         Text(
           title,
@@ -38,4 +43,3 @@ class HomeScreenCategoryTitle extends StatelessWidget {
     );
   }
 }
-

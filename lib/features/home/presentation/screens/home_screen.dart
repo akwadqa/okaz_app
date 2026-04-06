@@ -81,19 +81,17 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
         20.verticalSpace,
         HomeScreenAddsSection(homeModel: homeModel),
         36.verticalSpace,
-        ...homeModel.categories!
-            .map(
-              (cat) => HomeScreenCategorySection(
-                title: translate(
-                  cat?.categoryNameAr ?? '',
-                  cat?.categoryName ?? '',
-                  context,
-                ),
-                icon: Assets.icons.electronicIc.svg(),
-                category: cat!,
-              ),
-            )
-            .toList(),
+        ...homeModel.categories!.map(
+          (cat) => HomeScreenCategorySection(
+            title: translate(
+              cat?.categoryNameAr ?? '',
+              cat?.categoryName ?? '',
+              context,
+            ),
+            icon: cat?.icon ?? '',
+            category: cat!,
+          ),
+        ),
       ],
     );
   }

@@ -14,7 +14,7 @@ class HomeScreenCategorySection extends StatelessWidget {
     required this.category,
   });
   final String title;
-  final SvgPicture icon;
+  final String icon;
   final CategoryModel category;
 
   @override

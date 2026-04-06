@@ -374,7 +374,7 @@ class AddProductController extends _$AddProductController {
         images: imageFiles,
         condition: current.condition!,
         isFeatured: current.isFeatured ? 1 : 0,
-        latLng: current.latLng!,
+        latLng: current.latLng ?? LatLng(0, 0),
       );
       log("===== ADD POST DEBUG =====");
 
