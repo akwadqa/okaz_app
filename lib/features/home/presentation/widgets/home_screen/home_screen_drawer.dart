@@ -52,13 +52,14 @@ class _HomeScreenDrawerState extends ConsumerState<HomeScreenDrawer> {
                 style: AppTextStyle.rubikBold18.copyWith(
                   color: AppColors.textDart,
                 ),
-              ),
+              ).symmetricPadding(horizontal: 22),
               IconButton(
+                padding: EdgeInsets.zero,
                 onPressed: () => context.pop(),
                 icon: Icon(Icons.close),
               ),
             ],
-          ).symmetricPadding(horizontal: 22),
+          ),
           HomeScreenSearchFiled(
             title: 'search_by_section'.tr(),
             onChanged: (val) =>
@@ -151,6 +152,7 @@ class _DrawerCategoryListState extends State<_DrawerCategoryList>
     return Material(
       color: AppColors.white,
       child: ListTile(
+        contentPadding: EdgeInsets.symmetric(horizontal: 10),
         onTap: onTap,
         title: Text(
           translate(
@@ -165,8 +167,10 @@ class _DrawerCategoryListState extends State<_DrawerCategoryList>
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeInOut,
           child: Icon(
-            isRtl ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
-            color: AppColors.textDart,
+            // isRtl ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
+            Icons.arrow_forward_ios,
+            color: AppColors.gray02,
+            size: 18,
           ),
         ),
       ),

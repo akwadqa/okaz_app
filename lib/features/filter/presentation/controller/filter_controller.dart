@@ -66,7 +66,12 @@ class FilterController extends _$FilterController {
 
       final title = ref.read(selectedSubCategoryProvider);
 
-      selectFilter(attribute, title);
+      Dev.logLine(title);
+
+      if (title.trim().isNotEmpty) {
+        selectFilter(attribute, title);
+      }
+
       getPosts(page: 1);
       return response;
     } catch (e, st) {
@@ -82,7 +87,7 @@ class FilterController extends _$FilterController {
   Future<List<ProductDetailsModel>?> getPosts(
       {bool showLoading = true, required int page}) async {
     try {
-      Dev.logLine(currentPage);
+      // Dev.logLine(currentPage);
       final attributes = <RequestAttribute>[];
 
       state.value!.selectedAttributes.forEach((k, v) {
@@ -194,7 +199,7 @@ class FilterController extends _$FilterController {
 
   void clearTempAttributes() {
     // ref.read(selectedSubCategoryProvider.notifier).state = ' ';
-    Dev.logLine(ref.read(selectedSubCategoryProvider.notifier).state);
+    // Dev.logLine(ref.read(selectedSubCategoryProvider.notifier).state);
 
     final currentState = state.value;
     if (currentState == null) return;

@@ -19,7 +19,7 @@ class ProductsScreenHeading extends ConsumerWidget {
     final selectedTitle = ref.watch(selectedSubCategoryProvider);
 
     final subCategory = ref.watch(mainSubcategory);
-    final title = selectedTitle.isEmpty ? 'iphone'.tr() : selectedTitle;
+    final title = selectedTitle;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

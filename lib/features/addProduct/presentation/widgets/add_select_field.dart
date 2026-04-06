@@ -85,7 +85,14 @@ class AddSelectField extends StatelessWidget {
                   // color: value == null ? AppColors.grayHint : AppColors.black,
                   color: AppColors.black,
                 ),
-                prefixIcon: Padding(
+                // prefixIcon: Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 16),
+                //   child: icon ??
+                //       const Icon(
+                //         Icons.keyboard_arrow_down_rounded,
+                //       ),
+                // ),
+                suffixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: icon ??
                       const Icon(

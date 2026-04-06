@@ -12,8 +12,8 @@ part of 'search_controller.dart';
 @ProviderFor(SearchController)
 const searchControllerProvider = SearchControllerProvider._();
 
-final class SearchControllerProvider
-    extends $AsyncNotifierProvider<SearchController, SearchState> {
+final class SearchControllerProvider extends $AsyncNotifierProvider<
+    SearchController, List<ProductDetailsModel>> {
   const SearchControllerProvider._()
       : super(
           from: null,
@@ -33,18 +33,21 @@ final class SearchControllerProvider
   SearchController create() => SearchController();
 }
 
-String _$searchControllerHash() => r'394a8928c3456543cf10f85d7512938037d8d5ee';
+String _$searchControllerHash() => r'a6fd505d4323ec1f60e5d9adffa86ae0a28cf14a';
 
-abstract class _$SearchController extends $AsyncNotifier<SearchState> {
-  FutureOr<SearchState> build();
+abstract class _$SearchController
+    extends $AsyncNotifier<List<ProductDetailsModel>> {
+  FutureOr<List<ProductDetailsModel>> build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<SearchState>, SearchState>;
+    final ref = this.ref as $Ref<AsyncValue<List<ProductDetailsModel>>,
+        List<ProductDetailsModel>>;
     final element = ref.element as $ClassProviderElement<
-        AnyNotifier<AsyncValue<SearchState>, SearchState>,
-        AsyncValue<SearchState>,
+        AnyNotifier<AsyncValue<List<ProductDetailsModel>>,
+            List<ProductDetailsModel>>,
+        AsyncValue<List<ProductDetailsModel>>,
         Object?,
         Object?>;
     element.handleValue(ref, created);

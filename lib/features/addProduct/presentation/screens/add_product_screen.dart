@@ -47,6 +47,7 @@ class AddProductScreen extends ConsumerWidget {
           backgroundColor: AppColors.background,
           elevation: 0,
           title: Text(context.tr('add_ad_title')),
+          surfaceTintColor: Colors.transparent,
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.close),

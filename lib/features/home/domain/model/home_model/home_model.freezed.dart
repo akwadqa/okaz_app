@@ -719,6 +719,7 @@ class __$BannerModelCopyWithImpl<$Res> implements _$BannerModelCopyWith<$Res> {
 /// @nodoc
 mixin _$CategoryModel {
   String? get name;
+  String? get icon;
   @JsonKey(name: 'category_name')
   String? get categoryName;
   @JsonKey(name: 'category_name_ar')
@@ -742,6 +743,7 @@ mixin _$CategoryModel {
         (other.runtimeType == runtimeType &&
             other is CategoryModel &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.categoryName, categoryName) ||
                 other.categoryName == categoryName) &&
             (identical(other.categoryNameAr, categoryNameAr) ||
@@ -752,12 +754,12 @@ mixin _$CategoryModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, categoryName,
+  int get hashCode => Object.hash(runtimeType, name, icon, categoryName,
       categoryNameAr, const DeepCollectionEquality().hash(subcategories));
 
   @override
   String toString() {
-    return 'CategoryModel(name: $name, categoryName: $categoryName, categoryNameAr: $categoryNameAr, subcategories: $subcategories)';
+    return 'CategoryModel(name: $name, icon: $icon, categoryName: $categoryName, categoryNameAr: $categoryNameAr, subcategories: $subcategories)';
   }
 }
 
@@ -769,6 +771,7 @@ abstract mixin class $CategoryModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? name,
+      String? icon,
       @JsonKey(name: 'category_name') String? categoryName,
       @JsonKey(name: 'category_name_ar') String? categoryNameAr,
       List<SubCategoryModel?>? subcategories});
@@ -788,6 +791,7 @@ class _$CategoryModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
+    Object? icon = freezed,
     Object? categoryName = freezed,
     Object? categoryNameAr = freezed,
     Object? subcategories = freezed,
@@ -796,6 +800,10 @@ class _$CategoryModelCopyWithImpl<$Res>
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _self.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       categoryName: freezed == categoryName
           ? _self.categoryName
@@ -908,6 +916,7 @@ extension CategoryModelPatterns on CategoryModel {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
             String? name,
+            String? icon,
             @JsonKey(name: 'category_name') String? categoryName,
             @JsonKey(name: 'category_name_ar') String? categoryNameAr,
             List<SubCategoryModel?>? subcategories)?
@@ -917,8 +926,8 @@ extension CategoryModelPatterns on CategoryModel {
     final _that = this;
     switch (_that) {
       case _CategoryModel() when $default != null:
-        return $default(_that.name, _that.categoryName, _that.categoryNameAr,
-            _that.subcategories);
+        return $default(_that.name, _that.icon, _that.categoryName,
+            _that.categoryNameAr, _that.subcategories);
       case _:
         return orElse();
     }
@@ -941,6 +950,7 @@ extension CategoryModelPatterns on CategoryModel {
   TResult when<TResult extends Object?>(
     TResult Function(
             String? name,
+            String? icon,
             @JsonKey(name: 'category_name') String? categoryName,
             @JsonKey(name: 'category_name_ar') String? categoryNameAr,
             List<SubCategoryModel?>? subcategories)
@@ -949,8 +959,8 @@ extension CategoryModelPatterns on CategoryModel {
     final _that = this;
     switch (_that) {
       case _CategoryModel():
-        return $default(_that.name, _that.categoryName, _that.categoryNameAr,
-            _that.subcategories);
+        return $default(_that.name, _that.icon, _that.categoryName,
+            _that.categoryNameAr, _that.subcategories);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -972,6 +982,7 @@ extension CategoryModelPatterns on CategoryModel {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
             String? name,
+            String? icon,
             @JsonKey(name: 'category_name') String? categoryName,
             @JsonKey(name: 'category_name_ar') String? categoryNameAr,
             List<SubCategoryModel?>? subcategories)?
@@ -980,8 +991,8 @@ extension CategoryModelPatterns on CategoryModel {
     final _that = this;
     switch (_that) {
       case _CategoryModel() when $default != null:
-        return $default(_that.name, _that.categoryName, _that.categoryNameAr,
-            _that.subcategories);
+        return $default(_that.name, _that.icon, _that.categoryName,
+            _that.categoryNameAr, _that.subcategories);
       case _:
         return null;
     }
@@ -993,6 +1004,7 @@ extension CategoryModelPatterns on CategoryModel {
 class _CategoryModel implements CategoryModel {
   const _CategoryModel(
       {this.name,
+      this.icon,
       @JsonKey(name: 'category_name') this.categoryName,
       @JsonKey(name: 'category_name_ar') this.categoryNameAr,
       final List<SubCategoryModel?>? subcategories})
@@ -1002,6 +1014,8 @@ class _CategoryModel implements CategoryModel {
 
   @override
   final String? name;
+  @override
+  final String? icon;
   @override
   @JsonKey(name: 'category_name')
   final String? categoryName;
@@ -1039,6 +1053,7 @@ class _CategoryModel implements CategoryModel {
         (other.runtimeType == runtimeType &&
             other is _CategoryModel &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
             (identical(other.categoryName, categoryName) ||
                 other.categoryName == categoryName) &&
             (identical(other.categoryNameAr, categoryNameAr) ||
@@ -1049,12 +1064,12 @@ class _CategoryModel implements CategoryModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, categoryName,
+  int get hashCode => Object.hash(runtimeType, name, icon, categoryName,
       categoryNameAr, const DeepCollectionEquality().hash(_subcategories));
 
   @override
   String toString() {
-    return 'CategoryModel(name: $name, categoryName: $categoryName, categoryNameAr: $categoryNameAr, subcategories: $subcategories)';
+    return 'CategoryModel(name: $name, icon: $icon, categoryName: $categoryName, categoryNameAr: $categoryNameAr, subcategories: $subcategories)';
   }
 }
 
@@ -1068,6 +1083,7 @@ abstract mixin class _$CategoryModelCopyWith<$Res>
   @useResult
   $Res call(
       {String? name,
+      String? icon,
       @JsonKey(name: 'category_name') String? categoryName,
       @JsonKey(name: 'category_name_ar') String? categoryNameAr,
       List<SubCategoryModel?>? subcategories});
@@ -1087,6 +1103,7 @@ class __$CategoryModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? name = freezed,
+    Object? icon = freezed,
     Object? categoryName = freezed,
     Object? categoryNameAr = freezed,
     Object? subcategories = freezed,
@@ -1095,6 +1112,10 @@ class __$CategoryModelCopyWithImpl<$Res>
       name: freezed == name
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      icon: freezed == icon
+          ? _self.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String?,
       categoryName: freezed == categoryName
           ? _self.categoryName
@@ -1554,8 +1575,8 @@ mixin _$AttributeModel {
   @JsonKey(name: 'is_main_filter')
   int? get isMainFilter;
   @JsonKey(name: 'is_filterable')
-  int? get isFilterable;
-  String? get values;
+  int? get isFilterable; // String? values,
+  List<MainAttributeValueModel>? get values;
 
   /// Create a copy of AttributeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1581,13 +1602,13 @@ mixin _$AttributeModel {
                 other.isMainFilter == isMainFilter) &&
             (identical(other.isFilterable, isFilterable) ||
                 other.isFilterable == isFilterable) &&
-            (identical(other.values, values) || other.values == values));
+            const DeepCollectionEquality().equals(other.values, values));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, title, dataType, isMainFilter, isFilterable, values);
+  int get hashCode => Object.hash(runtimeType, name, title, dataType,
+      isMainFilter, isFilterable, const DeepCollectionEquality().hash(values));
 
   @override
   String toString() {
@@ -1607,7 +1628,7 @@ abstract mixin class $AttributeModelCopyWith<$Res> {
       @JsonKey(name: 'data_type') String? dataType,
       @JsonKey(name: 'is_main_filter') int? isMainFilter,
       @JsonKey(name: 'is_filterable') int? isFilterable,
-      String? values});
+      List<MainAttributeValueModel>? values});
 }
 
 /// @nodoc
@@ -1654,7 +1675,7 @@ class _$AttributeModelCopyWithImpl<$Res>
       values: freezed == values
           ? _self.values
           : values // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<MainAttributeValueModel>?,
     ));
   }
 }
@@ -1758,7 +1779,7 @@ extension AttributeModelPatterns on AttributeModel {
             @JsonKey(name: 'data_type') String? dataType,
             @JsonKey(name: 'is_main_filter') int? isMainFilter,
             @JsonKey(name: 'is_filterable') int? isFilterable,
-            String? values)?
+            List<MainAttributeValueModel>? values)?
         $default, {
     required TResult orElse(),
   }) {
@@ -1793,7 +1814,7 @@ extension AttributeModelPatterns on AttributeModel {
             @JsonKey(name: 'data_type') String? dataType,
             @JsonKey(name: 'is_main_filter') int? isMainFilter,
             @JsonKey(name: 'is_filterable') int? isFilterable,
-            String? values)
+            List<MainAttributeValueModel>? values)
         $default,
   ) {
     final _that = this;
@@ -1826,7 +1847,7 @@ extension AttributeModelPatterns on AttributeModel {
             @JsonKey(name: 'data_type') String? dataType,
             @JsonKey(name: 'is_main_filter') int? isMainFilter,
             @JsonKey(name: 'is_filterable') int? isFilterable,
-            String? values)?
+            List<MainAttributeValueModel>? values)?
         $default,
   ) {
     final _that = this;
@@ -1849,7 +1870,8 @@ class _AttributeModel implements AttributeModel {
       @JsonKey(name: 'data_type') this.dataType,
       @JsonKey(name: 'is_main_filter') this.isMainFilter,
       @JsonKey(name: 'is_filterable') this.isFilterable,
-      this.values});
+      final List<MainAttributeValueModel>? values})
+      : _values = values;
   factory _AttributeModel.fromJson(Map<String, dynamic> json) =>
       _$AttributeModelFromJson(json);
 
@@ -1866,8 +1888,17 @@ class _AttributeModel implements AttributeModel {
   @override
   @JsonKey(name: 'is_filterable')
   final int? isFilterable;
+// String? values,
+  final List<MainAttributeValueModel>? _values;
+// String? values,
   @override
-  final String? values;
+  List<MainAttributeValueModel>? get values {
+    final value = _values;
+    if (value == null) return null;
+    if (_values is EqualUnmodifiableListView) return _values;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   /// Create a copy of AttributeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1897,13 +1928,13 @@ class _AttributeModel implements AttributeModel {
                 other.isMainFilter == isMainFilter) &&
             (identical(other.isFilterable, isFilterable) ||
                 other.isFilterable == isFilterable) &&
-            (identical(other.values, values) || other.values == values));
+            const DeepCollectionEquality().equals(other._values, _values));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, title, dataType, isMainFilter, isFilterable, values);
+  int get hashCode => Object.hash(runtimeType, name, title, dataType,
+      isMainFilter, isFilterable, const DeepCollectionEquality().hash(_values));
 
   @override
   String toString() {
@@ -1925,7 +1956,7 @@ abstract mixin class _$AttributeModelCopyWith<$Res>
       @JsonKey(name: 'data_type') String? dataType,
       @JsonKey(name: 'is_main_filter') int? isMainFilter,
       @JsonKey(name: 'is_filterable') int? isFilterable,
-      String? values});
+      List<MainAttributeValueModel>? values});
 }
 
 /// @nodoc
@@ -1970,8 +2001,325 @@ class __$AttributeModelCopyWithImpl<$Res>
           : isFilterable // ignore: cast_nullable_to_non_nullable
               as int?,
       values: freezed == values
-          ? _self.values
+          ? _self._values
           : values // ignore: cast_nullable_to_non_nullable
+              as List<MainAttributeValueModel>?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$MainAttributeValueModel {
+  String? get image;
+  String? get title;
+
+  /// Create a copy of MainAttributeValueModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $MainAttributeValueModelCopyWith<MainAttributeValueModel> get copyWith =>
+      _$MainAttributeValueModelCopyWithImpl<MainAttributeValueModel>(
+          this as MainAttributeValueModel, _$identity);
+
+  /// Serializes this MainAttributeValueModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MainAttributeValueModel &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.title, title) || other.title == title));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, image, title);
+
+  @override
+  String toString() {
+    return 'MainAttributeValueModel(image: $image, title: $title)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $MainAttributeValueModelCopyWith<$Res> {
+  factory $MainAttributeValueModelCopyWith(MainAttributeValueModel value,
+          $Res Function(MainAttributeValueModel) _then) =
+      _$MainAttributeValueModelCopyWithImpl;
+  @useResult
+  $Res call({String? image, String? title});
+}
+
+/// @nodoc
+class _$MainAttributeValueModelCopyWithImpl<$Res>
+    implements $MainAttributeValueModelCopyWith<$Res> {
+  _$MainAttributeValueModelCopyWithImpl(this._self, this._then);
+
+  final MainAttributeValueModel _self;
+  final $Res Function(MainAttributeValueModel) _then;
+
+  /// Create a copy of MainAttributeValueModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = freezed,
+    Object? title = freezed,
+  }) {
+    return _then(_self.copyWith(
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [MainAttributeValueModel].
+extension MainAttributeValueModelPatterns on MainAttributeValueModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_MainAttributeValueModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MainAttributeValueModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_MainAttributeValueModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MainAttributeValueModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_MainAttributeValueModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MainAttributeValueModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? image, String? title)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _MainAttributeValueModel() when $default != null:
+        return $default(_that.image, _that.title);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String? image, String? title) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MainAttributeValueModel():
+        return $default(_that.image, _that.title);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String? image, String? title)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _MainAttributeValueModel() when $default != null:
+        return $default(_that.image, _that.title);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _MainAttributeValueModel implements MainAttributeValueModel {
+  const _MainAttributeValueModel({this.image, this.title});
+  factory _MainAttributeValueModel.fromJson(Map<String, dynamic> json) =>
+      _$MainAttributeValueModelFromJson(json);
+
+  @override
+  final String? image;
+  @override
+  final String? title;
+
+  /// Create a copy of MainAttributeValueModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$MainAttributeValueModelCopyWith<_MainAttributeValueModel> get copyWith =>
+      __$MainAttributeValueModelCopyWithImpl<_MainAttributeValueModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$MainAttributeValueModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _MainAttributeValueModel &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.title, title) || other.title == title));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, image, title);
+
+  @override
+  String toString() {
+    return 'MainAttributeValueModel(image: $image, title: $title)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$MainAttributeValueModelCopyWith<$Res>
+    implements $MainAttributeValueModelCopyWith<$Res> {
+  factory _$MainAttributeValueModelCopyWith(_MainAttributeValueModel value,
+          $Res Function(_MainAttributeValueModel) _then) =
+      __$MainAttributeValueModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String? image, String? title});
+}
+
+/// @nodoc
+class __$MainAttributeValueModelCopyWithImpl<$Res>
+    implements _$MainAttributeValueModelCopyWith<$Res> {
+  __$MainAttributeValueModelCopyWithImpl(this._self, this._then);
+
+  final _MainAttributeValueModel _self;
+  final $Res Function(_MainAttributeValueModel) _then;
+
+  /// Create a copy of MainAttributeValueModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? image = freezed,
+    Object? title = freezed,
+  }) {
+    return _then(_MainAttributeValueModel(
+      image: freezed == image
+          ? _self.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

@@ -108,7 +108,7 @@ class StepDetailsView extends ConsumerWidget {
             );
           },
         ),
-        
+
         AddSelectField(
           label: 'city',
           isRequired: true,
@@ -123,7 +123,7 @@ class StepDetailsView extends ConsumerWidget {
               selected: state.city,
               labelBuilder: (v) => v,
               onConfirm: (v) {
-                controller.updateSpec(mainFilters.title, v);
+                // controller.updateSpec(mainFilters.title, v);
                 controller.setCity(v);
               },
             );

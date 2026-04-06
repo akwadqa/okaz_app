@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -10,10 +11,14 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 class SubCategoryItem extends ConsumerWidget {
-  final String title;
+  final String? title;
   final String? image;
 
-  const SubCategoryItem({super.key, required this.title, this.image = '/8'});
+  const SubCategoryItem({
+    super.key,
+    this.title,
+    this.image,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,7 +27,14 @@ class SubCategoryItem extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        ref.read(selectedSubCategoryProvider.notifier).state = title;
+        if (title != null && (title?.trim().isNotEmpty ?? false)) {
+          ref.read(selectedSubCategoryProvider.notifier).state = title!;
+        } else {
+          ref.read(selectedSubCategoryProvider.notifier).state = '';
+          // ref.read(filterControllerProvider.notifier)
+          //   ..clearTempAttributes()
+          //   ..applyTempAttributes();
+        }
         context.push(AppRoutes.productsScreen);
       },
       child: Container(
@@ -31,6 +43,7 @@ class SubCategoryItem extends ConsumerWidget {
         width: width / 4.5,
         // height: width / 3.5,
         height: width / 4.5,
+        padding: EdgeInsets.all(4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: title == category ? AppColors.primary : AppColors.white,
@@ -53,7 +66,11 @@ class SubCategoryItem extends ConsumerWidget {
               ),
             FittedBox(
               child: Text(
-                title,
+                title == null
+                    ? 'title'
+                    : (title?.trim().isNotEmpty ?? false)
+                        ? title!
+                        : 'product_details_view_all'.tr(),
                 textAlign: TextAlign.center,
                 style: AppTextStyle.rubikMedium14.copyWith(
                   color:

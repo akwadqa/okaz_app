@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +6,8 @@ import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/home/presentation/controller/home_controller.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -179,12 +182,17 @@ class _CategorySection extends StatelessWidget {
                 color: AppColors.primaryOpacity,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: const Icon(Icons.category,
-                  size: 20, color: AppColors.primary),
+              child: CachedNetworkImage(
+                  width: 20,
+                  imageUrl: ServicesUrls.imageUrl + (category.icon ?? '')),
+              //   child: const Icon(Icons.category,
+              //       size: 20, color: AppColors.primary),
             ),
             const SizedBox(width: 8),
             Text(
-              categoryName,
+              // categoryName,
+              translate(category.categoryNameAr ?? '',
+                  category.categoryName ?? '', context),
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -224,7 +232,9 @@ class _CategorySection extends StatelessWidget {
                       onSubCategorySelect(v);
                     },
                   ),
-                  Expanded(child: Text(name)),
+                  Expanded(
+                      child: Text(translate(sub.categoryNameAr ?? '',
+                          sub.categoryName ?? '', context))),
                 ],
               ),
             );

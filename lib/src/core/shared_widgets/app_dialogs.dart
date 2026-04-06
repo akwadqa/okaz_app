@@ -769,7 +769,8 @@ void showReportDialog(
                           ),
                         ),
                       ),
-                      const Spacer(),
+                      SizedBox(height: 12),
+                      // const Spacer(),
                       Consumer(builder: (context, ref, _) {
                         ref.listen(
                             productControllerProvider

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
@@ -13,9 +14,7 @@ class SubCategoriesSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items =
-        ref.watch(mainSubcategory).mainAttributes?.first.values?.split(',') ??
-            [];
+    final items = ref.watch(mainSubcategory).mainAttributes?.first.values ?? [];
     return Column(
       spacing: 20,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,16 +27,20 @@ class SubCategoriesSection extends ConsumerWidget {
           ),
         ),
         Wrap(
-          // spacing: 10,
-          // runSpacing: 10,
-          spacing: 25,
-          runSpacing: 15,
-          alignment: WrapAlignment.start,
-          runAlignment: WrapAlignment.start,
-          crossAxisAlignment: WrapCrossAlignment.start,
-          children:
-              items.map((title) => SubCategoryItem(title: title)).toList(),
-        ),
+            // spacing: 10,
+            // runSpacing: 10,
+            spacing: 25,
+            runSpacing: 15,
+            alignment: WrapAlignment.start,
+            runAlignment: WrapAlignment.start,
+            crossAxisAlignment: WrapCrossAlignment.start,
+            children: [
+              SubCategoryItem(title: '',),
+              ...items.map((item) => SubCategoryItem(
+                    title: item.title ?? '',
+                    image: item.image,
+                  )),
+            ]),
       ],
     ).symmetricPadding(horizontal: 22);
   }
