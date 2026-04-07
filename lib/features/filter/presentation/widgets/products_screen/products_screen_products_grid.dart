@@ -4,6 +4,8 @@ import 'package:okaz/features/filter/presentation/controller/filter_controller.d
 import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_product_item.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/domain/profile_item.dart';
+import 'package:okaz/features/search/presentation/controller/search_controller.dart';
+import 'package:okaz/features/search/presentation/screens/search_screen.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
@@ -20,34 +22,38 @@ class ProductsScreenProductsGrid extends ConsumerWidget {
     return controller.when(
         data: (data) {
           if (data?.isEmpty ?? true) {
-            return Center(
-              child: Assets.images.emptySearchIm.image(),
-            );
+            return SearchSceeenEmptyContent();
           }
-          return _buildPostsGrid(data!, ref);
+          return buildPostsGrid(data!, ref, false);
         },
         error: (e, st) => AppErrorWidget(),
         loading: () => AppLoader());
   }
+}
 
-  Widget _buildPostsGrid(List<ProductDetailsModel> posts, WidgetRef ref) {
-    return AppPaginationWidget(
-      onLoading: (page) =>
-          ref.read(filterControllerProvider.notifier).onLoadMoreProducts(),
-      child: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 22),
-        itemCount: posts.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-          childAspectRatio: 0.45,
-        ),
-        itemBuilder: (context, index) =>
-            ProductsScreenProductItem(item: posts[index]),
+Widget buildPostsGrid(
+    List<ProductDetailsModel> posts, WidgetRef ref, bool isFromSearch) {
+  return AppPaginationWidget(
+    onLoading: (page) {
+      if (isFromSearch) {
+        return ref.read(searchControllerProvider.notifier).loadNextPage();
+      } else {
+        return ref.read(filterControllerProvider.notifier).onLoadMoreProducts();
+      }
+    },
+    child: GridView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 22),
+      itemCount: posts.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        childAspectRatio: 0.45,
       ),
-    );
-  }
+      itemBuilder: (context, index) =>
+          ProductsScreenProductItem(item: posts[index]),
+    ),
+  );
 }
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';

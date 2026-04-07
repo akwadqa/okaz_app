@@ -28,9 +28,7 @@ class SearchController extends _$SearchController {
     try {
       if (showLoading) state = const AsyncLoading();
 
-      final request = GetPostsRequest(
-        titleAr: search,
-      );
+      final request = GetPostsRequest(title: search);
 
       final repo = ref.read(filterRepositoryProvider);
       final response = await repo.getProductsByFilter(request, page);
@@ -44,7 +42,7 @@ class SearchController extends _$SearchController {
         _items.addAll(response.data!);
       }
 
-      state = AsyncData(_items);
+      state = AsyncData([..._items]);
       return _items;
     } catch (e, st) {
       state = AsyncError(e, st);
