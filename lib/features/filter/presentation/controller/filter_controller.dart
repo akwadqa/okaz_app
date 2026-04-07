@@ -99,7 +99,7 @@ class FilterController extends _$FilterController {
       final postType = ref.read(searchTypeProvider) == 0 ? 'Sale' : 'Wanted';
 
       final request = GetPostsRequest(
-          titleAr: search,
+          title: search,
           postType: postType,
           attributes: attributes,
           subcategories: [subCategory.name ?? '']);

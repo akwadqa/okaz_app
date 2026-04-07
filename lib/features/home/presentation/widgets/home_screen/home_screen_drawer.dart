@@ -147,7 +147,7 @@ class _DrawerCategoryListState extends State<_DrawerCategoryList>
     required bool isExpanded,
     required VoidCallback onTap,
   }) {
-    final isRtl = Directionality.of(context) == ui.TextDirection.rtl;
+    // final isRtl = Directionality.of(context) == ui.TextDirection.rtl;
 
     return Material(
       color: AppColors.white,

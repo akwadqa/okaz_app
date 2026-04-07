@@ -18,8 +18,8 @@ mixin _$GetPostsRequest {
   List<RequestAttribute>? get attributes;
   @JsonKey(name: 'post_type')
   String? get postType;
-  @JsonKey(name: 'title_ar')
-  String? get titleAr;
+  @JsonKey(name: 'title')
+  String? get title;
   @JsonKey(name: 'min_price')
   int? get minPrice;
 
@@ -45,7 +45,7 @@ mixin _$GetPostsRequest {
                 .equals(other.attributes, attributes) &&
             (identical(other.postType, postType) ||
                 other.postType == postType) &&
-            (identical(other.titleAr, titleAr) || other.titleAr == titleAr) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.minPrice, minPrice) ||
                 other.minPrice == minPrice));
   }
@@ -57,12 +57,12 @@ mixin _$GetPostsRequest {
       const DeepCollectionEquality().hash(subcategories),
       const DeepCollectionEquality().hash(attributes),
       postType,
-      titleAr,
+      title,
       minPrice);
 
   @override
   String toString() {
-    return 'GetPostsRequest(subcategories: $subcategories, attributes: $attributes, postType: $postType, titleAr: $titleAr, minPrice: $minPrice)';
+    return 'GetPostsRequest(subcategories: $subcategories, attributes: $attributes, postType: $postType, title: $title, minPrice: $minPrice)';
   }
 }
 
@@ -76,7 +76,7 @@ abstract mixin class $GetPostsRequestCopyWith<$Res> {
       {List<String>? subcategories,
       List<RequestAttribute>? attributes,
       @JsonKey(name: 'post_type') String? postType,
-      @JsonKey(name: 'title_ar') String? titleAr,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'min_price') int? minPrice});
 }
 
@@ -96,7 +96,7 @@ class _$GetPostsRequestCopyWithImpl<$Res>
     Object? subcategories = freezed,
     Object? attributes = freezed,
     Object? postType = freezed,
-    Object? titleAr = freezed,
+    Object? title = freezed,
     Object? minPrice = freezed,
   }) {
     return _then(_self.copyWith(
@@ -112,9 +112,9 @@ class _$GetPostsRequestCopyWithImpl<$Res>
           ? _self.postType
           : postType // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleAr: freezed == titleAr
-          ? _self.titleAr
-          : titleAr // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       minPrice: freezed == minPrice
           ? _self.minPrice
@@ -221,7 +221,7 @@ extension GetPostsRequestPatterns on GetPostsRequest {
             List<String>? subcategories,
             List<RequestAttribute>? attributes,
             @JsonKey(name: 'post_type') String? postType,
-            @JsonKey(name: 'title_ar') String? titleAr,
+            @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'min_price') int? minPrice)?
         $default, {
     required TResult orElse(),
@@ -230,7 +230,7 @@ extension GetPostsRequestPatterns on GetPostsRequest {
     switch (_that) {
       case _GetPostsRequest() when $default != null:
         return $default(_that.subcategories, _that.attributes, _that.postType,
-            _that.titleAr, _that.minPrice);
+            _that.title, _that.minPrice);
       case _:
         return orElse();
     }
@@ -255,7 +255,7 @@ extension GetPostsRequestPatterns on GetPostsRequest {
             List<String>? subcategories,
             List<RequestAttribute>? attributes,
             @JsonKey(name: 'post_type') String? postType,
-            @JsonKey(name: 'title_ar') String? titleAr,
+            @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'min_price') int? minPrice)
         $default,
   ) {
@@ -263,7 +263,7 @@ extension GetPostsRequestPatterns on GetPostsRequest {
     switch (_that) {
       case _GetPostsRequest():
         return $default(_that.subcategories, _that.attributes, _that.postType,
-            _that.titleAr, _that.minPrice);
+            _that.title, _that.minPrice);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -287,7 +287,7 @@ extension GetPostsRequestPatterns on GetPostsRequest {
             List<String>? subcategories,
             List<RequestAttribute>? attributes,
             @JsonKey(name: 'post_type') String? postType,
-            @JsonKey(name: 'title_ar') String? titleAr,
+            @JsonKey(name: 'title') String? title,
             @JsonKey(name: 'min_price') int? minPrice)?
         $default,
   ) {
@@ -295,7 +295,7 @@ extension GetPostsRequestPatterns on GetPostsRequest {
     switch (_that) {
       case _GetPostsRequest() when $default != null:
         return $default(_that.subcategories, _that.attributes, _that.postType,
-            _that.titleAr, _that.minPrice);
+            _that.title, _that.minPrice);
       case _:
         return null;
     }
@@ -309,7 +309,7 @@ class _GetPostsRequest implements GetPostsRequest {
       {final List<String>? subcategories,
       final List<RequestAttribute>? attributes,
       @JsonKey(name: 'post_type') this.postType,
-      @JsonKey(name: 'title_ar') this.titleAr,
+      @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'min_price') this.minPrice})
       : _subcategories = subcategories,
         _attributes = attributes;
@@ -340,8 +340,8 @@ class _GetPostsRequest implements GetPostsRequest {
   @JsonKey(name: 'post_type')
   final String? postType;
   @override
-  @JsonKey(name: 'title_ar')
-  final String? titleAr;
+  @JsonKey(name: 'title')
+  final String? title;
   @override
   @JsonKey(name: 'min_price')
   final int? minPrice;
@@ -372,7 +372,7 @@ class _GetPostsRequest implements GetPostsRequest {
                 .equals(other._attributes, _attributes) &&
             (identical(other.postType, postType) ||
                 other.postType == postType) &&
-            (identical(other.titleAr, titleAr) || other.titleAr == titleAr) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.minPrice, minPrice) ||
                 other.minPrice == minPrice));
   }
@@ -384,12 +384,12 @@ class _GetPostsRequest implements GetPostsRequest {
       const DeepCollectionEquality().hash(_subcategories),
       const DeepCollectionEquality().hash(_attributes),
       postType,
-      titleAr,
+      title,
       minPrice);
 
   @override
   String toString() {
-    return 'GetPostsRequest(subcategories: $subcategories, attributes: $attributes, postType: $postType, titleAr: $titleAr, minPrice: $minPrice)';
+    return 'GetPostsRequest(subcategories: $subcategories, attributes: $attributes, postType: $postType, title: $title, minPrice: $minPrice)';
   }
 }
 
@@ -405,7 +405,7 @@ abstract mixin class _$GetPostsRequestCopyWith<$Res>
       {List<String>? subcategories,
       List<RequestAttribute>? attributes,
       @JsonKey(name: 'post_type') String? postType,
-      @JsonKey(name: 'title_ar') String? titleAr,
+      @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'min_price') int? minPrice});
 }
 
@@ -425,7 +425,7 @@ class __$GetPostsRequestCopyWithImpl<$Res>
     Object? subcategories = freezed,
     Object? attributes = freezed,
     Object? postType = freezed,
-    Object? titleAr = freezed,
+    Object? title = freezed,
     Object? minPrice = freezed,
   }) {
     return _then(_GetPostsRequest(
@@ -441,9 +441,9 @@ class __$GetPostsRequestCopyWithImpl<$Res>
           ? _self.postType
           : postType // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleAr: freezed == titleAr
-          ? _self.titleAr
-          : titleAr // ignore: cast_nullable_to_non_nullable
+      title: freezed == title
+          ? _self.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
       minPrice: freezed == minPrice
           ? _self.minPrice

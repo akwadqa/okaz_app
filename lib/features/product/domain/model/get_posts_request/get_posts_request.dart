@@ -9,7 +9,7 @@ abstract class GetPostsRequest with _$GetPostsRequest {
     List<String>? subcategories,
     List<RequestAttribute>? attributes,
     @JsonKey(name: 'post_type') String? postType,
-    @JsonKey(name: 'title_ar') String? titleAr,
+    @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'min_price') int? minPrice,
   }) = _GetPostsRequest;
 

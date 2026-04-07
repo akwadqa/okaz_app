@@ -15,7 +15,7 @@ _GetPostsRequest _$GetPostsRequestFromJson(Map<String, dynamic> json) =>
           ?.map((e) => RequestAttribute.fromJson(e as Map<String, dynamic>))
           .toList(),
       postType: json['post_type'] as String?,
-      titleAr: json['title_ar'] as String?,
+      title: json['title'] as String?,
       minPrice: (json['min_price'] as num?)?.toInt(),
     );
 
@@ -24,7 +24,7 @@ Map<String, dynamic> _$GetPostsRequestToJson(_GetPostsRequest instance) =>
       'subcategories': instance.subcategories,
       'attributes': instance.attributes,
       'post_type': instance.postType,
-      'title_ar': instance.titleAr,
+      'title': instance.title,
       'min_price': instance.minPrice,
     };
 
