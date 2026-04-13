@@ -44,7 +44,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
           context.push(AppRoutes.verificationScreen,
               extra: phoneController.text);
         } else {
-          context.go(AppRoutes.signUpScreen);
+          context.go(AppRoutes.signUpScreen,extra: phoneController.text);
         }
         // _showDialog();
         // });

@@ -4,6 +4,7 @@ import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_contro
 import 'package:okaz/features/auth/verification/data/repositories/verify_otp_repository.dart';
 import 'package:okaz/features/auth/verification/presentation/controller/verify_otp_state.dart';
 import 'package:okaz/src/application/data/user_information/user_information.dart';
+import 'package:okaz/src/core/notifications/services/notification_service.dart';
 import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -32,12 +33,12 @@ class VerifyOtpController extends _$VerifyOtpController {
           .read(localStorageServiceProvider)
           .saveToken(response.data!.token);
       await ref.read(localStorageServiceProvider).saveUserInfo(info);
-      final token = await ref.read(localStorageServiceProvider).getToken();
-      Dev.logLine(token);
+      // final token = await ref.read(localStorageServiceProvider).getToken();
+      // Dev.logLine(token);
       ref.read(signInControllerProvider.notifier).checkPhoneFilled(false);
-      // await ref
-      //     .read(notificationsServiceProvider)
-      //     .sendDeviceToken(info.mobileNumber ?? "");
+      await ref
+          .read(notificationsServiceProvider)
+          .sendDeviceToken(info.mobileNumber ?? "");
       return state.value!.copyWith(verifyOtpResponseModel: response.data);
     });
   }

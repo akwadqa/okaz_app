@@ -238,7 +238,7 @@ class AddProductController extends _$AddProductController {
   // Step 4 – Price & Featured
   // --------------------------------------------------
 
-  void setPrice(double? value) {
+  void setPrice(int? value) {
     state = AsyncData(
       state.value!.copyWith(price: value),
     );

@@ -14,9 +14,11 @@ flutter_native_splash:
   # Android 12+
   # =======================
   android_12:
-    color: "#B8502E"
-    image: assets/images/splash_image.png
-    fullscreen: true
+    # color: "#B8502E"
+    color: "#ffffff"
+    # image: assets/images/splash_image.png
+    image: assets/images/img.png
+    # fullscreen: true
 
   # =======================
   # Platform overrides

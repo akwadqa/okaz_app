@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/profile/presentation/controller/my_profile_controller.dart';
 import 'package:okaz/features/settings/presentation/controller/settings_controller.dart';
+import 'package:okaz/features/settings/presentation/widgets/change_country_bottom_sheet.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
@@ -112,8 +113,19 @@ class SettingsScreen extends ConsumerWidget {
                     // delete user logic
                     ref
                         .read(settingsControllerProvider.notifier)
-                        .deleteAccount();
+                        .deleteAccount()
+                        .then((_) => context.go(AppRoutes.signInScreen));
                   },
+                );
+              },
+            ),
+            SettingsItemCard(
+              title: 'change_country',
+              icon: Assets.icons.changeCuntryIc,
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (_) => ChangeCountryBottomSheet(),
                 );
               },
             ),

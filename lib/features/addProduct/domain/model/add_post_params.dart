@@ -16,8 +16,8 @@ class AddPostParams {
   final String attributes; // JSON string
   final List<File> images;
   final String condition;
-final int isFeatured;
-final LatLng latLng;
+  final int isFeatured;
+  final LatLng latLng;
   AddPostParams({
     required this.title,
     required this.description,
@@ -27,7 +27,11 @@ final LatLng latLng;
     required this.price,
     required this.attributes,
     required this.images,
-    required this.condition, required this.isFeatured, required this.latLng, required this.titleAr, required this.descriptionAr,
+    required this.condition,
+    required this.isFeatured,
+    required this.latLng,
+    required this.titleAr,
+    required this.descriptionAr,
   });
 
   AddPostParams copyWith({
@@ -65,33 +69,31 @@ final LatLng latLng;
   @override
   bool operator ==(covariant AddPostParams other) {
     if (identical(this, other)) return true;
-  
-    return 
-      other.title == title &&
-      other.description == description &&
-      other.subcategory == subcategory &&
-      other.postType == postType &&
-      other.city == city &&
-      other.price == price &&
-      other.attributes == attributes &&
-      listEquals(other.images, images) &&
-     
-      other.condition == condition &&
-      other.isFeatured == isFeatured;
+
+    return other.title == title &&
+        other.description == description &&
+        other.subcategory == subcategory &&
+        other.postType == postType &&
+        other.city == city &&
+        other.price == price &&
+        other.attributes == attributes &&
+        listEquals(other.images, images) &&
+        other.condition == condition &&
+        other.isFeatured == isFeatured;
   }
 
   @override
   int get hashCode {
     return title.hashCode ^
-      description.hashCode ^
-      subcategory.hashCode ^
-      postType.hashCode ^
-      city.hashCode ^
-      price.hashCode ^
-      attributes.hashCode ^
-      images.hashCode ^
-      condition.hashCode ^
-      isFeatured.hashCode;
+        description.hashCode ^
+        subcategory.hashCode ^
+        postType.hashCode ^
+        city.hashCode ^
+        price.hashCode ^
+        attributes.hashCode ^
+        images.hashCode ^
+        condition.hashCode ^
+        isFeatured.hashCode;
   }
 
   @override

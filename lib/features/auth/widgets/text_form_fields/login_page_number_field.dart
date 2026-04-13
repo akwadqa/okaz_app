@@ -79,7 +79,7 @@ class _LoginPageNumberFieldState extends ConsumerState<LoginPageNumberField> {
               _updateFullPhone(newValue?.countryCode ?? "");
             },
             onChanged: widget.onChange,
-  
+
             onCountryChanged: (country) {
               _updateFullPhone('+${country.dialCode}');
             },

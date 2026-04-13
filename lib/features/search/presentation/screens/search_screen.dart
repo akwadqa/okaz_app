@@ -79,18 +79,20 @@ class SearchSceeenEmptyContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        80.verticalSpace,
-        Assets.images.noSearchImage.image(),
-        40.verticalSpace,
-        Text(
-          'no_result_search'.tr(),
-          textAlign: TextAlign.center,
-          style: AppTextStyle.rubikBold22.copyWith(color: AppColors.black),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          80.verticalSpace,
+          Assets.images.noSearchImage.image(),
+          40.verticalSpace,
+          Text(
+            'no_result_search'.tr(),
+            textAlign: TextAlign.center,
+            style: AppTextStyle.rubikBold22.copyWith(color: AppColors.black),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -100,18 +102,20 @@ class SearchSceeenStartSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        80.verticalSpace,
-        Assets.images.noSearchImage.image(),
-        40.verticalSpace,
-        Text(
-          'search_for_product'.tr(),
-          textAlign: TextAlign.center,
-          style: AppTextStyle.rubikBold22.copyWith(color: AppColors.black),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          80.verticalSpace,
+          Assets.images.noSearchImage.image(),
+          40.verticalSpace,
+          Text(
+            'search_for_product'.tr(),
+            textAlign: TextAlign.center,
+            style: AppTextStyle.rubikBold22.copyWith(color: AppColors.black),
+          ),
+        ],
+      ),
     );
   }
 }

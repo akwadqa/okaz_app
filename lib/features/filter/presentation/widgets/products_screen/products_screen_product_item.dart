@@ -70,6 +70,27 @@ class ProductsScreenProductItem extends ConsumerWidget {
                         toProduct: true,
                       ),
                     ),
+                    if (item.isFeatured == 1)
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        child: Container(
+                          padding: EdgeInsetsDirectional.fromSTEB(13, 9, 18, 9),
+                          decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            ),
+                          ),
+                          child: Text(
+                            'distinctive'.tr(),
+                            style: AppTextStyle.rubikRegular10.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
@@ -93,10 +114,9 @@ class ProductsScreenProductItem extends ConsumerWidget {
                     Text(
                       item?.title ?? 'iphone'.tr(),
                       maxLines: 3,
-                     overflow: TextOverflow.ellipsis , 
+                      overflow: TextOverflow.ellipsis,
                       style: AppTextStyle.rubikSemiBold16.copyWith(
                         color: AppColors.textDart,
-                        
                       ),
                     ),
                     Text(

@@ -94,7 +94,7 @@ class StepReviewView extends ConsumerWidget {
           keyboardType: TextInputType.number,
           suffixText: context.tr('currency_qr'),
           value: state.price?.toString(),
-          onChanged: (v) => controller.setPrice(double.tryParse(v)),
+          onChanged: (v) => controller.setPrice(int.tryParse(v)),
         ),
 
         // const SizedBox(height: 24),

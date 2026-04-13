@@ -16,18 +16,19 @@ import '../../domain/model/signUp_params.dart';
 import 'create_account_field.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+  const SignUpForm({super.key, required this.phoneNumber});
+  final String phoneNumber;
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  String? _phoneNumber;
+  // String? _phoneNumber;
   String? selectedDate;
 
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController phoneController = TextEditingController();
+  // final TextEditingController phoneController = TextEditingController();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   @override
@@ -41,8 +42,8 @@ class _SignUpFormState extends State<SignUpForm> {
         children: [
           1.verticalSpace,
           AppTextFormField(
-            // hint: 'firstName'.tr(),
-            hint: 'mohamad',
+            hint: 'first_name'.tr(),
+            // hint: 'mohamad',
             label: 'first_name'.tr(),
             controller: firstNameController,
             isRequired: true,
@@ -50,8 +51,8 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           1.verticalSpace,
           AppTextFormField(
-            // hint: 'firstName'.tr(),
-            hint: 'kilani',
+            hint: 'last_name'.tr(),
+            // hint: 'kilani',
             label: 'last_name'.tr(),
             controller: lastNameController,
             isRequired: true,
@@ -75,13 +76,14 @@ class _SignUpFormState extends State<SignUpForm> {
           //     );
           //   },
           // ),
-          LoginPageNumberField(
-            phoneController,
-            onChange: (phone) {
-              phoneController.setText(phone?.number ?? "");
-              setState(() {});
-            },
-          ),
+          // LoginPageNumberField(
+          //   phoneController,
+          //   onChange: (phone) {
+          //     phoneController.setText(phone?.number ?? "");
+          //     setState(() {});
+          //   },
+          // ),
+          
           Row(
             spacing: 10,
             children: [
@@ -115,7 +117,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 // context.maybePop().then((_) {
                 debugPrint("Success check");
                 context.push(AppRoutes.verificationScreen,
-                    extra: phoneController.text);
+                    extra: widget.phoneNumber);
                 // context
                 //     .pushRoute(VerificationRoute(inputedPhone: _phoneNumber!));
                 // _showDialog();
@@ -166,7 +168,7 @@ class _SignUpFormState extends State<SignUpForm> {
           SignupParams(
             firstName: firstNameController.text,
             lastName: lastNameController.text,
-            mobileNumber: phoneController.text,
+            mobileNumber: widget.phoneNumber,
           ),
         ); // }
   }

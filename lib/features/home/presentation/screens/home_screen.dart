@@ -34,6 +34,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         title: Text('Okaz Market'.tr()),
         backgroundColor: AppColors.background,
+        surfaceTintColor: Colors.transparent,
       ),
       body: _HomeScreenContent(),
       // bottomNavigationBar: BottomNavigationBarView(),

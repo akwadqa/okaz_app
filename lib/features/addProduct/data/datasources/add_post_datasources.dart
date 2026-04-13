@@ -19,6 +19,7 @@ class AddPostDatasources {
       final formData = FormData.fromMap({
         "title": params.title,
         "title_ar": params.titleAr,
+        "is_featured" : params.isFeatured,
         "description": params.description,
         "description_ar": params.descriptionAr,
         "subcategory": params.subcategory,

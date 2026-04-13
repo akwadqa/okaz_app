@@ -49,6 +49,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/car_ic.svg
   SvgGenImage get carIc => const SvgGenImage('assets/icons/car_ic.svg');
 
+  /// File path: assets/icons/change_cuntry_ic.svg
+  SvgGenImage get changeCuntryIc =>
+      const SvgGenImage('assets/icons/change_cuntry_ic.svg');
+
   /// File path: assets/icons/chat_ic.svg
   SvgGenImage get chatIc => const SvgGenImage('assets/icons/chat_ic.svg');
 
@@ -272,6 +276,7 @@ class $AssetsIconsGen {
         bnbSettingsIc,
         callIc,
         carIc,
+        changeCuntryIc,
         chatIc,
         commentsDarkIc,
         confirmGuestIc,
@@ -376,6 +381,9 @@ class $AssetsImagesGen {
   AssetGenImage get imErrorScreen =>
       const AssetGenImage('assets/images/im_error_screen.png');
 
+  /// File path: assets/images/img.png
+  AssetGenImage get img => const AssetGenImage('assets/images/img.png');
+
   /// File path: assets/images/invitation_create_im.png
   AssetGenImage get invitationCreateIm =>
       const AssetGenImage('assets/images/invitation_create_im.png');
@@ -428,6 +436,10 @@ class $AssetsImagesGen {
   AssetGenImage get splashImage =>
       const AssetGenImage('assets/images/splash_image.png');
 
+  /// File path: assets/images/splash_image1.png
+  AssetGenImage get splashImage1 =>
+      const AssetGenImage('assets/images/splash_image1.png');
+
   /// File path: assets/images/success_image_added.png
   AssetGenImage get successImageAdded =>
       const AssetGenImage('assets/images/success_image_added.png');
@@ -460,6 +472,7 @@ class $AssetsImagesGen {
         emptyNotificationIm,
         emptySearchIm,
         imErrorScreen,
+        img,
         invitationCreateIm,
         inviteTypeImage,
         iponeImage,
@@ -473,6 +486,7 @@ class $AssetsImagesGen {
         qrTemplateImage,
         splashBackIm,
         splashImage,
+        splashImage1,
         successImageAdded,
         template1Image,
         template2Image,

@@ -49,9 +49,9 @@ class NotificationsService {
 
       debugPrint('APNS Token ready: $apnsToken');
     }
-      await subscribeFCMTopics();
+       subscribeFCMTopics();
 
-    await _initializeLocalNotifications();
+     _initializeLocalNotifications();
     debugPrint("FCMConfig.instance.init3");
     debugPrint("FCMCTOKEN =>${await myFcmToken()}");
 

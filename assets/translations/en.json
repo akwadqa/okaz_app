@@ -18,7 +18,7 @@
     "continue_login": "Login",
     "continue_as_guest": "Continue as guest",
     "enter_otp_title": "Enter the code sent to your phone",
-    "otp_sent_message": "A verification code has been sent via SMS to your phone number",
+    "otp_sent_message": "A verification code has been sent via WhatsApp to your phone number",
     "resend_otp": "Resend verification code",
     "privacy_agreement": "By pressing login, you agree to the Privacy Policy",
     "create_account": "Create account",
@@ -231,6 +231,7 @@
     "lusail": "Lusail",
     "madinat_ash_shamal": "Madinat ash Shamal",
     "umm_salal": "Umm Salal",
-    "al_daayen": "Al Daayen"
+    "al_daayen": "Al Daayen",
+    "change_country" : "Change Country"
 
 }

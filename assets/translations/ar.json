@@ -25,7 +25,7 @@
     "continue_login": "تسجيل الدخول",
     "continue_as_guest": "استمرار كضيف",
     "enter_otp_title": "أدخل الرمز المرسل إلى هاتفك",
-    "otp_sent_message": "تم إرسال رمز التحقق برسالة نصية إلى رقم جوالك",
+    "otp_sent_message": "تم إرسال رمز التحقق برسالة وتساب إلى رقم جوالك",
     "resend_otp": "إعادة إرسال رمز التحقق",
     "privacy_agreement": "بالضغط على تسجيل الدخول فإنك توافق على سياسة الخصوصية",
     "create_account": "إنشاء حساب",
@@ -231,5 +231,6 @@
     "lusail": "لوسيل",
     "madinat_ash_shamal": "مدينة الشمال",
     "umm_salal": "أم صلال",
-    "al_daayen": "الظعاين"
+    "al_daayen": "الظعاين",
+    "change_country" : "تغيير البلد"
 }

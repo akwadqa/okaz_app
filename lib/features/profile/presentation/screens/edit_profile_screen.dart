@@ -107,7 +107,7 @@ class _EditProfileScreenContentState
           24.verticalSpace,
           AppTextFormField(
             // hint: 'firstName'.tr(),
-            hint: 'mohamad',
+            hint: 'first_name'.tr(),
             label: 'first_name'.tr(),
             controller: firstNameController,
 
@@ -117,7 +117,7 @@ class _EditProfileScreenContentState
           24.verticalSpace,
           AppTextFormField(
             // hint: 'firstName'.tr(),
-            hint: 'kilani',
+            hint: 'last_name'.tr(),
             label: 'last_name'.tr(),
             controller: lastNameController,
             isRequired: true,

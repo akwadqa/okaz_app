@@ -7,7 +7,8 @@ import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import '../widgets/signUp_footer.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  const SignupScreen({super.key, required this.phoneNumber});
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +16,14 @@ class SignupScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       resizeToAvoidBottomInset: false,
 
-      body: AuthScreen(child: _SignupContent()),
+      body: AuthScreen(child: _SignupContent(phoneNumber: phoneNumber,)),
     );
   }
 }
 
 class _SignupContent extends StatelessWidget {
-  const _SignupContent();
+  const _SignupContent({required this.phoneNumber});
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,10 @@ class _SignupContent extends StatelessWidget {
         children: [
 
           SignupHeader(),
-          SignUpForm(),
+          SignUpForm(phoneNumber:phoneNumber,),
           SignUpFooter(),
         ],
       ).symmetricPadding(vertical: 20,horizontal: 20),
-    );
+    ).onlyPadding(bottom: MediaQuery.of(context).viewInsets.bottom);
   }
 }

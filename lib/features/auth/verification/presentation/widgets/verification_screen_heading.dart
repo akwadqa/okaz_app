@@ -24,7 +24,7 @@ class VerificationScreenHeading extends StatelessWidget {
               ),
         ),
         Text(
-          '${'otp_sent_message'.tr()} ${phone.replaceRange(3, null, '********')}',
+          '${'otp_sent_message'.tr()} ${phone.replaceRange(0, phone.length-3, '********')}',
           textAlign: TextAlign.center,
           style: AppTextStyle.outfitRegular16,
         ),

@@ -27,7 +27,7 @@ final List<SubcategoryAttributeModel> attributes;
   final String? descAr;
   final String? titleEn;
   final String? descEn;
-  final double? price;
+  final int? price;
   final bool isFeatured;
   final LatLng? latLng;
 
@@ -77,7 +77,7 @@ final List<SubcategoryAttributeModel> attributes;
     String? descAr,
     String? titleEn,
     String? descEn,
-    double? price,
+    int? price,
     bool? isFeatured,
     LatLng? latLng,
   }) {

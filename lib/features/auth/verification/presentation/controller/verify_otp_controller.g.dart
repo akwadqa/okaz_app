@@ -34,7 +34,7 @@ final class VerifyOtpControllerProvider
 }
 
 String _$verifyOtpControllerHash() =>
-    r'adc888d102ac917e09976480fcf5852eccf16953';
+    r'fa98cd16ede9fc088eecfaa6a54085a8f6f0c06b';
 
 abstract class _$VerifyOtpController extends $AsyncNotifier<VerifyOtpState> {
   FutureOr<VerifyOtpState> build();

@@ -542,7 +542,7 @@ Future<void> showConfirmationDialog({
 Future<void> showErrorDialog(BuildContext context, String message) {
   return showCustomDialog(
     context: context,
-    title: Text(message),
+    title: Text(message , textAlign: TextAlign.center,),
     icon: Icon(Icons.error, color: AppColors.darkRed, size: 50),
   );
 }
