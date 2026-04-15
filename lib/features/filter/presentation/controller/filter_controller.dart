@@ -9,6 +9,7 @@ import 'package:okaz/features/filter/presentation/controller/sub_category_contro
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_request.dart';
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -53,8 +54,10 @@ class FilterController extends _$FilterController {
         state.value!.copyWith(subCategoryAttributes: AsyncLoading()),
       );
       final repo = ref.read(addPostRepositoriesProvider);
+      final country =
+          ref.read(localStorageServiceProvider).userInfo.country ?? '';
       final response = await repo.getSubCategoryList(
-          subCategoryId: subCategory.name ?? 'id');
+          subCategoryId: subCategory.name ?? 'id', country: country);
 
       state = AsyncData(
         state.value!.copyWith(
@@ -113,7 +116,9 @@ class FilterController extends _$FilterController {
         );
       }
       final repo = ref.read(filterRepositoryProvider);
-      final response = await repo.getProductsByFilter(request, page);
+
+      final response = await repo.getProductsByFilter(request, page,
+          ref.read(localStorageServiceProvider).userInfo.country ?? '');
 
       currentPage = response.pagination?.currentPage ?? currentPage;
       totalPages = response.pagination?.totalPages ?? totalPages;

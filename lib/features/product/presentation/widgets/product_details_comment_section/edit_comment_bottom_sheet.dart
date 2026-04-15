@@ -8,6 +8,7 @@ import 'package:okaz/features/product/domain/model/product_details_model/product
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 import '../../../../../gen/assets.gen.dart';
@@ -72,9 +73,11 @@ class _EditCommentBottomSheetState
       commentControllerProvider.select((val) => val.value!.updateComment),
       (previous, next) {
         if (next is AsyncError) {
-          showErrorDialog(context, next.error.toString());
+          // showErrorDialog(context, next.error.toString());
+          AppToast.errorToast(next.error.toString());
         }
         if (next is AsyncData) {
+          AppToast.successToast('successfullyCompleted'.tr());
           ref
               .read(productControllerProvider.notifier)
               .getProductDetails(widget.postId);

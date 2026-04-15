@@ -19,10 +19,10 @@ class FilterRepository {
 
   FilterRepository(this._remoteDataSource);
 
-
   Future<ApiResponse<List<ProductDetailsModel>>> getProductsByFilter(
-      GetPostsRequest request , int page) async {
-    final response = await _remoteDataSource.getProductsByFilter(request,page);
+      GetPostsRequest request, int page, String country) async {
+    final response =
+        await _remoteDataSource.getProductsByFilter(request, page, country);
 
     if (response.status == 200) {
       return response;

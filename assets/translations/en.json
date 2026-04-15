@@ -207,8 +207,8 @@
     "update": "Update",
     "post_updated_successfully": "Your ad has been successfully updated!",
     "updates_saved": "The changes to the ad have been saved",
-    "first_name" : "First Name",
-    "last_name" : "Last Name",
+    "first_name": "First Name",
+    "last_name": "Last Name",
     "verificationExpired": "This code will expire in ",
     "seconds": "seconds",
     "riyadh": "Riyadh",
@@ -232,6 +232,9 @@
     "madinat_ash_shamal": "Madinat ash Shamal",
     "umm_salal": "Umm Salal",
     "al_daayen": "Al Daayen",
-    "change_country" : "Change Country"
-
+    "change_country": "Change Country",
+    "successfullyCompleted": "Successfully completed",
+    "saudi_arabia": "Saudi Arabia",
+    "qatar": "Qatar",
+    "change_country_alert": "Please change the country in the settings to your current country"
 }

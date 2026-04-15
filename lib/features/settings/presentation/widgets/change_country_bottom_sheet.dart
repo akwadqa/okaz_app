@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:okaz/features/addProduct/presentation/widgets/app_scaled_radio.dart';
+import 'package:okaz/features/auth/application/auth_service.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/core/localization/current_language.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/infrastructure/storage/hive/hive_boxes.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
@@ -20,18 +23,19 @@ class ChangeCountryBottomSheet extends ConsumerStatefulWidget {
 
 class _ChangeCountryBottomSheetState
     extends ConsumerState<ChangeCountryBottomSheet> {
+
   @override
   void initState() {
     super.initState();
-    Future(() {
-      // ref.read(currentLanguageProvider.notifier).getLanguage(context);
-    });
+
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
-    final currentLang = context.locale.languageCode;
-
+    String country =
+        ref.watch(localStorageServiceProvider).userInfo.country ?? '';
     return Container(
       padding: EdgeInsets.symmetric(vertical: 22),
       decoration: BoxDecoration(
@@ -65,14 +69,19 @@ class _ChangeCountryBottomSheetState
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AppScaledRadio<String>(
-                  value: 'en',
-                  groupValue: currentLang,
+                  value: 'Saudi Arabia',
+                  groupValue: country,
                   onChanged: (val) {
-                    
+                    ref
+                        .read(localStorageServiceProvider)
+                        .updateBasicUserInfo(country: val);
+                    setState(() {
+                      country = val;
+                    });
                   },
                 ),
                 Text(
-                  context.tr('english'),
+                  context.tr('saudi_arabia'),
                   style: AppTextStyle.rubikSemiBold18.copyWith(),
                 ),
               ],
@@ -87,14 +96,19 @@ class _ChangeCountryBottomSheetState
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 AppScaledRadio<String>(
-                  value: 'ar',
-                  groupValue: currentLang,
+                  value: 'Qatar',
+                  groupValue: country,
                   onChanged: (val) {
-                    
+                    ref
+                        .read(localStorageServiceProvider)
+                        .updateBasicUserInfo(country: val);
+                    setState(() {
+                      country = val;
+                    });
                   },
                 ),
                 Text(
-                  context.tr('arabic'),
+                  context.tr('qatar'),
                   style: AppTextStyle.rubikSemiBold18.copyWith(),
                 ),
               ],

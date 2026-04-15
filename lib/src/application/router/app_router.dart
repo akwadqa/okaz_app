@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -47,6 +48,7 @@ class AppRouter {
     return GoRouter(
       navigatorKey: rootKey,
       initialLocation: initialRoute,
+      debugLogDiagnostics: true,
 
       observers: [CustomNavigationObserver()],
       errorBuilder: (context, state) => const FallbackScreen(),
@@ -137,7 +139,9 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: SignupScreen(phoneNumber: state.extra as String,),
+              child: SignupScreen(
+                phoneNumber: state.extra as String,
+              ),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -242,7 +246,18 @@ class AppRouter {
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
-              child: SettingsScreen(),
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                child: KeyedSubtree(
+                    key: ValueKey(context.locale.languageCode),
+                    child: SettingsScreen()),
+              ),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
@@ -333,8 +348,11 @@ class AppRouter {
           name: AppRoutes.productDetailsScreen,
           parentNavigatorKey: rootKey,
           pageBuilder: (BuildContext context, GoRouterState state) {
+            final productId =
+                state.uri.queryParameters['id'] ?? state.extra as String?;
+
             return CustomTransitionPage(
-              child: ProductDetailsScreen(state.extra as String),
+              child: ProductDetailsScreen(productId ?? 'id'),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

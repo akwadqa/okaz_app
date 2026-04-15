@@ -7,6 +7,7 @@ import 'package:okaz/features/addProduct/data/repositories/add_post_repositories
 import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
 import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -40,9 +41,12 @@ class AddProductController extends _$AddProductController {
       try {
         Dev.logLine(current.subCategory);
         Dev.logLine(current.category);
+        final country =
+            ref.read(localStorageServiceProvider).userInfo.country ?? '';
         final attributes = await ref
             .read(addPostRepositoriesProvider)
-            .getSubCategoryList(subCategoryId: current.subCategory!.name!);
+            .getSubCategoryList(
+                subCategoryId: current.subCategory!.name!, country: country);
 
         state = AsyncData(
           current.copyWith(

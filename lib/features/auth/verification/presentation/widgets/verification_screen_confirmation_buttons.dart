@@ -8,6 +8,7 @@ import 'package:okaz/features/auth/verification/presentation/controller/verify_o
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
@@ -32,6 +33,7 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
             if (next is AsyncData && prev is AsyncLoading) {
               // context.maybePop().then((_) {
               debugPrint("Success check");
+              // AppToast.successToast('successfullyCompleted'.tr());
               context.pushReplacement(AppRoutes.mainScreen);
               // context
               //     .pushRoute(VerificationRoute(inputedPhone: _phoneNumber!));
@@ -39,7 +41,8 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
               // });
             }
             if (next is AsyncError && prev is AsyncLoading) {
-              showErrorDialog(context, next.error.toString());
+              // showErrorDialog(context, next.error.toString());
+              AppToast.errorToast(next.error.toString());
             }
           });
           final isVisible =
@@ -58,23 +61,25 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
           }
           return CustomButtonWidget(
             text: 'confirm'.tr(),
-            onTap:isVisible? () {
-              FocusScope.of(context).unfocus();
+            onTap: isVisible
+                ? () {
+                    FocusScope.of(context).unfocus();
 
-              // formKey.currentState!.save();
-              // print(otp);
-              final isValid = formKey.currentState!.validate();
-              debugPrint('FORM VALID: $isValid');
-              if (!isValid) return;
-              // formKey.currentState!.save();
-              ref
-                  .read(verifyOtpControllerProvider.notifier)
-                  .verifyOtp(phone, otp.text);
-            }:(){},
+                    // formKey.currentState!.save();
+                    // print(otp);
+                    final isValid = formKey.currentState!.validate();
+                    debugPrint('FORM VALID: $isValid');
+                    if (!isValid) return;
+                    // formKey.currentState!.save();
+                    ref
+                        .read(verifyOtpControllerProvider.notifier)
+                        .verifyOtp(phone, otp.text);
+                  }
+                : () {},
             isFiled: true,
             height: 55,
             width: double.infinity,
-            backgroundColor:isVisible? AppColors.primary:AppColors.gray,
+            backgroundColor: isVisible ? AppColors.primary : AppColors.gray,
             radius: 24,
           );
         }),

@@ -6,4 +6,5 @@ abstract class Keys {
   static const String ios = 'ios';
   static const String android = 'android';
   static const String all = 'all';
+  static const String country = 'all';
 }

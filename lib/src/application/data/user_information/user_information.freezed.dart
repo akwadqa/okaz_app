@@ -26,6 +26,8 @@ mixin _$UserInformation {
   String? get email;
   @HiveField(4)
   String? get image;
+  @HiveField(5)
+  String? get country;
 
   /// Create a copy of UserInformation
   /// with the given fields replaced by the non-null parameter values.
@@ -49,17 +51,18 @@ mixin _$UserInformation {
             (identical(other.mobileNumber, mobileNumber) ||
                 other.mobileNumber == mobileNumber) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, token, fullName, mobileNumber, email, image);
+  int get hashCode => Object.hash(
+      runtimeType, token, fullName, mobileNumber, email, image, country);
 
   @override
   String toString() {
-    return 'UserInformation(token: $token, fullName: $fullName, mobileNumber: $mobileNumber, email: $email, image: $image)';
+    return 'UserInformation(token: $token, fullName: $fullName, mobileNumber: $mobileNumber, email: $email, image: $image, country: $country)';
   }
 }
 
@@ -74,7 +77,8 @@ abstract mixin class $UserInformationCopyWith<$Res> {
       @HiveField(1) @JsonKey(name: "full_name") String fullName,
       @HiveField(2) @JsonKey(name: "mobile_no") String mobileNumber,
       @HiveField(3) String? email,
-      @HiveField(4) String? image});
+      @HiveField(4) String? image,
+      @HiveField(5) String? country});
 }
 
 /// @nodoc
@@ -95,6 +99,7 @@ class _$UserInformationCopyWithImpl<$Res>
     Object? mobileNumber = null,
     Object? email = freezed,
     Object? image = freezed,
+    Object? country = freezed,
   }) {
     return _then(_self.copyWith(
       token: null == token
@@ -116,6 +121,10 @@ class _$UserInformationCopyWithImpl<$Res>
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _self.country
+          : country // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -219,7 +228,8 @@ extension UserInformationPatterns on UserInformation {
             @HiveField(1) @JsonKey(name: "full_name") String fullName,
             @HiveField(2) @JsonKey(name: "mobile_no") String mobileNumber,
             @HiveField(3) String? email,
-            @HiveField(4) String? image)?
+            @HiveField(4) String? image,
+            @HiveField(5) String? country)?
         $default, {
     required TResult orElse(),
   }) {
@@ -227,7 +237,7 @@ extension UserInformationPatterns on UserInformation {
     switch (_that) {
       case _UserInformation() when $default != null:
         return $default(_that.token, _that.fullName, _that.mobileNumber,
-            _that.email, _that.image);
+            _that.email, _that.image, _that.country);
       case _:
         return orElse();
     }
@@ -253,14 +263,15 @@ extension UserInformationPatterns on UserInformation {
             @HiveField(1) @JsonKey(name: "full_name") String fullName,
             @HiveField(2) @JsonKey(name: "mobile_no") String mobileNumber,
             @HiveField(3) String? email,
-            @HiveField(4) String? image)
+            @HiveField(4) String? image,
+            @HiveField(5) String? country)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserInformation():
         return $default(_that.token, _that.fullName, _that.mobileNumber,
-            _that.email, _that.image);
+            _that.email, _that.image, _that.country);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -285,14 +296,15 @@ extension UserInformationPatterns on UserInformation {
             @HiveField(1) @JsonKey(name: "full_name") String fullName,
             @HiveField(2) @JsonKey(name: "mobile_no") String mobileNumber,
             @HiveField(3) String? email,
-            @HiveField(4) String? image)?
+            @HiveField(4) String? image,
+            @HiveField(5) String? country)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _UserInformation() when $default != null:
         return $default(_that.token, _that.fullName, _that.mobileNumber,
-            _that.email, _that.image);
+            _that.email, _that.image, _that.country);
       case _:
         return null;
     }
@@ -307,7 +319,8 @@ class _UserInformation implements UserInformation {
       @HiveField(1) @JsonKey(name: "full_name") required this.fullName,
       @HiveField(2) @JsonKey(name: "mobile_no") required this.mobileNumber,
       @HiveField(3) required this.email,
-      @HiveField(4) required this.image});
+      @HiveField(4) required this.image,
+      @HiveField(5) required this.country});
   factory _UserInformation.fromJson(Map<String, dynamic> json) =>
       _$UserInformationFromJson(json);
 
@@ -328,6 +341,9 @@ class _UserInformation implements UserInformation {
   @override
   @HiveField(4)
   final String? image;
+  @override
+  @HiveField(5)
+  final String? country;
 
   /// Create a copy of UserInformation
   /// with the given fields replaced by the non-null parameter values.
@@ -355,17 +371,18 @@ class _UserInformation implements UserInformation {
             (identical(other.mobileNumber, mobileNumber) ||
                 other.mobileNumber == mobileNumber) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.country, country) || other.country == country));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, token, fullName, mobileNumber, email, image);
+  int get hashCode => Object.hash(
+      runtimeType, token, fullName, mobileNumber, email, image, country);
 
   @override
   String toString() {
-    return 'UserInformation(token: $token, fullName: $fullName, mobileNumber: $mobileNumber, email: $email, image: $image)';
+    return 'UserInformation(token: $token, fullName: $fullName, mobileNumber: $mobileNumber, email: $email, image: $image, country: $country)';
   }
 }
 
@@ -382,7 +399,8 @@ abstract mixin class _$UserInformationCopyWith<$Res>
       @HiveField(1) @JsonKey(name: "full_name") String fullName,
       @HiveField(2) @JsonKey(name: "mobile_no") String mobileNumber,
       @HiveField(3) String? email,
-      @HiveField(4) String? image});
+      @HiveField(4) String? image,
+      @HiveField(5) String? country});
 }
 
 /// @nodoc
@@ -403,6 +421,7 @@ class __$UserInformationCopyWithImpl<$Res>
     Object? mobileNumber = null,
     Object? email = freezed,
     Object? image = freezed,
+    Object? country = freezed,
   }) {
     return _then(_UserInformation(
       token: null == token
@@ -424,6 +443,10 @@ class __$UserInformationCopyWithImpl<$Res>
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: freezed == country
+          ? _self.country
+          : country // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

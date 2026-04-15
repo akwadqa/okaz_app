@@ -22,11 +22,14 @@ class VerifyOtpController extends _$VerifyOtpController {
     state = await AsyncValue.guard(() async {
       final repo = ref.read(verifyOtpRepositoryProvider);
       final response = await repo.verifyOtp(phone, otp);
+      final country =
+          response.data!.mobileNo.startsWith('974') ? 'Qatar' : 'Saudi Arabia';
       final info = UserInformation(
           token: '',
           fullName: response.data!.fullName,
           email: response.data!.mobileNo,
           mobileNumber: response.data!.mobileNo,
+          country: country,
           image: response.data!.image);
 
       await ref

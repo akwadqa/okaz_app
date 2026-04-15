@@ -7,6 +7,7 @@ import 'package:okaz/features/auth/widgets/text_form_fields/login_page_number_fi
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
@@ -49,7 +50,8 @@ class _SignInFormState extends ConsumerState<SignInForm> {
         // _showDialog();
         // });
       } else if (next is AsyncError) {
-        showErrorDialog(context, next.error.toString());
+        // showErrorDialog(context, next.error.toString());
+        AppToast.errorToast(next.error.toString());
       }
     });
 

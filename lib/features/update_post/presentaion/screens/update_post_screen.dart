@@ -15,6 +15,7 @@ import 'package:okaz/features/update_post/presentaion/widgets/update_post_image_
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
 import 'package:okaz/src/core/shared_widgets/custom_app_bar.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
@@ -52,7 +53,8 @@ class _UpdatePostScreenContent extends ConsumerWidget {
     ref.listen(updatePostControllerProvider.select((val) => val.updatePostData),
         (prev, next) {
       if (next is AsyncError) {
-        showErrorDialog(context, next.error.toString());
+        // showErrorDialog(context, next.error.toString());
+        AppToast.errorToast(next.error.toString());
       }
       if (next is AsyncData) {
         showUpdatePostSuccessDialog(

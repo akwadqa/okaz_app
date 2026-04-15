@@ -44,11 +44,24 @@ class LocalStorageService {
     );
   }
 
+  Future<void> saveCountry(String country) async {
+    await _secureStorage.write(
+      key: Keys.country,
+      value: country,
+    );
+    Dev.logLine("COUNTRY $country");
+  }
+
+  Future<String?> getCountry() async {
+    final country = _secureStorage.read(key: Keys.country);
+    Dev.logLine("COUNTRY $country");
+    return country;
+  }
+
   Future<String?> getToken() async {
-    final token= await _secureStorage.read(key: Keys.securedToken);
+    final token = await _secureStorage.read(key: Keys.securedToken);
     Dev.logLine("TOKEN $token");
     return token;
-
   }
 
   Future<void> removeToken() async {
@@ -60,8 +73,7 @@ class LocalStorageService {
   // ============================
   // USER INFO (HIVE)
   // ============================
-  UserInformation get userInfo =>
-      _userBox.get(0) ?? UserInformation.empty();
+  UserInformation get userInfo => _userBox.get(0) ?? UserInformation.empty();
 
   Future<void> saveUserInfo(UserInformation info) async {
     await _userBox.put(0, info);
@@ -70,6 +82,7 @@ class LocalStorageService {
   Future<void> updateBasicUserInfo({
     String? fullName,
     String? email,
+    String? country,
     String? phone,
   }) async {
     final current = _userBox.get(0);
@@ -78,7 +91,8 @@ class LocalStorageService {
     final updated = current.copyWith(
       fullName: fullName ?? current.fullName,
       // email: email??current.email,
-      mobileNumber: phone??current.mobileNumber,
+      mobileNumber: phone ?? current.mobileNumber,
+      country: country ?? current.country
     );
 
     await _userBox.put(0, updated);
@@ -109,6 +123,7 @@ class LocalStorageService {
     await removeUserInfo();
   }
 }
+
 @riverpod
 Future<bool> isAuthenticated(Ref ref) async {
   final storage = ref.read(localStorageServiceProvider);

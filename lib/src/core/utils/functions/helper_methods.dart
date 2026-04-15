@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
@@ -6,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
+import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
 import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -85,11 +90,41 @@ Future<void> openPhoneDialer(String phoneNumber) async {
   }
 }
 
-Future<void> sharePost(String link) async {
-  await Clipboard.setData(ClipboardData(text: link));
+Future<void> sharePost({
+  required String title,
+  required String price,
+  required String postId,
+  required WidgetRef ref,
+  required String? imageUrl,
+}) async {
+  final link = 'https://okaz.akwad.qa/product_details?id=$postId';
+  final String message = '🛍️ *للبيع:* $title\n'
+      '💰 *السعر:* $price\n\n'
+      'تفقد هذا العرض على تطبيق عكاظ:\n'
+      '$link';
+  Dev.logLine(link);
 
-  await Share.share('Check out this post on Okaz Market: $link',
-      subject: 'Amazing Deal!');
+  try {
+    if (imageUrl != null && imageUrl.isNotEmpty) {
+      final directory = await getTemporaryDirectory();
+      final String imagePath = '${directory.path}/shared_product_image.png';
+
+      final dio = ref.read(dioProvider);
+      await dio.download(imageUrl, imagePath);
+
+      await Share.shareXFiles(
+        [XFile(imagePath)],
+        text: message,
+      );
+    } else {
+      //? Share message if the image was empty :
+      await Share.share(message);
+    }
+  } catch (e) {
+    //? For weak internet or any issue :
+    await Share.share(message);
+    print("Error during sharing: $e");
+  }
 }
 
 Future<void> checkAuth({

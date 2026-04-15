@@ -12,6 +12,7 @@ import 'package:okaz/features/profile/presentation/controller/my_profile_control
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
@@ -542,7 +543,10 @@ Future<void> showConfirmationDialog({
 Future<void> showErrorDialog(BuildContext context, String message) {
   return showCustomDialog(
     context: context,
-    title: Text(message , textAlign: TextAlign.center,),
+    title: Text(
+      message,
+      textAlign: TextAlign.center,
+    ),
     icon: Icon(Icons.error, color: AppColors.darkRed, size: 50),
   );
 }
@@ -777,9 +781,11 @@ void showReportDialog(
                                 .select((val) => val.value!.sendReport),
                             (previous, next) {
                           if (next is AsyncError) {
-                            showErrorDialog(context, next.error.toString());
+                            // showErrorDialog(context, next.error.toString());
+                            AppToast.errorToast(next.error.toString());
                           }
                           if (next is AsyncData) {
+                            AppToast.successToast('Done Successs!');
                             context.pop();
                           }
                         });

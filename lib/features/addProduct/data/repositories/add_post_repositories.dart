@@ -29,9 +29,9 @@ Future<void> createPost(AddPostParams params) async {
   }
 
 }
-Future<List<SubcategoryAttributeModel>> getSubCategoryList({required String subCategoryId}) async {
+Future<List<SubcategoryAttributeModel>> getSubCategoryList({required String subCategoryId , required String country}) async {
   try {
-    final result = await _remoteDataSource.getSubCategoryList(subCategoryId);
+    final result = await _remoteDataSource.getSubCategoryList(subCategoryId , country);
 
     if (result.hasFailed) {
       throw AppException(message:  result.message ?? 'Failed to fetch data');

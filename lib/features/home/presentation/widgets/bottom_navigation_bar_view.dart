@@ -4,25 +4,50 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:okaz/features/home/presentation/controller/home_controller.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-class BottomNavigationBarView extends ConsumerWidget {
+class BottomNavigationBarView extends ConsumerStatefulWidget {
   const BottomNavigationBarView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<BottomNavigationBarView> createState() =>
+      _BottomNavigationBarViewState();
+}
+
+final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
+class _BottomNavigationBarViewState
+    extends ConsumerState<BottomNavigationBarView> {
+  @override
+  Widget build(BuildContext context) {
     final currentIndex = ref.watch(bottomNavIndexProvider);
     return CurvedNavigationBar(
-
+      key: _bottomNavigationKey,
       index: currentIndex,
       backgroundColor: Colors.transparent,
       onTap: (index) {
         if (index == 1) {
-          context.go(AppRoutes.addNewProduct);
+          final number =
+              ref.read(localStorageServiceProvider).userInfo.mobileNumber;
+          final country =
+              ref.read(localStorageServiceProvider).userInfo.country ?? '';
+          final isValid = (country == 'Qatar' && number.startsWith('974')) ||
+              (country == 'Saudi Arabia' && number.startsWith('966'));
+          if (isValid) {
+            context.go(AppRoutes.addNewProduct);
+          } else {
+            AppToast.errorToast('change_country_alert'.tr());
+            Future.delayed(const Duration(milliseconds: 800), () {
+              _bottomNavigationKey.currentState?.setPage(currentIndex);
+            });
+          }
           return;
         }
         ref.read(bottomNavIndexProvider.notifier).state = index;

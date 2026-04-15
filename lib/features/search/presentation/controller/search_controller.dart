@@ -5,6 +5,7 @@ import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_r
 import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/search/data/repository/search_repository.dart';
 import 'package:okaz/features/search/presentation/controller/search_state.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'search_controller.g.dart';
@@ -31,7 +32,8 @@ class SearchController extends _$SearchController {
       final request = GetPostsRequest(title: search);
 
       final repo = ref.read(filterRepositoryProvider);
-      final response = await repo.getProductsByFilter(request, page);
+      final response = await repo.getProductsByFilter(request, page,
+          ref.read(localStorageServiceProvider).userInfo.country ?? '');
 
       _currentPage = response.pagination!.currentPage;
       _totalPages = response.pagination!.totalPages;

@@ -232,5 +232,9 @@
     "madinat_ash_shamal": "مدينة الشمال",
     "umm_salal": "أم صلال",
     "al_daayen": "الظعاين",
-    "change_country" : "تغيير البلد"
+    "change_country" : "تغيير البلد",
+    "successfullyCompleted": "تمت العملية بنجاح",
+    "saudi_arabia" : "السعودية",
+    "qatar" : "قطر",
+    "change_country_alert" : "يرجى تغيير البلد في الإعدادات إلى بلدك الحالي"
 }

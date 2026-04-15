@@ -16,6 +16,7 @@ import 'package:okaz/src/core/shared_widgets/app_loader.dart';
 import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/functions/helper_methods.dart';
+import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import '../../../../src/core/shared_widgets/app_pagination_widget.dart';
@@ -228,7 +229,13 @@ class ProfileScreen extends ConsumerWidget {
             12.verticalSpace,
             SettingsItemCard(
               title: 'share_post'.tr(),
-              onTap: () => sharePost(post.name ?? ''),
+              onTap: () => sharePost(
+                  imageUrl: ServicesUrls.imageUrl +
+                      (post.image ?? post.images?.first.image ?? ''),
+                  postId: post.name ?? 'id',
+                  price: post.price.toString(),
+                  ref: ref,
+                  title: post.title ?? 'title'),
               icon: Assets.icons.sharePostIc,
               trailing: const SizedBox(),
             ),

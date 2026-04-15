@@ -32,79 +32,92 @@ class _ChangeLanguageBottomSheetState
   Widget build(BuildContext context) {
     final currentLang = context.locale.languageCode;
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 22),
-      decoration: BoxDecoration(
-          color: AppColors.background, borderRadius: BorderRadius.circular(27)),
-      child: Column(
-        children: [
-          Row(
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+      child: KeyedSubtree(
+        key: ValueKey(context.locale.languageCode),
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 22),
+          decoration: BoxDecoration(
+              color: AppColors.background,
+              borderRadius: BorderRadius.circular(27)),
+          child: Column(
             children: [
-              Text(
-                context.tr('change_language'),
-                style: AppTextStyle.rubikSemiBold20.copyWith(),
+              Row(
+                children: [
+                  Text(
+                    context.tr('change_language'),
+                    style: AppTextStyle.rubikSemiBold20.copyWith(),
+                  ),
+                  Spacer(),
+                  20.verticalSpace,
+                  GestureDetector(
+                    onTap: () => context.pop(),
+                    child: Icon(Icons.close),
+                  ),
+                ],
+              ).symmetricPadding(horizontal: 22),
+              Divider(
+                color: AppColors.dividerColor,
+                height: 22,
               ),
-              Spacer(),
+              11.verticalSpace,
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                color: AppColors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppScaledRadio<String>(
+                      value: 'en',
+                      groupValue: currentLang,
+                      onChanged: (val) {
+                        ref
+                            .read(currentLanguageProvider.notifier)
+                            .changeLanguage(context, val);
+                      },
+                    ),
+                    Text(
+                      context.tr('english'),
+                      style: AppTextStyle.rubikSemiBold18.copyWith(),
+                    ),
+                  ],
+                ),
+              ),
               20.verticalSpace,
-              GestureDetector(
-                onTap: () => context.pop(),
-                child: Icon(Icons.close),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                color: AppColors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppScaledRadio<String>(
+                      value: 'ar',
+                      groupValue: currentLang,
+                      onChanged: (val) {
+                        ref
+                            .read(currentLanguageProvider.notifier)
+                            .changeLanguage(context, val);
+                      },
+                    ),
+                    Text(
+                      context.tr('arabic'),
+                      style: AppTextStyle.rubikSemiBold18.copyWith(),
+                    ),
+                  ],
+                ),
               ),
             ],
-          ).symmetricPadding(horizontal: 22),
-          Divider(
-            color: AppColors.dividerColor,
-            height: 22,
           ),
-          11.verticalSpace,
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            color: AppColors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                AppScaledRadio<String>(
-                  value: 'en',
-                  groupValue: currentLang,
-                  onChanged: (val) {
-                    ref
-                        .read(currentLanguageProvider.notifier)
-                        .changeLanguage(context, val);
-                  },
-                ),
-                Text(
-                  context.tr('english'),
-                  style: AppTextStyle.rubikSemiBold18.copyWith(),
-                ),
-              ],
-            ),
-          ),
-          20.verticalSpace,
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            color: AppColors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                AppScaledRadio<String>(
-                  value: 'ar',
-                  groupValue: currentLang,
-                  onChanged: (val) {
-                    ref
-                        .read(currentLanguageProvider.notifier)
-                        .changeLanguage(context, val);
-                  },
-                ),
-                Text(
-                  context.tr('arabic'),
-                  style: AppTextStyle.rubikSemiBold18.copyWith(),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

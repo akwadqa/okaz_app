@@ -4,6 +4,7 @@ import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
 import 'package:okaz/src/infrastructure/api/response/api_response.dart';
 import 'package:okaz/src/infrastructure/network/exception/dio_exceptions.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 
 import '../../../../src/infrastructure/network/services/network_service.dart';
 import '../../../../src/logger/log_services/dev_logger.dart';
@@ -61,13 +62,16 @@ class AddPostDatasources {
   }
 
   Future<ApiResponse<List<SubcategoryAttributeModel>>> getSubCategoryList(
-      String subCategoryId) async {
+      String subCategoryId , String country) async {
     try {
       Dev.logLine(subCategoryId);
+
+        // await ref.read(localStorageServiceProvider).getCountry();
 
       final response = await _networkService.post(
         ApiEndPoints.subCategoryAttributes,
         data: {
+          "country" : country,
           "subcategory_id": subCategoryId,
         },
       );

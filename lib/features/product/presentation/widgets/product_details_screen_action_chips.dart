@@ -5,6 +5,7 @@ import 'package:okaz/features/product/domain/model/product_details_model/product
 import 'package:okaz/features/product/presentation/controller/product_controller.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import 'package:okaz/src/core/shared_widgets/app_toast.dart';
 import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
@@ -20,7 +21,8 @@ class ProductDetailsScreenActionChips extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(productControllerProvider, (prev, next) {
       if (next is AsyncError) {
-        showErrorDialog(context, next.error.toString());
+        // showErrorDialog(context, next.error.toString());
+        AppToast.errorToast(next.error.toString());
       }
     });
     final isLike = ref.watch(

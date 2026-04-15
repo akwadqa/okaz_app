@@ -51,6 +51,18 @@ class SettingsScreen extends ConsumerWidget {
       child: Column(
         spacing: 20,
         children: [
+          if (isAuthenticated)
+            SettingsItemCard(
+              title: 'change_country',
+              icon: Assets.icons.changeCuntryIc,
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (_) => ChangeCountryBottomSheet(),
+                );
+              },
+            ),
+
           // if (isAuthenticated)
           //   SettingsItemCard(
           //     title: 'edit_my_profile',
@@ -116,16 +128,6 @@ class SettingsScreen extends ConsumerWidget {
                         .deleteAccount()
                         .then((_) => context.go(AppRoutes.signInScreen));
                   },
-                );
-              },
-            ),
-            SettingsItemCard(
-              title: 'change_country',
-              icon: Assets.icons.changeCuntryIc,
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (_) => ChangeCountryBottomSheet(),
                 );
               },
             ),

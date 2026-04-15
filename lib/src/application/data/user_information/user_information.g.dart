@@ -13,6 +13,7 @@ _UserInformation _$UserInformationFromJson(Map<String, dynamic> json) =>
       mobileNumber: json['mobile_no'] as String,
       email: json['email'] as String?,
       image: json['image'] as String?,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$UserInformationToJson(_UserInformation instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$UserInformationToJson(_UserInformation instance) =>
       'mobile_no': instance.mobileNumber,
       'email': instance.email,
       'image': instance.image,
+      'country': instance.country,
     };
