@@ -59,5 +59,13 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>okaz</string>
+				</array>
+			</dict>
+		</array>
 	</dict>
 </plist>
