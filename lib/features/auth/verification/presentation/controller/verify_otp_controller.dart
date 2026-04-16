@@ -20,11 +20,12 @@ class VerifyOtpController extends _$VerifyOtpController {
     state = await AsyncValue.guard(() async {
       final repo = ref.read(verifyOtpRepositoryProvider);
       final response = await repo.verifyOtp(phone, otp);
+      final currentInfo = ref.read(localStorageServiceProvider).userInfo;
       final info = UserInformation(
           token: '',
           fullName: response.data!.fullName,
           mobileNumber: response.data!.mobileNo,
-          country: '',
+          country: currentInfo.country,
         );
 
      await ref.read(localStorageServiceProvider).saveToken(response.data!.token);

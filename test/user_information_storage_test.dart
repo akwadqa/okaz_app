@@ -26,7 +26,11 @@ void main() {
     await box.close();
 
     final reopenedBox = await Hive.openBox<UserInformation>('user_info_test_box');
-    expect(reopenedBox.get(0)?.country, 'QA');
+    final savedInfo = reopenedBox.get(0);
+    expect(savedInfo?.token, 'token');
+    expect(savedInfo?.fullName, 'Test User');
+    expect(savedInfo?.mobileNumber, '12345678');
+    expect(savedInfo?.country, 'QA');
 
     await reopenedBox.close();
     await Hive.deleteBoxFromDisk('user_info_test_box');
