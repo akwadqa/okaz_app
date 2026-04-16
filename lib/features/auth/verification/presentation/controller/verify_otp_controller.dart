@@ -24,6 +24,7 @@ class VerifyOtpController extends _$VerifyOtpController {
           token: '',
           fullName: response.data!.fullName,
           mobileNumber: response.data!.mobileNo,
+          country: '',
         );
 
      await ref.read(localStorageServiceProvider).saveToken(response.data!.token);

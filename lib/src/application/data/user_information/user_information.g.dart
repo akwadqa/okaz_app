@@ -11,6 +11,7 @@ _UserInformation _$UserInformationFromJson(Map<String, dynamic> json) =>
       token: json['token'] as String,
       fullName: json['full_name'] as String,
       mobileNumber: json['mobile_no'] as String,
+      country: json['country'] as String? ?? '',
     );
 
 Map<String, dynamic> _$UserInformationToJson(_UserInformation instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$UserInformationToJson(_UserInformation instance) =>
       'token': instance.token,
       'full_name': instance.fullName,
       'mobile_no': instance.mobileNumber,
+      'country': instance.country,
     };
