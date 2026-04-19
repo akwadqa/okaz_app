@@ -232,9 +232,12 @@
     "madinat_ash_shamal": "مدينة الشمال",
     "umm_salal": "أم صلال",
     "al_daayen": "الظعاين",
-    "change_country" : "تغيير البلد",
+    "change_country": "تغيير البلد",
     "successfullyCompleted": "تمت العملية بنجاح",
-    "saudi_arabia" : "السعودية",
-    "qatar" : "قطر",
-    "change_country_alert" : "يرجى تغيير البلد في الإعدادات إلى بلدك الحالي"
+    "saudi_arabia": "السعودية",
+    "qatar": "قطر",
+    "change_country_alert": "يرجى تغيير البلد في الإعدادات إلى بلدك الحالي",
+    "deep_link_dialog_title": "تجربة أسرع للوصول لمنتجاتك",
+    "deep_link_dialog_description": "لتتمكن من فتح روابط المنتجات مباشرة داخل التطبيق والاستمتاع بتجربة تسوق سلسة، يرجى تفعيل خاصية \"الروابط التلقائية\" من إعدادات الهاتف.",
+    "deep_link_dialog_confirm": "تفعيل الآن"
 }

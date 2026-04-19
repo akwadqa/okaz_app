@@ -2,6 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/src/application/router/app_routes.dart';
 
 import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
@@ -51,7 +52,13 @@ class AppErrorWidget extends StatelessWidget {
             CustomButtonWidget(
               text: "back".tr(),
               // style: AppTextS,
-              onTap: () => context.pop(),
+              onTap: () {
+                if (context.canPop()) {
+                  context.pop();
+                } else {
+                  context.go(AppRoutes.homeScreen);
+                }
+              },
               isFiled: false,
               backgroundColor: AppColors.white,
               radius: 8,

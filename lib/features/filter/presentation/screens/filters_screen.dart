@@ -22,6 +22,7 @@ class FiltersScreen extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         title: Text('filters'.tr()),
         centerTitle: true,
         leading: IconButton(
@@ -31,7 +32,9 @@ class FiltersScreen extends ConsumerWidget {
           },
           icon: Icon(Icons.close),
         ),
-        actionsPadding: EdgeInsets.symmetric(horizontal: 22),
+        actionsPadding: EdgeInsets.symmetric(
+          horizontal: 22,
+        ),
         actions: [
           GestureDetector(
             onTap: () => ref
@@ -56,8 +59,11 @@ class _FiltersScreenContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(filterControllerProvider
-        .select((value) => value.value!.subCategoryAttributes!.value!));
+    final items = ref
+        .watch(filterControllerProvider.select((value) => value
+            .value!.subCategoryAttributes!.value!
+            .where((attr) => attr.title != 'City')))
+        .toList();
     return Column(
       children: [
         Divider(color: AppColors.borderGrey, height: 0),
@@ -65,7 +71,7 @@ class _FiltersScreenContent extends ConsumerWidget {
           child: ListView.separated(
               itemCount: items.length,
               separatorBuilder: (context, index) => 22.verticalSpace,
-              padding: EdgeInsets.symmetric(horizontal: 22),
+              padding: EdgeInsets.symmetric(horizontal: 22, vertical: 12),
               itemBuilder: (context, index) {
                 // if (index == 0) {
                 //   return FiltersScreenSearchFiled();

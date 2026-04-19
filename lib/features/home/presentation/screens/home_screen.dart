@@ -14,11 +14,14 @@ import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_
 import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
 import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/application/router/app_routes.dart';
+import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
 import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
 import 'package:okaz/src/core/shared_widgets/app_loader.dart';
+import 'package:okaz/src/core/shared_widgets/native_link_helper.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/core/utils/functions/helper_methods.dart';
+import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -55,7 +58,31 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
     super.initState();
     Future(() {
       ref.read(homeControllerProvider.notifier).getHomeData();
+      verifyLinks();
     });
+  }
+
+  void verifyLinks() async {
+    bool isVerified = await NativeLinkHelper.checkAndroidLinkStatus();
+
+    if (!isVerified) {
+      Dev.logLine("الروابط غير مفعلة، سنوجه المستخدم للإعدادات");
+      Future.delayed(const Duration(seconds: 3), () {
+        showConfirmationDialog(
+          context: context,
+          icon: Assets.icons.sendReportIc.svg(),
+          title: 'deep_link_dialog_title'.tr(),
+          description: 'deep_link_dialog_description'.tr(),
+          confirmText: 'deep_link_dialog_confirm'.tr(),
+          onConfirm: () {
+            context.pop();
+            openDeepLinkSettings();
+          },
+        );
+      });
+    } else {
+      Dev.logLine("كل شيء تمام، الروابط مفعلة تلقائياً");
+    }
   }
 
   @override

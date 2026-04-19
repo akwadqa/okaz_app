@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,8 @@ Future<void> sharePost({
   required WidgetRef ref,
   required String? imageUrl,
 }) async {
-  final link = 'https://okaz.akwad.qa/product_details?id=$postId';
+  // final link = 'https://okaz.akwad.qa/product_details?id=$postId';
+  final link = 'https://okaz.app/product_details?id=$postId';
   final String message = '🛍️ *للبيع:* $title\n'
       '💰 *السعر:* $price\n\n'
       'تفقد هذا العرض على تطبيق عكاظ:\n'
@@ -140,4 +142,12 @@ Future<void> checkAuth({
   } else {
     action();
   }
+}
+
+void openDeepLinkSettings() {
+  const intent = AndroidIntent(
+    action: 'android.settings.APP_OPEN_BY_DEFAULT_SETTINGS',
+    data: 'package:qa.app.okaz',
+  );
+  intent.launch();
 }

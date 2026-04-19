@@ -19,6 +19,7 @@ import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/core/utils/validator/app_validation.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class AppDialogs {
   AppDialogs._();
@@ -395,13 +396,159 @@ Dialog showYesNowChoicesDialog(
   );
 }
 
+// Future<void> showConfirmationDialog({
+//   required BuildContext context,
+//   required String title,
+//   required String description,
+//   required String confirmText,
+//   required VoidCallback onConfirm,
+//   required bool deleteAcc,
+//   String cancelText = "cancel",
+//   Widget? icon,
+//   bool barrierDismissible = true,
+//   bool showCloseIcon = true,
+//   Color confirmColor = AppColors.primary,
+// }) {
+//   return showDialog(
+//     context: context,
+//     barrierDismissible: barrierDismissible,
+//     builder: (_) {
+//       return Dialog(
+//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+//         child: Stack(
+//           children: [
+//             Padding(
+//               padding: const EdgeInsets.fromLTRB(24, 30, 24, 24),
+//               child: Column(
+//                 mainAxisSize: MainAxisSize.min,
+//                 children: [
+//                   if (icon != null)
+//                     CircleAvatar(
+//                       radius: 20,
+//                       backgroundColor: AppColors.primaryOpacity.withAlpha(100),
+//                       child: icon,
+//                     ),
+//                   20.verticalSpace,
+
+//                   // Title
+//                   Text(
+//                     title.tr(),
+//                     textAlign: TextAlign.center,
+//                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
+//                           fontWeight: FontWeight.bold,
+//                           color: AppColors.primary,
+//                         ),
+//                   ),
+
+//                   12.verticalSpace,
+
+//                   // Description
+//                   Text(
+//                     description.tr(),
+//                     textAlign: TextAlign.center,
+//                     style: AppTextStyle.interRegular16,
+//                   ),
+
+//                   30.verticalSpace,
+
+//                   // Buttons
+//                   Row(
+//                     children: [
+//                       Flexible(
+//                         flex: 2,
+//                         child: CustomButtonWidget(
+//                           text: cancelText.tr(),
+//                           isFiled: false,
+//                           backgroundColor: AppColors.white,
+//                           color: AppColors.primary,
+//                           radius: 24,
+//                           height: 45,
+//                           onTap: () {
+//                             Navigator.pop(context);
+//                           },
+//                           width: MediaQuery.sizeOf(context).width,
+//                         ),
+//                       ),
+//                       12.horizontalSpace,
+//                       Consumer(
+//                         builder: (context, ref, child) {
+//                           // ref.listen(settingsControllerProvider, (prev, next) {
+//                           //   final current = deleteAcc
+//                           //       ? next.value?.deleteAccountState
+//                           //       : next.value?.logoutState;
+//                           //   if (current is AsyncData) {
+//                           //     // context.maybePop().then((_) {
+//                           //     Dev.logSuccess("Success check");
+//                           //     // Navigator.pop(context);
+
+//                           //     context.pushReplacement(AppRoutes.signInScreen);
+//                           //     // _showDialog();
+//                           //     BotToast.showText(
+//                           //       text: 'successful_check'.tr(),
+//                           //       contentColor: AppColors.green,
+//                           //     );
+
+//                           //     // });
+//                           //   } else if (current is AsyncError) {
+//                           //     showErrorDialog(context, current.error.toString());
+//                           //   }
+//                           // });
+
+//                           // final provider = ref.watch(settingsControllerProvider);
+//                           // final current = deleteAcc
+//                           //     ? provider.value?.deleteAccountState
+//                           //     : provider.value?.logoutState;
+//                           // if (current is AsyncLoading) {
+//                           //   return Flexible(flex: 2, child: AppLoader());
+//                           //   // const FadeCircleLoadingIndicator();
+//                           // }
+//                           return Flexible(
+//                             flex: 2,
+//                             child: CustomButtonWidget(
+//                               text: confirmText.tr(),
+//                               isFiled: true,
+//                               backgroundColor: confirmColor,
+//                               radius: 24,
+//                               height: 45,
+//                               onTap: () {
+//                                 onConfirm();
+//                               },
+//                               width: MediaQuery.sizeOf(context).width,
+//                             ),
+//                           );
+//                         },
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+
+//             // Close (X) Button
+//             if (showCloseIcon)
+//               Positioned(
+//                 top: 10,
+//                 right: 10,
+//                 child: GestureDetector(
+//                   onTap: () => Navigator.pop(context),
+//                   child: const Icon(Icons.close, size: 20),
+//                 ),
+//               ),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }
 Future<void> showConfirmationDialog({
   required BuildContext context,
   required String title,
   required String description,
   required String confirmText,
   required VoidCallback onConfirm,
-  required bool deleteAcc,
+  VoidCallback? onListenSuccess,
+  // أضف هذا المعامل (اجعله nullable إذا أردت استخدامه كحوار عادي أحياناً)
+  ProviderListenable<AsyncValue<dynamic>>? isLoadingProvider,
   String cancelText = "cancel",
   Widget? icon,
   bool barrierDismissible = true,
@@ -411,7 +558,8 @@ Future<void> showConfirmationDialog({
   return showDialog(
     context: context,
     barrierDismissible: barrierDismissible,
-    builder: (_) {
+    builder: (context) {
+      // استخدم context الحوار
       return Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         child: Stack(
@@ -428,8 +576,6 @@ Future<void> showConfirmationDialog({
                       child: icon,
                     ),
                   20.verticalSpace,
-
-                  // Title
                   Text(
                     title.tr(),
                     textAlign: TextAlign.center,
@@ -438,21 +584,16 @@ Future<void> showConfirmationDialog({
                           color: AppColors.primary,
                         ),
                   ),
-
                   12.verticalSpace,
-
-                  // Description
                   Text(
                     description.tr(),
                     textAlign: TextAlign.center,
                     style: AppTextStyle.interRegular16,
                   ),
-
                   30.verticalSpace,
-
-                  // Buttons
                   Row(
                     children: [
+                      // زر الإلغاء
                       Flexible(
                         flex: 2,
                         child: CustomButtonWidget(
@@ -462,68 +603,53 @@ Future<void> showConfirmationDialog({
                           color: AppColors.primary,
                           radius: 24,
                           height: 45,
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          width: MediaQuery.sizeOf(context).width,
+                          onTap: () => Navigator.pop(context),
+                          width: double.infinity,
                         ),
                       ),
                       12.horizontalSpace,
-                      Consumer(
-                        builder: (context, ref, child) {
-                          // ref.listen(settingsControllerProvider, (prev, next) {
-                          //   final current = deleteAcc
-                          //       ? next.value?.deleteAccountState
-                          //       : next.value?.logoutState;
-                          //   if (current is AsyncData) {
-                          //     // context.maybePop().then((_) {
-                          //     Dev.logSuccess("Success check");
-                          //     // Navigator.pop(context);
 
-                          //     context.pushReplacement(AppRoutes.signInScreen);
-                          //     // _showDialog();
-                          //     BotToast.showText(
-                          //       text: 'successful_check'.tr(),
-                          //       contentColor: AppColors.green,
-                          //     );
+                      // زر التأكيد الديناميكي
+                      Flexible(
+                        flex: 2,
+                        child: Consumer(
+                          builder: (context, ref, _) {
+                            // إذا مررنا بروفايدر، نقوم بمراقبته والاستماع له
+                            if (isLoadingProvider != null) {
+                              ref.listen(isLoadingProvider, (prev, next) {
+                                if (next is AsyncError) {
+                                  AppToast.errorToast(next.error.toString());
+                                }
+                                if (next is AsyncData) {
+                                  // إذا نجحت العملية، نغلق الحوار
 
-                          //     // });
-                          //   } else if (current is AsyncError) {
-                          //     showErrorDialog(context, current.error.toString());
-                          //   }
-                          // });
+                                  onListenSuccess?.call();
+                                }
+                              });
 
-                          // final provider = ref.watch(settingsControllerProvider);
-                          // final current = deleteAcc
-                          //     ? provider.value?.deleteAccountState
-                          //     : provider.value?.logoutState;
-                          // if (current is AsyncLoading) {
-                          //   return Flexible(flex: 2, child: AppLoader());
-                          //   // const FadeCircleLoadingIndicator();
-                          // }
-                          return Flexible(
-                            flex: 2,
-                            child: CustomButtonWidget(
+                              final state = ref.watch(isLoadingProvider);
+                              if (state is AsyncLoading) {
+                                return const AppLoader(); // يظهر التحميل هنا
+                              }
+                            }
+
+                            return CustomButtonWidget(
                               text: confirmText.tr(),
                               isFiled: true,
                               backgroundColor: confirmColor,
                               radius: 24,
                               height: 45,
-                              onTap: () {
-                                onConfirm();
-                              },
-                              width: MediaQuery.sizeOf(context).width,
-                            ),
-                          );
-                        },
+                              onTap: onConfirm,
+                              width: double.infinity,
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-
-            // Close (X) Button
             if (showCloseIcon)
               Positioned(
                 top: 10,
@@ -686,7 +812,7 @@ void showReportDialog(
         child: SingleChildScrollView(
           child: Container(
             width: 345,
-            height: 515,
+            height: 525,
             decoration: BoxDecoration(
               color: const Color(0xFFF5F5F5),
               borderRadius: BorderRadius.circular(12),
@@ -785,7 +911,7 @@ void showReportDialog(
                             AppToast.errorToast(next.error.toString());
                           }
                           if (next is AsyncData) {
-                            AppToast.successToast('Done Successs!');
+                            AppToast.successToast('successfullyCompleted'.tr());
                             context.pop();
                           }
                         });
@@ -958,6 +1084,8 @@ void showDeleteCommentDialog(
                                 showErrorDialog(context, next.error.toString());
                               }
                               if (next is AsyncData) {
+                                AppToast.successToast(
+                                    'successfullyCompleted'.tr());
                                 context.pop();
                                 ref
                                     .read(productControllerProvider.notifier)

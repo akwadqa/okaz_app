@@ -116,6 +116,20 @@ class LocalStorageService {
   }
 
   // ============================
+  // FIRST TIME SHOWING DEEPLINKS INSTRUCTION
+  // ============================
+  Future<bool> isFirstTimeShowingDeeplinksInstruction() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(Keys.firstTimeShowingDeeplinksInstruction) ?? true;
+  }
+
+  Future<void> markDeeplinksInstructionShown() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(Keys.firstTimeShowingDeeplinksInstruction, false);
+  }
+
+  
+  // ============================
   // LOGOUT (ONE CALL)
   // ============================
   Future<void> logout() async {

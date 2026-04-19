@@ -13,7 +13,6 @@ import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
-
 class OnBoardingScreen extends ConsumerStatefulWidget {
   const OnBoardingScreen({super.key});
 
@@ -41,35 +40,38 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-
       body: AuthScreen(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
               child: PageView.builder(
-              
                 controller: _controller,
                 onPageChanged: (int index) {
                   setState(() {
                     currentIndex = index;
                   });
                 },
-                itemCount: onBoardingItems(context,ref).length,
-        
+                itemCount: onBoardingItems(context, ref).length,
                 itemBuilder: (context, index) {
                   return Stack(
                     children: [
                       onBoardingItems(context, ref)[index],
-                        if(index!=2)
-   PositionedDirectional(
-    end: 20,
-    child: InkWell(
-      onTap: () {
-          ref.read(localStorageServiceProvider).markAppOpened();
-        context.push(AppRoutes.signInScreen);
-      },
-      child: Text("skip".tr(),style: AppTextStyle.rubikSemiBold16.copyWith(color: AppColors.primary),)))
+                      if (index != 2)
+                        PositionedDirectional(
+                            end: 20,
+                            child: InkWell(
+                                onTap: () {
+                                  ref
+                                      .read(localStorageServiceProvider)
+                                      .markAppOpened();
+                                  context.push(AppRoutes.signInScreen);
+                                },
+                                child: Text(
+                                  "skip".tr(),
+                                  style: AppTextStyle.rubikSemiBold16
+                                      .copyWith(color: AppColors.primary),
+                                )))
                     ],
                   );
                 },
@@ -77,43 +79,40 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
             ),
             _buildNextButton(context),
             _buildDotsIndicator()
-        
           ],
         ),
       ),
     );
-    
   }
-Widget _buildDotsIndicator() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: List.generate(
-      onBoardingItems(context,ref).length,
-      (index) => AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        margin: const EdgeInsets.symmetric(horizontal: 4),
-        width: currentIndex == index ? 35 : 8,
-        height: 8,
-        decoration: BoxDecoration(
-          color: currentIndex == index
-              ? AppColors.primary
-              : AppColors.gray,
-          borderRadius: BorderRadius.circular(10),
+
+  Widget _buildDotsIndicator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        onBoardingItems(context, ref).length,
+        (index) => AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          width: currentIndex == index ? 35 : 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: currentIndex == index ? AppColors.primary : AppColors.gray,
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       ),
-    ),
-  ).symmetricPadding(vertical: 40);
-}
+    ).symmetricPadding(vertical: 40);
+  }
 
   Widget _buildNextButton(BuildContext context) {
     return CustomButtonWidget(
-      text: currentIndex == onBoardingItems(context,ref).length - 1
+      text: currentIndex == onBoardingItems(context, ref).length - 1
           ? context.tr("start_now")
           : context.tr("next"),
       onTap: () async {
-        if (currentIndex == onBoardingItems(context,ref).length - 1) {
+        if (currentIndex == onBoardingItems(context, ref).length - 1) {
           context.push(AppRoutes.signInScreen);
-        await  ref.read(localStorageServiceProvider).markAppOpened();
+          await ref.read(localStorageServiceProvider).markAppOpened();
         } else {
           _controller.nextPage(
             duration: const Duration(milliseconds: 500),
@@ -131,37 +130,37 @@ Widget _buildDotsIndicator() {
 }
 
 List<Widget> onBoardingItems(BuildContext context, WidgetRef ref) => [
-  _buildOnboardingPage(
-    context,
-    ref: ref,
-    image: Assets.images.onBoardingIm1.image(
-      width: MediaQuery.of(context).size.width,
-      fit: BoxFit.cover,
-    ),
-    title: context.tr("on_boarding_title1"),
-    description: context.tr("on_boarding_dsc1"),
-  ),
-  _buildOnboardingPage(
-    context,
-    ref: ref,
-    image: Assets.images.onBoardingIm2.image(
-      width: MediaQuery.of(context).size.width,
-      fit: BoxFit.cover,
-    ),
-    title: context.tr("on_boarding_title2"),
-    description: context.tr("on_boarding_dsc2"),
-  ),
-  _buildOnboardingPage(
-    context,
-    ref: ref,
-    image: Assets.images.onBoardingIm3.image(
-      width: double.infinity,
-      fit: BoxFit.contain,
-    ),
-    title: context.tr("on_boarding_title3"),
-    description: context.tr("on_boarding_dsc3"),
-  ),
-];
+      _buildOnboardingPage(
+        context,
+        ref: ref,
+        image: Assets.images.onBoardingIm1.image(
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.cover,
+        ),
+        title: context.tr("on_boarding_title1"),
+        description: context.tr("on_boarding_dsc1"),
+      ),
+      _buildOnboardingPage(
+        context,
+        ref: ref,
+        image: Assets.images.onBoardingIm2.image(
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.cover,
+        ),
+        title: context.tr("on_boarding_title2"),
+        description: context.tr("on_boarding_dsc2"),
+      ),
+      _buildOnboardingPage(
+        context,
+        ref: ref,
+        image: Assets.images.onBoardingIm3.image(
+          width: double.infinity,
+          fit: BoxFit.contain,
+        ),
+        title: context.tr("on_boarding_title3"),
+        description: context.tr("on_boarding_dsc3"),
+      ),
+    ];
 
 Widget _buildOnboardingPage(
   BuildContext context, {
@@ -179,13 +178,15 @@ Widget _buildOnboardingPage(
       25.verticalSpace,
       Text(
         title,
-        style: AppTextStyle.rubikSemiBold20.copyWith(fontSize: 26, color: AppColors.primary),
+        style: AppTextStyle.rubikSemiBold20
+            .copyWith(fontSize: 26, color: AppColors.primary),
       ),
       12.verticalSpace,
       Text(
         description,
         textAlign: TextAlign.center,
-        style: AppTextStyle.bodysmallSemibold.copyWith(fontSize: 14, color: AppColors.black),
+        style: AppTextStyle.bodysmallSemibold
+            .copyWith(fontSize: 14, color: AppColors.black),
       ).symmetricPadding(horizontal: 15),
       // 15.verticalSpace,
     ],

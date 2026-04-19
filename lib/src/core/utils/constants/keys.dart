@@ -1,10 +1,13 @@
 abstract class Keys {
   static const String token = 'token';
-  static const String securedToken="secured_token";
+  static const String securedToken = "secured_token";
   static const String userId = 'user_id';
-    static const String firstTime = "first_time";
+  static const String firstTime = "first_time";
   static const String ios = 'ios';
   static const String android = 'android';
   static const String all = 'all';
+  static const String firstTimeShowingDeeplinksInstruction =
+      "first_time_showing_deeplinks_instruction";
+
   static const String country = 'all';
 }

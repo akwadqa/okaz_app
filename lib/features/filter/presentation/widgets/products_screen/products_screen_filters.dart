@@ -34,8 +34,9 @@ class _ProductsScreenFiltersState extends ConsumerState<ProductsScreenFilters> {
         height: 34,
         width: double.infinity,
         child: controller!.when(
-            data: (data) => _buildFilterItems(
-                data.where((attr) => attr.values.isNotEmpty).toList()),
+            data: (data) => _buildFilterItems(data
+                .where((attr) => attr.values.isNotEmpty && attr.title != 'City')
+                .toList()),
             error: (e, st) => const SizedBox(),
             loading: () => const AppLoader())
 

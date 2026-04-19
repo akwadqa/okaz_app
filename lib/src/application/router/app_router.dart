@@ -38,22 +38,24 @@ GoRouter goRouter(Ref ref) {
   return AppRouter(ref).goRouter;
 }
 String normalizeIncomingUri(Uri u) {
-  if (!u.hasScheme) {
-    return u.toString();
+  if (u.scheme == 'http' || u.scheme == 'https') {
+    return Uri(
+      path: u.path.isEmpty ? '/' : u.path,
+      queryParameters: u.queryParameters.isEmpty ? null : u.queryParameters,
+    ).toString();
   }
-  final isHttp = u.scheme == 'http' || u.scheme == 'https';
-  if (isHttp) {
-    final path = u.path.isEmpty ? '/' : u.path;
-    return Uri(path: path, queryParameters: u.queryParameters.isEmpty ? null : u.queryParameters).toString();
+  
+  if (u.scheme == 'okaz') {
+    final path = u.host.isEmpty ? u.path : '/${u.host}${u.path}';
+    return Uri(
+      path: path,
+      queryParameters: u.queryParameters.isEmpty ? null : u.queryParameters,
+    ).toString();
   }
-  final segments = <String>[];
-  if (u.host.isNotEmpty) {
-    segments.add(u.host);
-  }
-  segments.addAll(u.pathSegments.where((s) => s.isNotEmpty));
-  final path = '/${segments.join('/')}';
-  return Uri(path: path, queryParameters: u.queryParameters.isEmpty ? null : u.queryParameters).toString();
+
+  return u.toString();
 }
+
 class AppRouter {
   final GoRouter goRouter;
 
@@ -64,22 +66,22 @@ class AppRouter {
     return GoRouter(
       navigatorKey: rootKey,
       initialLocation: initialRoute,
-redirect: (context, state) {
-  final normalized = normalizeIncomingUri(state.uri);
+      redirect: (context, state) {
+        final normalized = normalizeIncomingUri(state.uri);
 
-  /// 1. Normalize incoming links (important for deep links)
-  if (normalized != state.uri.toString()) {
-    return normalized;
-  }
+        /// 1. Normalize incoming links (important for deep links)
+        if (normalized != state.uri.toString()) {
+          return normalized;
+        }
 
-  /// 2. If GoRouter couldn't match any route
-  /// → fallback to main screen
-  if (state.fullPath == null) {
-    return AppRoutes.mainScreen;
-  }
+        /// 2. If GoRouter couldn't match any route
+        /// → fallback to main screen
+        if (state.fullPath == null) {
+          return AppRoutes.mainScreen;
+        }
 
-  return null;
-},
+        return null;
+      },
       observers: [CustomNavigationObserver()],
       errorBuilder: (context, state) => const FallbackScreen(),
 
@@ -120,10 +122,10 @@ redirect: (context, state) {
       // },
       routes: <RouteBase>[
         GoRoute(
-  path: AppRoutes.initScreen, // '/'
-  parentNavigatorKey: rootKey,
-  redirect: (_, __) => AppRoutes.mainScreen,
-),
+          path: AppRoutes.initScreen, // '/'
+          parentNavigatorKey: rootKey,
+          redirect: (_, __) => AppRoutes.mainScreen,
+        ),
         GoRoute(
           path: AppRoutes.splashScreen,
           parentNavigatorKey: rootKey,

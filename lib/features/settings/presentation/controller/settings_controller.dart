@@ -1,4 +1,3 @@
-
 import 'package:okaz/features/settings/data/repositories/settings_repository.dart';
 import 'package:okaz/features/settings/presentation/controller/settings_state.dart';
 import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
@@ -9,7 +8,7 @@ part 'settings_controller.g.dart';
 class SettingsController extends _$SettingsController {
   @override
   FutureOr<SettingsState> build() async {
-    return const SettingsState(logoutState: AsyncValue.loading());
+    return const SettingsState();
   }
   // Future<HomeModel> getSettingsData() async {
   //   state = const AsyncLoading();
@@ -43,7 +42,7 @@ class SettingsController extends _$SettingsController {
     state = AsyncData(
       current.copyWith(deleteAccountState: const AsyncLoading()),
     );
-    final mobileNumber=storage.userInfo.mobileNumber;
+    final mobileNumber = storage.userInfo.mobileNumber;
 
     final result = await AsyncValue.guard(() async {
       final repo = ref.read(settingsRepositoryProvider);

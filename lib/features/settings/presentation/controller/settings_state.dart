@@ -9,9 +9,9 @@ abstract class SettingsState with _$SettingsState {
 
     // Async actions
     @Default(AsyncData(null))
-    AsyncValue<void> deleteAccountState,
+    AsyncValue<dynamic> deleteAccountState,
 
     @Default(AsyncData(null))
-    AsyncValue<void> logoutState,
+    AsyncValue<dynamic> logoutState,
   }) = _SettingsState;
 }

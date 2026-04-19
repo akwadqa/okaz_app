@@ -22,15 +22,19 @@ abstract class UserInformation with _$UserInformation {
 
   /// **Default Empty Object (If Needed)**
   factory UserInformation.empty() => UserInformation(
-      token: "", fullName: "", mobileNumber: "", email: "", image: '' ,country: '');
+      token: "",
+      fullName: "",
+      mobileNumber: "",
+      email: "",
+      image: '',
+      country: '');
   static UserInformation defaultValue = UserInformation(
-    fullName: '',
-    email: "",
-    mobileNumber: "",
-    image: null,
-    token: '',
-    country: ''
-  );
+      fullName: '',
+      email: "",
+      mobileNumber: "",
+      image: null,
+      token: '',
+      country: '');
 
   /// **Factory Constructor for JSON**
   factory UserInformation.fromJson(Map<String, dynamic> json) =>
@@ -54,14 +58,13 @@ class UserInformationAdapter extends TypeAdapter<UserInformation> {
         mobileNumber: fields[2] as String,
         email: fields[3] as String,
         image: fields[4] as String?,
-        country: fields[5] as String?
-        );
+        country: fields[5] as String?);
   }
 
   @override
   void write(BinaryWriter writer, UserInformation obj) {
     writer
-      ..writeByte(4) // number of fields
+      ..writeByte(6) // number of fields
       ..writeByte(0)
       ..write(obj.token)
       ..writeByte(1)
@@ -69,6 +72,10 @@ class UserInformationAdapter extends TypeAdapter<UserInformation> {
       ..writeByte(2)
       ..write(obj.mobileNumber)
       ..writeByte(3)
-      ..write(obj.email);
+      ..write(obj.email)
+      ..writeByte(4)
+      ..write(obj.image)
+      ..writeByte(5)
+      ..write(obj.country);
   }
 }

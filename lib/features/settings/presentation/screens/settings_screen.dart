@@ -1,3 +1,4 @@
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -92,10 +93,13 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () {
                 showConfirmationDialog(
                   context: context,
+                  onListenSuccess: () => context.go(AppRoutes.signInScreen),
                   title: "logout_title",
                   description: "logout_description",
                   confirmText: "logout_confirm",
                   confirmColor: AppColors.primary,
+                  isLoadingProvider: settingsControllerProvider
+                      .select((val) => val.value!.logoutState),
                   icon: Assets.icons.logoutIc.svg(height: 25, width: 25),
                   onConfirm: () async {
                     await ref
@@ -105,7 +109,7 @@ class SettingsScreen extends ConsumerWidget {
                     ref.invalidate(profileControllerProvider);
                     // delete user logic
                   },
-                  deleteAcc: false,
+                  // deleteAcc: false,
                 );
               },
             ),
@@ -115,8 +119,12 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () {
                 showConfirmationDialog(
                   context: context,
-                  deleteAcc: true,
+                  onListenSuccess: () => context.go(AppRoutes.signInScreen),
+
+                  // deleteAcc: true,
                   title: "delete_user_title",
+                  isLoadingProvider: settingsControllerProvider
+                      .select((val) => val.value!.deleteAccountState),
                   description: "delete_user_description",
                   confirmText: "delete_user_confirm",
                   confirmColor: AppColors.primary,

@@ -21,29 +21,33 @@ class StepDetailsView extends ConsumerWidget {
     final mapController = ref.watch(mapControllerProvider);
     final attributes = state.attributes;
     final mainFilters = attributes.firstWhere((e) => e.isMainFilter == 1);
-    List<String> cities = [
-      'riyadh'.tr(),
-      'jeddah'.tr(),
-      'mecca'.tr(),
-      'medina'.tr(),
-      'dammam'.tr(),
-      'khobar'.tr(),
-      'abha'.tr(),
-      'tabuk'.tr(),
-      'hail'.tr(),
-      'jizan'.tr(),
-      'najran'.tr(),
-      'buraidah'.tr(),
-      'taif'.tr(),
-      'doha'.tr(),
-      'al_rayyan'.tr(),
-      'al_wakrah'.tr(),
-      'al_khor'.tr(),
-      'lusail'.tr(),
-      'madinat_ash_shamal'.tr(),
-      'umm_salal'.tr(),
-      'al_daayen'.tr(),
-    ];
+    final cities = attributes
+        .where((e) => e.isMainFilter == 0 && e.title == 'City')
+        .expand((e) => e.values)
+        .toList();
+    // List<String> cities = [
+    //   'riyadh'.tr(),
+    //   'jeddah'.tr(),
+    //   'mecca'.tr(),
+    //   'medina'.tr(),
+    //   'dammam'.tr(),
+    //   'khobar'.tr(),
+    //   'abha'.tr(),
+    //   'tabuk'.tr(),
+    //   'hail'.tr(),
+    //   'jizan'.tr(),
+    //   'najran'.tr(),
+    //   'buraidah'.tr(),
+    //   'taif'.tr(),
+    //   'doha'.tr(),
+    //   'al_rayyan'.tr(),
+    //   'al_wakrah'.tr(),
+    //   'al_khor'.tr(),
+    //   'lusail'.tr(),
+    //   'madinat_ash_shamal'.tr(),
+    //   'umm_salal'.tr(),
+    //   'al_daayen'.tr(),
+    // ];
 
     final otherFilters = attributes.where((e) => e.isMainFilter == 0).toList();
     return ListView(

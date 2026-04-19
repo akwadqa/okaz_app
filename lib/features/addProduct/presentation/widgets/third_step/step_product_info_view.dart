@@ -22,7 +22,7 @@ class StepProductInfoView extends ConsumerWidget {
       return const Center(child: AppLoader());
     }
 
-    final attributes = state.attributes;
+    final attributes = state.attributes.where((e) => e.title != 'City');
 
     final otherFilters = attributes.where((e) => e.isMainFilter == 0).toList();
     return ListView.separated(
@@ -69,28 +69,28 @@ class StepProductInfoView extends ConsumerWidget {
 //             );
 
 //           case ProductSpecType.toggle:
-            // return Container(
-            //   padding: EdgeInsets.all(12),
-            //   decoration: BoxDecoration(
-            //     color: AppColors.white,
-            //     borderRadius: BorderRadius.circular(24),
-            //     border: Border.all(color: AppColors.grayBorder),
-            //   ),
-            //   child: SwitchListTile(
-            //     contentPadding: EdgeInsets.zero,
+    // return Container(
+    //   padding: EdgeInsets.all(12),
+    //   decoration: BoxDecoration(
+    //     color: AppColors.white,
+    //     borderRadius: BorderRadius.circular(24),
+    //     border: Border.all(color: AppColors.grayBorder),
+    //   ),
+    //   child: SwitchListTile(
+    //     contentPadding: EdgeInsets.zero,
 
-            //     thumbColor: WidgetStatePropertyAll(AppColors.white),
+    //     thumbColor: WidgetStatePropertyAll(AppColors.white),
 
-            //     inactiveTrackColor: AppColors.stoneGray,
-            //     activeTrackColor: AppColors.primary,
+    //     inactiveTrackColor: AppColors.stoneGray,
+    //     activeTrackColor: AppColors.primary,
 
-            //     value: (value as bool?) ?? false,
-            //     title: Text(spec.title),
-            //     subtitle: Text(spec.subTitle!),
+    //     value: (value as bool?) ?? false,
+    //     title: Text(spec.title),
+    //     subtitle: Text(spec.subTitle!),
 
-            //     onChanged: (v) => controller.updateSpec(spec.key, v),
-            //   ),
-            // );
+    //     onChanged: (v) => controller.updateSpec(spec.key, v),
+    //   ),
+    // );
 //         }
 //       }).toList(),
 //     );

@@ -236,5 +236,8 @@
     "successfullyCompleted": "Successfully completed",
     "saudi_arabia": "Saudi Arabia",
     "qatar": "Qatar",
-    "change_country_alert": "Please change the country in the settings to your current country"
+    "change_country_alert": "Please change the country in the settings to your current country",
+    "deep_link_dialog_title": "Faster access to products",
+    "deep_link_dialog_description": "To open product links directly within the app and enjoy a seamless shopping experience, please enable the \"Supported Links\" option in your phone settings.",
+    "deep_link_dialog_confirm": "Enable Now"
 }

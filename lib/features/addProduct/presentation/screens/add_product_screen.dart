@@ -134,7 +134,8 @@ class _BottomButtons extends ConsumerWidget {
     final controller = ref.read(addProductControllerProvider.notifier);
 
     final canProceed = state.step == 3
-        ? controller.canGoNextForSpecs(state.attributes)
+        ? controller.canGoNextForSpecs(
+            state.attributes.where((e) => e.title != 'City').toList())
         : controller.canGoNext();
 
     return Padding(

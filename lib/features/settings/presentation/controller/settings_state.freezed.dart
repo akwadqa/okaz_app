@@ -15,8 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SettingsState {
 // Async actions
-  AsyncValue<void> get deleteAccountState;
-  AsyncValue<void> get logoutState;
+  AsyncValue<dynamic> get deleteAccountState;
+  AsyncValue<dynamic> get logoutState;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +53,8 @@ abstract mixin class $SettingsStateCopyWith<$Res> {
       _$SettingsStateCopyWithImpl;
   @useResult
   $Res call(
-      {AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState});
+      {AsyncValue<dynamic> deleteAccountState,
+      AsyncValue<dynamic> logoutState});
 }
 
 /// @nodoc
@@ -76,11 +77,11 @@ class _$SettingsStateCopyWithImpl<$Res>
       deleteAccountState: null == deleteAccountState
           ? _self.deleteAccountState
           : deleteAccountState // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<void>,
+              as AsyncValue<dynamic>,
       logoutState: null == logoutState
           ? _self.logoutState
           : logoutState // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<void>,
+              as AsyncValue<dynamic>,
     ));
   }
 }
@@ -178,8 +179,8 @@ extension SettingsStatePatterns on SettingsState {
 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState)?
+    TResult Function(AsyncValue<dynamic> deleteAccountState,
+            AsyncValue<dynamic> logoutState)?
         $default, {
     required TResult orElse(),
   }) {
@@ -207,8 +208,8 @@ extension SettingsStatePatterns on SettingsState {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(
-            AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState)
+    TResult Function(AsyncValue<dynamic> deleteAccountState,
+            AsyncValue<dynamic> logoutState)
         $default,
   ) {
     final _that = this;
@@ -234,8 +235,8 @@ extension SettingsStatePatterns on SettingsState {
 
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState)?
+    TResult? Function(AsyncValue<dynamic> deleteAccountState,
+            AsyncValue<dynamic> logoutState)?
         $default,
   ) {
     final _that = this;
@@ -258,10 +259,10 @@ class _SettingsState implements SettingsState {
 // Async actions
   @override
   @JsonKey()
-  final AsyncValue<void> deleteAccountState;
+  final AsyncValue<dynamic> deleteAccountState;
   @override
   @JsonKey()
-  final AsyncValue<void> logoutState;
+  final AsyncValue<dynamic> logoutState;
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -300,7 +301,8 @@ abstract mixin class _$SettingsStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AsyncValue<void> deleteAccountState, AsyncValue<void> logoutState});
+      {AsyncValue<dynamic> deleteAccountState,
+      AsyncValue<dynamic> logoutState});
 }
 
 /// @nodoc
@@ -323,11 +325,11 @@ class __$SettingsStateCopyWithImpl<$Res>
       deleteAccountState: null == deleteAccountState
           ? _self.deleteAccountState
           : deleteAccountState // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<void>,
+              as AsyncValue<dynamic>,
       logoutState: null == logoutState
           ? _self.logoutState
           : logoutState // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<void>,
+              as AsyncValue<dynamic>,
     ));
   }
 }
