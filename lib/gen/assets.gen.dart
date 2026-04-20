@@ -210,6 +210,10 @@ class $AssetsIconsGen {
   AssetGenImage get qatarFlag =>
       const AssetGenImage('assets/icons/qatar_flag.png');
 
+  /// File path: assets/icons/qatar_flag_ic.svg
+  SvgGenImage get qatarFlagIc =>
+      const SvgGenImage('assets/icons/qatar_flag_ic.svg');
+
   /// File path: assets/icons/realestate_ic.svg
   SvgGenImage get realestateIc =>
       const SvgGenImage('assets/icons/realestate_ic.svg');
@@ -219,6 +223,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/rocket_ic.svg
   SvgGenImage get rocketIc => const SvgGenImage('assets/icons/rocket_ic.svg');
+
+  /// File path: assets/icons/saudi_flag_ic.svg
+  SvgGenImage get saudiFlagIc =>
+      const SvgGenImage('assets/icons/saudi_flag_ic.svg');
 
   /// File path: assets/icons/save_event_ic.svg
   SvgGenImage get saveEventIc =>
@@ -320,9 +328,11 @@ class $AssetsIconsGen {
         privacyIc,
         qatarCountry,
         qatarFlag,
+        qatarFlagIc,
         realestateIc,
         reportIc,
         rocketIc,
+        saudiFlagIc,
         saveEventIc,
         scanIc,
         sendCommentIc,

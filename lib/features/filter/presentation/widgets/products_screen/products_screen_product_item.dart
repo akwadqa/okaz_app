@@ -129,7 +129,7 @@ class ProductsScreenProductItem extends ConsumerWidget {
                     ),
                     Spacer(),
                     Text(
-                      '${item?.price ?? 44} ${'currency_qr'.tr()}',
+                      '${item?.price ?? 44} ${item.currency ?? 'QAR'.tr()}',
                       style: AppTextStyle.rubikMedium14.copyWith(
                         color: AppColors.primary,
                       ),

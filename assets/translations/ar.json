@@ -56,6 +56,7 @@
     "details_en": "التفاصيل بالإنجليزية",
     "enter_price": "ادخل السعر",
     "currency_qr": "ر.ق",
+    "currency_sar": "ر.س",
     "add_images_for_bide": "أضف صورًا للمزايدة",
     "select_image": "اختيار صورة",
     "view_ad": "عرض الإعلان",
@@ -239,5 +240,9 @@
     "change_country_alert": "يرجى تغيير البلد في الإعدادات إلى بلدك الحالي",
     "deep_link_dialog_title": "تجربة أسرع للوصول لمنتجاتك",
     "deep_link_dialog_description": "لتتمكن من فتح روابط المنتجات مباشرة داخل التطبيق والاستمتاع بتجربة تسوق سلسة، يرجى تفعيل خاصية \"الروابط التلقائية\" من إعدادات الهاتف.",
-    "deep_link_dialog_confirm": "تفعيل الآن"
+    "deep_link_dialog_confirm": "تفعيل الآن",
+    "just_now" : "الآن",
+    "minutes_ago" : "منذ {} دقائق",
+    "hours_ago" : "منذ {} ساعات",
+    "days_ago" : "منذ {} يوم"
 }

@@ -60,9 +60,11 @@ class _FiltersScreenContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref
-        .watch(filterControllerProvider.select((value) => value
-            .value!.subCategoryAttributes!.value!
-            .where((attr) => attr.title != 'City')))
+        .watch(filterControllerProvider
+            .select((value) => value.value!.subCategoryAttributes!.value!
+                // .where((attr) => attr.attributeId != 'City')))
+
+                ))
         .toList();
     return Column(
       children: [

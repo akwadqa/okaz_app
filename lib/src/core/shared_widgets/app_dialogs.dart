@@ -812,7 +812,7 @@ void showReportDialog(
         child: SingleChildScrollView(
           child: Container(
             width: 345,
-            height: 525,
+            height: 515,
             decoration: BoxDecoration(
               color: const Color(0xFFF5F5F5),
               borderRadius: BorderRadius.circular(12),
@@ -822,7 +822,7 @@ void showReportDialog(
                     0xFF94A3B2,
                   ).withOpacity(0.15),
                   blurRadius: 12,
-                  offset: const Offset(0, 6), // 0px 6px 12px
+                  offset: const Offset(0, 6),
                 ),
               ],
             ),
@@ -968,7 +968,7 @@ void showReportDialog(
               ],
             ),
           ),
-        ),
+        ).onlyPadding(bottom: 10),
       );
     },
   );

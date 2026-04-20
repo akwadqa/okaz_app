@@ -53,6 +53,7 @@
     "details_en": "Details in English",
     "enter_price": "Enter price",
     "currency_qr": "QAR",
+    "currency_sar": "SAR",
     "add_images_for_bide": "Add images for bidding",
     "select_image": "Select image",
     "view_ad": "View ad",
@@ -239,5 +240,9 @@
     "change_country_alert": "Please change the country in the settings to your current country",
     "deep_link_dialog_title": "Faster access to products",
     "deep_link_dialog_description": "To open product links directly within the app and enjoy a seamless shopping experience, please enable the \"Supported Links\" option in your phone settings.",
-    "deep_link_dialog_confirm": "Enable Now"
+    "deep_link_dialog_confirm": "Enable Now",
+    "just_now" : "Just now",
+    "minutes_ago" : "{value} minutes ago",
+    "hours_ago" : "{value} hours ago",
+    "days_ago" : "{value} days ago"
 }

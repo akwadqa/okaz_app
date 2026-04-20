@@ -20,6 +20,7 @@ class FiltersScreenWrapMenuItem extends StatelessWidget {
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 3),
         width: 104,
         height: 30,
         decoration: BoxDecoration(
@@ -33,10 +34,12 @@ class FiltersScreenWrapMenuItem extends StatelessWidget {
             ),
           ],
         ),
-        child: Text(
-          title,
-          style: AppTextStyle.rubikMedium14.copyWith(
-            color: isSelected ? AppColors.white : AppColors.textDart,
+        child: FittedBox(
+          child: Text(
+            title,
+            style: AppTextStyle.rubikMedium14.copyWith(
+              color: isSelected ? AppColors.white : AppColors.textDart,
+            ),
           ),
         ),
       ),
