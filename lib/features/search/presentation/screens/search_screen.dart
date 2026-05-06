@@ -89,11 +89,12 @@ class SearchSceeenEmptyContent extends StatelessWidget {
           Text(
             'no_result_search'.tr(),
             textAlign: TextAlign.center,
-            style: AppTextStyle.rubikBold22.copyWith(color: AppColors.black),
+            style:
+                AppTextStyle.rubikSemiBold20.copyWith(color: AppColors.black),
           ),
         ],
       ),
-    );
+    ).symmetricPadding(horizontal: 22);
   }
 }
 

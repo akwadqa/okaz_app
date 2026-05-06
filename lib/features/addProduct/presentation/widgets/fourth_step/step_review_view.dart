@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:okaz/features/addProduct/presentation/controller/add_product_controller.dart';
+import 'package:okaz/gen/assets.gen.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 
 import '../../../../../src/resourses/color_manager/app_colors.dart';
@@ -17,6 +19,7 @@ class StepReviewView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(addProductControllerProvider).value!;
     final controller = ref.read(addProductControllerProvider.notifier);
+    final country = ref.watch(localStorageServiceProvider).userInfo.country;
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -92,7 +95,10 @@ class StepReviewView extends ConsumerWidget {
         AddTextField(
           hint: context.tr('enter_price'),
           keyboardType: TextInputType.number,
-          suffixText: context.tr('currency_qr'),
+          suffixText:
+              country == 'Qatar' ? 'currency_qr'.tr() : 'currency_sar'.tr(),
+          // ? Assets.icons.qatarFlagIc.svg().symmetricPadding(horizontal: 10)
+          // : Assets.icons.saudiFlagIc.svg().symmetricPadding(horizontal: 10),
           value: state.price?.toString(),
           onChanged: (v) => controller.setPrice(int.tryParse(v)),
         ),

@@ -23,24 +23,25 @@ class ProductDetailsScreenCommentsSection extends StatelessWidget {
       child: Column(
         children: [
           const Divider(height: 1, color: AppColors.dividerColor),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
-            child: Row(
-              children: [
-                Text(
-                  'product_details_comments_title'.tr(),
-                  style: AppTextStyle.rubikSemiBold16.copyWith(
-                    color: AppColors.primary,
+          if (productDetailsModel.parentComments?.isNotEmpty ?? false)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+              child: Row(
+                children: [
+                  Text(
+                    'product_details_comments_title'.tr(),
+                    style: AppTextStyle.rubikSemiBold16.copyWith(
+                      color: AppColors.primary,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                Text(
-                  'product_details_view_all'.tr(),
-                  style: AppTextStyle.rubikMedium12,
-                ),
-              ],
+                  const Spacer(),
+                  // Text(
+                  //   'product_details_view_all'.tr(),
+                  //   style: AppTextStyle.rubikMedium12,
+                  // ),
+                ],
+              ),
             ),
-          ),
           const Divider(height: 1, color: AppColors.dividerColor),
           ...productDetailsModel.parentComments!.map(
             (c) => Column(

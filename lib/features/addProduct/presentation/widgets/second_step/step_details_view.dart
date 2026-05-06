@@ -22,7 +22,8 @@ class StepDetailsView extends ConsumerWidget {
     final attributes = state.attributes;
     final mainFilters = attributes.firstWhere((e) => e.isMainFilter == 1);
     final cities = attributes
-        .where((e) => e.isMainFilter == 0 && e.title == 'City')
+        .where((e) =>
+            e.isMainFilter == 0 && (e.title == 'City' || e.title == 'المدينة'))
         .expand((e) => e.values)
         .toList();
     // List<String> cities = [

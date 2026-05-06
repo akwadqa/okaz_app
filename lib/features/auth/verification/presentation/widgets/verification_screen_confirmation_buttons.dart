@@ -32,7 +32,7 @@ class VerificationScreenConfirmationButtons extends ConsumerWidget {
               // context.maybePop().then((_) {
               debugPrint("Success check");
               // AppToast.successToast('successfullyCompleted'.tr());
-              context.pushReplacement(AppRoutes.mainScreen);
+              context.go(AppRoutes.mainScreen);
               // context
               //     .pushRoute(VerificationRoute(inputedPhone: _phoneNumber!));
               // _showDialog();

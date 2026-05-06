@@ -69,30 +69,62 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
             ),
           ),
           PositionedDirectional(
-            start: 16,
-            top: 28,
-            child: IconButton(
-              onPressed: () {
-                if (context.canPop()) {
-                  context.pop();
-                } else {
-                  context.goNamed(AppRoutes.mainScreen);
-                }
-              },
-              icon: Icon(Icons.arrow_back_ios_rounded, color: AppColors.white),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 18,
-            child: Center(
-              child: ProductDetailsScreenCarouselIndicator(
-                count: widget.productDetailsModel.images?.length ?? 0,
-                currentIndex: _currentIndex,
+              start: 16,
+              top: 28,
+              child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(100),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 1,
+                          offset: const Offset(0, 2),
+                        ),
+                      ]),
+                  child: GestureDetector(
+                    onTap: () => {
+                      if (context.canPop())
+                        {
+                          context.pop(),
+                        }
+                      else
+                        {
+                          context.goNamed(AppRoutes.mainScreen),
+                        }
+                    },
+                    child: Icon(Icons.arrow_back_ios_rounded,
+                        color: AppColors.primary),
+                  ))),
+          // child: IconButton(
+          //   style: ButtonStyle(
+          //       iconColor: WidgetStatePropertyAll(AppColors.primary),
+          //       backgroundColor:
+          //           WidgetStatePropertyAll(AppColors.background)),
+          //   onPressed: () {
+          //     if (context.canPop()) {
+          //       context.pop();
+          //     } else {
+          //       context.goNamed(AppRoutes.mainScreen);
+          //     }
+          //   },
+          //   icon: Icon(Icons.arrow_back_ios_rounded, color: AppColors.white),
+          // ),
+
+          if ((widget.productDetailsModel.images?.length ?? 0) > 1)
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 18,
+              child: Center(
+                child: ProductDetailsScreenCarouselIndicator(
+                  count: widget.productDetailsModel.images?.length ?? 0,
+                  currentIndex: _currentIndex,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );
@@ -161,7 +193,7 @@ class _ProductDetailsScreenIconCircleButtonState
 
     return CircleAvatar(
       backgroundColor: Colors.white,
-      radius: 12,
+      radius: widget.toProduct ? 12 : 16,
       child: GestureDetector(
         onTap: _handleTap,
         child: AnimatedScale(

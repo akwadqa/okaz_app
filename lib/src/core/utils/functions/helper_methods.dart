@@ -75,7 +75,7 @@ Future<void> openWhatsApp(String phoneNumber) async {
 Future<void> openPhoneDialer(String phoneNumber) async {
   final String cleanNumber = phoneNumber.replaceAll(RegExp(r'\s+\b|\b\s'), '');
 
-  final Uri phoneUri = Uri(scheme: 'tel', path: cleanNumber);
+  final Uri phoneUri = Uri(scheme: 'tel', path: '+$cleanNumber');
 
   try {
     if (await canLaunchUrl(phoneUri)) {

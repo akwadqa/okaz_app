@@ -14,6 +14,7 @@ class AddTextField extends StatefulWidget {
     this.keyboardType,
     this.isRequired = false,
     this.suffixText,
+    this.suffixIcon,
   });
 
   final String hint;
@@ -24,6 +25,7 @@ class AddTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final bool isRequired;
   final String? suffixText;
+  final Widget? suffixIcon;
 
   @override
   State<AddTextField> createState() => _AddTextFieldState();
@@ -72,6 +74,7 @@ class _AddTextFieldState extends State<AddTextField> {
           style: AppTextStyle.rubikRegular16,
           decoration: InputDecoration(
             filled: true,
+            suffixIcon: widget.suffixIcon,
             fillColor: Colors.white,
             hintText: widget.hint.tr(),
             hintStyle: AppTextStyle.cairoRegular12,

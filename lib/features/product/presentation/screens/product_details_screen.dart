@@ -115,7 +115,6 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
   }
 
   Widget _buildProductDetailsBody(ProductDetailsModel productDetailsModel) {
-
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
