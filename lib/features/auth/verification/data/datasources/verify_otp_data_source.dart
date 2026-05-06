@@ -28,7 +28,7 @@ Future<ApiResponse<VerifyOtpResponseModel>> verifyOtp(String otp,String phone) a
       (json) =>VerifyOtpResponseModel.fromJson(json as Map<String,dynamic>),
     );
   } catch (e) {
-    Dev.logLine('Error in signIn: $e');
+    Dev.logError('Error in signIn: $e');
     rethrow;
   }
 }

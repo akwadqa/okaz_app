@@ -30,7 +30,7 @@ Future<ApiResponse<SigninResponseModel>> signIn(String phone) async {
       (json) =>SigninResponseModel.fromJson(json as Map<String,dynamic>),
     );
   } catch (e) {
-    Dev.logLine('Error in signIn: $e');
+    Dev.logError('Error in signIn: $e');
     rethrow;
   }
 }

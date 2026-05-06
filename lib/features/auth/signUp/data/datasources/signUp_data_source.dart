@@ -26,7 +26,7 @@ class SignupDataSource {
         (json) => SignupResponseModel.fromJson(json as Map<String, dynamic>),
       );
     } catch (e) {
-      Dev.logLine('Error in signUp: ${(e as DioException).message}');
+      Dev.logError('Error in signUp: ${(e as DioException).message}');
       rethrow;
     }
   }

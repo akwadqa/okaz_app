@@ -65,7 +65,7 @@ class StepDetailsView extends ConsumerWidget {
             showAddSelectSheet<String>(
               context: context,
               title: 'select_ad_type',
-              items: const ['Sale', 'wanted'],
+              items: const ['Sale', 'Wanted'],
               selected: state.adType,
               labelBuilder: _adTypeLabel,
               onConfirm: controller.setAdType,
@@ -207,7 +207,7 @@ class StepDetailsView extends ConsumerWidget {
     switch (value) {
       case 'Sale':
         return 'for_sale'.tr();
-      case 'wanted':
+      case 'Wanted':
         return 'wanted'.tr();
       default:
         return '';

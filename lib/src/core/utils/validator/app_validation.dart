@@ -19,9 +19,6 @@ String? Function(String?) mobileNumberValidation(BuildContext context) {
 FutureOr<String?> Function(PhoneNumber?) mobileNumberValidationIntl(
   BuildContext context,
 ) {
-    Dev.logLine("PhoneNumber");
-    Dev.logLine(PhoneNumber);
-
   return (PhoneNumber? value) {
     Dev.logLine(value);
     final number = value?.number ?? '';
