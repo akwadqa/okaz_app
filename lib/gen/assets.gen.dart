@@ -351,25 +351,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/Rectangle.png
-  AssetGenImage get rectangle =>
-      const AssetGenImage('assets/images/Rectangle.png');
-
   /// File path: assets/images/access_denied.svg
   SvgGenImage get accessDenied =>
       const SvgGenImage('assets/images/access_denied.svg');
-
-  /// File path: assets/images/all_event_image.jpg
-  AssetGenImage get allEventImage =>
-      const AssetGenImage('assets/images/all_event_image.jpg');
-
-  /// File path: assets/images/background_event_im.png
-  AssetGenImage get backgroundEventIm =>
-      const AssetGenImage('assets/images/background_event_im.png');
-
-  /// File path: assets/images/book_image.jpg
-  AssetGenImage get bookImage =>
-      const AssetGenImage('assets/images/book_image.jpg');
 
   /// File path: assets/images/empty_data.svg
   SvgGenImage get emptyData =>
@@ -393,14 +377,6 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/img.png
   AssetGenImage get img => const AssetGenImage('assets/images/img.png');
-
-  /// File path: assets/images/invitation_create_im.png
-  AssetGenImage get invitationCreateIm =>
-      const AssetGenImage('assets/images/invitation_create_im.png');
-
-  /// File path: assets/images/invite_type_image.jpg
-  AssetGenImage get inviteTypeImage =>
-      const AssetGenImage('assets/images/invite_type_image.jpg');
 
   /// File path: assets/images/ipone_image.jpg
   AssetGenImage get iponeImage =>
@@ -434,10 +410,6 @@ class $AssetsImagesGen {
   AssetGenImage get qatarFlag =>
       const AssetGenImage('assets/images/qatar_flag.png');
 
-  /// File path: assets/images/qr_template_image.png
-  AssetGenImage get qrTemplateImage =>
-      const AssetGenImage('assets/images/qr_template_image.png');
-
   /// File path: assets/images/splash_back_im.png
   AssetGenImage get splashBackIm =>
       const AssetGenImage('assets/images/splash_back_im.png');
@@ -454,37 +426,19 @@ class $AssetsImagesGen {
   AssetGenImage get successImageAdded =>
       const AssetGenImage('assets/images/success_image_added.png');
 
-  /// File path: assets/images/template1_image.png
-  AssetGenImage get template1Image =>
-      const AssetGenImage('assets/images/template1_image.png');
-
-  /// File path: assets/images/template2_image.png
-  AssetGenImage get template2Image =>
-      const AssetGenImage('assets/images/template2_image.png');
-
   /// File path: assets/images/template_reply_image.png
   AssetGenImage get templateReplyImage =>
       const AssetGenImage('assets/images/template_reply_image.png');
 
-  /// File path: assets/images/watch_image.jpg
-  AssetGenImage get watchImage =>
-      const AssetGenImage('assets/images/watch_image.jpg');
-
   /// List of all assets
   List<dynamic> get values => [
-        rectangle,
         accessDenied,
-        allEventImage,
-        backgroundEventIm,
-        bookImage,
         emptyData,
         emptyMessages,
         emptyNotificationIm,
         emptySearchIm,
         imErrorScreen,
         img,
-        invitationCreateIm,
-        inviteTypeImage,
         iponeImage,
         noSearchImage,
         onBoardingIm1,
@@ -493,15 +447,11 @@ class $AssetsImagesGen {
         phoneImage,
         qatarCountry,
         qatarFlag,
-        qrTemplateImage,
         splashBackIm,
         splashImage,
         splashImage1,
         successImageAdded,
-        template1Image,
-        template2Image,
-        templateReplyImage,
-        watchImage
+        templateReplyImage
       ];
 }
 

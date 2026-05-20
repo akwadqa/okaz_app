@@ -45,7 +45,7 @@ class SearchSubCategoriesHeading extends StatelessWidget {
             ),
           ],
         ).symmetricPadding(horizontal: 22, vertical: 20),
-        HomeScreenSearchFiled(title: 'search_in_section'.tr()),
+        // HomeScreenSearchFiled(title: 'search_in_section'.tr()),
       ],
     );
   }

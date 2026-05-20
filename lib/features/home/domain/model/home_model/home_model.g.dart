@@ -17,25 +17,32 @@ _HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => _HomeModel(
               ? null
               : CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      appVersion: json['app_version'] == null
+          ? null
+          : AppVersionModel.fromJson(
+              json['app_version'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
     <String, dynamic>{
       'banners': instance.banners,
       'categories': instance.categories,
+      'app_version': instance.appVersion,
     };
 
 _BannerModel _$BannerModelFromJson(Map<String, dynamic> json) => _BannerModel(
-      categoryName: json['category_name'] as String?,
-      categoryNameAr: json['category_name_ar'] as String?,
+      bannerName: json['banner_name'] as String?,
+      bannerNameAr: json['banner_name_ar'] as String?,
       image: json['image'] as String?,
+      post: json['post'] as String?,
     );
 
 Map<String, dynamic> _$BannerModelToJson(_BannerModel instance) =>
     <String, dynamic>{
-      'category_name': instance.categoryName,
-      'category_name_ar': instance.categoryNameAr,
+      'banner_name': instance.bannerName,
+      'banner_name_ar': instance.bannerNameAr,
       'image': instance.image,
+      'post': instance.post,
     };
 
 _CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
@@ -115,4 +122,26 @@ Map<String, dynamic> _$MainAttributeValueModelToJson(
     <String, dynamic>{
       'image': instance.image,
       'title': instance.title,
+    };
+
+_AppVersionModel _$AppVersionModelFromJson(Map<String, dynamic> json) =>
+    _AppVersionModel(
+      androidVersion: json['android_version'] as String?,
+      iosVersion: json['ios_version'] as String?,
+      androidUrl: json['android_url'] as String?,
+      iosUrl: json['ios_url'] as String?,
+      appUpdateRequired: (json['app_update_required'] as num?)?.toInt(),
+      appUpdateMessage: json['app_update_message'] as String?,
+      appleReview: (json['apple_review'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$AppVersionModelToJson(_AppVersionModel instance) =>
+    <String, dynamic>{
+      'android_version': instance.androidVersion,
+      'ios_version': instance.iosVersion,
+      'android_url': instance.androidUrl,
+      'ios_url': instance.iosUrl,
+      'app_update_required': instance.appUpdateRequired,
+      'app_update_message': instance.appUpdateMessage,
+      'apple_review': instance.appleReview,
     };

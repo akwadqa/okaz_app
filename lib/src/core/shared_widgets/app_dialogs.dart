@@ -20,9 +20,98 @@ import 'package:okaz/src/core/utils/validator/app_validation.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDialogs {
   AppDialogs._();
+  static Future<void> showUpdateDialog(
+    BuildContext context,
+    String title,
+    String message,
+    String? url,
+    bool isRequired,
+  ) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) {
+        final theme = Theme.of(context);
+
+        return PopScope(
+          canPop: !isRequired,
+          child: AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            title: Text(
+              title.tr(),
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            content: Text(
+              message.tr(),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                height: 1.5,
+                color: theme.colorScheme.onSurface.withOpacity(0.8),
+              ),
+            ),
+            actionsPadding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
+            actionsAlignment: MainAxisAlignment.spaceBetween,
+            actions: [
+              Row(
+                children: [
+                  if (!isRequired)
+                    Expanded(
+                      child: CustomButtonWidget(
+                        text: 'later'.tr(),
+                        backgroundColor: Colors.transparent,
+                        color: AppColors.black900,
+                        isFiled: false,
+                        height: 45,
+                        radius: 10,
+                        width: double.infinity,
+                        onTap: () => Navigator.of(context).pop(),
+                      ),
+                    ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: CustomButtonWidget(
+                      text: 'update'.tr(),
+                      backgroundColor: AppColors.primary,
+                      color: AppColors.offWhite,
+                      isFiled: true,
+                      height: 45,
+                      width: double.infinity / 2,
+                      radius: 10,
+                      onTap: () async {
+                        if (url == null) return;
+                        final uri = Uri.parse(url);
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(
+                            uri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        } else {
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(tr('could_not_open_link')),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   static Future<void> loading(
     BuildContext context, {

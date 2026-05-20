@@ -83,10 +83,10 @@ class SettingsScreen extends ConsumerWidget {
           ),
 
           if (isAuthenticated) ...[
-            SettingsItemCard(
-              title: 'notifications'.tr(),
-              icon: Assets.icons.notificationIc,
-            ),
+            // SettingsItemCard(
+            //   title: 'notifications'.tr(),
+            //   icon: Assets.icons.notificationIc,
+            // ),
             SettingsItemCard(
               title: 'logout'.tr(),
               icon: Assets.icons.logoutIc,
