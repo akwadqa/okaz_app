@@ -1,12 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:okaz/features/home/presentation/screens/home_screen.dart';
-import 'package:okaz/features/home/presentation/widgets/bottom_navigation_bar_view.dart';
-import 'package:okaz/features/profile/presentation/screens/profile_screen.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
+import 'home_screen.dart';
+import '../widgets/bottom_navigation_bar_view.dart';
+import '../../../profile/presentation/screens/profile_screen.dart';
 
 import '../../../settings/presentation/screens/settings_screen.dart';
 import '../controller/home_controller.dart';

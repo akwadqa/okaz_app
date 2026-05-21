@@ -1,8 +1,8 @@
 
 
-import 'package:okaz/features/search/data/datasource/search_remote_data_source.dart';
-import 'package:okaz/src/infrastructure/network/exception/dio_exceptions.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart' show networkServiceProvider;
+import '../datasource/search_remote_data_source.dart';
+import '../../../../src/infrastructure/network/exception/dio_exceptions.dart';
+import '../../../../src/infrastructure/network/services/dio_client.dart' show networkServiceProvider;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 

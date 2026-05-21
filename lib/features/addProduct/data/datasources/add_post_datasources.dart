@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/exception/dio_exceptions.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
+import '../../domain/model/subcategory/subcategory_attribute_model.dart';
+import '../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/exception/dio_exceptions.dart';
 
 import '../../../../src/infrastructure/network/services/network_service.dart';
 import '../../../../src/logger/log_services/dev_logger.dart';

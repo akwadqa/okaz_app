@@ -1,8 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'app_text_styles.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class SettingsItemCard extends StatelessWidget {
   final String title;

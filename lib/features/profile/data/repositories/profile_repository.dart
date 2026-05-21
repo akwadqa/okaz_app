@@ -1,12 +1,11 @@
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/profile/data/datasources/profile_dataSource.dart';
-import 'package:okaz/features/profile/domain/model/post_model.dart';
-import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
-import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
-import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
+import '../../../home/domain/model/home_model/home_model.dart';
+import '../datasources/profile_dataSource.dart';
+import '../../domain/model/post_model.dart';
+import '../../domain/model/update_user_request/update_user_request.dart';
+import '../../domain/model/user_response_model/user_response_model.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/dio_client.dart';
+import '../../../../src/logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_repository.g.dart';

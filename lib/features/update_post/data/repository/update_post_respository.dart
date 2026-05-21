@@ -1,7 +1,7 @@
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/update_post/data/datasource/update_post_remote_data_source.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../datasource/update_post_remote_data_source.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/dio_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../src/infrastructure/network/exception/dio_exceptions.dart';

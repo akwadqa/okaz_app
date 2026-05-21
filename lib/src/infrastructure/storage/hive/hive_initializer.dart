@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../../logger/log_services/dev_logger.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../application/data/user_information/user_information.dart';

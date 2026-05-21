@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
-import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
-import 'package:okaz/features/filter/presentation/widgets/products_screen/product_screen_filter_item.dart';
-import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_filters_button.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
+import '../../controller/filter_controller.dart';
+import 'product_screen_filter_item.dart';
+import 'products_screen_filters_button.dart';
+import '../../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../../src/core/utils/extenssions/int_extenssion.dart';
 
 class ProductsScreenFilters extends ConsumerStatefulWidget {
   const ProductsScreenFilters({

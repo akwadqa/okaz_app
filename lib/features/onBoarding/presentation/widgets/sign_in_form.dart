@@ -2,14 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_controller.dart';
-import 'package:okaz/features/auth/widgets/text_form_fields/login_page_number_field.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/app_toast.dart';
-import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../auth/signIn/presentation/controller/sign_in_controller.dart';
+import '../../../auth/widgets/text_form_fields/login_page_number_field.dart';
+import '../../../../src/application/router/app_routes.dart';
+import '../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../src/core/shared_widgets/app_toast.dart';
+import '../../../../src/core/shared_widgets/custom_button_widget.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class SignInForm extends ConsumerStatefulWidget {
   const SignInForm({super.key});

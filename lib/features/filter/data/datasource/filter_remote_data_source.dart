@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_request.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/network_service.dart';
+import '../../../product/domain/model/get_posts_request/get_posts_request.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/network_service.dart';
 
 class FilterRemoteDataSource {
   final NetworkService _networkService;

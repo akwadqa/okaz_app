@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:okaz/features/product/data/repository/product_repository.dart';
+import '../../data/repository/product_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'favorite_product_contrller.g.dart';

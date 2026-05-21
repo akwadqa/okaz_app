@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:pinput/pinput.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
 
 import 'create_account_field.dart';
 

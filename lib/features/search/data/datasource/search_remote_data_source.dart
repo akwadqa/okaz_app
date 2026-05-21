@@ -1,7 +1,7 @@
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/network_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/network_service.dart';
+import '../../../../src/logger/log_services/dev_logger.dart';
 
 class SearchRemoteDataSource {
   final NetworkService _networkService;

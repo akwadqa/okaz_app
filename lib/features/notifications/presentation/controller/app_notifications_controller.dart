@@ -1,6 +1,6 @@
 
-import 'package:okaz/features/notifications/data/repositories/app_notifications_repository.dart';
-import 'package:okaz/features/notifications/domain/model/app_notifications_model.dart';
+import '../../data/repositories/app_notifications_repository.dart';
+import '../../domain/model/app_notifications_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_notifications_controller.g.dart';
@@ -64,7 +64,7 @@ class AppNotificationsController extends _$AppNotificationsController {
   }
 
 
-   List<AppNotificationsModel> _mockNotifications({int page = 1}) {
+   List<AppNotificationsModel> _mockNotifications() {
     final now = DateTime.now();
 
     return [

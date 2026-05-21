@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/product/presentation/widgets/product_details_comment_section/reply_comment_bottom_sheet.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../domain/model/product_details_model/product_details_model.dart';
+import 'reply_comment_bottom_sheet.dart';
+import '../../../../../src/core/shared_widgets/app_dialogs.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 import 'product_details_screen_comment_tile.dart';
 import 'edit_comment_bottom_sheet.dart';

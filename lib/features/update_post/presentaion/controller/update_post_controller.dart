@@ -1,7 +1,7 @@
 import 'package:image_picker/image_picker.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/update_post/data/repository/update_post_respository.dart';
-import 'package:okaz/features/update_post/presentaion/controller/update_post_state.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../../data/repository/update_post_respository.dart';
+import 'update_post_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'update_post_controller.g.dart';

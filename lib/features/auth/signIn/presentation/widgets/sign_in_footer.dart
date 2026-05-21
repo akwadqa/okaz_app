@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/application/router/app_routes.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
 
 class SignInFooter extends StatelessWidget {
   const SignInFooter({super.key});

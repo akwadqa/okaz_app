@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/features/auth/verification/presentation/widgets/verification_screen_confirmation_buttons.dart';
-import 'package:okaz/features/auth/verification/presentation/widgets/verification_screen_heading.dart';
-import 'package:okaz/features/auth/verification/presentation/widgets/verification_screen_pin.dart';
-import 'package:okaz/features/auth/verification/presentation/widgets/verification_screen_timer.dart';
-import 'package:okaz/features/auth/widgets/auth_build_content.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:pinput/pinput.dart';
+import '../widgets/verification_screen_confirmation_buttons.dart';
+import '../widgets/verification_screen_heading.dart';
+import '../widgets/verification_screen_pin.dart';
+import '../widgets/verification_screen_timer.dart';
+import '../../../widgets/auth_build_content.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
 
 import '../widgets/verification_screen_footer.dart';
 

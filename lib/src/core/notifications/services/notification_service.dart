@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/firebase_options.dart';
-import 'package:okaz/src/core/localization/current_language.dart';
-import 'package:okaz/src/core/notifications/repositories/notifications_repository.dart';
-import 'package:okaz/src/core/utils/constants/keys.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
+import '../../../../firebase_options.dart';
+import '../../localization/current_language.dart';
+import '../repositories/notifications_repository.dart';
+import '../../utils/constants/keys.dart';
+import '../../../infrastructure/storage/local_storage_service.dart';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

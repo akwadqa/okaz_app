@@ -1,6 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
 
 part 'post_model.freezed.dart';
 part 'post_model.g.dart';

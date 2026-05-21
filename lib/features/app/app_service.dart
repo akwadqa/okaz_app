@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/widgets.dart';
 
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/src/application/router/app_router.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
+import '../home/domain/model/home_model/home_model.dart';
+import '../../src/application/router/app_router.dart';
+import '../../src/core/shared_widgets/app_dialogs.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

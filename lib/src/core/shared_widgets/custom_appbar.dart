@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/shared_widgets/custom_back_arrow_widget%20copy.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import 'custom_back_arrow_widget%20copy.dart';
+import '../../resourses/color_manager/app_colors.dart';
 
 class CustomAppbar extends StatelessWidget {
   final String title;

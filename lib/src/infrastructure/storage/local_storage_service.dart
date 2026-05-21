@@ -1,13 +1,13 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../application/data/user_information/user_information.dart';
 import '../../core/utils/constants/keys.dart';
+import '../../logger/log_services/dev_logger.dart';
 import 'hive/hive_boxes.dart';
+
 part 'local_storage_service.g.dart';
 
 @Riverpod(keepAlive: true)

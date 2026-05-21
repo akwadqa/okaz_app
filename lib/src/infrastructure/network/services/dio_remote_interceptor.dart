@@ -4,9 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/src/application/router/app_router.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/application/router/routing/app_router_provider.dart';
+import '../../../application/router/app_router.dart';
+import '../../../application/router/app_routes.dart';
 
 import '../../../core/localization/current_language.dart';
 import '../../api/response/api_response.dart';

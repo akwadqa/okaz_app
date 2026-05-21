@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import '../utils/extenssions/widget_extensions.dart';
 
 import '../../resourses/color_manager/app_colors.dart';
 

@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_google_places_hoc081098/google_maps_webservice_places.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../controller/map_controller/map_controller.dart';
+import '../../../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class LocationSearchBox extends ConsumerStatefulWidget {
   final Function(LatLng latLng) onSelect;

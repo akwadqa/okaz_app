@@ -1,24 +1,21 @@
 import 'dart:async';
 
-import 'package:bot_toast/bot_toast.dart';
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/comment/presentation/controller/comment_controller.dart';
-import 'package:okaz/features/product/presentation/controller/product_controller.dart';
-import 'package:okaz/features/profile/presentation/controller/my_profile_controller.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/app_toast.dart';
-import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/core/utils/validator/app_validation.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../features/comment/presentation/controller/comment_controller.dart';
+import '../../../features/product/presentation/controller/product_controller.dart';
+import '../../../features/profile/presentation/controller/my_profile_controller.dart';
+import '../../../gen/assets.gen.dart';
+import 'app_loader.dart';
+import 'app_toast.dart';
+import 'custom_button_widget.dart';
+import '../utils/extenssions/int_extenssion.dart';
+import '../utils/extenssions/widget_extensions.dart';
+import '../utils/validator/app_validation.dart';
+import '../../resourses/color_manager/app_colors.dart';
+import '../../resourses/font_manager/app_text_style.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:url_launcher/url_launcher.dart';
 

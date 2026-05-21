@@ -1,16 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:okaz/features/addProduct/data/repositories/add_post_repositories.dart';
-import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
-import 'package:okaz/features/filter/data/repo/filter_repository.dart';
-import 'package:okaz/features/filter/presentation/controller/filter_state.dart';
-import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_request.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../../addProduct/data/repositories/add_post_repositories.dart';
+import '../../../addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
+import '../../data/repo/filter_repository.dart';
+import 'filter_state.dart';
+import 'sub_category_controller.dart';
+import '../../../home/domain/model/home_model/home_model.dart';
+import '../../../product/domain/model/get_posts_request/get_posts_request.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
+import '../../../../src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'filter_controller.g.dart';
@@ -30,8 +30,9 @@ class FilterController extends _$FilterController {
       SubcategoryAttributeModel subcategoryAttributeModel, dynamic filter) {
     final currentFilters = state.value!.selectedAttributes;
     if (currentFilters[subcategoryAttributeModel.title] == filter) {
-      if (subcategoryAttributeModel.isMainFilter != 0)
+      if (subcategoryAttributeModel.isMainFilter != 0) {
         ref.read(selectedSubCategoryProvider.notifier).state = ' ';
+      }
       state = AsyncData(
         state.value!.copyWith(
             selectedAttributes: Map.from(

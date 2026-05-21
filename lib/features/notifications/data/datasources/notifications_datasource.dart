@@ -1,8 +1,8 @@
 
-import 'package:okaz/features/notifications/domain/model/app_notifications_model.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/network_service.dart';
+import '../../domain/model/app_notifications_model.dart';
+import '../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/network_service.dart';
 
 class NotificationsDatasource {
   final NetworkService _networkService;

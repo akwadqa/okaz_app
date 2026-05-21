@@ -1,9 +1,9 @@
-import 'package:okaz/features/comment/data/datasource/comment_remote_data_source.dart';
-import 'package:okaz/features/comment/domain/model/create_comment/create_comment_model.dart';
-import 'package:okaz/features/comment/domain/model/update_comment/update_comment_model.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/exception/dio_exceptions.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
+import '../datasource/comment_remote_data_source.dart';
+import '../../domain/model/create_comment/create_comment_model.dart';
+import '../../domain/model/update_comment/update_comment_model.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/exception/dio_exceptions.dart';
+import '../../../../src/infrastructure/network/services/dio_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'comment_repository.g.dart';

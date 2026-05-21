@@ -1,8 +1,8 @@
 
-import 'package:okaz/features/notifications/data/datasources/notifications_datasource.dart';
-import 'package:okaz/features/notifications/domain/model/app_notifications_model.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
+import '../datasources/notifications_datasource.dart';
+import '../../domain/model/app_notifications_model.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/dio_client.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_notifications_repository.g.dart';

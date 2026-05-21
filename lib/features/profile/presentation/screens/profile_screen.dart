@@ -17,15 +17,14 @@ import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+
 import '../../../../src/core/shared_widgets/app_pagination_widget.dart';
 import '../../../../src/core/shared_widgets/auht_guard.dart';
 import '../controller/my_profile_controller.dart';
 import '../controller/profile_state.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_tab_bar.dart';
-import '../widgets/profile_item_card.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});

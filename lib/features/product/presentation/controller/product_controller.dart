@@ -1,6 +1,6 @@
-import 'package:okaz/features/product/data/repository/product_repository.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/product/presentation/controller/product_state.dart';
+import '../../data/repository/product_repository.dart';
+import '../../domain/model/product_details_model/product_details_model.dart';
+import 'product_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'product_controller.g.dart';
@@ -225,7 +225,7 @@ class ProductController extends _$ProductController {
       }
 
       return;
-    } catch (e, st) {
+    } catch (e) {
       return;
     }
   }

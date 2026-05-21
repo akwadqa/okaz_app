@@ -3,10 +3,9 @@ import 'dart:ui' as ui;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class VerificationScreenHeading extends StatelessWidget {
   final String phone;

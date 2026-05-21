@@ -2,7 +2,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
 import '../controller/profile_state.dart';
 class ProfileTabBar extends StatelessWidget {
   final ProfileTab selectedTab;

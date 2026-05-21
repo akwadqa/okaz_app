@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/auth/widgets/auth_build_content.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../widgets/auth_build_content.dart';
+import '../../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
 import '../widgets/sign_in_footer.dart';
 import '../widgets/sign_in_form.dart';
 import '../widgets/sign_in_header.dart';

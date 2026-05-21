@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import 'app_loader.dart';
+import '../../infrastructure/storage/local_storage_service.dart';
+import '../../logger/log_services/dev_logger.dart';
 
 import 'guest_required_widget.dart';
 

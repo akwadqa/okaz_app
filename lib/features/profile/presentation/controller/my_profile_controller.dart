@@ -1,13 +1,10 @@
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/profile/data/repositories/profile_repository.dart';
-import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
-import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
-import 'package:okaz/src/application/data/user_information/user_information.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../data/repositories/profile_repository.dart';
+import '../../domain/model/update_user_request/update_user_request.dart';
+import '../../domain/model/user_response_model/user_response_model.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/model/post_model.dart';
 import '../../domain/profile_item.dart';

@@ -1,8 +1,8 @@
 
-import 'package:okaz/features/auth/signIn/domain/model/signin_response_model.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../domain/model/signin_response_model.dart';
+import '../../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../../src/logger/log_services/dev_logger.dart';
 
 import '../../../../../src/infrastructure/network/services/network_service.dart';
 

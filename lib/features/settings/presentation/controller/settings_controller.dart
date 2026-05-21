@@ -1,6 +1,6 @@
-import 'package:okaz/features/settings/data/repositories/settings_repository.dart';
-import 'package:okaz/features/settings/presentation/controller/settings_state.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
+import '../../data/repositories/settings_repository.dart';
+import 'settings_state.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'settings_controller.g.dart';
 

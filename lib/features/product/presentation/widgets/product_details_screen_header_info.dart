@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/product/presentation/widgets/product_details_screen_action_chips.dart';
-import 'package:okaz/features/product/presentation/widgets/product_details_screen_contact_bar.dart';
-import 'package:okaz/src/core/utils/extenssions/time_extension.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../domain/model/product_details_model/product_details_model.dart';
+import 'product_details_screen_action_chips.dart';
+import 'product_details_screen_contact_bar.dart';
+import '../../../../src/core/utils/extenssions/time_extension.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
 

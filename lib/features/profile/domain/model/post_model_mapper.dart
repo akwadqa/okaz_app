@@ -1,5 +1,5 @@
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/profile/domain/model/post_model.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import 'post_model.dart';
 
 extension PostModelMapper on PostModel {
   ProductDetailsModel toProductDetails(bool isFavorite) {

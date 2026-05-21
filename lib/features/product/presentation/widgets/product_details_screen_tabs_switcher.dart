@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/product/presentation/widgets/product_details_screen_ad_info_tab.dart';
-import 'package:okaz/features/product/presentation/widgets/product_details_screen_specs.dart';
+import '../../domain/model/product_details_model/product_details_model.dart';
+import 'product_details_screen_ad_info_tab.dart';
+import 'product_details_screen_specs.dart';
 
 class ProductDetailsScreenTabSwitcher extends StatelessWidget {
   final TabController controller;

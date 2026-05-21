@@ -1,12 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
-import 'package:okaz/features/filter/presentation/widgets/searc_sub_categories_screen/sub_category_item.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../controller/sub_category_controller.dart';
+import 'sub_category_item.dart';
+import '../../../../home/domain/model/home_model/home_model.dart';
+import '../../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class SubCategoriesSection extends ConsumerWidget {
   const SubCategoriesSection(this.subCategoryModel, {super.key});

@@ -1,15 +1,14 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../../../../src/core/shared_widgets/custom_button_widget.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/infrastructure/api/endpoint/services_urls.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../src/resourses/font_manager/app_text_style.dart';
 
 class UpdatePostImageGrid extends StatelessWidget {
   const UpdatePostImageGrid({
