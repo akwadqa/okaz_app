@@ -21,6 +21,7 @@ import 'package:okaz/src/core/shared_widgets/native_link_helper.dart';
 import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
 import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
 import 'package:okaz/src/core/utils/functions/helper_methods.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import 'package:okaz/src/logger/log_services/dev_logger.dart';
 import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
@@ -87,10 +88,13 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
 
   @override
   Widget build(BuildContext context) {
+    final storage=ref.watch(localStorageServiceProvider);
     final controller = ref.watch(
       homeControllerProvider
           .select((val) => val.value?.homeModel ?? AsyncLoading()),
     );
+    // ******(  storage====UserInformation(token: , fullName: pedri gonzalez, mobileNumber: 97456565656, email: 97456565656, image: , country: Qatar)  )******
+    Dev.logLine("storage====${storage.userInfo}");
     return controller.when(
       data: (homeModel) => _buildBody(context, homeModel),
       error: (e, st) => AppErrorWidget(

@@ -22,6 +22,7 @@ class _HomeScreenAddsSectionState extends State<HomeScreenAddsSection> {
             HomeScreenAddItem(bannerModel: widget.homeModel.banners![index]!),
         options: CarouselOptions(
           height: 168,
+
           viewportFraction: .8,
           autoPlay: true,
           autoPlayInterval: const Duration(seconds: 3),
