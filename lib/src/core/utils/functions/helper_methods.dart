@@ -99,7 +99,7 @@ Future<void> sharePost({
   required String? imageUrl,
 }) async {
   // final link = 'https://okaz.akwad.qa/product_details?id=$postId';
-  final link = 'https://okaz.app/product_details?id=$postId';
+  final link = 'https://www.souqokaz.qa/product_details?id=$postId';
   final String message = '🛍️ *للبيع:* $title\n'
       '💰 *السعر:* $price\n\n'
       'تفقد هذا العرض على تطبيق عكاظ:\n'

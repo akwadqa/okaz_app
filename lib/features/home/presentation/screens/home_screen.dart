@@ -59,7 +59,7 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
     super.initState();
     Future(() {
       ref.read(homeControllerProvider.notifier).getHomeData();
-      verifyLinks();
+      // verifyLinks();
     });
   }
 

@@ -17,7 +17,12 @@ class FilterRemoteDataSource {
       requestData.removeWhere((k, v) => v == null);
       final response = await _networkService.get(ApiEndPoints.productsByFilter,
           // data: {...request.toJson(), 'page': page, 'limit': 4});
-          data: {...requestData, 'page': page, 'limit': 4, 'country': country});
+          data: {
+            ...requestData,
+            'page': page,
+            'limit': 6,
+            if (country.isNotEmpty) 'country': country,
+          });
 
       if (response.data == null || response.statusCode != 200) {
         throw Exception('Failed to load getProductsByFilter');
