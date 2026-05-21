@@ -30,8 +30,8 @@ class _SearchSubCategoriesScreenContent extends StatelessWidget {
         Divider(height: 24, color: AppColors.dividerColor),
         if (subCategoryModel.mainAttributes?.isNotEmpty ?? false)
           SubCategoriesSection(subCategoryModel),
-        if (subCategoryModel.mainAttributes?.isNotEmpty ?? false)
-          Divider(height: 24, color: AppColors.dividerColor),
+        // if (subCategoryModel.mainAttributes?.isNotEmpty ?? false)
+        // Divider(height: 24, color: AppColors.dividerColor),
         // SearchSubCategoriesCompaniesSection(),
       ],
     );

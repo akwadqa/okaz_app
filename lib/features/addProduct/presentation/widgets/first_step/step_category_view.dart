@@ -168,7 +168,7 @@ class _CategorySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Divider(height: 1, color: AppColors.grayBorder),
+        Divider(height: 1, color: AppColors.lightGray),
 
         10.verticalSpace,
 
@@ -178,7 +178,7 @@ class _CategorySection extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: AppColors.primaryOpacity,
+                color: AppColors.secondPrimary,
                 borderRadius: BorderRadius.circular(25),
               ),
               child: CachedNetworkImage(

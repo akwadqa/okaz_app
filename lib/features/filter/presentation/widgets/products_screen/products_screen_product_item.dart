@@ -36,7 +36,6 @@ class ProductsScreenProductItem extends ConsumerWidget {
       }
     });
     return GestureDetector(
-      onLongPress: onLongPress,
       onTap: () =>
           context.push(AppRoutes.productDetailsScreen, extra: item.name),
       child: ClipRRect(
@@ -111,23 +110,44 @@ class ProductsScreenProductItem extends ConsumerWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   spacing: 10,
                   children: [
-                    Text(
-                      item.title ?? 'iphone'.tr(),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyle.rubikSemiBold16.copyWith(
-                        color: AppColors.textDart,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            item.title ?? 'iphone'.tr(),
+                            // 'gggggggggggggggggggggggggggggggggggggggggggg',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyle.rubikSemiBold16.copyWith(
+                              color: AppColors.textDart,
+                            ),
+                          ),
+                        ),
+                        if (onLongPress != null)
+                          GestureDetector(
+                            onTap: onLongPress,
+                            child: Icon(
+                              Icons.more_vert,
+                              color: AppColors.grayHint,
+                              size: 25,
+                            ),
+                          ),
+                      ],
                     ),
                     Text(
                       item.condition ?? 'new'.tr(),
+                      // 'gggggggggggggggggggggggggggggggggggggggggggg',
+                      maxLines: 1,
+
                       style: AppTextStyle.rubikRegular12.copyWith(
                         color: AppColors.grayHint,
                       ),
                     ),
-                    Spacer(),
+                    // Spacer(),
                     Text(
                       '${item.price ?? 44} ${item.currency ?? 'QAR'.tr()}',
                       style: AppTextStyle.rubikMedium14.copyWith(

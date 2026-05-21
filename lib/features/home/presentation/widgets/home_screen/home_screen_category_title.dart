@@ -26,7 +26,7 @@ class HomeScreenCategoryTitle extends StatelessWidget {
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.lightRedBackground,
+            color: AppColors.secondPrimary,
           ),
           child: CachedNetworkImage(
             imageUrl: ServicesUrls.imageUrl + icon,
