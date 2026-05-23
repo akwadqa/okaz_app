@@ -110,7 +110,7 @@ class ProductsScreenProductItem extends ConsumerWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   spacing: 10,
                   children: [
                     Row(
@@ -147,7 +147,7 @@ class ProductsScreenProductItem extends ConsumerWidget {
                         color: AppColors.grayHint,
                       ),
                     ),
-                    // Spacer(),
+                    Spacer(),
                     Text(
                       '${item.price ?? 44} ${item.currency ?? 'QAR'.tr()}',
                       style: AppTextStyle.rubikMedium14.copyWith(

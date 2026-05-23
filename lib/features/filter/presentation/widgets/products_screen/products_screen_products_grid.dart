@@ -46,7 +46,8 @@ Widget buildPostsGrid(
         crossAxisCount: 2,
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
-        childAspectRatio: 0.53,
+        childAspectRatio: 0.45,
+        // childAspectRatio: 0.53,
       ),
       itemBuilder: (context, index) =>
           ProductsScreenProductItem(item: posts[index]),

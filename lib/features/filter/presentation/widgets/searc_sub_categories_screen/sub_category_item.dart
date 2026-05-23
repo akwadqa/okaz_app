@@ -39,9 +39,9 @@ class SubCategoryItem extends ConsumerWidget {
       child: Container(
         // width: 104,
         // height: 40,
-        width: width / 4,
+        width: width / 4.5,
         // height: width / 3.5,
-        height: width / 4,
+        height: width / 4.5,
         padding: EdgeInsets.all(4),
         alignment: Alignment.center,
         decoration: BoxDecoration(

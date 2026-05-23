@@ -26,9 +26,9 @@ class HomeScreenSubCategoryItem extends ConsumerWidget {
         );
       },
       child: Container(
-        width: width / 4,
+        width: width / 4.5,
         // height: width / 3.5,
-        height: width / 4,
+        height: width / 4.5,
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(20),

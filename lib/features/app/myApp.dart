@@ -40,7 +40,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         builder: BotToastInit(),
 
         theme: ref.watch(appThemeProvider),
-        onGenerateTitle: (context) => context.tr('appTitle'),
+        onGenerateTitle: (context) => context.tr('app_name'),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         // supportedLocales: [Locale('en')],

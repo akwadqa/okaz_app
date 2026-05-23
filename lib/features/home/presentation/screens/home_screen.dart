@@ -107,6 +107,7 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
 
   Widget _buildBody(BuildContext context, HomeModel homeModel) {
     return ListView(
+      
       children: [
         HomeScreenSearchFiled(
           title: 'serch_for_any_thing'.tr(),

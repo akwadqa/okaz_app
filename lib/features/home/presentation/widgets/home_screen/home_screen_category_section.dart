@@ -34,7 +34,7 @@ class HomeScreenCategorySection extends StatelessWidget {
               )
               .toList(),
         ),
-        SizedBox()
+        SizedBox(),
       ],
     ).symmetricPadding(horizontal: 22);
   }
