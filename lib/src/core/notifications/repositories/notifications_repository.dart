@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
-import 'package:okaz/src/infrastructure/network/services/network_service.dart';
-import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
+import '../../../infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../infrastructure/api/endpoint/services_urls.dart';
+import '../../../infrastructure/api/response/api_response.dart';
+import '../../../infrastructure/network/services/dio_client.dart';
+import '../../../infrastructure/network/services/network_service.dart';
+import '../../../logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'notifications_repository.g.dart';
 

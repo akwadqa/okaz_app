@@ -2,14 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
-import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
-import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/core/utils/functions/helper_methods.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../controller/filter_controller.dart';
+import '../../controller/sub_category_controller.dart';
+import '../../../../home/presentation/widgets/home_screen/home_screen_search_field.dart';
+import '../../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../../src/core/utils/functions/helper_methods.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class ProductsScreenHeading extends ConsumerWidget {
   const ProductsScreenHeading({super.key});

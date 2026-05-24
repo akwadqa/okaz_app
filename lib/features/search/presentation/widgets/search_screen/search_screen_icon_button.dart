@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../../../gen/assets.gen.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
 
 class SearchScreenIconButton extends StatelessWidget {
   final SvgGenImage icon;

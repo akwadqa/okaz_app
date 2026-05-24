@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/utils/functions/helper_methods.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../resourses/color_manager/app_colors.dart';
 
 class CustomBackArrowWidget extends StatelessWidget {
   final VoidCallback? onTap;

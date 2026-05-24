@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../../../src/infrastructure/api/endpoint/services_urls.dart';
+import '../../../../../src/logger/log_services/dev_logger.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class HomeScreenCategoryTitle extends StatelessWidget {
   const HomeScreenCategoryTitle({
@@ -27,7 +26,7 @@ class HomeScreenCategoryTitle extends StatelessWidget {
           padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: AppColors.lightRedBackground,
+            color: AppColors.secondPrimary,
           ),
           child: CachedNetworkImage(
             imageUrl: ServicesUrls.imageUrl + icon,

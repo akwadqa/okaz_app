@@ -2,14 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_controller.dart';
-import 'package:okaz/features/auth/verification/presentation/controller/verify_otp_controller.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/app_toast.dart';
-import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../signIn/presentation/controller/sign_in_controller.dart';
+import '../controller/verify_otp_controller.dart';
+import '../../../../../src/application/router/app_routes.dart';
+import '../../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../../src/core/shared_widgets/app_toast.dart';
+import '../../../../../src/core/shared_widgets/custom_button_widget.dart';
+import '../../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
 
 class VerificationScreenConfirmationButtons extends ConsumerWidget {
   final TextEditingController otp;

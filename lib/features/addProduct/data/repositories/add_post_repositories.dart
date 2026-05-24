@@ -1,7 +1,5 @@
-import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
+import '../../domain/model/subcategory/subcategory_attribute_model.dart';
+import '../../../../src/logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../src/infrastructure/network/services/dio_client.dart';

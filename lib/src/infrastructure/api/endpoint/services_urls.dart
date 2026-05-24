@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:okaz/src/core/utils/constants/dotenv_keys.dart';
+import '../../../core/utils/constants/dotenv_keys.dart';
 
 class ServicesUrls {
   static String prodBaseUrl = '';

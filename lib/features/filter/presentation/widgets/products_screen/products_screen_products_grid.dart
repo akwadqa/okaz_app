@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
-import 'package:okaz/features/filter/presentation/widgets/products_screen/products_screen_product_item.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/profile/domain/profile_item.dart';
-import 'package:okaz/features/search/presentation/controller/search_controller.dart';
-import 'package:okaz/features/search/presentation/screens/search_screen.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/app_pagination_widget.dart';
+import '../../controller/filter_controller.dart';
+import 'products_screen_product_item.dart';
+import '../../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../../../../search/presentation/controller/search_controller.dart';
+import '../../../../search/presentation/screens/search_screen.dart';
+import '../../../../../src/core/shared_widgets/app_error_widget.dart';
+import '../../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../../src/core/shared_widgets/app_pagination_widget.dart';
 
 class ProductsScreenProductsGrid extends ConsumerWidget {
   const ProductsScreenProductsGrid({super.key});
@@ -49,6 +47,7 @@ Widget buildPostsGrid(
         crossAxisSpacing: 16,
         mainAxisSpacing: 16,
         childAspectRatio: 0.45,
+        // childAspectRatio: 0.53,
       ),
       itemBuilder: (context, index) =>
           ProductsScreenProductItem(item: posts[index]),

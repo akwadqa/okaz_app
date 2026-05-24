@@ -22,7 +22,7 @@ class CustomNavigationObserver extends NavigatorObserver {
     _routingLog('REPLACE: $oldRoute WITH $newRoute');
   }
 
-  _routingLog(String message) {
+  void _routingLog(String message) {
     if (kDebugMode) {
       print('\x1B[34m[GO ROUTER] => $message\x1B[0m');
     }

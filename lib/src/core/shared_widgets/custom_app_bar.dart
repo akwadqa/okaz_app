@@ -1,11 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../utils/extenssions/int_extenssion.dart';
+import '../../resourses/color_manager/app_colors.dart';
+import '../../resourses/font_manager/app_text_style.dart';
 
 class CustomDeafultAppbar extends StatelessWidget
     implements PreferredSizeWidget {

@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 

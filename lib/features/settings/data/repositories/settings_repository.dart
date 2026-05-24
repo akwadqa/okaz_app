@@ -1,8 +1,7 @@
-import 'package:okaz/features/home/data/datasources/home_dataSource.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/settings/data/datasources/settings_dataSource.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
-import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
+import '../../../home/domain/model/home_model/home_model.dart';
+import '../datasources/settings_dataSource.dart';
+import '../../../../src/infrastructure/network/services/dio_client.dart';
+import '../../../../src/logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'settings_repository.g.dart';

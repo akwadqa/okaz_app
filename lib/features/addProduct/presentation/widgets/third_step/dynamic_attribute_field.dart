@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
-import 'package:okaz/src/core/utils/enums/sub_categories_attributes_type.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../domain/model/subcategory/subcategory_attribute_model.dart';
+import '../../../../../src/core/utils/enums/sub_categories_attributes_type.dart';
+import '../../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../../src/logger/log_services/dev_logger.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 import 'package:queen_validators/queen_validators.dart';
 
 import '../../controller/add_product_controller.dart';

@@ -3,16 +3,15 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:okaz/features/addProduct/data/repositories/add_post_repositories.dart';
-import 'package:okaz/features/addProduct/domain/model/subcategory/subcategory_attribute_model.dart';
-import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../data/repositories/add_post_repositories.dart';
+import '../../domain/model/subcategory/subcategory_attribute_model.dart';
+import 'map_controller/map_controller.dart';
+import '../../../home/domain/model/home_model/home_model.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
+import '../../../../src/logger/log_services/dev_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/model/add_post_params.dart';
-import '../../domain/model/category_model.dart';
 import 'add_product_state.dart';
 import 'package:image_picker/image_picker.dart';
 

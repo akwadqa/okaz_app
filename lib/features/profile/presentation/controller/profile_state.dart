@@ -2,7 +2,6 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
 import 'package:okaz/features/profile/domain/model/post_model.dart';
 import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

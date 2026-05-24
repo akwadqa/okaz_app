@@ -2,14 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/product/presentation/controller/favorite_product_contrller.dart';
-import 'package:okaz/features/product/presentation/controller/product_controller.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
-import 'package:okaz/src/core/utils/functions/helper_methods.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../domain/model/product_details_model/product_details_model.dart';
+import '../controller/favorite_product_contrller.dart';
+import '../../../../src/application/router/app_routes.dart';
+import '../../../../src/core/utils/functions/helper_methods.dart';
+import '../../../../src/infrastructure/api/endpoint/services_urls.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
 

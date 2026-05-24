@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:okaz/features/addProduct/presentation/controller/add_product_controller.dart';
-import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
+import '../../../controller/add_product_controller.dart';
+import '../../../controller/map_controller/map_controller.dart';
+import '../../../../../../src/application/router/app_routes.dart';
 
 class LocationWidget extends ConsumerWidget {
   final String? id;

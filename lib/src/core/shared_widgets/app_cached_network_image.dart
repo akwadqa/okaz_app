@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/shared_widgets/fade_circle_loading_indicator.dart';
+import 'fade_circle_loading_indicator.dart';
 
 class AppCachedNetworkImage extends StatelessWidget {
   const AppCachedNetworkImage({

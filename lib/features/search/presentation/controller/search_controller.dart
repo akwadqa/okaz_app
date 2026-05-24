@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:okaz/features/filter/data/repo/filter_repository.dart';
-import 'package:okaz/features/product/domain/model/get_posts_request/get_posts_request.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/search/data/repository/search_repository.dart';
-import 'package:okaz/features/search/presentation/controller/search_state.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
+import '../../../filter/data/repo/filter_repository.dart';
+import '../../../product/domain/model/get_posts_request/get_posts_request.dart';
+import '../../../product/domain/model/product_details_model/product_details_model.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'search_controller.g.dart';

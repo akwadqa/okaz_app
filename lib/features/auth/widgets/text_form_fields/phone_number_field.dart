@@ -1,13 +1,10 @@
-import 'package:easy_localization/easy_localization.dart' as local;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/core/shared_widgets/arabic_number_input_formatter.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/core/utils/validator/app_validation.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:queen_validators/queen_validators.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../src/core/shared_widgets/arabic_number_input_formatter.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/core/utils/validator/app_validation.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 
 class PhoneNumberField extends StatelessWidget {

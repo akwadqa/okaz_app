@@ -56,7 +56,7 @@ class AppErrorWidget extends StatelessWidget {
                 if (context.canPop()) {
                   context.pop();
                 } else {
-                  context.go(AppRoutes.homeScreen);
+                  context.go(AppRoutes.mainScreen);
                 }
               },
               isFiled: false,

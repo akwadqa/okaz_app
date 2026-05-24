@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'app_text_styles.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class SettingsSectionTitle extends StatelessWidget {
   final String title;

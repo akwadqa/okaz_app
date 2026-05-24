@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-import 'package:okaz/gen/assets.gen.dart';
+import '../../../../gen/assets.gen.dart';
 
 import '../../../../src/application/router/app_routes.dart';
 import '../../../../src/infrastructure/storage/local_storage_service.dart';
@@ -14,7 +14,7 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    bool _navigated = false;
+    bool navigated = false;
 
     return Lottie.asset(
       Assets.lottie.splash,
@@ -22,8 +22,8 @@ class SplashScreen extends ConsumerWidget {
       fit: BoxFit.cover,
       frameRate: FrameRate.max,
       onLoaded: (composition) {
-        if (_navigated) return;
-        _navigated = true;
+        if (navigated) return;
+        navigated = true;
 
         Future.delayed(composition.duration + Duration(seconds: 2), () async {
           final storage = ref.read(localStorageServiceProvider);

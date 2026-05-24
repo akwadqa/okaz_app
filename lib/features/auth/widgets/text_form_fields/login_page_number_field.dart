@@ -6,10 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/core/utils/validator/app_validation.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/core/utils/validator/app_validation.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../src/resourses/font_manager/app_text_style.dart';
 
 import '../../../../src/core/shared_widgets/arabic_number_input_formatter.dart';
 

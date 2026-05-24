@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'app_text_styles.dart';
+import '../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class SettingsProfileHeader extends StatelessWidget {
   final String name;

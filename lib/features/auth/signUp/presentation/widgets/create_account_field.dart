@@ -1,9 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../../../gen/assets.gen.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class AppTextFormField extends StatefulWidget {
   const AppTextFormField({
@@ -54,7 +53,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
     return null;
   }
 
-  bool _obscurePassword = true;
+  final bool _obscurePassword = true;
   // 👈 control password visibility
   @override
   Widget build(BuildContext context) {

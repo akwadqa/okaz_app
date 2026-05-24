@@ -1,7 +1,7 @@
-import 'package:okaz/features/auth/signUp/domain/model/signup_response.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
-import 'package:okaz/src/logger/failure/exceptions/app_exception.dart';
+import '../../domain/model/signup_response.dart';
+import '../../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../../src/infrastructure/network/services/dio_client.dart';
+import '../../../../../src/logger/failure/exceptions/app_exception.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../domain/model/signUp_params.dart';

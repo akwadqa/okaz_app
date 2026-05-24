@@ -1,6 +1,6 @@
-import 'package:okaz/features/auth/signUp/data/repositories/signUp_repository.dart';
-import 'package:okaz/features/auth/signUp/domain/model/signUp_params.dart';
-import 'package:okaz/features/auth/signUp/domain/model/signup_response.dart';
+import '../../data/repositories/signUp_repository.dart';
+import '../../domain/model/signUp_params.dart';
+import '../../domain/model/signup_response.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'signUp_controller.g.dart';

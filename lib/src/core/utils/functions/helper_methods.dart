@@ -1,17 +1,14 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/infrastructure/network/services/dio_client.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../shared_widgets/app_dialogs.dart';
+import '../../../infrastructure/network/services/dio_client.dart';
+import '../../../infrastructure/storage/local_storage_service.dart';
+import '../../../logger/log_services/dev_logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -99,7 +96,7 @@ Future<void> sharePost({
   required String? imageUrl,
 }) async {
   // final link = 'https://okaz.akwad.qa/product_details?id=$postId';
-  final link = 'https://okaz.app/product_details?id=$postId';
+  final link = 'https://www.souqokaz.qa/product_details?id=$postId';
   final String message = '🛍️ *للبيع:* $title\n'
       '💰 *السعر:* $price\n\n'
       'تفقد هذا العرض على تطبيق عكاظ:\n'

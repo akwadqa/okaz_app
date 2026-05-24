@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/product/domain/model/product_details_model/product_details_model.dart';
-import 'package:okaz/features/profile/domain/model/update_user_request/update_user_request.dart';
-import 'package:okaz/features/profile/domain/model/user_response_model/user_response_model.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/api_endpoints.dart';
-import 'package:okaz/src/infrastructure/api/response/api_response.dart';
-import 'package:okaz/src/infrastructure/network/services/network_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../../home/domain/model/home_model/home_model.dart';
+import '../../domain/model/update_user_request/update_user_request.dart';
+import '../../domain/model/user_response_model/user_response_model.dart';
+import '../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
+import '../../../../src/infrastructure/api/response/api_response.dart';
+import '../../../../src/infrastructure/network/services/network_service.dart';
+import '../../../../src/logger/log_services/dev_logger.dart';
 
 import '../../domain/model/post_model.dart';
 

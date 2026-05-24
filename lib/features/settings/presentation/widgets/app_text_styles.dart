@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
 
 // class AppTextStyles {
 //   static const title = TextStyle(

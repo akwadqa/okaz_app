@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class ProductDetailsScreenTabs extends StatelessWidget {
   final TabController controller;

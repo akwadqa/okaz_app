@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_controller.dart';
-import 'package:okaz/features/auth/verification/presentation/controller/verify_otp_controller.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../signIn/presentation/controller/sign_in_controller.dart';
+import '../controller/verify_otp_controller.dart';
+import '../../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class VerificationScreenTimer extends ConsumerStatefulWidget {
   final String phone;

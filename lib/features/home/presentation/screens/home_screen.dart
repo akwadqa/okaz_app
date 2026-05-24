@@ -1,30 +1,24 @@
-import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
-import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/app/app_service.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/home/presentation/controller/home_controller.dart';
-import 'package:okaz/features/home/presentation/widgets/bottom_navigation_bar_view.dart';
-import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_adds_section.dart';
-import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_category_section.dart';
-import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_drawer.dart';
-import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_search_field.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
-import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/native_link_helper.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/core/utils/functions/helper_methods.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../app/app_service.dart';
+import '../../domain/model/home_model/home_model.dart';
+import '../controller/home_controller.dart';
+import '../widgets/home_screen/home_screen_adds_section.dart';
+import '../widgets/home_screen/home_screen_category_section.dart';
+import '../widgets/home_screen/home_screen_drawer.dart';
+import '../widgets/home_screen/home_screen_search_field.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../src/application/router/app_routes.dart';
+import '../../../../src/core/shared_widgets/app_dialogs.dart';
+import '../../../../src/core/shared_widgets/app_error_widget.dart';
+import '../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../src/core/shared_widgets/native_link_helper.dart';
+import '../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../src/core/utils/functions/helper_methods.dart';
+import '../../../../src/logger/log_services/dev_logger.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -60,7 +54,7 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
     super.initState();
     Future(() {
       ref.read(homeControllerProvider.notifier).getHomeData();
-      verifyLinks();
+      // verifyLinks();
     });
   }
 
@@ -114,6 +108,7 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
 
   Widget _buildBody(BuildContext context, HomeModel homeModel) {
     return ListView(
+      
       children: [
         HomeScreenSearchFiled(
           title: 'serch_for_any_thing'.tr(),

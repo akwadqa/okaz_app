@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui' as ui;
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -7,13 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:okaz/features/addProduct/presentation/controller/map_controller/map_controller.dart';
-import 'package:okaz/src/core/shared_widgets/app_alert.dart';
-import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../controller/map_controller/map_controller.dart';
+import '../../../../../../src/core/shared_widgets/app_alert.dart';
+import '../../../../../../src/core/shared_widgets/custom_button_widget.dart';
+import '../../../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../../src/resourses/font_manager/app_text_style.dart';
 
 import 'location_search_box.dart';
 import 'select_location_google_map.dart';

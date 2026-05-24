@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
+import '../../api/endpoint/services_urls.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'dio_remote_interceptor.dart';

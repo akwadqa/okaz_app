@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/features/auth/widgets/auth_background_painter.dart';
+import 'auth_background_painter.dart';
 
 // enum AuthPageType { login, signup, verifyOtp }
 

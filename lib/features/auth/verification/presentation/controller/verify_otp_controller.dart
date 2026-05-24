@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:okaz/features/auth/signIn/data/repositories/sign_in_repository.dart';
-import 'package:okaz/features/auth/signIn/presentation/controller/sign_in_controller.dart';
-import 'package:okaz/features/auth/verification/data/repositories/verify_otp_repository.dart';
-import 'package:okaz/features/auth/verification/presentation/controller/verify_otp_state.dart';
-import 'package:okaz/src/application/data/user_information/user_information.dart';
-import 'package:okaz/src/core/notifications/services/notification_service.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/logger/log_services/dev_logger.dart';
+import '../../../signIn/data/repositories/sign_in_repository.dart';
+import '../../../signIn/presentation/controller/sign_in_controller.dart';
+import '../../data/repositories/verify_otp_repository.dart';
+import 'verify_otp_state.dart';
+import '../../../../../src/application/data/user_information/user_information.dart';
+import '../../../../../src/core/notifications/services/notification_service.dart';
+import '../../../../../src/infrastructure/storage/local_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'verify_otp_controller.g.dart';

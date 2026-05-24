@@ -1,14 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/features/comment/domain/model/create_comment/create_comment_model.dart';
-import 'package:okaz/features/comment/presentation/controller/comment_controller.dart';
-import 'package:okaz/features/product/presentation/controller/product_controller.dart';
-import 'package:okaz/src/core/shared_widgets/app_dialogs.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/app_toast.dart';
-import 'package:okaz/src/core/utils/functions/helper_methods.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../../comment/domain/model/create_comment/create_comment_model.dart';
+import '../../../comment/presentation/controller/comment_controller.dart';
+import '../controller/product_controller.dart';
+import '../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../src/core/shared_widgets/app_toast.dart';
+import '../../../../src/core/utils/functions/helper_methods.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
 

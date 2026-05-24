@@ -1,8 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:okaz/features/home/data/repositories/home_repository.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/home/presentation/controller/home_state.dart';
+import '../../data/repositories/home_repository.dart';
+import '../../domain/model/home_model/home_model.dart';
+import 'home_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_controller.g.dart';

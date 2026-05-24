@@ -1,7 +1,7 @@
-import 'package:okaz/features/comment/data/repository/comment_repository.dart';
-import 'package:okaz/features/comment/domain/model/create_comment/create_comment_model.dart';
-import 'package:okaz/features/comment/domain/model/update_comment/update_comment_model.dart';
-import 'package:okaz/features/comment/presentation/controller/comment_state.dart';
+import '../../data/repository/comment_repository.dart';
+import '../../domain/model/create_comment/create_comment_model.dart';
+import '../../domain/model/update_comment/update_comment_model.dart';
+import 'comment_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'comment_controller.g.dart';
 

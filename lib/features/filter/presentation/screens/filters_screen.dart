@@ -2,17 +2,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
-import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_drop_down_menu.dart';
-import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_footer.dart';
-import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_radio_menu.dart';
-import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_search_filed.dart';
-import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_switch_item.dart';
-import 'package:okaz/features/filter/presentation/widgets/filters_screen/filters_screen_wrap_menu.dart';
-import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../controller/filter_controller.dart';
+import '../widgets/filters_screen/filters_screen_footer.dart';
+import '../widgets/filters_screen/filters_screen_search_filed.dart';
+import '../widgets/filters_screen/filters_screen_switch_item.dart';
+import '../widgets/filters_screen/filters_screen_wrap_menu.dart';
+import '../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../src/resourses/font_manager/app_text_style.dart';
 
 class FiltersScreen extends ConsumerWidget {
   const FiltersScreen({super.key});

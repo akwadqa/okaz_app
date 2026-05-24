@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../gen/assets.gen.dart';
 import '../../resourses/color_manager/app_colors.dart';
 
 class AppLogo extends StatelessWidget {

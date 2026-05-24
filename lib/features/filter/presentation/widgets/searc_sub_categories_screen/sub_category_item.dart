@@ -3,12 +3,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/filter/presentation/controller/filter_controller.dart';
-import 'package:okaz/features/filter/presentation/controller/sub_category_controller.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/infrastructure/api/endpoint/services_urls.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../controller/sub_category_controller.dart';
+import '../../../../../src/application/router/app_routes.dart';
+import '../../../../../src/infrastructure/api/endpoint/services_urls.dart';
+import '../../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../../src/resourses/font_manager/app_text_style.dart';
 
 class SubCategoryItem extends ConsumerWidget {
   final String? title;

@@ -1,13 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-
-import '../../../domain/model/category_model.dart';
+import '../../../../../src/core/shared_widgets/app_loader.dart';
 import '../../controller/add_product_controller.dart';
-import '../add_select_field.dart';
-import '../add_select_bottom_sheet.dart';
 import 'dynamic_attribute_field.dart';
 
 class StepProductInfoView extends ConsumerWidget {

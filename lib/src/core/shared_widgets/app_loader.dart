@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:okaz/gen/assets.gen.dart';
+import '../../../gen/assets.gen.dart';
 import 'package:lottie/lottie.dart';
 
 class AppLoader extends StatelessWidget {

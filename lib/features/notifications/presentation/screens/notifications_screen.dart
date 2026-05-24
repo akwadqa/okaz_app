@@ -1,19 +1,18 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:okaz/features/notifications/domain/model/app_notifications_model.dart';
-import 'package:okaz/features/notifications/presentation/controller/app_notifications_controller.dart';
-import 'package:okaz/features/notifications/presentation/widgets/notification_card_widget.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/core/shared_widgets/app_empty_data_widget.dart';
-import 'package:okaz/src/core/shared_widgets/app_error_widget.dart';
-import 'package:okaz/src/core/shared_widgets/app_loader.dart';
-import 'package:okaz/src/core/shared_widgets/app_pagination_widget.dart';
-import 'package:okaz/src/core/shared_widgets/custom_appbar.dart';
-import 'package:okaz/src/core/utils/extenssions/time_extension.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
+import '../../domain/model/app_notifications_model.dart';
+import '../controller/app_notifications_controller.dart';
+import '../widgets/notification_card_widget.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../src/core/shared_widgets/app_empty_data_widget.dart';
+import '../../../../src/core/shared_widgets/app_error_widget.dart';
+import '../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../src/core/shared_widgets/app_pagination_widget.dart';
+import '../../../../src/core/shared_widgets/custom_appbar.dart';
+import '../../../../src/core/utils/extenssions/time_extension.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
 
 class NotificationsScreen extends ConsumerWidget {
   const NotificationsScreen({super.key});

@@ -1,17 +1,16 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:okaz/features/auth/widgets/auth_build_content.dart';
-import 'package:okaz/gen/assets.gen.dart';
-import 'package:okaz/src/application/router/app_routes.dart';
-import 'package:okaz/src/core/shared_widgets/custom_button_widget.dart';
-import 'package:okaz/src/core/utils/extenssions/int_extenssion.dart';
-import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
-import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
-import 'package:okaz/src/resourses/color_manager/app_colors.dart';
-import 'package:okaz/src/resourses/font_manager/app_text_style.dart';
+import '../../../auth/widgets/auth_build_content.dart';
+import '../../../../gen/assets.gen.dart';
+import '../../../../src/application/router/app_routes.dart';
+import '../../../../src/core/shared_widgets/custom_button_widget.dart';
+import '../../../../src/core/utils/extenssions/int_extenssion.dart';
+import '../../../../src/core/utils/extenssions/widget_extensions.dart';
+import '../../../../src/infrastructure/storage/local_storage_service.dart';
+import '../../../../src/resourses/color_manager/app_colors.dart';
+import '../../../../src/resourses/font_manager/app_text_style.dart';
 
 class OnBoardingScreen extends ConsumerStatefulWidget {
   const OnBoardingScreen({super.key});

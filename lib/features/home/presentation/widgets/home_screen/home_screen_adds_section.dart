@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
-import 'package:okaz/features/home/presentation/widgets/home_screen/home_screen_add_item.dart';
+import '../../../domain/model/home_model/home_model.dart';
+import 'home_screen_add_item.dart';
 
 class HomeScreenAddsSection extends StatefulWidget {
   const HomeScreenAddsSection({super.key, required this.homeModel});
