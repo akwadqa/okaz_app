@@ -241,8 +241,13 @@
     "deep_link_dialog_title": "Faster access to products",
     "deep_link_dialog_description": "To open product links directly within the app and enjoy a seamless shopping experience, please enable the \"Supported Links\" option in your phone settings.",
     "deep_link_dialog_confirm": "Enable Now",
-    "just_now" : "Just now",
-    "minutes_ago" : "{value} minutes ago",
-    "hours_ago" : "{value} hours ago",
-    "days_ago" : "{value} days ago"
+    "just_now": "Just now",
+    "minutes_ago": "{value} minutes ago",
+    "hours_ago": "{value} hours ago",
+    "days_ago": "{value} days ago",
+    "update_title_required": "Update Required",
+    "update_title_optional": "Update Available",
+    "update_message_required": "A new version is required to continue using the app.",
+    "update_message_optional": "A new update is available.",
+    "could_not_open_link": "Could not open the link."
 }

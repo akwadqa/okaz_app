@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/app/app_service.dart';
 import 'package:okaz/features/home/domain/model/home_model/home_model.dart';
 import 'package:okaz/features/home/presentation/controller/home_controller.dart';
 import 'package:okaz/features/home/presentation/widgets/bottom_navigation_bar_view.dart';
@@ -93,8 +94,16 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
       homeControllerProvider
           .select((val) => val.value?.homeModel ?? AsyncLoading()),
     );
-    // ******(  storage====UserInformation(token: , fullName: pedri gonzalez, mobileNumber: 97456565656, email: 97456565656, image: , country: Qatar)  )******
-    Dev.logLine("storage====${storage.userInfo}");
+
+    ref.listen(
+        homeControllerProvider.select(
+            (val) => val.value?.homeModel ?? AsyncLoading()), (prev, next) {
+      if (next is AsyncData) {
+        ref
+            .read(appServiceProvider.notifier)
+            .checkAppVersion(next.value!.appVersion!);
+      }
+    });
     return controller.when(
       data: (homeModel) => _buildBody(context, homeModel),
       error: (e, st) => AppErrorWidget(

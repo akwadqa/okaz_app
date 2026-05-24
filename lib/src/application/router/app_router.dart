@@ -28,6 +28,7 @@ import '../../../features/addProduct/presentation/screens/successfull_new_ad_scr
 import 'app_routes.dart';
 import 'custom_navigation_observer.dart';
 import 'fallback_screen.dart';
+import 'package:go_router/go_router.dart';
 
 part 'app_router.g.dart';
 

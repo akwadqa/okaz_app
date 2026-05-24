@@ -16,6 +16,8 @@ T _$identity<T>(T value) => value;
 mixin _$HomeModel {
   List<BannerModel?>? get banners;
   List<CategoryModel?>? get categories;
+  @JsonKey(name: 'app_version')
+  AppVersionModel? get appVersion;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +36,9 @@ mixin _$HomeModel {
             other is HomeModel &&
             const DeepCollectionEquality().equals(other.banners, banners) &&
             const DeepCollectionEquality()
-                .equals(other.categories, categories));
+                .equals(other.categories, categories) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -42,11 +46,12 @@ mixin _$HomeModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(banners),
-      const DeepCollectionEquality().hash(categories));
+      const DeepCollectionEquality().hash(categories),
+      appVersion);
 
   @override
   String toString() {
-    return 'HomeModel(banners: $banners, categories: $categories)';
+    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion)';
   }
 }
 
@@ -55,7 +60,12 @@ abstract mixin class $HomeModelCopyWith<$Res> {
   factory $HomeModelCopyWith(HomeModel value, $Res Function(HomeModel) _then) =
       _$HomeModelCopyWithImpl;
   @useResult
-  $Res call({List<BannerModel?>? banners, List<CategoryModel?>? categories});
+  $Res call(
+      {List<BannerModel?>? banners,
+      List<CategoryModel?>? categories,
+      @JsonKey(name: 'app_version') AppVersionModel? appVersion});
+
+  $AppVersionModelCopyWith<$Res>? get appVersion;
 }
 
 /// @nodoc
@@ -72,6 +82,7 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
   $Res call({
     Object? banners = freezed,
     Object? categories = freezed,
+    Object? appVersion = freezed,
   }) {
     return _then(_self.copyWith(
       banners: freezed == banners
@@ -82,7 +93,25 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
           ? _self.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel?>?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as AppVersionModel?,
     ));
+  }
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AppVersionModelCopyWith<$Res>? get appVersion {
+    if (_self.appVersion == null) {
+      return null;
+    }
+
+    return $AppVersionModelCopyWith<$Res>(_self.appVersion!, (value) {
+      return _then(_self.copyWith(appVersion: value));
+    });
   }
 }
 
@@ -180,14 +209,16 @@ extension HomeModelPatterns on HomeModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            List<BannerModel?>? banners, List<CategoryModel?>? categories)?
+            List<BannerModel?>? banners,
+            List<CategoryModel?>? categories,
+            @JsonKey(name: 'app_version') AppVersionModel? appVersion)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _HomeModel() when $default != null:
-        return $default(_that.banners, _that.categories);
+        return $default(_that.banners, _that.categories, _that.appVersion);
       case _:
         return orElse();
     }
@@ -209,13 +240,15 @@ extension HomeModelPatterns on HomeModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            List<BannerModel?>? banners, List<CategoryModel?>? categories)
+            List<BannerModel?>? banners,
+            List<CategoryModel?>? categories,
+            @JsonKey(name: 'app_version') AppVersionModel? appVersion)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeModel():
-        return $default(_that.banners, _that.categories);
+        return $default(_that.banners, _that.categories, _that.appVersion);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -236,13 +269,15 @@ extension HomeModelPatterns on HomeModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            List<BannerModel?>? banners, List<CategoryModel?>? categories)?
+            List<BannerModel?>? banners,
+            List<CategoryModel?>? categories,
+            @JsonKey(name: 'app_version') AppVersionModel? appVersion)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeModel() when $default != null:
-        return $default(_that.banners, _that.categories);
+        return $default(_that.banners, _that.categories, _that.appVersion);
       case _:
         return null;
     }
@@ -254,7 +289,8 @@ extension HomeModelPatterns on HomeModel {
 class _HomeModel implements HomeModel {
   const _HomeModel(
       {final List<BannerModel?>? banners,
-      final List<CategoryModel?>? categories})
+      final List<CategoryModel?>? categories,
+      @JsonKey(name: 'app_version') this.appVersion})
       : _banners = banners,
         _categories = categories;
   factory _HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -280,6 +316,10 @@ class _HomeModel implements HomeModel {
     return EqualUnmodifiableListView(value);
   }
 
+  @override
+  @JsonKey(name: 'app_version')
+  final AppVersionModel? appVersion;
+
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -302,7 +342,9 @@ class _HomeModel implements HomeModel {
             other is _HomeModel &&
             const DeepCollectionEquality().equals(other._banners, _banners) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories));
+                .equals(other._categories, _categories) &&
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -310,11 +352,12 @@ class _HomeModel implements HomeModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_banners),
-      const DeepCollectionEquality().hash(_categories));
+      const DeepCollectionEquality().hash(_categories),
+      appVersion);
 
   @override
   String toString() {
-    return 'HomeModel(banners: $banners, categories: $categories)';
+    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion)';
   }
 }
 
@@ -326,7 +369,13 @@ abstract mixin class _$HomeModelCopyWith<$Res>
       __$HomeModelCopyWithImpl;
   @override
   @useResult
-  $Res call({List<BannerModel?>? banners, List<CategoryModel?>? categories});
+  $Res call(
+      {List<BannerModel?>? banners,
+      List<CategoryModel?>? categories,
+      @JsonKey(name: 'app_version') AppVersionModel? appVersion});
+
+  @override
+  $AppVersionModelCopyWith<$Res>? get appVersion;
 }
 
 /// @nodoc
@@ -343,6 +392,7 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
   $Res call({
     Object? banners = freezed,
     Object? categories = freezed,
+    Object? appVersion = freezed,
   }) {
     return _then(_HomeModel(
       banners: freezed == banners
@@ -353,17 +403,36 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
           ? _self._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel?>?,
+      appVersion: freezed == appVersion
+          ? _self.appVersion
+          : appVersion // ignore: cast_nullable_to_non_nullable
+              as AppVersionModel?,
     ));
+  }
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AppVersionModelCopyWith<$Res>? get appVersion {
+    if (_self.appVersion == null) {
+      return null;
+    }
+
+    return $AppVersionModelCopyWith<$Res>(_self.appVersion!, (value) {
+      return _then(_self.copyWith(appVersion: value));
+    });
   }
 }
 
 /// @nodoc
 mixin _$BannerModel {
-  @JsonKey(name: 'category_name')
-  String? get categoryName;
-  @JsonKey(name: 'category_name_ar')
-  String? get categoryNameAr;
+  @JsonKey(name: 'banner_name')
+  String? get bannerName;
+  @JsonKey(name: 'banner_name_ar')
+  String? get bannerNameAr;
   String? get image;
+  String? get post;
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -380,21 +449,22 @@ mixin _$BannerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is BannerModel &&
-            (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName) &&
-            (identical(other.categoryNameAr, categoryNameAr) ||
-                other.categoryNameAr == categoryNameAr) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.bannerName, bannerName) ||
+                other.bannerName == bannerName) &&
+            (identical(other.bannerNameAr, bannerNameAr) ||
+                other.bannerNameAr == bannerNameAr) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.post, post) || other.post == post));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, categoryName, categoryNameAr, image);
+      Object.hash(runtimeType, bannerName, bannerNameAr, image, post);
 
   @override
   String toString() {
-    return 'BannerModel(categoryName: $categoryName, categoryNameAr: $categoryNameAr, image: $image)';
+    return 'BannerModel(bannerName: $bannerName, bannerNameAr: $bannerNameAr, image: $image, post: $post)';
   }
 }
 
@@ -405,9 +475,10 @@ abstract mixin class $BannerModelCopyWith<$Res> {
       _$BannerModelCopyWithImpl;
   @useResult
   $Res call(
-      {@JsonKey(name: 'category_name') String? categoryName,
-      @JsonKey(name: 'category_name_ar') String? categoryNameAr,
-      String? image});
+      {@JsonKey(name: 'banner_name') String? bannerName,
+      @JsonKey(name: 'banner_name_ar') String? bannerNameAr,
+      String? image,
+      String? post});
 }
 
 /// @nodoc
@@ -422,22 +493,27 @@ class _$BannerModelCopyWithImpl<$Res> implements $BannerModelCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categoryName = freezed,
-    Object? categoryNameAr = freezed,
+    Object? bannerName = freezed,
+    Object? bannerNameAr = freezed,
     Object? image = freezed,
+    Object? post = freezed,
   }) {
     return _then(_self.copyWith(
-      categoryName: freezed == categoryName
-          ? _self.categoryName
-          : categoryName // ignore: cast_nullable_to_non_nullable
+      bannerName: freezed == bannerName
+          ? _self.bannerName
+          : bannerName // ignore: cast_nullable_to_non_nullable
               as String?,
-      categoryNameAr: freezed == categoryNameAr
-          ? _self.categoryNameAr
-          : categoryNameAr // ignore: cast_nullable_to_non_nullable
+      bannerNameAr: freezed == bannerNameAr
+          ? _self.bannerNameAr
+          : bannerNameAr // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      post: freezed == post
+          ? _self.post
+          : post // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -537,16 +613,18 @@ extension BannerModelPatterns on BannerModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'category_name') String? categoryName,
-            @JsonKey(name: 'category_name_ar') String? categoryNameAr,
-            String? image)?
+            @JsonKey(name: 'banner_name') String? bannerName,
+            @JsonKey(name: 'banner_name_ar') String? bannerNameAr,
+            String? image,
+            String? post)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _BannerModel() when $default != null:
-        return $default(_that.categoryName, _that.categoryNameAr, _that.image);
+        return $default(
+            _that.bannerName, _that.bannerNameAr, _that.image, _that.post);
       case _:
         return orElse();
     }
@@ -568,15 +646,17 @@ extension BannerModelPatterns on BannerModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            @JsonKey(name: 'category_name') String? categoryName,
-            @JsonKey(name: 'category_name_ar') String? categoryNameAr,
-            String? image)
+            @JsonKey(name: 'banner_name') String? bannerName,
+            @JsonKey(name: 'banner_name_ar') String? bannerNameAr,
+            String? image,
+            String? post)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BannerModel():
-        return $default(_that.categoryName, _that.categoryNameAr, _that.image);
+        return $default(
+            _that.bannerName, _that.bannerNameAr, _that.image, _that.post);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -597,15 +677,17 @@ extension BannerModelPatterns on BannerModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            @JsonKey(name: 'category_name') String? categoryName,
-            @JsonKey(name: 'category_name_ar') String? categoryNameAr,
-            String? image)?
+            @JsonKey(name: 'banner_name') String? bannerName,
+            @JsonKey(name: 'banner_name_ar') String? bannerNameAr,
+            String? image,
+            String? post)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _BannerModel() when $default != null:
-        return $default(_that.categoryName, _that.categoryNameAr, _that.image);
+        return $default(
+            _that.bannerName, _that.bannerNameAr, _that.image, _that.post);
       case _:
         return null;
     }
@@ -616,20 +698,23 @@ extension BannerModelPatterns on BannerModel {
 @JsonSerializable()
 class _BannerModel implements BannerModel {
   const _BannerModel(
-      {@JsonKey(name: 'category_name') this.categoryName,
-      @JsonKey(name: 'category_name_ar') this.categoryNameAr,
-      this.image});
+      {@JsonKey(name: 'banner_name') this.bannerName,
+      @JsonKey(name: 'banner_name_ar') this.bannerNameAr,
+      this.image,
+      this.post});
   factory _BannerModel.fromJson(Map<String, dynamic> json) =>
       _$BannerModelFromJson(json);
 
   @override
-  @JsonKey(name: 'category_name')
-  final String? categoryName;
+  @JsonKey(name: 'banner_name')
+  final String? bannerName;
   @override
-  @JsonKey(name: 'category_name_ar')
-  final String? categoryNameAr;
+  @JsonKey(name: 'banner_name_ar')
+  final String? bannerNameAr;
   @override
   final String? image;
+  @override
+  final String? post;
 
   /// Create a copy of BannerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -651,21 +736,22 @@ class _BannerModel implements BannerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BannerModel &&
-            (identical(other.categoryName, categoryName) ||
-                other.categoryName == categoryName) &&
-            (identical(other.categoryNameAr, categoryNameAr) ||
-                other.categoryNameAr == categoryNameAr) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.bannerName, bannerName) ||
+                other.bannerName == bannerName) &&
+            (identical(other.bannerNameAr, bannerNameAr) ||
+                other.bannerNameAr == bannerNameAr) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.post, post) || other.post == post));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, categoryName, categoryNameAr, image);
+      Object.hash(runtimeType, bannerName, bannerNameAr, image, post);
 
   @override
   String toString() {
-    return 'BannerModel(categoryName: $categoryName, categoryNameAr: $categoryNameAr, image: $image)';
+    return 'BannerModel(bannerName: $bannerName, bannerNameAr: $bannerNameAr, image: $image, post: $post)';
   }
 }
 
@@ -678,9 +764,10 @@ abstract mixin class _$BannerModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'category_name') String? categoryName,
-      @JsonKey(name: 'category_name_ar') String? categoryNameAr,
-      String? image});
+      {@JsonKey(name: 'banner_name') String? bannerName,
+      @JsonKey(name: 'banner_name_ar') String? bannerNameAr,
+      String? image,
+      String? post});
 }
 
 /// @nodoc
@@ -695,22 +782,27 @@ class __$BannerModelCopyWithImpl<$Res> implements _$BannerModelCopyWith<$Res> {
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? categoryName = freezed,
-    Object? categoryNameAr = freezed,
+    Object? bannerName = freezed,
+    Object? bannerNameAr = freezed,
     Object? image = freezed,
+    Object? post = freezed,
   }) {
     return _then(_BannerModel(
-      categoryName: freezed == categoryName
-          ? _self.categoryName
-          : categoryName // ignore: cast_nullable_to_non_nullable
+      bannerName: freezed == bannerName
+          ? _self.bannerName
+          : bannerName // ignore: cast_nullable_to_non_nullable
               as String?,
-      categoryNameAr: freezed == categoryNameAr
-          ? _self.categoryNameAr
-          : categoryNameAr // ignore: cast_nullable_to_non_nullable
+      bannerNameAr: freezed == bannerNameAr
+          ? _self.bannerNameAr
+          : bannerNameAr // ignore: cast_nullable_to_non_nullable
               as String?,
       image: freezed == image
           ? _self.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      post: freezed == post
+          ? _self.post
+          : post // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -2321,6 +2413,491 @@ class __$MainAttributeValueModelCopyWithImpl<$Res>
           ? _self.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$AppVersionModel {
+  @JsonKey(name: 'android_version')
+  String? get androidVersion;
+  @JsonKey(name: 'ios_version')
+  String? get iosVersion;
+  @JsonKey(name: 'android_url')
+  String? get androidUrl;
+  @JsonKey(name: 'ios_url')
+  String? get iosUrl;
+  @JsonKey(name: 'app_update_required')
+  int? get appUpdateRequired;
+  @JsonKey(name: 'app_update_message')
+  String? get appUpdateMessage;
+  @JsonKey(name: 'apple_review')
+  int? get appleReview;
+
+  /// Create a copy of AppVersionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $AppVersionModelCopyWith<AppVersionModel> get copyWith =>
+      _$AppVersionModelCopyWithImpl<AppVersionModel>(
+          this as AppVersionModel, _$identity);
+
+  /// Serializes this AppVersionModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AppVersionModel &&
+            (identical(other.androidVersion, androidVersion) ||
+                other.androidVersion == androidVersion) &&
+            (identical(other.iosVersion, iosVersion) ||
+                other.iosVersion == iosVersion) &&
+            (identical(other.androidUrl, androidUrl) ||
+                other.androidUrl == androidUrl) &&
+            (identical(other.iosUrl, iosUrl) || other.iosUrl == iosUrl) &&
+            (identical(other.appUpdateRequired, appUpdateRequired) ||
+                other.appUpdateRequired == appUpdateRequired) &&
+            (identical(other.appUpdateMessage, appUpdateMessage) ||
+                other.appUpdateMessage == appUpdateMessage) &&
+            (identical(other.appleReview, appleReview) ||
+                other.appleReview == appleReview));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, androidVersion, iosVersion,
+      androidUrl, iosUrl, appUpdateRequired, appUpdateMessage, appleReview);
+
+  @override
+  String toString() {
+    return 'AppVersionModel(androidVersion: $androidVersion, iosVersion: $iosVersion, androidUrl: $androidUrl, iosUrl: $iosUrl, appUpdateRequired: $appUpdateRequired, appUpdateMessage: $appUpdateMessage, appleReview: $appleReview)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $AppVersionModelCopyWith<$Res> {
+  factory $AppVersionModelCopyWith(
+          AppVersionModel value, $Res Function(AppVersionModel) _then) =
+      _$AppVersionModelCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'android_version') String? androidVersion,
+      @JsonKey(name: 'ios_version') String? iosVersion,
+      @JsonKey(name: 'android_url') String? androidUrl,
+      @JsonKey(name: 'ios_url') String? iosUrl,
+      @JsonKey(name: 'app_update_required') int? appUpdateRequired,
+      @JsonKey(name: 'app_update_message') String? appUpdateMessage,
+      @JsonKey(name: 'apple_review') int? appleReview});
+}
+
+/// @nodoc
+class _$AppVersionModelCopyWithImpl<$Res>
+    implements $AppVersionModelCopyWith<$Res> {
+  _$AppVersionModelCopyWithImpl(this._self, this._then);
+
+  final AppVersionModel _self;
+  final $Res Function(AppVersionModel) _then;
+
+  /// Create a copy of AppVersionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? androidVersion = freezed,
+    Object? iosVersion = freezed,
+    Object? androidUrl = freezed,
+    Object? iosUrl = freezed,
+    Object? appUpdateRequired = freezed,
+    Object? appUpdateMessage = freezed,
+    Object? appleReview = freezed,
+  }) {
+    return _then(_self.copyWith(
+      androidVersion: freezed == androidVersion
+          ? _self.androidVersion
+          : androidVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosVersion: freezed == iosVersion
+          ? _self.iosVersion
+          : iosVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      androidUrl: freezed == androidUrl
+          ? _self.androidUrl
+          : androidUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosUrl: freezed == iosUrl
+          ? _self.iosUrl
+          : iosUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appUpdateRequired: freezed == appUpdateRequired
+          ? _self.appUpdateRequired
+          : appUpdateRequired // ignore: cast_nullable_to_non_nullable
+              as int?,
+      appUpdateMessage: freezed == appUpdateMessage
+          ? _self.appUpdateMessage
+          : appUpdateMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appleReview: freezed == appleReview
+          ? _self.appleReview
+          : appleReview // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [AppVersionModel].
+extension AppVersionModelPatterns on AppVersionModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AppVersionModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AppVersionModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AppVersionModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppVersionModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AppVersionModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppVersionModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'android_version') String? androidVersion,
+            @JsonKey(name: 'ios_version') String? iosVersion,
+            @JsonKey(name: 'android_url') String? androidUrl,
+            @JsonKey(name: 'ios_url') String? iosUrl,
+            @JsonKey(name: 'app_update_required') int? appUpdateRequired,
+            @JsonKey(name: 'app_update_message') String? appUpdateMessage,
+            @JsonKey(name: 'apple_review') int? appleReview)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AppVersionModel() when $default != null:
+        return $default(
+            _that.androidVersion,
+            _that.iosVersion,
+            _that.androidUrl,
+            _that.iosUrl,
+            _that.appUpdateRequired,
+            _that.appUpdateMessage,
+            _that.appleReview);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'android_version') String? androidVersion,
+            @JsonKey(name: 'ios_version') String? iosVersion,
+            @JsonKey(name: 'android_url') String? androidUrl,
+            @JsonKey(name: 'ios_url') String? iosUrl,
+            @JsonKey(name: 'app_update_required') int? appUpdateRequired,
+            @JsonKey(name: 'app_update_message') String? appUpdateMessage,
+            @JsonKey(name: 'apple_review') int? appleReview)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppVersionModel():
+        return $default(
+            _that.androidVersion,
+            _that.iosVersion,
+            _that.androidUrl,
+            _that.iosUrl,
+            _that.appUpdateRequired,
+            _that.appUpdateMessage,
+            _that.appleReview);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'android_version') String? androidVersion,
+            @JsonKey(name: 'ios_version') String? iosVersion,
+            @JsonKey(name: 'android_url') String? androidUrl,
+            @JsonKey(name: 'ios_url') String? iosUrl,
+            @JsonKey(name: 'app_update_required') int? appUpdateRequired,
+            @JsonKey(name: 'app_update_message') String? appUpdateMessage,
+            @JsonKey(name: 'apple_review') int? appleReview)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AppVersionModel() when $default != null:
+        return $default(
+            _that.androidVersion,
+            _that.iosVersion,
+            _that.androidUrl,
+            _that.iosUrl,
+            _that.appUpdateRequired,
+            _that.appUpdateMessage,
+            _that.appleReview);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _AppVersionModel implements AppVersionModel {
+  const _AppVersionModel(
+      {@JsonKey(name: 'android_version') this.androidVersion,
+      @JsonKey(name: 'ios_version') this.iosVersion,
+      @JsonKey(name: 'android_url') this.androidUrl,
+      @JsonKey(name: 'ios_url') this.iosUrl,
+      @JsonKey(name: 'app_update_required') this.appUpdateRequired,
+      @JsonKey(name: 'app_update_message') this.appUpdateMessage,
+      @JsonKey(name: 'apple_review') this.appleReview});
+  factory _AppVersionModel.fromJson(Map<String, dynamic> json) =>
+      _$AppVersionModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'android_version')
+  final String? androidVersion;
+  @override
+  @JsonKey(name: 'ios_version')
+  final String? iosVersion;
+  @override
+  @JsonKey(name: 'android_url')
+  final String? androidUrl;
+  @override
+  @JsonKey(name: 'ios_url')
+  final String? iosUrl;
+  @override
+  @JsonKey(name: 'app_update_required')
+  final int? appUpdateRequired;
+  @override
+  @JsonKey(name: 'app_update_message')
+  final String? appUpdateMessage;
+  @override
+  @JsonKey(name: 'apple_review')
+  final int? appleReview;
+
+  /// Create a copy of AppVersionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AppVersionModelCopyWith<_AppVersionModel> get copyWith =>
+      __$AppVersionModelCopyWithImpl<_AppVersionModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$AppVersionModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AppVersionModel &&
+            (identical(other.androidVersion, androidVersion) ||
+                other.androidVersion == androidVersion) &&
+            (identical(other.iosVersion, iosVersion) ||
+                other.iosVersion == iosVersion) &&
+            (identical(other.androidUrl, androidUrl) ||
+                other.androidUrl == androidUrl) &&
+            (identical(other.iosUrl, iosUrl) || other.iosUrl == iosUrl) &&
+            (identical(other.appUpdateRequired, appUpdateRequired) ||
+                other.appUpdateRequired == appUpdateRequired) &&
+            (identical(other.appUpdateMessage, appUpdateMessage) ||
+                other.appUpdateMessage == appUpdateMessage) &&
+            (identical(other.appleReview, appleReview) ||
+                other.appleReview == appleReview));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, androidVersion, iosVersion,
+      androidUrl, iosUrl, appUpdateRequired, appUpdateMessage, appleReview);
+
+  @override
+  String toString() {
+    return 'AppVersionModel(androidVersion: $androidVersion, iosVersion: $iosVersion, androidUrl: $androidUrl, iosUrl: $iosUrl, appUpdateRequired: $appUpdateRequired, appUpdateMessage: $appUpdateMessage, appleReview: $appleReview)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$AppVersionModelCopyWith<$Res>
+    implements $AppVersionModelCopyWith<$Res> {
+  factory _$AppVersionModelCopyWith(
+          _AppVersionModel value, $Res Function(_AppVersionModel) _then) =
+      __$AppVersionModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'android_version') String? androidVersion,
+      @JsonKey(name: 'ios_version') String? iosVersion,
+      @JsonKey(name: 'android_url') String? androidUrl,
+      @JsonKey(name: 'ios_url') String? iosUrl,
+      @JsonKey(name: 'app_update_required') int? appUpdateRequired,
+      @JsonKey(name: 'app_update_message') String? appUpdateMessage,
+      @JsonKey(name: 'apple_review') int? appleReview});
+}
+
+/// @nodoc
+class __$AppVersionModelCopyWithImpl<$Res>
+    implements _$AppVersionModelCopyWith<$Res> {
+  __$AppVersionModelCopyWithImpl(this._self, this._then);
+
+  final _AppVersionModel _self;
+  final $Res Function(_AppVersionModel) _then;
+
+  /// Create a copy of AppVersionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? androidVersion = freezed,
+    Object? iosVersion = freezed,
+    Object? androidUrl = freezed,
+    Object? iosUrl = freezed,
+    Object? appUpdateRequired = freezed,
+    Object? appUpdateMessage = freezed,
+    Object? appleReview = freezed,
+  }) {
+    return _then(_AppVersionModel(
+      androidVersion: freezed == androidVersion
+          ? _self.androidVersion
+          : androidVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosVersion: freezed == iosVersion
+          ? _self.iosVersion
+          : iosVersion // ignore: cast_nullable_to_non_nullable
+              as String?,
+      androidUrl: freezed == androidUrl
+          ? _self.androidUrl
+          : androidUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      iosUrl: freezed == iosUrl
+          ? _self.iosUrl
+          : iosUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appUpdateRequired: freezed == appUpdateRequired
+          ? _self.appUpdateRequired
+          : appUpdateRequired // ignore: cast_nullable_to_non_nullable
+              as int?,
+      appUpdateMessage: freezed == appUpdateMessage
+          ? _self.appUpdateMessage
+          : appUpdateMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appleReview: freezed == appleReview
+          ? _self.appleReview
+          : appleReview // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }

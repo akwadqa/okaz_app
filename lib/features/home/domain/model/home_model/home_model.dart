@@ -8,6 +8,7 @@ abstract class HomeModel with _$HomeModel {
   const factory HomeModel({
     List<BannerModel?>? banners,
     List<CategoryModel?>? categories,
+    @JsonKey(name: 'app_version') AppVersionModel? appVersion,
   }) = _HomeModel;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -17,9 +18,11 @@ abstract class HomeModel with _$HomeModel {
 @freezed
 abstract class BannerModel with _$BannerModel {
   const factory BannerModel({
-    @JsonKey(name: 'category_name') String? categoryName,
-    @JsonKey(name: 'category_name_ar') String? categoryNameAr,
+    @JsonKey(name: 'banner_name') String? bannerName,
+    @JsonKey(name: 'banner_name_ar') String? bannerNameAr,
     String? image,
+    String? post,
+    
   }) = _BannerModel;
 
   factory BannerModel.fromJson(Map<String, dynamic> json) =>
@@ -80,4 +83,19 @@ abstract class MainAttributeValueModel with _$MainAttributeValueModel {
 
   factory MainAttributeValueModel.fromJson(Map<String, dynamic> json) =>
       _$MainAttributeValueModelFromJson(json);
+}
+@freezed
+abstract class AppVersionModel with _$AppVersionModel {
+  const factory AppVersionModel({
+    @JsonKey(name: 'android_version') String? androidVersion,
+    @JsonKey(name: 'ios_version') String? iosVersion,
+    @JsonKey(name: 'android_url') String? androidUrl,
+    @JsonKey(name: 'ios_url') String? iosUrl,
+    @JsonKey(name: 'app_update_required') int? appUpdateRequired,
+    @JsonKey(name: 'app_update_message') String? appUpdateMessage,
+    @JsonKey(name: 'apple_review') int? appleReview,
+  }) = _AppVersionModel;
+
+  factory AppVersionModel.fromJson(Map<String, dynamic> json) =>
+      _$AppVersionModelFromJson(json);
 }

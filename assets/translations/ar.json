@@ -241,8 +241,13 @@
     "deep_link_dialog_title": "تجربة أسرع للوصول لمنتجاتك",
     "deep_link_dialog_description": "لتتمكن من فتح روابط المنتجات مباشرة داخل التطبيق والاستمتاع بتجربة تسوق سلسة، يرجى تفعيل خاصية \"الروابط التلقائية\" من إعدادات الهاتف.",
     "deep_link_dialog_confirm": "تفعيل الآن",
-    "just_now" : "الآن",
-    "minutes_ago" : "منذ {} دقائق",
-    "hours_ago" : "منذ {} ساعات",
-    "days_ago" : "منذ {} يوم"
+    "just_now": "الآن",
+    "minutes_ago": "منذ {} دقائق",
+    "hours_ago": "منذ {} ساعات",
+    "days_ago": "منذ {} يوم",
+    "update_title_required": "تحديث مطلوب",
+    "update_title_optional": "تحديث متاح",
+    "update_message_required": "نسخة جديدة مطلوبة للاستمرار في استخدام التطبيق.",
+    "update_message_optional": "هناك تحديث جديد متاح.",
+    "could_not_open_link": "تعذر فتح الرابط."
 }

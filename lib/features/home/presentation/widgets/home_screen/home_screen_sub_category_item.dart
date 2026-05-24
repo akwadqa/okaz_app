@@ -31,7 +31,7 @@ class HomeScreenSubCategoryItem extends ConsumerWidget {
         // height: width / 3.5,
         height: width / 4.5,
         decoration: BoxDecoration(
-          color: AppColors.lightRedBackground,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
