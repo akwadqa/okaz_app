@@ -25,9 +25,6 @@ class $AssetsIconsGen {
   SvgGenImage get addEventIc =>
       const SvgGenImage('assets/icons/add_event_ic.svg');
 
-  /// File path: assets/icons/app_icon.jpg
-  AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.jpg');
-
   /// File path: assets/icons/bnb_account_ic.svg
   SvgGenImage get bnbAccountIc =>
       const SvgGenImage('assets/icons/bnb_account_ic.svg');
@@ -277,7 +274,6 @@ class $AssetsIconsGen {
   List<dynamic> get values => [
         addContactIc,
         addEventIc,
-        appIcon,
         bnbAccountIc,
         bnbAddIc,
         bnbHomeIc,

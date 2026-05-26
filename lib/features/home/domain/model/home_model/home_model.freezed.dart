@@ -18,6 +18,8 @@ mixin _$HomeModel {
   List<CategoryModel?>? get categories;
   @JsonKey(name: 'app_version')
   AppVersionModel? get appVersion;
+  @JsonKey(name: 'contact_us')
+  ContactUsModel? get contactUsModel;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +40,9 @@ mixin _$HomeModel {
             const DeepCollectionEquality()
                 .equals(other.categories, categories) &&
             (identical(other.appVersion, appVersion) ||
-                other.appVersion == appVersion));
+                other.appVersion == appVersion) &&
+            (identical(other.contactUsModel, contactUsModel) ||
+                other.contactUsModel == contactUsModel));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -47,11 +51,12 @@ mixin _$HomeModel {
       runtimeType,
       const DeepCollectionEquality().hash(banners),
       const DeepCollectionEquality().hash(categories),
-      appVersion);
+      appVersion,
+      contactUsModel);
 
   @override
   String toString() {
-    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion)';
+    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion, contactUsModel: $contactUsModel)';
   }
 }
 
@@ -63,9 +68,11 @@ abstract mixin class $HomeModelCopyWith<$Res> {
   $Res call(
       {List<BannerModel?>? banners,
       List<CategoryModel?>? categories,
-      @JsonKey(name: 'app_version') AppVersionModel? appVersion});
+      @JsonKey(name: 'app_version') AppVersionModel? appVersion,
+      @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel});
 
   $AppVersionModelCopyWith<$Res>? get appVersion;
+  $ContactUsModelCopyWith<$Res>? get contactUsModel;
 }
 
 /// @nodoc
@@ -83,6 +90,7 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
     Object? banners = freezed,
     Object? categories = freezed,
     Object? appVersion = freezed,
+    Object? contactUsModel = freezed,
   }) {
     return _then(_self.copyWith(
       banners: freezed == banners
@@ -97,6 +105,10 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
           ? _self.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
               as AppVersionModel?,
+      contactUsModel: freezed == contactUsModel
+          ? _self.contactUsModel
+          : contactUsModel // ignore: cast_nullable_to_non_nullable
+              as ContactUsModel?,
     ));
   }
 
@@ -111,6 +123,20 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
 
     return $AppVersionModelCopyWith<$Res>(_self.appVersion!, (value) {
       return _then(_self.copyWith(appVersion: value));
+    });
+  }
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactUsModelCopyWith<$Res>? get contactUsModel {
+    if (_self.contactUsModel == null) {
+      return null;
+    }
+
+    return $ContactUsModelCopyWith<$Res>(_self.contactUsModel!, (value) {
+      return _then(_self.copyWith(contactUsModel: value));
     });
   }
 }
@@ -211,14 +237,16 @@ extension HomeModelPatterns on HomeModel {
     TResult Function(
             List<BannerModel?>? banners,
             List<CategoryModel?>? categories,
-            @JsonKey(name: 'app_version') AppVersionModel? appVersion)?
+            @JsonKey(name: 'app_version') AppVersionModel? appVersion,
+            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel)?
         $default, {
     required TResult orElse(),
   }) {
     final _that = this;
     switch (_that) {
       case _HomeModel() when $default != null:
-        return $default(_that.banners, _that.categories, _that.appVersion);
+        return $default(_that.banners, _that.categories, _that.appVersion,
+            _that.contactUsModel);
       case _:
         return orElse();
     }
@@ -242,13 +270,15 @@ extension HomeModelPatterns on HomeModel {
     TResult Function(
             List<BannerModel?>? banners,
             List<CategoryModel?>? categories,
-            @JsonKey(name: 'app_version') AppVersionModel? appVersion)
+            @JsonKey(name: 'app_version') AppVersionModel? appVersion,
+            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeModel():
-        return $default(_that.banners, _that.categories, _that.appVersion);
+        return $default(_that.banners, _that.categories, _that.appVersion,
+            _that.contactUsModel);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -271,13 +301,15 @@ extension HomeModelPatterns on HomeModel {
     TResult? Function(
             List<BannerModel?>? banners,
             List<CategoryModel?>? categories,
-            @JsonKey(name: 'app_version') AppVersionModel? appVersion)?
+            @JsonKey(name: 'app_version') AppVersionModel? appVersion,
+            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeModel() when $default != null:
-        return $default(_that.banners, _that.categories, _that.appVersion);
+        return $default(_that.banners, _that.categories, _that.appVersion,
+            _that.contactUsModel);
       case _:
         return null;
     }
@@ -290,7 +322,8 @@ class _HomeModel implements HomeModel {
   const _HomeModel(
       {final List<BannerModel?>? banners,
       final List<CategoryModel?>? categories,
-      @JsonKey(name: 'app_version') this.appVersion})
+      @JsonKey(name: 'app_version') this.appVersion,
+      @JsonKey(name: 'contact_us') this.contactUsModel})
       : _banners = banners,
         _categories = categories;
   factory _HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -319,6 +352,9 @@ class _HomeModel implements HomeModel {
   @override
   @JsonKey(name: 'app_version')
   final AppVersionModel? appVersion;
+  @override
+  @JsonKey(name: 'contact_us')
+  final ContactUsModel? contactUsModel;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -344,7 +380,9 @@ class _HomeModel implements HomeModel {
             const DeepCollectionEquality()
                 .equals(other._categories, _categories) &&
             (identical(other.appVersion, appVersion) ||
-                other.appVersion == appVersion));
+                other.appVersion == appVersion) &&
+            (identical(other.contactUsModel, contactUsModel) ||
+                other.contactUsModel == contactUsModel));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -353,11 +391,12 @@ class _HomeModel implements HomeModel {
       runtimeType,
       const DeepCollectionEquality().hash(_banners),
       const DeepCollectionEquality().hash(_categories),
-      appVersion);
+      appVersion,
+      contactUsModel);
 
   @override
   String toString() {
-    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion)';
+    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion, contactUsModel: $contactUsModel)';
   }
 }
 
@@ -372,10 +411,13 @@ abstract mixin class _$HomeModelCopyWith<$Res>
   $Res call(
       {List<BannerModel?>? banners,
       List<CategoryModel?>? categories,
-      @JsonKey(name: 'app_version') AppVersionModel? appVersion});
+      @JsonKey(name: 'app_version') AppVersionModel? appVersion,
+      @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel});
 
   @override
   $AppVersionModelCopyWith<$Res>? get appVersion;
+  @override
+  $ContactUsModelCopyWith<$Res>? get contactUsModel;
 }
 
 /// @nodoc
@@ -393,6 +435,7 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
     Object? banners = freezed,
     Object? categories = freezed,
     Object? appVersion = freezed,
+    Object? contactUsModel = freezed,
   }) {
     return _then(_HomeModel(
       banners: freezed == banners
@@ -407,6 +450,10 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
           ? _self.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
               as AppVersionModel?,
+      contactUsModel: freezed == contactUsModel
+          ? _self.contactUsModel
+          : contactUsModel // ignore: cast_nullable_to_non_nullable
+              as ContactUsModel?,
     ));
   }
 
@@ -421,6 +468,20 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
 
     return $AppVersionModelCopyWith<$Res>(_self.appVersion!, (value) {
       return _then(_self.copyWith(appVersion: value));
+    });
+  }
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContactUsModelCopyWith<$Res>? get contactUsModel {
+    if (_self.contactUsModel == null) {
+      return null;
+    }
+
+    return $ContactUsModelCopyWith<$Res>(_self.contactUsModel!, (value) {
+      return _then(_self.copyWith(contactUsModel: value));
     });
   }
 }
@@ -2898,6 +2959,314 @@ class __$AppVersionModelCopyWithImpl<$Res>
           ? _self.appleReview
           : appleReview // ignore: cast_nullable_to_non_nullable
               as int?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$ContactUsModel {
+  @JsonKey(name: 'phone_number')
+  String? get phoneNumber;
+
+  /// Create a copy of ContactUsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ContactUsModelCopyWith<ContactUsModel> get copyWith =>
+      _$ContactUsModelCopyWithImpl<ContactUsModel>(
+          this as ContactUsModel, _$identity);
+
+  /// Serializes this ContactUsModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ContactUsModel &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, phoneNumber);
+
+  @override
+  String toString() {
+    return 'ContactUsModel(phoneNumber: $phoneNumber)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ContactUsModelCopyWith<$Res> {
+  factory $ContactUsModelCopyWith(
+          ContactUsModel value, $Res Function(ContactUsModel) _then) =
+      _$ContactUsModelCopyWithImpl;
+  @useResult
+  $Res call({@JsonKey(name: 'phone_number') String? phoneNumber});
+}
+
+/// @nodoc
+class _$ContactUsModelCopyWithImpl<$Res>
+    implements $ContactUsModelCopyWith<$Res> {
+  _$ContactUsModelCopyWithImpl(this._self, this._then);
+
+  final ContactUsModel _self;
+  final $Res Function(ContactUsModel) _then;
+
+  /// Create a copy of ContactUsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phoneNumber = freezed,
+  }) {
+    return _then(_self.copyWith(
+      phoneNumber: freezed == phoneNumber
+          ? _self.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ContactUsModel].
+extension ContactUsModelPatterns on ContactUsModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ContactUsModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ContactUsModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ContactUsModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContactUsModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ContactUsModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContactUsModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'phone_number') String? phoneNumber)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ContactUsModel() when $default != null:
+        return $default(_that.phoneNumber);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@JsonKey(name: 'phone_number') String? phoneNumber)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContactUsModel():
+        return $default(_that.phoneNumber);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@JsonKey(name: 'phone_number') String? phoneNumber)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ContactUsModel() when $default != null:
+        return $default(_that.phoneNumber);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ContactUsModel implements ContactUsModel {
+  const _ContactUsModel({@JsonKey(name: 'phone_number') this.phoneNumber});
+  factory _ContactUsModel.fromJson(Map<String, dynamic> json) =>
+      _$ContactUsModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'phone_number')
+  final String? phoneNumber;
+
+  /// Create a copy of ContactUsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ContactUsModelCopyWith<_ContactUsModel> get copyWith =>
+      __$ContactUsModelCopyWithImpl<_ContactUsModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ContactUsModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ContactUsModel &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, phoneNumber);
+
+  @override
+  String toString() {
+    return 'ContactUsModel(phoneNumber: $phoneNumber)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ContactUsModelCopyWith<$Res>
+    implements $ContactUsModelCopyWith<$Res> {
+  factory _$ContactUsModelCopyWith(
+          _ContactUsModel value, $Res Function(_ContactUsModel) _then) =
+      __$ContactUsModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call({@JsonKey(name: 'phone_number') String? phoneNumber});
+}
+
+/// @nodoc
+class __$ContactUsModelCopyWithImpl<$Res>
+    implements _$ContactUsModelCopyWith<$Res> {
+  __$ContactUsModelCopyWithImpl(this._self, this._then);
+
+  final _ContactUsModel _self;
+  final $Res Function(_ContactUsModel) _then;
+
+  /// Create a copy of ContactUsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? phoneNumber = freezed,
+  }) {
+    return _then(_ContactUsModel(
+      phoneNumber: freezed == phoneNumber
+          ? _self.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }

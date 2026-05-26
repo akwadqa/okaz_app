@@ -25,7 +25,7 @@ Future<void> main() async {
             path: 'assets/translations',
             child: const MyApp(),
           ),
-        );
+        ); 
       },
     ),
   );

@@ -21,6 +21,9 @@ _HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => _HomeModel(
           ? null
           : AppVersionModel.fromJson(
               json['app_version'] as Map<String, dynamic>),
+      contactUsModel: json['contact_us'] == null
+          ? null
+          : ContactUsModel.fromJson(json['contact_us'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
@@ -28,6 +31,7 @@ Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
       'banners': instance.banners,
       'categories': instance.categories,
       'app_version': instance.appVersion,
+      'contact_us': instance.contactUsModel,
     };
 
 _BannerModel _$BannerModelFromJson(Map<String, dynamic> json) => _BannerModel(
@@ -144,4 +148,14 @@ Map<String, dynamic> _$AppVersionModelToJson(_AppVersionModel instance) =>
       'app_update_required': instance.appUpdateRequired,
       'app_update_message': instance.appUpdateMessage,
       'apple_review': instance.appleReview,
+    };
+
+_ContactUsModel _$ContactUsModelFromJson(Map<String, dynamic> json) =>
+    _ContactUsModel(
+      phoneNumber: json['phone_number'] as String?,
+    );
+
+Map<String, dynamic> _$ContactUsModelToJson(_ContactUsModel instance) =>
+    <String, dynamic>{
+      'phone_number': instance.phoneNumber,
     };

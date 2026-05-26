@@ -80,6 +80,13 @@ class SettingsScreen extends ConsumerWidget {
               icon: Assets.icons.langIc,
             ),
           ),
+          GestureDetector(
+            onTap: () => context.push(AppRoutes.contactUs),
+            child: SettingsItemCard(
+              title: 'contactUs'.tr(),
+              icon: Assets.icons.contactsIc,
+            ),
+          ),
 
           if (isAuthenticated) ...[
             // SettingsItemCard(

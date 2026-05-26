@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/features/settings/presentation/screens/contact_us_screen.dart';
 import '../../../features/addProduct/presentation/screens/add_product_screen.dart';
 import '../../../features/addProduct/presentation/widgets/second_step/select_location_page/app_map_screen.dart';
 import '../../../features/auth/signIn/presentation/screens/sign_in_screen.dart';
@@ -434,6 +435,21 @@ class AppRouter {
           pageBuilder: (BuildContext context, GoRouterState state) {
             return CustomTransitionPage(
               child: EditProfileScreen(),
+              key: state.pageKey,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(opacity: animation, child: child);
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRoutes.contactUs,
+          name: AppRoutes.contactUs,
+          parentNavigatorKey: rootKey,
+          pageBuilder: (BuildContext context, GoRouterState state) {
+            return CustomTransitionPage(
+              child: ContactUsScreen(),
               key: state.pageKey,
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

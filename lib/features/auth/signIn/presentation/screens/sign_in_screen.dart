@@ -30,7 +30,7 @@ class _SignInContent extends StatelessWidget {
     return Column(
       // mainAxisAlignment: MainAxisAlignment.center,
       // mainAxisSize: MainAxisSize.min,
-      spacing: 35,
+      spacing: 50,
       children: [SignInHeader(), SignInForm(), SignInFooter()],
     ).symmetricPadding(vertical: 40, horizontal: 20);
   }

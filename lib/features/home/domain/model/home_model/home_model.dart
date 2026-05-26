@@ -9,6 +9,7 @@ abstract class HomeModel with _$HomeModel {
     List<BannerModel?>? banners,
     List<CategoryModel?>? categories,
     @JsonKey(name: 'app_version') AppVersionModel? appVersion,
+    @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel,
   }) = _HomeModel;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -98,4 +99,14 @@ abstract class AppVersionModel with _$AppVersionModel {
 
   factory AppVersionModel.fromJson(Map<String, dynamic> json) =>
       _$AppVersionModelFromJson(json);
+}
+@freezed
+abstract class ContactUsModel with _$ContactUsModel {
+  const factory ContactUsModel({
+    @JsonKey(name: 'phone_number') String? phoneNumber,
+
+  }) = _ContactUsModel;
+
+  factory ContactUsModel.fromJson(Map<String, dynamic> json) =>
+      _$ContactUsModelFromJson(json);
 }

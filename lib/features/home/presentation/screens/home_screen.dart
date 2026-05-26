@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import '../../../app/app_service.dart';
 import '../../domain/model/home_model/home_model.dart';
 import '../controller/home_controller.dart';
@@ -115,7 +116,7 @@ class _HomeScreenContentState extends ConsumerState<_HomeScreenContent> {
           onTap: () => context.push(AppRoutes.searchScreen),
         ),
         20.verticalSpace,
-        HomeScreenAddsSection(homeModel: homeModel),
+       if(homeModel.banners!.isNotEmpty) HomeScreenAddsSection(homeModel: homeModel),
         36.verticalSpace,
         ...homeModel.categories!.map(
           (cat) => HomeScreenCategorySection(
