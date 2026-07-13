@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../../src/core/shared_widgets/app_loader.dart';
+import '../../../../../src/core/utils/helper/keyboard_action.dart';
 import '../../controller/add_product_controller.dart';
 import 'dynamic_attribute_field.dart';
 
-class StepProductInfoView extends ConsumerWidget {
+class StepProductInfoView extends ConsumerStatefulWidget {
   const StepProductInfoView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(addProductControllerProvider.notifier);
+  ConsumerState<StepProductInfoView> createState() =>
+      _StepProductInfoViewState();
+}
+
+class _StepProductInfoViewState extends ConsumerState<StepProductInfoView> {
+  // key = attribute id/title, value = its FocusNode (only number fields)
+  final Map<String, FocusNode> _focusNodes = {};
+
+  FocusNode _nodeFor(String key) =>
+      _focusNodes.putIfAbsent(key, () => FocusNode());
+
+  bool _isNumber(String dataType) {
+    final dt = dataType.toLowerCase();
+    return dt == 'number' || dt == 'int' || dt == 'double' || dt == 'numeric';
+  }
+
+  @override
+  void dispose() {
+    for (final node in _focusNodes.values) {
+      node.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // final controller = ref.read(addProductControllerProvider.notifier);
     final state = ref.watch(addProductControllerProvider).value!;
 
     if (state is AsyncLoading) {
@@ -19,15 +45,29 @@ class StepProductInfoView extends ConsumerWidget {
     final attributes = state.attributes.where((e) => e.attributeId != 'City');
 
     final otherFilters = attributes.where((e) => e.isMainFilter == 0).toList();
-    return ListView.separated(
-        itemCount: otherFilters.length,
-        padding: EdgeInsets.symmetric(horizontal: 12),
-        separatorBuilder: (_, __) => const SizedBox(height: 16),
-        itemBuilder: (context, index) {
-          return DynamicAttributeField(
-            attribute: otherFilters[index],
-          );
-        });
+    // Collect focus nodes ONLY for number fields
+    final allNodes =
+      otherFilters.map((a) => _nodeFor(a.attributeId)).toList();
+    for (final a in otherFilters) {
+      debugPrint('ATTR: ${a.title} | dataType="${a.dataType}"');
+    }
+    return KeyboardDone.wrap(
+      nodes: allNodes,
+      child: ListView.separated(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag, // 👈
+
+          itemCount: otherFilters.length,
+          padding: EdgeInsets.symmetric(horizontal: 12),
+          separatorBuilder: (_, __) => const SizedBox(height: 16),
+          itemBuilder: (context, index) {
+            final attr = otherFilters[index];
+
+            return DynamicAttributeField(
+              attribute: otherFilters[index],
+              focusNode: _nodeFor(attr.attributeId),
+            );
+          }),
+    );
 
 //     return ListView(
 //       padding: const EdgeInsets.all(16),
