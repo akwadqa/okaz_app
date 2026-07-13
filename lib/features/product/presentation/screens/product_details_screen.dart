@@ -1,7 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/gen/assets.gen.dart';
+import 'package:okaz/src/core/shared_widgets/custom_app_bar.dart';
+import 'package:okaz/src/core/utils/extenssions/widget_extensions.dart';
+import 'package:okaz/src/infrastructure/storage/local_storage_service.dart';
 import '../../domain/model/product_details_model/product_details_model.dart';
 import '../controller/product_controller.dart';
 import '../widgets/product_details_comment_section/product_details_screen_comments_section.dart';
@@ -55,6 +60,8 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final isAuth = ref.watch(isAuthenticatedProvider).value ?? false;
+
     final controller = ref.watch(
       productControllerProvider
           .select((val) => val.value?.productDetailsModel ?? AsyncLoading()),
@@ -64,9 +71,11 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
         productControllerProvider
             .select((val) => val.value?.productDetailsModel), (previous, next) {
       if (next is AsyncData) {
-        ref
-            .read(productControllerProvider.notifier)
-            .updatePostViews(next?.value?.name ?? 'id');
+        if (isAuth) {
+          ref
+              .read(productControllerProvider.notifier)
+              .updatePostViews(next?.value?.name ?? 'id');
+        }
       }
     });
     return PopScope(
@@ -86,6 +95,50 @@ class _ProductDetailsScreenState extends ConsumerState<ProductDetailsScreen>
       child: Scaffold(
         backgroundColor: AppColors.background,
 
+        appBar: AppBar(
+          centerTitle: true,
+          surfaceTintColor: Colors.transparent,
+          title: Text(
+            'product_details_screen'.tr(),
+            style: AppTextStyle.rubikSemiBold20.copyWith(
+              color: AppColors.primary,
+            ),
+          ),
+          leading: GestureDetector(
+            onTap: () {
+              if (context.canPop()) {
+                context.pop();
+              } else {
+                context.goNamed(AppRoutes.mainScreen);
+              }
+            },
+            child: Container(
+              width: 30,
+              height: 30,
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(100),
+                // boxShadow: [
+                //   BoxShadow(
+                //     color: Colors.black.withOpacity(0.1),
+                //     blurRadius: 1,
+                //     offset: const Offset(0, 2),
+                //   ),
+                // ]
+              ),
+              child:
+                  Icon(Icons.arrow_back_ios_rounded, color: AppColors.primary),
+            ),
+          ),
+          actions: [
+            if (controller.value != null)
+              ProductDetailsScreenIconCircleButton(
+                icon: Assets.icons.starIc,
+                productDetailsModel: controller.value!,
+              ).symmetricPadding(horizontal: 20),
+          ],
+        ),
         body: controller.when(
           data: (data) {
             return _buildProductDetailsBody(data);

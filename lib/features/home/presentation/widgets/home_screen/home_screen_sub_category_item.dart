@@ -25,37 +25,42 @@ class HomeScreenSubCategoryItem extends ConsumerWidget {
           extra: subCategoryModel,
         );
       },
-      child: Container(
-        width: width / 4.5,
-        // height: width / 3.5,
-        height: width / 4.5,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          spacing: 4,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CachedNetworkImage(
-              imageUrl: ServicesUrls.imageUrl + (subCategoryModel.image ?? ''),
-              height: width / 7,
-            ),
-            // Assets.images.phoneImage.image(height: width / 7),
-            FittedBox(
-              child: Text(
-                translate(
-                  subCategoryModel.categoryNameAr ?? '',
-                  subCategoryModel.categoryName ?? '',
-                  context,
-                ),
-                textAlign: TextAlign.center,
-                style: AppTextStyle.rubikMedium14.copyWith(
-                  color: AppColors.textDart,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          padding: EdgeInsets.all(3),
+          width: width / 4.5,
+          // height: width / 3.5,
+          height: width / 4.5,
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            spacing: 4,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CachedNetworkImage(
+                imageUrl:
+                    ServicesUrls.imageUrl + (subCategoryModel.image ?? ''),
+                height: width / 7,
+              ),
+              // Assets.images.phoneImage.image(height: width / 7),
+              FittedBox(
+                child: Text(
+                  translate(
+                    subCategoryModel.categoryNameAr ?? '',
+                    subCategoryModel.categoryName ?? '',
+                    context,
+                  ),
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.rubikMedium14.copyWith(
+                    color: AppColors.textDart,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

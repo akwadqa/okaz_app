@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:okaz/src/core/utils/functions/helper_methods.dart';
 import '../../../domain/model/home_model/home_model.dart';
 import '../../../../../src/application/router/app_routes.dart';
 import '../../../../../src/infrastructure/api/endpoint/services_urls.dart';
@@ -15,7 +16,7 @@ class HomeScreenAddItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: bannerModel.post != null
+      onTap: (bannerModel.post != null && bannerModel.post!.isNotEmpty)
           ? () {
               context.push(AppRoutes.productDetailsScreen,
                   extra: bannerModel.post);
@@ -54,7 +55,12 @@ class HomeScreenAddItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                bannerModel.bannerName ?? 'banner_name'.tr(),
+                translate(
+                  bannerModel.bannerNameAr ?? '',
+                  bannerModel.bannerName ?? '',
+                  context,
+                ),
+                // bannerModel.bannerName ?? 'banner_name'.tr(),
                 // 'ساعة كلاسيكية',
                 style:
                     AppTextStyle.interBold18.copyWith(color: AppColors.white),

@@ -14,33 +14,37 @@ class SubCategoriesSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(mainSubcategory).mainAttributes?.first.values ?? [];
-    return Column(
-      spacing: 20,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          // 'الأقسام الفرعية',
-          subCategoryModel.mainAttributes?.first.title ?? 'title',
-          style: AppTextStyle.rubikSemiBold18.copyWith(
-            color: AppColors.textDart,
+    return SingleChildScrollView(
+      child: Column(
+        spacing: 20,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            // 'الأقسام الفرعية',
+            subCategoryModel.mainAttributes?.first.title ?? 'title',
+            style: AppTextStyle.rubikSemiBold18.copyWith(
+              color: AppColors.textDart,
+            ),
           ),
-        ),
-        Wrap(
-            // spacing: 10,
-            // runSpacing: 10,
-            spacing: 25,
-            runSpacing: 15,
-            alignment: WrapAlignment.start,
-            runAlignment: WrapAlignment.start,
-            crossAxisAlignment: WrapCrossAlignment.start,
-            children: [
-              SubCategoryItem(title: '',),
-              ...items.map((item) => SubCategoryItem(
-                    title: item.title ?? '',
-                    image: item.image,
-                  )),
-            ]),
-      ],
-    ).symmetricPadding(horizontal: 22);
+          Wrap(
+              // spacing: 10,
+              // runSpacing: 10,
+              spacing: 25,
+              runSpacing: 15,
+              alignment: WrapAlignment.start,
+              runAlignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              children: [
+                SubCategoryItem(
+                  title: '',
+                ),
+                ...items.map((item) => SubCategoryItem(
+                      title: item.title ?? '',
+                      image: item.image,
+                    )),
+              ]),
+        ],
+      ).symmetricPadding(horizontal: 22),
+    );
   }
 }

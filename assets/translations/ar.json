@@ -253,5 +253,6 @@
     "update_title_optional": "تحديث متاح",
     "update_message_required": "نسخة جديدة مطلوبة للاستمرار في استخدام التطبيق.",
     "update_message_optional": "هناك تحديث جديد متاح.",
-    "could_not_open_link": "تعذر فتح الرابط."
+    "could_not_open_link": "تعذر فتح الرابط.",
+    "product_details_screen" : "تفاصيل المنتج"
 }

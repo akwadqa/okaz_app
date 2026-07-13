@@ -36,7 +36,8 @@ class FiltersScreenWrapMenuItem extends StatelessWidget {
         ),
         child: FittedBox(
           child: Text(
-            title,
+            title.trim(),
+            textAlign: TextAlign.center,
             style: AppTextStyle.rubikMedium14.copyWith(
               color: isSelected ? AppColors.white : AppColors.textDart,
             ),

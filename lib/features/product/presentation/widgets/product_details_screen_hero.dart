@@ -58,44 +58,44 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
               // widget.productDetailsModel.images[index].(fit: BoxFit.cover),
             ),
           ),
-          PositionedDirectional(
-            end: 16,
-            top: 28,
-            child: ProductDetailsScreenIconCircleButton(
-              icon: Assets.icons.starIc,
-              productDetailsModel: widget.productDetailsModel,
-            ),
-          ),
-          PositionedDirectional(
-              start: 16,
-              top: 28,
-              child: Container(
-                  width: 30,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(100),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 1,
-                          offset: const Offset(0, 2),
-                        ),
-                      ]),
-                  child: GestureDetector(
-                    onTap: () => {
-                      if (context.canPop())
-                        {
-                          context.pop(),
-                        }
-                      else
-                        {
-                          context.goNamed(AppRoutes.mainScreen),
-                        }
-                    },
-                    child: Icon(Icons.arrow_back_ios_rounded,
-                        color: AppColors.primary),
-                  ))),
+          // PositionedDirectional(
+          //   end: 16,
+          //   top: 28,
+          //   child: ProductDetailsScreenIconCircleButton(
+          //     icon: Assets.icons.starIc,
+          //     productDetailsModel: widget.productDetailsModel,
+          //   ),
+          // ),
+          // PositionedDirectional(
+          //     start: 16,
+          //     top: 28,
+          //     child: Container(
+          //         width: 30,
+          //         height: 30,
+          //         decoration: BoxDecoration(
+          //             color: AppColors.white,
+          //             borderRadius: BorderRadius.circular(100),
+          //             boxShadow: [
+          //               BoxShadow(
+          //                 color: Colors.black.withOpacity(0.1),
+          //                 blurRadius: 1,
+          //                 offset: const Offset(0, 2),
+          //               ),
+          //             ]),
+          //         child: GestureDetector(
+          //           onTap: () => {
+          //             if (context.canPop())
+          //               {
+          //                 context.pop(),
+          //               }
+          //             else
+          //               {
+          //                 context.goNamed(AppRoutes.mainScreen),
+          //               }
+          //           },
+          //           child: Icon(Icons.arrow_back_ios_rounded,
+          //               color: AppColors.primary),
+          //         ))),
           // child: IconButton(
           //   style: ButtonStyle(
           //       iconColor: WidgetStatePropertyAll(AppColors.primary),
