@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -33,14 +35,20 @@ class _BottomNavigationBarViewState
       backgroundColor: Colors.transparent,
       onTap: (index) {
         if (index == 1) {
+          final authAsync =
+              ref.watch(isAuthenticatedProvider).asData?.value ?? false;
+
           final number =
               ref.read(localStorageServiceProvider).userInfo.mobileNumber;
           final country =
-              ref.read(localStorageServiceProvider).userInfo.country ?? '';
+              ref.read(localStorageServiceProvider).userInfo.country;
           final isValid = (country == 'Qatar' && number.startsWith('974')) ||
               (country == 'Saudi Arabia' && number.startsWith('966'));
-          if (isValid) {
+
+          log('isValid: $isValid, country: $country, number: $number');
+          if (isValid || country == null || country.isEmpty) {
             context.go(AppRoutes.addNewProduct);
+            return;
           } else {
             AppToast.errorToast('change_country_alert'.tr());
             Future.delayed(const Duration(milliseconds: 800), () {
