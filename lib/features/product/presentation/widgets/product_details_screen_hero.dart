@@ -10,6 +10,7 @@ import '../../../../src/infrastructure/api/endpoint/services_urls.dart';
 import '../../../../src/resourses/color_manager/app_colors.dart';
 
 import '../../../../gen/assets.gen.dart';
+import 'product_details_screen_fullscreen_gallery.dart';
 
 class ProductDetailsScreenHero extends StatefulWidget {
   const ProductDetailsScreenHero({
@@ -26,7 +27,25 @@ class ProductDetailsScreenHero extends StatefulWidget {
 class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
+void _openFullscreen(BuildContext context, int initialIndex) {
+  final images = widget.productDetailsModel.images;
+  if (images == null || images.isEmpty) return;
 
+ Navigator.of(context).push(
+  PageRouteBuilder(
+    opaque: false,
+    barrierColor: Colors.transparent, // <-- مهم
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        ProductDetailsFullscreenGallery(
+      images: images,
+      initialIndex: initialIndex,
+    ),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(opacity: animation, child: child);
+    },
+  ),
+);
+}
   @override
   void dispose() {
     _pageController.dispose();
@@ -50,10 +69,13 @@ class _ProductDetailsScreenHeroState extends State<ProductDetailsScreenHero> {
               controller: _pageController,
               itemCount: widget.productDetailsModel.images?.length,
               onPageChanged: (index) => setState(() => _currentIndex = index),
-              itemBuilder: (context, index) => CachedNetworkImage(
-                imageUrl: ServicesUrls.imageUrl +
-                    (widget.productDetailsModel.images?[index].image ?? ''),
-                fit: BoxFit.cover,
+              itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => _openFullscreen(context, index),  
+                child: CachedNetworkImage(
+                  imageUrl: ServicesUrls.imageUrl +
+                      (widget.productDetailsModel.images?[index].image ?? ''),
+                  fit: BoxFit.cover,
+                ),
               ),
               // widget.productDetailsModel.images[index].(fit: BoxFit.cover),
             ),

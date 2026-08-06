@@ -19,12 +19,12 @@ class HomeScreenCategorySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       spacing: 15,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         HomeScreenCategoryTitle(title: title, icon: icon),
         Wrap(
-          spacing: 25,
-          runSpacing: 15,
+          spacing: 40,
+          runSpacing: 20,
           alignment: WrapAlignment.start,
           runAlignment: WrapAlignment.start,
           crossAxisAlignment: WrapCrossAlignment.start,
