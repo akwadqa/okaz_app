@@ -40,26 +40,31 @@ class AddProductScreen extends ConsumerWidget {
           context.goNamed(AppRoutes.mainScreen);
         }
       },
-      child: Scaffold(
-        backgroundColor: AppColors.background,
-        appBar: AppBar(
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent, // 👈 catches taps on empty areas
+        onTap: () =>
+            FocusManager.instance.primaryFocus?.unfocus(), // 👈 correct unfocus
+        child: Scaffold(
           backgroundColor: AppColors.background,
-          elevation: 0,
-          title: Text(context.tr('add_ad_title')),
-          surfaceTintColor: Colors.transparent,
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => context.goNamed(AppRoutes.mainScreen),
+          appBar: AppBar(
+            backgroundColor: AppColors.background,
+            elevation: 0,
+            title: Text(context.tr('add_ad_title')),
+            surfaceTintColor: Colors.transparent,
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () => context.goNamed(AppRoutes.mainScreen),
+            ),
           ),
-        ),
-        body: AuthGuard(
-          child: Column(
-            children: [
-              _ProgressBar(step: state.step),
-              Expanded(child: _StepContent(step: state.step)),
-              _BottomButtons(step: state.step),
-            ],
+          body: AuthGuard(
+            child: Column(
+              children: [
+                _ProgressBar(step: state.step),
+                Expanded(child: _StepContent(step: state.step)),
+                _BottomButtons(step: state.step),
+              ],
+            ),
           ),
         ),
       ),

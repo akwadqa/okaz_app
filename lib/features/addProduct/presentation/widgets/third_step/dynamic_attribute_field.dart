@@ -1,14 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:queen_validators/queen_validators.dart';
+
 import '../../../domain/model/subcategory/subcategory_attribute_model.dart';
 import '../../../../../src/core/utils/enums/sub_categories_attributes_type.dart';
 import '../../../../../src/core/utils/extenssions/int_extenssion.dart';
 import '../../../../../src/logger/log_services/dev_logger.dart';
 import '../../../../../src/resourses/color_manager/app_colors.dart';
 import '../../../../../src/resourses/font_manager/app_text_style.dart';
-import 'package:queen_validators/queen_validators.dart';
-
 import '../../controller/add_product_controller.dart';
 import '../../controller/add_product_state.dart';
 import '../add_select_bottom_sheet.dart';
@@ -16,39 +16,38 @@ import '../add_select_field.dart';
 
 class DynamicAttributeField extends ConsumerWidget {
   final SubcategoryAttributeModel attribute;
+  final FocusNode? focusNode; // 👈 injected from parent
 
   const DynamicAttributeField({
     super.key,
     required this.attribute,
+    this.focusNode,
   });
+
+  bool get _isNumber {
+    final dt = attribute.dataType.toLowerCase();
+    return dt == 'number' || dt == 'int' || dt == 'double' || dt == 'numeric';
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(addProductControllerProvider.notifier);
     final state = ref.watch(addProductControllerProvider).value!;
-
-    final currentValue =
-        state.specs[attribute.title]; // or attribute.attributeId
-
+    final currentValue = state.specs[attribute.title];
     final type = parseFieldType(attribute.dataType);
 
     switch (type) {
       case AttributeFieldType.dropdown:
         return _buildDropdown(context, currentValue, controller);
-
       case AttributeFieldType.text:
         return _buildTextField(context, currentValue, controller, true);
-
       case AttributeFieldType.checkbox:
-        return _buildToggle(attribute, currentValue, controller, state);
-
       case AttributeFieldType.toggle:
         return _buildToggle(attribute, currentValue, controller, state);
     }
   }
 
   Widget _buildDropdown(
-    // SubcategoryAttributeModel attribute,
     BuildContext context,
     dynamic value,
     AddProductController controller,
@@ -60,44 +59,24 @@ class DynamicAttributeField extends ConsumerWidget {
       value: value,
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
-
         showAddSelectSheet<String>(
           context: context,
           title: attribute.title.tr(),
           items: attribute.values,
           selected: value,
           labelBuilder: (v) => v,
-          onConfirm: (v) {
-            controller.updateSpec(attribute.title, v);
-          },
+          onConfirm: (v) => controller.updateSpec(attribute.title, v),
         );
       },
     );
-    // Column(
-    //   crossAxisAlignment: CrossAxisAlignment.start,
-    //   children: [
-    //     Text(attribute.title),
-    //     const SizedBox(height: 8),
-    //     DropdownButtonFormField<String>(
-    //       value: value,
-    //       items: attribute.values
-    //           .map(
-    //             (v) => DropdownMenuItem(
-    //               value: v,
-    //               child: Text(v),
-    //             ),
-    //           )
-    //           .toList(),
-    //       onChanged: (val) {
-    //         controller.updateSpec(attribute.title, val);
-    //       },
-    //     ),
-    //   ],
-    // );
   }
 
-  Widget _buildTextField(BuildContext context, dynamic value,
-      AddProductController controller, bool isRequired) {
+  Widget _buildTextField(
+    BuildContext context,
+    dynamic value,
+    AddProductController controller,
+    bool isRequired,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -112,7 +91,12 @@ class DynamicAttributeField extends ConsumerWidget {
           ],
         ),
         12.verticalSpace,
+
+        // 👇 NO KeyboardActions here — parent handles it
         TextFormField(
+          focusNode: focusNode, // 👈 USE THE PASSED NODE
+          keyboardType: _isNumber ? TextInputType.number : TextInputType.name,
+          textInputAction: TextInputAction.next,
           style: TextStyle(fontSize: 16, color: AppColors.black800),
           decoration: InputDecoration(
             filled: true,
@@ -135,47 +119,21 @@ class DynamicAttributeField extends ConsumerWidget {
               borderRadius: BorderRadius.circular(24),
             ),
           ),
-          textInputAction: TextInputAction.next,
-          validator: qValidator([
-            IsRequired(context.tr('required')),
-            // IsEmail(context.tr('name_valdation_msg'))
-          ]),
-          keyboardType: TextInputType.name,
-          onChanged: (v) {
-            controller.updateSpec(attribute.title, v);
-          },
+          validator: qValidator([IsRequired(context.tr('required'))]),
+          onChanged: (v) => controller.updateSpec(attribute.title, v),
         ),
       ],
     );
   }
 
-  Widget _buildRadioList(
+  Widget _buildToggle(
     SubcategoryAttributeModel attribute,
     dynamic value,
     AddProductController controller,
+    AddProductState state,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(attribute.title),
-        ...attribute.values.map((v) {
-          return RadioListTile<String>(
-            title: Text(v),
-            value: v,
-            groupValue: value,
-            onChanged: (val) {
-              controller.updateSpec(attribute.title, val);
-            },
-          );
-        }),
-      ],
-    );
-  }
-
-  Widget _buildToggle(SubcategoryAttributeModel attribute, dynamic value,
-      AddProductController controller, AddProductState state) {
     return Container(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(24),
@@ -191,20 +149,11 @@ class DynamicAttributeField extends ConsumerWidget {
         subtitle: Text(attribute.dataType),
         onChanged: (v) {
           FocusManager.instance.primaryFocus?.unfocus();
-
           Dev.logMap(state.specs);
           Dev.logLine(controller.canGoNextForSpecs(state.attributes));
-
           controller.updateSpec(attribute.title, v);
         },
       ),
     );
-    // SwitchListTile(
-    //   title: Text(attribute.title),
-    //   value: value == true,
-    //   onChanged: (val) {
-    //     controller.updateSpec(attribute.title, val);
-    //   },
-    // );
   }
 }

@@ -15,6 +15,8 @@ class AddTextField extends StatefulWidget {
     this.isRequired = false,
     this.suffixText,
     this.suffixIcon,
+        this.focusNode, 
+
   });
 
   final String hint;
@@ -26,6 +28,7 @@ class AddTextField extends StatefulWidget {
   final bool isRequired;
   final String? suffixText;
   final Widget? suffixIcon;
+  final FocusNode? focusNode;
 
   @override
   State<AddTextField> createState() => _AddTextFieldState();
@@ -67,6 +70,7 @@ class _AddTextFieldState extends State<AddTextField> {
         ],
         TextFormField(
           controller: controller,
+          focusNode: widget.focusNode,
           onChanged: widget.onChanged,
           maxLines: widget.maxLines,
           keyboardType: widget.keyboardType,

@@ -34,6 +34,10 @@
 		<string>This app uses your location to show your position on the map and allow you to add a location to your posts.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>This app accesses your photo library so you can select and upload images when creating posts.</string>
+		<key>NSContactsUsageDescription</key>
+		<string>This app may access your contacts only when needed to help you to contact the support or contact other users.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>This app uses your location to show your position on the map and allow you to add a location to your posts..</string>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>UIBackgroundModes</key>

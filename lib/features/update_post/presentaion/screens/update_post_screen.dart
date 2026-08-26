@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:keyboard_actions/keyboard_actions.dart';
 import '../../../addProduct/presentation/widgets/add_select_bottom_sheet.dart';
 import '../../../addProduct/presentation/widgets/add_text_field.dart';
 import '../../../addProduct/presentation/widgets/fourth_step/step_review_view.dart';
@@ -23,23 +24,74 @@ class UpdatePostScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: CustomDeafultAppbar(
-        title: 'edit'.tr(),
-        titleColor: AppColors.black,
-        backButtonColor: AppColors.black,
+    return GestureDetector(
+      // 👇 tap anywhere to dismiss keyboard
+      behavior: HitTestBehavior.translucent,
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        appBar: CustomDeafultAppbar(
+          title: 'edit'.tr(),
+          titleColor: AppColors.black,
+          backButtonColor: AppColors.black,
+        ),
+        body: _UpdatePostScreenContent(),
       ),
-      body: _UpdatePostScreenContent(),
     );
   }
 }
 
-class _UpdatePostScreenContent extends ConsumerWidget {
-  const _UpdatePostScreenContent();
+// class _UpdatePostScreenContent extends ConsumerWidget {
+//   const _UpdatePostScreenContent();
+class _UpdatePostScreenContent extends ConsumerStatefulWidget {
+  const _UpdatePostScreenContent({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_UpdatePostScreenContent> createState() =>
+      __UpdatePostScreenContentState();
+}
+
+class __UpdatePostScreenContentState
+    extends ConsumerState<_UpdatePostScreenContent> {
+  // One focus node PER text field that needs the Done bar (number field here)
+  final FocusNode _priceFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _priceFocusNode.dispose();
+    super.dispose();
+  }
+
+  KeyboardActionsConfig _buildConfig() {
+    return KeyboardActionsConfig(
+      keyboardActionsPlatform: KeyboardActionsPlatform.IOS,
+      nextFocus: false,
+      actions: [
+        KeyboardActionsItem(
+          focusNode: _priceFocusNode,
+          displayArrows: false,
+          toolbarButtons: [
+            (node) => GestureDetector(
+                  onTap: () => node.unfocus(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      "done".tr(),
+                      style: const TextStyle(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(updatePostControllerProvider).updatedPost!;
     final controller = ref.read(updatePostControllerProvider.notifier);
 
@@ -67,116 +119,120 @@ class _UpdatePostScreenContent extends ConsumerWidget {
     // final categories =
     //     ref.read(homeControllerProvider).value?.homeModel.value?.categories;
 
-    return ListView(
-      padding: const EdgeInsets.all(16),
-      children: [
-        const SectionTitle(
-          title: 'product_images',
-          subtitle: "max_5_images",
-          required: true,
-        ),
-        UpdatePostImageGrid(
-          images: state.images ?? [],
-          onAdd: controller.pickImage,
-          onRemove: controller.removeImage,
-        ),
-        12.verticalSpace,
-        // AddSelectField(
-        //   label: 'categories',
-        //   isRequired: true,
-        //   hint: 'select_category',
-        //   value: state.category,
-        //   onTap: () {
-        //     FocusManager.instance.primaryFocus?.unfocus();
-        //     showAddSelectSheet<String>(
-        //       context: context,
-        //       title: 'categories',
-        //       items:
-        //           categories?.map((e) => e?.categoryName ?? '').toList() ?? [],
-        //       selected: state.category,
-        //       labelBuilder: (v) => v,
-        //       onConfirm: (v) {
-        //         // controller.updateSpec(mainFilters.title, v);
-        //         // controller.setSubCategoryType(v);
-        //       },
-        //     );
-        //   },
-        // ),
-        SectionTitle(title: context.tr('price'), required: true),
-        // const SizedBox(height: 12),
-
-        AddTextField(
-          hint: context.tr('price'),
-          keyboardType: TextInputType.number,
-          value: state.price.toString(),
-          onChanged: (val) {
-            controller
-                .changePostData(ProductDetailsModel(price: num.parse(val)));
-          },
-        ),
-
-        /// -----------------------------
-        /// Arabic Details
-        /// -----------------------------
-        SectionTitle(title: context.tr('name_ar'), required: true),
-        // const SizedBox(height: 12),
-
-        AddTextField(
-          hint: context.tr('name_ar'),
-          value: state.titleAr,
-          onChanged: (val) {
-            controller.changePostData(ProductDetailsModel(titleAr: val));
-          },
-        ),
-
-        SectionTitle(title: context.tr('name_en'), required: true),
-        // const SizedBox(height: 12),
-
-        AddTextField(
-          hint: context.tr('name_en'),
-          value: state.title,
-          onChanged: (val) {
-            controller.changePostData(ProductDetailsModel(title: val));
-          },
-        ),
-
-        SectionTitle(title: context.tr('description_ar'), required: true),
-        AddTextField(
-          hint: context.tr('description_ar'),
-          maxLines: 4,
-          value: state.descriptionAr,
-          onChanged: (val) {
-            controller.changePostData(ProductDetailsModel(descriptionAr: val));
-          },
-        ),
-        SectionTitle(title: context.tr('description_en'), required: true),
-        AddTextField(
-          hint: context.tr('description_en'),
-          maxLines: 4,
-          value: state.description,
-          onChanged: (val) {
-            controller.changePostData(ProductDetailsModel(description: val));
-          },
-        ),
-
-        updateController.maybeWhen(
-            loading: () => AppLoader(),
-            orElse: () {
-              return CustomButtonWidget(
-                  text: 'update'.tr(),
-                  elevation: 4,
-                  shadowColor: AppColors.grayHint.withValues(alpha: .2),
-                  onTap: () {
-                    ref
-                        .read(updatePostControllerProvider.notifier)
-                        .updatePost();
-                  },
-                  isFiled: true,
-                  backgroundColor: AppColors.primary,
-                  height: 53,
-                  width: double.infinity);
-            })
-      ],
+    return KeyboardActions(
+      config: _buildConfig(),
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const SectionTitle(
+            title: 'product_images',
+            subtitle: "max_5_images",
+            required: true,
+          ),
+          UpdatePostImageGrid(
+            images: state.images ?? [],
+            onAdd: controller.pickImage,
+            onRemove: controller.removeImage,
+          ),
+          12.verticalSpace,
+          // AddSelectField(
+          //   label: 'categories',
+          //   isRequired: true,
+          //   hint: 'select_category',
+          //   value: state.category,
+          //   onTap: () {
+          //     FocusManager.instance.primaryFocus?.unfocus();
+          //     showAddSelectSheet<String>(
+          //       context: context,
+          //       title: 'categories',
+          //       items:
+          //           categories?.map((e) => e?.categoryName ?? '').toList() ?? [],
+          //       selected: state.category,
+          //       labelBuilder: (v) => v,
+          //       onConfirm: (v) {
+          //         // controller.updateSpec(mainFilters.title, v);
+          //         // controller.setSubCategoryType(v);
+          //       },
+          //     );
+          //   },
+          // ),
+          SectionTitle(title: context.tr('price'), required: true),
+          // const SizedBox(height: 12),
+      
+          AddTextField(
+            focusNode: _priceFocusNode,
+            hint: context.tr('price'),
+            keyboardType: TextInputType.number,
+            value: state.price.toString(),
+            onChanged: (val) {
+              controller
+                  .changePostData(ProductDetailsModel(price: num.parse(val)));
+            },
+          ),
+      
+          /// -----------------------------
+          /// Arabic Details
+          /// -----------------------------
+          SectionTitle(title: context.tr('name_ar'), required: true),
+          // const SizedBox(height: 12),
+      
+          AddTextField(
+            hint: context.tr('name_ar'),
+            value: state.titleAr,
+            onChanged: (val) {
+              controller.changePostData(ProductDetailsModel(titleAr: val));
+            },
+          ),
+      
+          SectionTitle(title: context.tr('name_en'), required: true),
+          // const SizedBox(height: 12),
+      
+          AddTextField(
+            hint: context.tr('name_en'),
+            value: state.title,
+            onChanged: (val) {
+              controller.changePostData(ProductDetailsModel(title: val));
+            },
+          ),
+      
+          SectionTitle(title: context.tr('description_ar'), required: true),
+          AddTextField(
+            hint: context.tr('description_ar'),
+            maxLines: 4,
+            value: state.descriptionAr,
+            onChanged: (val) {
+              controller.changePostData(ProductDetailsModel(descriptionAr: val));
+            },
+          ),
+          SectionTitle(title: context.tr('description_en'), required: true),
+          AddTextField(
+            hint: context.tr('description_en'),
+            maxLines: 4,
+            value: state.description,
+            onChanged: (val) {
+              controller.changePostData(ProductDetailsModel(description: val));
+            },
+          ),
+      
+          updateController.maybeWhen(
+              loading: () => AppLoader(),
+              orElse: () {
+                return CustomButtonWidget(
+                    text: 'update'.tr(),
+                    elevation: 4,
+                    shadowColor: AppColors.grayHint.withValues(alpha: .2),
+                    onTap: () {
+                      ref
+                          .read(updatePostControllerProvider.notifier)
+                          .updatePost();
+                    },
+                    isFiled: true,
+                    backgroundColor: AppColors.primary,
+                    height: 53,
+                    width: double.infinity);
+              })
+        ],
+      ),
     );
   }
 
