@@ -254,5 +254,7 @@
     "update_message_required": "A new version is required to continue using the app.",
     "update_message_optional": "A new update is available.",
     "could_not_open_link": "Could not open the link.",
-    "product_details_screen" : "Product Details"
+    "product_details_screen" : "Product Details",
+    "area" : "Area",
+    "select_area" : "Select area"
 }

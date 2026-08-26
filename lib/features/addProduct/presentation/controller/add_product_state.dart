@@ -16,6 +16,7 @@ class AddProductState extends Equatable {
   final String? condition;
   final String? mainSubCategoryType;
   final String? city;
+  final String? area;
 
   // Step 3 (dynamic specs)
   final Map<String, dynamic> specs;
@@ -39,6 +40,7 @@ final List<SubcategoryAttributeModel> attributes;
     this.adType,
     this.mainSubCategoryType,
     this.city,
+    this.area,
     required this.specs,
     required this.images,
     this.titleAr,
@@ -70,6 +72,7 @@ final List<SubcategoryAttributeModel> attributes;
     String? condition,
     String? mainSubCategoryType,
     String? city,
+    String? area,
     Map<String, dynamic>? specs,
     List<SubcategoryAttributeModel>? attributes,
     List<String>? images,
@@ -78,6 +81,7 @@ final List<SubcategoryAttributeModel> attributes;
     String? titleEn,
     String? descEn,
     int? price,
+
     bool? isFeatured,
     LatLng? latLng,
   }) {
@@ -89,6 +93,7 @@ final List<SubcategoryAttributeModel> attributes;
       condition: condition ?? this.condition,
       mainSubCategoryType: mainSubCategoryType ?? this.mainSubCategoryType,
       city: city ?? this.city,
+      area: area ?? this.area,
       specs: specs ?? this.specs,
       attributes: attributes ?? this.attributes,
       images: images ?? this.images,
@@ -116,6 +121,7 @@ final List<SubcategoryAttributeModel> attributes;
         titleAr,
         descAr,
         titleEn,
+        area,
         descEn,
         price,
         isFeatured,

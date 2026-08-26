@@ -23,6 +23,9 @@ class ProductScreenFilterItem extends ConsumerWidget {
     final filters = ref.watch(filterControllerProvider
         .select((val) => val.value!.selectedAttributes));
 
+      final isCityFilter = subcategoryAttributeModel.title == 'City' ||
+        subcategoryAttributeModel.title == 'المدينة';
+
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
         // value: index == 1 ? category : '1',
@@ -44,6 +47,10 @@ class ProductScreenFilterItem extends ConsumerWidget {
                   child: Text(item),
                 ),
                 onTap: () {
+                  if(isCityFilter ){
+                    
+                    ref.read(filterControllerProvider.notifier).clearAreaFilter();
+                  }
                   if (subcategoryAttributeModel.isMainFilter == 1) {
                     ref.read(selectedSubCategoryProvider.notifier).state = item;
                   }

@@ -24,6 +24,7 @@ mixin _$ProductDetailsModel {
   num? get price;
   String? get currency;
   String? get city;
+  String? get area;
   String? get latitude;
   String? get longitude;
   String? get condition;
@@ -80,6 +81,7 @@ mixin _$ProductDetailsModel {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.city, city) || other.city == city) &&
+            (identical(other.area, area) || other.area == area) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -128,6 +130,7 @@ mixin _$ProductDetailsModel {
         price,
         currency,
         city,
+        area,
         latitude,
         longitude,
         condition,
@@ -152,7 +155,7 @@ mixin _$ProductDetailsModel {
 
   @override
   String toString() {
-    return 'ProductDetailsModel(title: $title, name: $name, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, image: $image, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
+    return 'ProductDetailsModel(title: $title, name: $name, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, area: $area, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, image: $image, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
   }
 }
 
@@ -171,6 +174,7 @@ abstract mixin class $ProductDetailsModelCopyWith<$Res> {
       num? price,
       String? currency,
       String? city,
+      String? area,
       String? latitude,
       String? longitude,
       String? condition,
@@ -216,6 +220,7 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
     Object? price = freezed,
     Object? currency = freezed,
     Object? city = freezed,
+    Object? area = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? condition = freezed,
@@ -269,6 +274,10 @@ class _$ProductDetailsModelCopyWithImpl<$Res>
       city: freezed == city
           ? _self.city
           : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      area: freezed == area
+          ? _self.area
+          : area // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: freezed == latitude
           ? _self.latitude
@@ -470,6 +479,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             num? price,
             String? currency,
             String? city,
+            String? area,
             String? latitude,
             String? longitude,
             String? condition,
@@ -505,6 +515,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             _that.price,
             _that.currency,
             _that.city,
+            _that.area,
             _that.latitude,
             _that.longitude,
             _that.condition,
@@ -554,6 +565,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             num? price,
             String? currency,
             String? city,
+            String? area,
             String? latitude,
             String? longitude,
             String? condition,
@@ -588,6 +600,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             _that.price,
             _that.currency,
             _that.city,
+            _that.area,
             _that.latitude,
             _that.longitude,
             _that.condition,
@@ -636,6 +649,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             num? price,
             String? currency,
             String? city,
+            String? area,
             String? latitude,
             String? longitude,
             String? condition,
@@ -670,6 +684,7 @@ extension ProductDetailsModelPatterns on ProductDetailsModel {
             _that.price,
             _that.currency,
             _that.city,
+            _that.area,
             _that.latitude,
             _that.longitude,
             _that.condition,
@@ -708,6 +723,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
       this.price,
       this.currency,
       this.city,
+      this.area,
       this.latitude,
       this.longitude,
       this.condition,
@@ -752,6 +768,8 @@ class _ProductDetailsModel implements ProductDetailsModel {
   final String? currency;
   @override
   final String? city;
+  @override
+  final String? area;
   @override
   final String? latitude;
   @override
@@ -857,6 +875,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.city, city) || other.city == city) &&
+            (identical(other.area, area) || other.area == area) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -905,6 +924,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
         price,
         currency,
         city,
+        area,
         latitude,
         longitude,
         condition,
@@ -929,7 +949,7 @@ class _ProductDetailsModel implements ProductDetailsModel {
 
   @override
   String toString() {
-    return 'ProductDetailsModel(title: $title, name: $name, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, image: $image, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
+    return 'ProductDetailsModel(title: $title, name: $name, titleAr: $titleAr, description: $description, descriptionAr: $descriptionAr, price: $price, currency: $currency, city: $city, area: $area, latitude: $latitude, longitude: $longitude, condition: $condition, postType: $postType, category: $category, image: $image, subcategory: $subcategory, images: $images, attributes: $attributes, isFeatured: $isFeatured, parentComments: $parentComments, likes: $likes, comments: $comments, views: $views, reports: $reports, createdOn: $createdOn, userInfo: $userInfo, userIsOwner: $userIsOwner, isFavorited: $isFavorited, isLiked: $isLiked)';
   }
 }
 
@@ -950,6 +970,7 @@ abstract mixin class _$ProductDetailsModelCopyWith<$Res>
       num? price,
       String? currency,
       String? city,
+      String? area,
       String? latitude,
       String? longitude,
       String? condition,
@@ -996,6 +1017,7 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
     Object? price = freezed,
     Object? currency = freezed,
     Object? city = freezed,
+    Object? area = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? condition = freezed,
@@ -1049,6 +1071,10 @@ class __$ProductDetailsModelCopyWithImpl<$Res>
       city: freezed == city
           ? _self.city
           : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      area: freezed == area
+          ? _self.area
+          : area // ignore: cast_nullable_to_non_nullable
               as String?,
       latitude: freezed == latitude
           ? _self.latitude

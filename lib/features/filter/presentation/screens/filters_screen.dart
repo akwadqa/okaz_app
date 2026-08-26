@@ -72,15 +72,15 @@ class _FiltersScreenContent extends ConsumerWidget {
               separatorBuilder: (context, index) => 22.verticalSpace,
               padding: EdgeInsets.symmetric(horizontal: 22, vertical: 12),
               itemBuilder: (context, index) {
-                // if (index == 0) {
-                //   return FiltersScreenSearchFiled();
-                // }
-
                 switch (items[index].dataType) {
                   case 'Checkbox':
                     return FiltersScreenSwitchItem(items[index]);
 
                   case 'Select':
+                    if (items[index].title == 'Area' ||
+                        items[index].title == 'المنطقة') {
+                      return SizedBox();
+                    }
                     return FiltersScreenWrapMenu(
                       subcategoryAttributeModel: items[index],
                     );
@@ -93,41 +93,6 @@ class _FiltersScreenContent extends ConsumerWidget {
                   default:
                     return SizedBox();
                 }
-
-                // child: Column(
-                //   spacing: 22,
-                //   crossAxisAlignment: CrossAxisAlignment.start,
-                //   children: [
-                //     2.verticalSpace,
-                //     FiltersScreenSearchFiled(),
-                //     FiltersScreenDropDownMenu(
-                //       title: 'موديلات ايفون',
-                //       items: FiltersController.iphoneModels,
-                //       value: state.selectedModel,
-                //       onChanged: (val) {
-                //         ref
-                //             .read(filtersControllerProvider.notifier)
-                //             .selectModel(val);
-                //       },
-                //     ),
-                //     FiltersScreenDropDownMenu(
-                //       title: 'السعة التخزينية',
-                //       items: FiltersController.storageOptions,
-                //       value: state.selectedStorage,
-                //       onChanged: (val) {
-                //         ref
-                //             .read(filtersControllerProvider.notifier)
-                //             .selectStorage(val);
-                //       },
-                //     ),
-
-                //     // FiltersScreenWrapMenu(title: 'نوع الشريحة'),
-                //     FiltersScreenWrapMenu(title: 'نوع الشريحة'),
-                //     FiltersScreenSwitchItem(),
-                //     FiltersScreenRadioMenu(),
-                //     2.verticalSpace,
-                //   ],
-                // ),
               }),
         ),
         FiltersScreenFooter(),

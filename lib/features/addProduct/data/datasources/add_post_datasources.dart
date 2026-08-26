@@ -24,6 +24,7 @@ class AddPostDatasources {
         "subcategory": params.subcategory,
         "post_type": params.postType,
         "city": params.city,
+        "area": params.area,
         "price": params.price,
         "attributes": params.attributes,
         "condition": params.condition,

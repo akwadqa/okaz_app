@@ -14,6 +14,7 @@ abstract class ProductDetailsModel with _$ProductDetailsModel {
     num? price,
     String? currency,
     String? city,
+    String? area,
     String? latitude,
     String? longitude,
     String? condition,

@@ -12,6 +12,7 @@ class AddPostParams {
   final String subcategory;
   final String postType;
   final String city;
+  final String area;
   final String price;
   final String attributes; // JSON string
   final List<File> images;
@@ -24,6 +25,7 @@ class AddPostParams {
     required this.subcategory,
     required this.postType,
     required this.city,
+    required this.area,
     required this.price,
     required this.attributes,
     required this.images,
@@ -42,6 +44,7 @@ class AddPostParams {
     String? subcategory,
     String? postType,
     String? city,
+    String? area,
     String? price,
     String? attributes,
     List<File>? images,
@@ -57,6 +60,7 @@ class AddPostParams {
       subcategory: subcategory ?? this.subcategory,
       postType: postType ?? this.postType,
       city: city ?? this.city,
+      area: area ?? this.area,
       price: price ?? this.price,
       attributes: attributes ?? this.attributes,
       images: images ?? this.images,
@@ -75,6 +79,7 @@ class AddPostParams {
         other.subcategory == subcategory &&
         other.postType == postType &&
         other.city == city &&
+        other.area == area &&
         other.price == price &&
         other.attributes == attributes &&
         listEquals(other.images, images) &&
@@ -89,6 +94,7 @@ class AddPostParams {
         subcategory.hashCode ^
         postType.hashCode ^
         city.hashCode ^
+        area.hashCode ^
         price.hashCode ^
         attributes.hashCode ^
         images.hashCode ^
@@ -98,6 +104,6 @@ class AddPostParams {
 
   @override
   String toString() {
-    return 'AddPostParams(title: $title, description: $description, subcategory: $subcategory, postType: $postType, city: $city, price: $price, attributes: $attributes, images: $images, condition: $condition, isFeatured: $isFeatured, latLng: $latLng)';
+    return 'AddPostParams(title: $title, description: $description, subcategory: $subcategory, postType: $postType, city: $city, area: $area, price: $price, attributes: $attributes, images: $images, condition: $condition, isFeatured: $isFeatured, latLng: $latLng)';
   }
 }

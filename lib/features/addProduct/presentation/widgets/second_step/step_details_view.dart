@@ -25,6 +25,17 @@ class StepDetailsView extends ConsumerWidget {
             e.isMainFilter == 0 && (e.title == 'City' || e.title == 'المدينة'))
         .expand((e) => e.values)
         .toList();
+    final areas = attributes
+        .where((e) =>
+            e.isMainFilter == 0 && (e.title == 'Area' || e.title == 'المنطقة'))
+        .expand((e) => e.values)
+        .toList();
+
+    final customAreas = areas
+        .where((area) => area.contains(state.city ?? ''))
+        .toList()
+        .map((area) => area.replaceAll('${state.city} - ', ''))
+        .toList();
     // List<String> cities = [
     //   'riyadh'.tr(),
     //   'jeddah'.tr(),
@@ -133,6 +144,27 @@ class StepDetailsView extends ConsumerWidget {
             );
           },
         ),
+        if (state.city != null && state.city!.isNotEmpty)
+          AddSelectField(
+            label: 'area',
+            isRequired: true,
+            hint: 'select_area',
+            value: state.area,
+            onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+              showAddSelectSheet<String>(
+                context: context,
+                title: 'select_area',
+                items: customAreas,
+                selected: state.area,
+                labelBuilder: (v) => v,
+                onConfirm: (v) {
+                  // controller.updateSpec(mainFilters.title, v);
+                  controller.setArea(v);
+                },
+              );
+            },
+          ),
 
         // AddTextField(
         //   label: 'city',

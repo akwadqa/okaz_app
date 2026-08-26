@@ -47,6 +47,33 @@ class FilterController extends _$FilterController {
     }
   }
 
+  void clearAreaFilter() {
+    final currentFilters = state.value!.selectedAttributes;
+    final areaFilterKey = 'Area';
+    final arabicAreaFilterKey = 'المنطقة';
+
+    final isCityFilterEmpty = currentFilters['City'] == null ||
+        currentFilters['City'] == '' ||
+        currentFilters['المدينة'] == null ||
+        currentFilters['المدينة'] == '';
+
+    if (currentFilters.containsKey(areaFilterKey)) {
+      state = AsyncData(
+        state.value!.copyWith(
+            selectedAttributes: Map.from(currentFilters
+              ..removeWhere(
+                  (k, v) => k == areaFilterKey && isCityFilterEmpty))),
+      );
+    } else if (currentFilters.containsKey(arabicAreaFilterKey)) {
+      state = AsyncData(
+        state.value!.copyWith(
+            selectedAttributes: Map.from(currentFilters
+              ..removeWhere(
+                  (k, v) => k == arabicAreaFilterKey && isCityFilterEmpty))),
+      );
+    }
+  }
+
   Future<List<SubcategoryAttributeModel>?> getAttributes() async {
     try {
       final subCategory = ref.watch(mainSubcategory);
@@ -118,8 +145,18 @@ class FilterController extends _$FilterController {
       }
       final repo = ref.read(filterRepositoryProvider);
 
-      final response = await repo.getProductsByFilter(request, page,
-          ref.read(localStorageServiceProvider).userInfo.country ?? '');
+      final city = state.value!.selectedAttributes['City'] ??
+          state.value!.selectedAttributes['المدينة'];
+
+      final area = state.value!.selectedAttributes['Area'] ??
+          state.value!.selectedAttributes['المنطقة'];
+
+      final response = await repo.getProductsByFilter(
+          request,
+          page,
+          ref.read(localStorageServiceProvider).userInfo.country ?? '',
+          area,
+          city);
 
       currentPage = response.pagination?.currentPage ?? currentPage;
       totalPages = response.pagination?.totalPages ?? totalPages;

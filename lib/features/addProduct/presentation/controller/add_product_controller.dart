@@ -131,7 +131,14 @@ class AddProductController extends _$AddProductController {
 
   void setCity(String value) {
     state = AsyncData(
-      state.value!.copyWith(city: value),
+      state.value!.copyWith(city: value, area: ''),
+    );
+  }
+
+  void setArea(String value) {
+    final city = state.value!.city ?? '';
+    state = AsyncData(
+      state.value!.copyWith(area: value.replaceAll('$city - ', '')),
     );
   }
 
@@ -264,7 +271,11 @@ class AddProductController extends _$AddProductController {
       case 1:
         return s.subCategory != null;
       case 2:
-        return s.adType != null && s.condition != null && s.city != null;
+        return s.adType != null &&
+            s.condition != null &&
+            s.city != null &&
+            s.area != null &&
+            s.area?.isNotEmpty == true;
       // && mapCtrl != null;
       case 3:
         return true; // specs later
@@ -372,6 +383,7 @@ class AddProductController extends _$AddProductController {
         subcategory: current.subCategory?.categoryName ?? "",
         postType: current.adType!,
         city: current.city!,
+        area: current.area!,
         price: current.price!.toString(),
         attributes: attributesJson,
         images: imageFiles,
@@ -387,6 +399,7 @@ class AddProductController extends _$AddProductController {
       log("Subcategory: ${current.subCategory}");
       log("Post Type: ${current.adType}");
       log("City: ${current.city}");
+      log("Area: ${current.area}");
       log("Price: ${current.price}");
       log("Status: Live");
       log("Condition: New");

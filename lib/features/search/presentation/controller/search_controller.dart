@@ -30,8 +30,12 @@ class SearchController extends _$SearchController {
       final request = GetPostsRequest(title: search);
 
       final repo = ref.read(filterRepositoryProvider);
-      final response = await repo.getProductsByFilter(request, page,
-          ref.read(localStorageServiceProvider).userInfo.country ?? '');
+      final response = await repo.getProductsByFilter(
+          request,
+          page,
+          ref.read(localStorageServiceProvider).userInfo.country ?? '',
+          null,
+          null);
 
       _currentPage = response.pagination!.currentPage;
       _totalPages = response.pagination!.totalPages;

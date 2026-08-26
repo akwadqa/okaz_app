@@ -11,9 +11,22 @@ class FilterRemoteDataSource {
   FilterRemoteDataSource(this._networkService);
 
   Future<ApiResponse<List<ProductDetailsModel>>> getProductsByFilter(
-      GetPostsRequest request, int page, String country) async {
+      GetPostsRequest request,
+      int page,
+      String country,
+      String? area,
+      String? city) async {
     try {
-      final requestData = request.toJson();
+      final updatedRequest = request.copyWith(
+        attributes: request.attributes
+            ?.where((attr) =>
+                attr.title != 'City' &&
+                attr.title != 'المدينة' &&
+                attr.title != 'Area' &&
+                attr.title != 'المنطقة')
+            .toList(),
+      );
+      final requestData = updatedRequest.toJson();
       requestData.removeWhere((k, v) => v == null);
       final response = await _networkService.get(ApiEndPoints.productsByFilter,
           // data: {...request.toJson(), 'page': page, 'limit': 4});
@@ -22,6 +35,8 @@ class FilterRemoteDataSource {
             'page': page,
             'limit': 6,
             if (country.isNotEmpty) 'country': country,
+            if (area != null && area.isNotEmpty) 'area': area,
+            if (city != null && city.isNotEmpty) 'city': city,
           });
 
       if (response.data == null || response.statusCode != 200) {

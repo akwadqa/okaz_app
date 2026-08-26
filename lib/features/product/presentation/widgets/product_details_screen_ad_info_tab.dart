@@ -47,6 +47,10 @@ class ProductDetailsScreenAdInfoTab extends StatelessWidget {
         valueKey: productDetailsModel.condition ??
             'product_details_ad_info_values_condition',
       ),
+      ProductDetailsScreenInfoRowData(
+        titleKey: 'area',
+        valueKey: productDetailsModel.area ?? 'area',
+      ),
     ];
 
     return ProductDetailsScreenAdInfoCard(rows: rows);

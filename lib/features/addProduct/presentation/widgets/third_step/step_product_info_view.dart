@@ -16,7 +16,9 @@ class StepProductInfoView extends ConsumerWidget {
       return const Center(child: AppLoader());
     }
 
-    final attributes = state.attributes.where((e) => e.attributeId != 'City');
+    final attributes = state.attributes
+        .where((e) => (e.attributeId != 'City' && e.attributeId != 'Area'))
+        .toList();
 
     final otherFilters = attributes.where((e) => e.isMainFilter == 0).toList();
     return ListView.separated(

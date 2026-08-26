@@ -47,18 +47,45 @@ class _ProductsScreenFiltersState extends ConsumerState<ProductsScreenFilters> {
   }
 
   ListView _buildFilterItems(List<SubcategoryAttributeModel> attributes) {
+    final selectedCity = ref.watch(filterControllerProvider.select((val) =>
+        val.value!.selectedAttributes['المدينة'] ??
+        val.value!.selectedAttributes['City']));
+
+    final List<Widget> filterWidgets = [
+      const ProductsScreenFiltersButton(),
+    ];
+
+    for (var attr in attributes) {
+      if (attr.title == 'Area' || attr.title == 'المنطقة') {
+        if (selectedCity != null) {
+          final filteredAreas = attr.values
+              .where((area) => area.contains(selectedCity))
+              .map((area) => area.replaceAll('$selectedCity - ', ''))
+              .toList();
+
+          if (filteredAreas.isNotEmpty) {
+            filterWidgets.add(
+              ProductScreenFilterItem(
+                subcategoryAttributeModel: attr.copyWith(values: filteredAreas),
+              ),
+            );
+          }
+        }
+      } else {
+        filterWidgets.add(
+          ProductScreenFilterItem(subcategoryAttributeModel: attr),
+        );
+      }
+    }
+
     return ListView.separated(
       separatorBuilder: (context, index) => 8.horizontalSpace,
-      padding: EdgeInsets.symmetric(horizontal: 21),
+      padding: const EdgeInsets.symmetric(horizontal: 21),
       scrollDirection: Axis.horizontal,
+      itemCount: filterWidgets.length,
       itemBuilder: (context, index) {
-        if (index == 0) {
-          return ProductsScreenFiltersButton();
-        }
-        return ProductScreenFilterItem(
-            subcategoryAttributeModel: attributes[index - 1]);
+        return filterWidgets[index];
       },
-      itemCount: attributes.length + 1,
     );
   }
 }
