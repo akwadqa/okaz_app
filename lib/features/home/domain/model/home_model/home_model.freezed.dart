@@ -20,6 +20,8 @@ mixin _$HomeModel {
   AppVersionModel? get appVersion;
   @JsonKey(name: 'contact_us')
   ContactUsModel? get contactUsModel;
+  @JsonKey(name: 'terms_and_conditions')
+  TermsAndConditionsModel? get termsAndConditionsModel;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +44,10 @@ mixin _$HomeModel {
             (identical(other.appVersion, appVersion) ||
                 other.appVersion == appVersion) &&
             (identical(other.contactUsModel, contactUsModel) ||
-                other.contactUsModel == contactUsModel));
+                other.contactUsModel == contactUsModel) &&
+            (identical(
+                    other.termsAndConditionsModel, termsAndConditionsModel) ||
+                other.termsAndConditionsModel == termsAndConditionsModel));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -52,11 +57,12 @@ mixin _$HomeModel {
       const DeepCollectionEquality().hash(banners),
       const DeepCollectionEquality().hash(categories),
       appVersion,
-      contactUsModel);
+      contactUsModel,
+      termsAndConditionsModel);
 
   @override
   String toString() {
-    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion, contactUsModel: $contactUsModel)';
+    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion, contactUsModel: $contactUsModel, termsAndConditionsModel: $termsAndConditionsModel)';
   }
 }
 
@@ -69,10 +75,13 @@ abstract mixin class $HomeModelCopyWith<$Res> {
       {List<BannerModel?>? banners,
       List<CategoryModel?>? categories,
       @JsonKey(name: 'app_version') AppVersionModel? appVersion,
-      @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel});
+      @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel,
+      @JsonKey(name: 'terms_and_conditions')
+      TermsAndConditionsModel? termsAndConditionsModel});
 
   $AppVersionModelCopyWith<$Res>? get appVersion;
   $ContactUsModelCopyWith<$Res>? get contactUsModel;
+  $TermsAndConditionsModelCopyWith<$Res>? get termsAndConditionsModel;
 }
 
 /// @nodoc
@@ -91,6 +100,7 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
     Object? categories = freezed,
     Object? appVersion = freezed,
     Object? contactUsModel = freezed,
+    Object? termsAndConditionsModel = freezed,
   }) {
     return _then(_self.copyWith(
       banners: freezed == banners
@@ -109,6 +119,10 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
           ? _self.contactUsModel
           : contactUsModel // ignore: cast_nullable_to_non_nullable
               as ContactUsModel?,
+      termsAndConditionsModel: freezed == termsAndConditionsModel
+          ? _self.termsAndConditionsModel
+          : termsAndConditionsModel // ignore: cast_nullable_to_non_nullable
+              as TermsAndConditionsModel?,
     ));
   }
 
@@ -137,6 +151,21 @@ class _$HomeModelCopyWithImpl<$Res> implements $HomeModelCopyWith<$Res> {
 
     return $ContactUsModelCopyWith<$Res>(_self.contactUsModel!, (value) {
       return _then(_self.copyWith(contactUsModel: value));
+    });
+  }
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TermsAndConditionsModelCopyWith<$Res>? get termsAndConditionsModel {
+    if (_self.termsAndConditionsModel == null) {
+      return null;
+    }
+
+    return $TermsAndConditionsModelCopyWith<$Res>(
+        _self.termsAndConditionsModel!, (value) {
+      return _then(_self.copyWith(termsAndConditionsModel: value));
     });
   }
 }
@@ -238,7 +267,9 @@ extension HomeModelPatterns on HomeModel {
             List<BannerModel?>? banners,
             List<CategoryModel?>? categories,
             @JsonKey(name: 'app_version') AppVersionModel? appVersion,
-            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel)?
+            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel,
+            @JsonKey(name: 'terms_and_conditions')
+            TermsAndConditionsModel? termsAndConditionsModel)?
         $default, {
     required TResult orElse(),
   }) {
@@ -246,7 +277,7 @@ extension HomeModelPatterns on HomeModel {
     switch (_that) {
       case _HomeModel() when $default != null:
         return $default(_that.banners, _that.categories, _that.appVersion,
-            _that.contactUsModel);
+            _that.contactUsModel, _that.termsAndConditionsModel);
       case _:
         return orElse();
     }
@@ -271,14 +302,16 @@ extension HomeModelPatterns on HomeModel {
             List<BannerModel?>? banners,
             List<CategoryModel?>? categories,
             @JsonKey(name: 'app_version') AppVersionModel? appVersion,
-            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel)
+            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel,
+            @JsonKey(name: 'terms_and_conditions')
+            TermsAndConditionsModel? termsAndConditionsModel)
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeModel():
         return $default(_that.banners, _that.categories, _that.appVersion,
-            _that.contactUsModel);
+            _that.contactUsModel, _that.termsAndConditionsModel);
       case _:
         throw StateError('Unexpected subclass');
     }
@@ -302,14 +335,16 @@ extension HomeModelPatterns on HomeModel {
             List<BannerModel?>? banners,
             List<CategoryModel?>? categories,
             @JsonKey(name: 'app_version') AppVersionModel? appVersion,
-            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel)?
+            @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel,
+            @JsonKey(name: 'terms_and_conditions')
+            TermsAndConditionsModel? termsAndConditionsModel)?
         $default,
   ) {
     final _that = this;
     switch (_that) {
       case _HomeModel() when $default != null:
         return $default(_that.banners, _that.categories, _that.appVersion,
-            _that.contactUsModel);
+            _that.contactUsModel, _that.termsAndConditionsModel);
       case _:
         return null;
     }
@@ -323,7 +358,8 @@ class _HomeModel implements HomeModel {
       {final List<BannerModel?>? banners,
       final List<CategoryModel?>? categories,
       @JsonKey(name: 'app_version') this.appVersion,
-      @JsonKey(name: 'contact_us') this.contactUsModel})
+      @JsonKey(name: 'contact_us') this.contactUsModel,
+      @JsonKey(name: 'terms_and_conditions') this.termsAndConditionsModel})
       : _banners = banners,
         _categories = categories;
   factory _HomeModel.fromJson(Map<String, dynamic> json) =>
@@ -355,6 +391,9 @@ class _HomeModel implements HomeModel {
   @override
   @JsonKey(name: 'contact_us')
   final ContactUsModel? contactUsModel;
+  @override
+  @JsonKey(name: 'terms_and_conditions')
+  final TermsAndConditionsModel? termsAndConditionsModel;
 
   /// Create a copy of HomeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -382,7 +421,10 @@ class _HomeModel implements HomeModel {
             (identical(other.appVersion, appVersion) ||
                 other.appVersion == appVersion) &&
             (identical(other.contactUsModel, contactUsModel) ||
-                other.contactUsModel == contactUsModel));
+                other.contactUsModel == contactUsModel) &&
+            (identical(
+                    other.termsAndConditionsModel, termsAndConditionsModel) ||
+                other.termsAndConditionsModel == termsAndConditionsModel));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -392,11 +434,12 @@ class _HomeModel implements HomeModel {
       const DeepCollectionEquality().hash(_banners),
       const DeepCollectionEquality().hash(_categories),
       appVersion,
-      contactUsModel);
+      contactUsModel,
+      termsAndConditionsModel);
 
   @override
   String toString() {
-    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion, contactUsModel: $contactUsModel)';
+    return 'HomeModel(banners: $banners, categories: $categories, appVersion: $appVersion, contactUsModel: $contactUsModel, termsAndConditionsModel: $termsAndConditionsModel)';
   }
 }
 
@@ -412,12 +455,16 @@ abstract mixin class _$HomeModelCopyWith<$Res>
       {List<BannerModel?>? banners,
       List<CategoryModel?>? categories,
       @JsonKey(name: 'app_version') AppVersionModel? appVersion,
-      @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel});
+      @JsonKey(name: 'contact_us') ContactUsModel? contactUsModel,
+      @JsonKey(name: 'terms_and_conditions')
+      TermsAndConditionsModel? termsAndConditionsModel});
 
   @override
   $AppVersionModelCopyWith<$Res>? get appVersion;
   @override
   $ContactUsModelCopyWith<$Res>? get contactUsModel;
+  @override
+  $TermsAndConditionsModelCopyWith<$Res>? get termsAndConditionsModel;
 }
 
 /// @nodoc
@@ -436,6 +483,7 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
     Object? categories = freezed,
     Object? appVersion = freezed,
     Object? contactUsModel = freezed,
+    Object? termsAndConditionsModel = freezed,
   }) {
     return _then(_HomeModel(
       banners: freezed == banners
@@ -454,6 +502,10 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
           ? _self.contactUsModel
           : contactUsModel // ignore: cast_nullable_to_non_nullable
               as ContactUsModel?,
+      termsAndConditionsModel: freezed == termsAndConditionsModel
+          ? _self.termsAndConditionsModel
+          : termsAndConditionsModel // ignore: cast_nullable_to_non_nullable
+              as TermsAndConditionsModel?,
     ));
   }
 
@@ -482,6 +534,21 @@ class __$HomeModelCopyWithImpl<$Res> implements _$HomeModelCopyWith<$Res> {
 
     return $ContactUsModelCopyWith<$Res>(_self.contactUsModel!, (value) {
       return _then(_self.copyWith(contactUsModel: value));
+    });
+  }
+
+  /// Create a copy of HomeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TermsAndConditionsModelCopyWith<$Res>? get termsAndConditionsModel {
+    if (_self.termsAndConditionsModel == null) {
+      return null;
+    }
+
+    return $TermsAndConditionsModelCopyWith<$Res>(
+        _self.termsAndConditionsModel!, (value) {
+      return _then(_self.copyWith(termsAndConditionsModel: value));
     });
   }
 }
@@ -3266,6 +3333,351 @@ class __$ContactUsModelCopyWithImpl<$Res>
       phoneNumber: freezed == phoneNumber
           ? _self.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$TermsAndConditionsModel {
+  @JsonKey(name: 'terms_and_conditions')
+  String? get termsAndConditions;
+  @JsonKey(name: 'terms_and_conditions_ar')
+  String? get termsAndConditionsAr;
+
+  /// Create a copy of TermsAndConditionsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TermsAndConditionsModelCopyWith<TermsAndConditionsModel> get copyWith =>
+      _$TermsAndConditionsModelCopyWithImpl<TermsAndConditionsModel>(
+          this as TermsAndConditionsModel, _$identity);
+
+  /// Serializes this TermsAndConditionsModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TermsAndConditionsModel &&
+            (identical(other.termsAndConditions, termsAndConditions) ||
+                other.termsAndConditions == termsAndConditions) &&
+            (identical(other.termsAndConditionsAr, termsAndConditionsAr) ||
+                other.termsAndConditionsAr == termsAndConditionsAr));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, termsAndConditions, termsAndConditionsAr);
+
+  @override
+  String toString() {
+    return 'TermsAndConditionsModel(termsAndConditions: $termsAndConditions, termsAndConditionsAr: $termsAndConditionsAr)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TermsAndConditionsModelCopyWith<$Res> {
+  factory $TermsAndConditionsModelCopyWith(TermsAndConditionsModel value,
+          $Res Function(TermsAndConditionsModel) _then) =
+      _$TermsAndConditionsModelCopyWithImpl;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'terms_and_conditions') String? termsAndConditions,
+      @JsonKey(name: 'terms_and_conditions_ar') String? termsAndConditionsAr});
+}
+
+/// @nodoc
+class _$TermsAndConditionsModelCopyWithImpl<$Res>
+    implements $TermsAndConditionsModelCopyWith<$Res> {
+  _$TermsAndConditionsModelCopyWithImpl(this._self, this._then);
+
+  final TermsAndConditionsModel _self;
+  final $Res Function(TermsAndConditionsModel) _then;
+
+  /// Create a copy of TermsAndConditionsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? termsAndConditions = freezed,
+    Object? termsAndConditionsAr = freezed,
+  }) {
+    return _then(_self.copyWith(
+      termsAndConditions: freezed == termsAndConditions
+          ? _self.termsAndConditions
+          : termsAndConditions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsAndConditionsAr: freezed == termsAndConditionsAr
+          ? _self.termsAndConditionsAr
+          : termsAndConditionsAr // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [TermsAndConditionsModel].
+extension TermsAndConditionsModelPatterns on TermsAndConditionsModel {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TermsAndConditionsModel value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TermsAndConditionsModel() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TermsAndConditionsModel value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TermsAndConditionsModel():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TermsAndConditionsModel value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TermsAndConditionsModel() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'terms_and_conditions') String? termsAndConditions,
+            @JsonKey(name: 'terms_and_conditions_ar')
+            String? termsAndConditionsAr)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TermsAndConditionsModel() when $default != null:
+        return $default(_that.termsAndConditions, _that.termsAndConditionsAr);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            @JsonKey(name: 'terms_and_conditions') String? termsAndConditions,
+            @JsonKey(name: 'terms_and_conditions_ar')
+            String? termsAndConditionsAr)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TermsAndConditionsModel():
+        return $default(_that.termsAndConditions, _that.termsAndConditionsAr);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            @JsonKey(name: 'terms_and_conditions') String? termsAndConditions,
+            @JsonKey(name: 'terms_and_conditions_ar')
+            String? termsAndConditionsAr)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TermsAndConditionsModel() when $default != null:
+        return $default(_that.termsAndConditions, _that.termsAndConditionsAr);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _TermsAndConditionsModel implements TermsAndConditionsModel {
+  const _TermsAndConditionsModel(
+      {@JsonKey(name: 'terms_and_conditions') this.termsAndConditions,
+      @JsonKey(name: 'terms_and_conditions_ar') this.termsAndConditionsAr});
+  factory _TermsAndConditionsModel.fromJson(Map<String, dynamic> json) =>
+      _$TermsAndConditionsModelFromJson(json);
+
+  @override
+  @JsonKey(name: 'terms_and_conditions')
+  final String? termsAndConditions;
+  @override
+  @JsonKey(name: 'terms_and_conditions_ar')
+  final String? termsAndConditionsAr;
+
+  /// Create a copy of TermsAndConditionsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TermsAndConditionsModelCopyWith<_TermsAndConditionsModel> get copyWith =>
+      __$TermsAndConditionsModelCopyWithImpl<_TermsAndConditionsModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$TermsAndConditionsModelToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TermsAndConditionsModel &&
+            (identical(other.termsAndConditions, termsAndConditions) ||
+                other.termsAndConditions == termsAndConditions) &&
+            (identical(other.termsAndConditionsAr, termsAndConditionsAr) ||
+                other.termsAndConditionsAr == termsAndConditionsAr));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, termsAndConditions, termsAndConditionsAr);
+
+  @override
+  String toString() {
+    return 'TermsAndConditionsModel(termsAndConditions: $termsAndConditions, termsAndConditionsAr: $termsAndConditionsAr)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TermsAndConditionsModelCopyWith<$Res>
+    implements $TermsAndConditionsModelCopyWith<$Res> {
+  factory _$TermsAndConditionsModelCopyWith(_TermsAndConditionsModel value,
+          $Res Function(_TermsAndConditionsModel) _then) =
+      __$TermsAndConditionsModelCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'terms_and_conditions') String? termsAndConditions,
+      @JsonKey(name: 'terms_and_conditions_ar') String? termsAndConditionsAr});
+}
+
+/// @nodoc
+class __$TermsAndConditionsModelCopyWithImpl<$Res>
+    implements _$TermsAndConditionsModelCopyWith<$Res> {
+  __$TermsAndConditionsModelCopyWithImpl(this._self, this._then);
+
+  final _TermsAndConditionsModel _self;
+  final $Res Function(_TermsAndConditionsModel) _then;
+
+  /// Create a copy of TermsAndConditionsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? termsAndConditions = freezed,
+    Object? termsAndConditionsAr = freezed,
+  }) {
+    return _then(_TermsAndConditionsModel(
+      termsAndConditions: freezed == termsAndConditions
+          ? _self.termsAndConditions
+          : termsAndConditions // ignore: cast_nullable_to_non_nullable
+              as String?,
+      termsAndConditionsAr: freezed == termsAndConditionsAr
+          ? _self.termsAndConditionsAr
+          : termsAndConditionsAr // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }

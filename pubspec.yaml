@@ -82,6 +82,7 @@ dependencies:
   toastification: ^3.1.0
   android_intent_plus: ^6.0.0
   keyboard_actions: ^4.2.1
+  flutter_html: ^3.0.0
 
 
 

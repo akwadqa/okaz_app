@@ -24,6 +24,10 @@ _HomeModel _$HomeModelFromJson(Map<String, dynamic> json) => _HomeModel(
       contactUsModel: json['contact_us'] == null
           ? null
           : ContactUsModel.fromJson(json['contact_us'] as Map<String, dynamic>),
+      termsAndConditionsModel: json['terms_and_conditions'] == null
+          ? null
+          : TermsAndConditionsModel.fromJson(
+              json['terms_and_conditions'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
@@ -32,6 +36,7 @@ Map<String, dynamic> _$HomeModelToJson(_HomeModel instance) =>
       'categories': instance.categories,
       'app_version': instance.appVersion,
       'contact_us': instance.contactUsModel,
+      'terms_and_conditions': instance.termsAndConditionsModel,
     };
 
 _BannerModel _$BannerModelFromJson(Map<String, dynamic> json) => _BannerModel(
@@ -158,4 +163,18 @@ _ContactUsModel _$ContactUsModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ContactUsModelToJson(_ContactUsModel instance) =>
     <String, dynamic>{
       'phone_number': instance.phoneNumber,
+    };
+
+_TermsAndConditionsModel _$TermsAndConditionsModelFromJson(
+        Map<String, dynamic> json) =>
+    _TermsAndConditionsModel(
+      termsAndConditions: json['terms_and_conditions'] as String?,
+      termsAndConditionsAr: json['terms_and_conditions_ar'] as String?,
+    );
+
+Map<String, dynamic> _$TermsAndConditionsModelToJson(
+        _TermsAndConditionsModel instance) =>
+    <String, dynamic>{
+      'terms_and_conditions': instance.termsAndConditions,
+      'terms_and_conditions_ar': instance.termsAndConditionsAr,
     };

@@ -34,6 +34,7 @@ abstract class AppRoutes {
   static const String updatePost = '/update_post';
   static const String editProfile = '/edit_profile';
   static const String contactUs = '/contactUs';
+  static const String termsAndConditions = '/termsAndConditions';
 
   // static String qrScreen = '/qr-page';
 
