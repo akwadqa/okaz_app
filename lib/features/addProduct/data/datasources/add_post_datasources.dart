@@ -1,3 +1,5 @@
+import 'dart:isolate';
+
 import 'package:dio/dio.dart';
 import '../../domain/model/subcategory/subcategory_attribute_model.dart';
 import '../../../../src/infrastructure/api/endpoint/api_endpoints.dart';
@@ -18,7 +20,7 @@ class AddPostDatasources {
       final formData = FormData.fromMap({
         "title": params.title,
         "title_ar": params.titleAr,
-        "is_featured" : params.isFeatured,
+        "is_featured": params.isFeatured,
         "description": params.description,
         "description_ar": params.descriptionAr,
         "subcategory": params.subcategory,
@@ -36,8 +38,8 @@ class AddPostDatasources {
             ),
           ),
         ),
-        "latitude":params.latLng.latitude,
-        "longitude":params.latLng.longitude,
+        "latitude": params.latLng.latitude,
+        "longitude": params.latLng.longitude,
       });
 
       final response = await _networkService.post(
@@ -61,27 +63,34 @@ class AddPostDatasources {
   }
 
   Future<ApiResponse<List<SubcategoryAttributeModel>>> getSubCategoryList(
-      String subCategoryId , String country) async {
+      String subCategoryId, String country) async {
     try {
       Dev.logLine(subCategoryId);
 
-        // await ref.read(localStorageServiceProvider).getCountry();
+      // await ref.read(localStorageServiceProvider).getCountry();
 
       final response = await _networkService.post(
         ApiEndPoints.subCategoryAttributes,
         data: {
-          "country" : country,
+          "country": country,
           "subcategory_id": subCategoryId,
         },
       );
+      return await Isolate.run(() => ApiResponse.fromJson(
+            response.data,
+            (json) => (json as List)
+                .map((item) => SubcategoryAttributeModel.fromJson(
+                    item as Map<String, dynamic>))
+                .toList(),
+          ));
 
-      return ApiResponse.fromJson(
-        response.data,
-        (json) => (json as List)
-            .map((item) =>
-                SubcategoryAttributeModel.fromJson(item as Map<String, dynamic>))
-            .toList(),
-      );
+      // return ApiResponse.fromJson(
+      //   response.data,
+      //   (json) => (json as List)
+      //       .map((item) =>
+      //           SubcategoryAttributeModel.fromJson(item as Map<String, dynamic>))
+      //       .toList(),
+      // );
     } catch (e) {
       throw ApiResponse.error(message: e.toString());
     }

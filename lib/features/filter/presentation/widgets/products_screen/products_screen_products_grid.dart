@@ -14,8 +14,8 @@ class ProductsScreenProductsGrid extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller =
-        ref.watch(filterControllerProvider.select((val) => val.value!.posts));
+    final controller = ref.watch(filterControllerProvider
+        .select((val) => val.value?.posts ?? AsyncLoading()));
 
     return controller.when(
         data: (data) {

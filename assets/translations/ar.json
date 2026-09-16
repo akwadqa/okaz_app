@@ -255,5 +255,9 @@
     "product_details_screen" : "تفاصيل المنتج",
     "area" : "المنطقة",
     "select_area" : "اختر المنطقة",
-    "terms_and_conditions" : "الشروط والأحكام"
+    "terms_and_conditions" : "الشروط والأحكام",
+    "select_category" : "اختيار الفئة",
+    "details" : "التفاصيل",
+    "product_data" : "بيانات المنتج",
+    "images_and_price" : "الصور والسعر"
 }

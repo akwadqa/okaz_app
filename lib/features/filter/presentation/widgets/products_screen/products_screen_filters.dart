@@ -21,19 +21,22 @@ class _ProductsScreenFiltersState extends ConsumerState<ProductsScreenFilters> {
   @override
   void initState() {
     super.initState();
-    Future(() {
-      ref.read(filterControllerProvider.notifier).getAttributes();
+
+    Future.delayed(const Duration(milliseconds: 350), () {
+      if (mounted) {
+        ref.read(filterControllerProvider.notifier).getAttributes();
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = ref.watch(filterControllerProvider
-        .select((value) => value.value!.subCategoryAttributes));
+        .select((value) => value.value?.subCategoryAttributes ?? AsyncLoading()));
     return SizedBox(
         height: 34,
         width: double.infinity,
-        child: controller!.when(
+        child: controller.when(
             data: (data) => _buildFilterItems(data
                 .where((attr) => attr.values.isNotEmpty)
                 // .where((attr) =>

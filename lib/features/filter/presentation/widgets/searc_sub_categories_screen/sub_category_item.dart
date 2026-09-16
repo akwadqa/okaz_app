@@ -21,37 +21,36 @@ class SubCategoryItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final category = ref.watch(selectedSubCategoryProvider);
+    final isSelected =
+        ref.watch(selectedSubCategoryProvider.select((val) => val == title));
     final width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         if (title != null && (title?.trim().isNotEmpty ?? false)) {
           ref.read(selectedSubCategoryProvider.notifier).state = title!;
         } else {
           ref.read(selectedSubCategoryProvider.notifier).state = '';
-          // ref.read(filterControllerProvider.notifier)
-          //   ..clearTempAttributes()
-          //   ..applyTempAttributes();
         }
+        WidgetsBinding.instance.scheduleWarmUpFrame();
+        await Future.delayed(const Duration(milliseconds: 20));
+        if (!context.mounted) return;
         context.push(AppRoutes.productsScreen);
       },
       child: Container(
-        // width: 104,
-        // height: 40,
         width: width / 4.5,
-        // height: width / 3.5,
         height: width / 4.5,
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: title == category ? AppColors.primary : AppColors.white,
+          // نستخدم المتغير الجديد هنا
+          color: isSelected ? AppColors.primary : AppColors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: AppColors.black.withValues(alpha: .05),
               blurRadius: 2,
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
             ),
           ],
         ),
@@ -72,8 +71,8 @@ class SubCategoryItem extends ConsumerWidget {
                         : 'product_details_view_all'.tr(),
                 textAlign: TextAlign.center,
                 style: AppTextStyle.rubikMedium14.copyWith(
-                  color:
-                      title == category ? AppColors.white : AppColors.textDart,
+                  // نستخدم المتغير الجديد هنا
+                  color: isSelected ? AppColors.white : AppColors.textDart,
                 ),
               ),
             ),

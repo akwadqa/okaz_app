@@ -255,5 +255,9 @@
     "product_details_screen" : "Product Details",
     "area" : "Area",
     "select_area" : "Select area",
-    "terms_and_conditions" : "Terms And Conditions"
+    "terms_and_conditions" : "Terms And Conditions",
+    "select_category" : "Select Category",
+    "details" : "Details",
+    "product_data" : "Product Data",
+    "images_and_price" : "Images & Price"
 }

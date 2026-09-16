@@ -76,6 +76,21 @@ class _ProgressBar extends StatelessWidget {
   final int step;
   const _ProgressBar({required this.step});
 
+  String getStepText(BuildContext context) {
+    switch (step) {
+      case 1:
+        return context.tr('select_category');
+      case 2:
+        return context.tr('details');
+      case 3:
+        return context.tr('product_data');
+      case 4:
+        return context.tr('images_and_price');
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -84,14 +99,25 @@ class _ProgressBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 8,
         children: [
-          Text(
-            context.tr(
-              'step_from_total',
-              namedArgs: {'current': step.toString(), 'total': '4'},
-            ),
-            style: AppTextStyle.rubikSemiBold14.copyWith(
-              color: AppColors.primary,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                context.tr(
+                  'step_from_total',
+                  namedArgs: {'current': step.toString(), 'total': '4'},
+                ),
+                style: AppTextStyle.rubikSemiBold14.copyWith(
+                  color: AppColors.primary,
+                ),
+              ),
+              Text(
+                getStepText(context),
+                style: AppTextStyle.rubikRegular12.copyWith(
+                  color: AppColors.grayHint,
+                ),
+              ),
+            ],
           ),
           LinearProgressIndicator(
             backgroundColor: AppColors.grey,
